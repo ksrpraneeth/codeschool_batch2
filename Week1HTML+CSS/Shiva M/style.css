@@ -1,0 +1,39 @@
+.name {
+    font-size: 25px;
+    font-family: "roboto";
+    font-weight: bold;
+    padding: 0px;
+
+
+}
+
+.card {
+    background-color: white;
+
+
+}
+
+.paragraph {
+    font-size: 16px;
+    font-family: "roboto";
+    font-weight: 200;
+    padding: 0px;
+
+
+
+}
+
+.sideheading {
+    font-size: 18px;
+    font-family: "roboto";
+    font-weight: 800;
+    padding: 5px;
+
+}
+
+.downcard {
+    color: white;
+    background-color: gray;
+
+
+}
