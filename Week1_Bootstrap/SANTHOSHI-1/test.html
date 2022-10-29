@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +26,7 @@
 </head>
 
 <body>
-    <header class="container xl">
+    <header class="container xl";>
         <div class="row">
 
             <div class="col-md-3">
@@ -72,7 +73,7 @@
         </div>
     </header>
 
-    <div id="mySidenav" class="sidenav">
+    <div id="mySidenav" class="sidenav" >
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">Home</a>
         <a href="#">Masters </a>
@@ -100,21 +101,23 @@
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("bg").style.paddingLeft = "250px"; 
         }
 
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
+            document.getElementById("bg").style.marginLeft = "0";
         }
     </script>
-    <div class="container" id="bg">
+    <div class="container mainsection" id="bg" style="margin-left: 250px;">
         <div class="row" id="heading">
             <div class="col-12">
                 <h2>Issue Cheque (E-Kuber Cheque 01/03/2019)</h2>
             </div>
         </div>
-        <div class="row" id="points">
-            <div class="col-12">
+        <div class="row"  id="points">
+            <div class="col-12" >
                 <h2>Points to Remember</h2>
                 <ul>
                     <li>Please note that all cheques which are approved from DDOChecker/Officer/Govt from 01/03/2019

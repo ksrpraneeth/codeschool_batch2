@@ -5,11 +5,11 @@ body {
 
 .sidenav {
   height: 100%;
-  width: auto;
+  width: 250px;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #374659;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
