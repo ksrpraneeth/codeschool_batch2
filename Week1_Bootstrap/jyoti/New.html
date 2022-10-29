@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFMIS(JP)</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="header2.css">
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        header {
+            background-image: url(img.jpeg);
+        }
+
+        .r1 {
+            display: flex;
+
+
+        }
+
+        .b3,
+        .b4,
+        .b5 {
+            padding-top: 2%;
+            margin-left: 2%;
+        }
+
+        .b2 {
+            padding-top: 1%;
+            font-weight: 500;
+            color: white;
+            font-size: 30px;
+        }
+
+        .row .b,
+        .e {
+            padding-top: 4px;
+        }
+
+        .row .btn {
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .row .a {
+            padding-top: 10px;
+        }
+
+        .Left {
+            background-color: rgb(32, 65, 87);
+
+        }
+
+        .Left a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            padding: 2% 2%;
+            margin-left: 2%;
+        }
+
+        .Left div:hover {
+            background-color:gray;
+            border-left: 5px solid yellow;
+            transition: 0.2s;
+
+        }
+
+        .Point {
+            background-color: antiquewhite;
+        }
+
+        .List {
+            font-size: 10px;
+            font-weight: bold;
+            padding-top: 1%;
+            padding-bottom: 2%;
+        }
+
+        .Transaction {
+            background-color: whitesmoke;
+            font-size: 12px;
+            border-radius: 2px;
+            
+            
+        }
+
+        
+
+        .star {
+            color: red;
+        }
+
+        .pad div {
+            margin-top: 2%;
+        }
+
+        .f div {
+            margin-top: 9%;
+            padding: 2% 2%;
+        }
+
+        .rtmr {
+            margin: 1% 1%;
+            padding-left: 1%;
+            border-radius: 3px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .i {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .i input,
+        select {
+            width: 80%;
+        }
+        .r{
+            font-size: 8px
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container d-lg-none">
+        <div class="r1">
+            <div class="b1"><img src="logo3.png"></div>
+            <div class="b2">IFMIS</div>
+            <div class=" b3" style="color: white;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg></div>
+            <div class="b4"><button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" fill="currentColor" class="bi bi-boxes" viewBox="0 0 16 16">
+                        <path
+                            d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z" />
+                    </svg>MODULES</button></div>
+            <div class="b5">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                        </svg></button>
+                    <div class="dropdown-content">
+                        <a href="#">Welcome M.Ushashree</a>
+                        <a href="#">(23031014097)</a>
+
+                    </div>
+                </div>
+                </select>
+            </div>
+
+        </div>
+
+    </header>
+    <header style="background-image: url(img.jpeg);"
+        class="container col-lg-12 col-xxl-12 col-md-12 d-none d-lg-block">
+        <div style="padding-top: 7px;" class="row">
+            <div class="col-md-3 col-sm-12  logo"><img src="ifmis-logo.png" width="240px"></div>
+            <div style="color: white;" class="col-md-1 a"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                    fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg></div>
+            <div style="color: white;" class="col-md-2 b"><button type="button" class="btn btn-secondary"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-boxes" viewBox="0 0 16 16">
+                        <path
+                            d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z" />
+                    </svg> Module</button></div>
+            <div class="col-md-2 c">
+                <div style="color: white; font-size: 12px;">Last Login :</div>
+                <div style="color: white; font-size: 10px;"><b>17-Jun-2022</b></div>
+                <div style="color: white; font-size: 10px;"><b>04:53 PM</b></div>
+            </div>
+            <div class="col-md-2 d"><button type="button" class="btn btn-secondary" >
+                    <div style="font-size: 10px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg> Welcome M.USHASHREE</div>
+                    <div style="font-size: 10px;">(23031014097)</div>
+                </button></div>
+            <div style="font: size 10px; ;" class="col-md-2 e"><button type="button" class="btn btn-secondary"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                        <path fill-rule="evenodd"
+                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                    </svg> Logout</button></div>
+        </div>
+    </header>
+    <div class="col-12 col-lg-12 col-md-12 col-xxl-12 container">
+        <div class="row">
+            <div class=" col-3 sm-12 Left d-none d-lg-block f">
+                <div><a href="#">Home</a></div>
+                <div><a href="#">Masters</a></div>
+                <div><a href="#">Transactions</a></div>
+                <div><a href="#">Reports</a></div>
+                <div><a href="#">Return Cheque Generation</a></div>
+                <div><a href="#">Forest Transactions</a></div>
+                <div><a href="#">Forest Transactions Report</a></div>
+                <div><a href="#">E-kuber Returns Received List</a></div>
+                <div><a href="#">E-kuber Return Challan Print</a></div>
+                <div><a href="#">E-kuber Return Challan Print</a></div>
+                <div><a href="#">Failed transactions (ACK Reject)</a></div>
+                <div><a href="#">Cheque Status Report</a></div>
+                <div><a href="#">Rejected Cheques For Finyear End</a></div>
+                <div><a href="#">Finyear New Cheques Report</a></div>
+                <div><a href="#">Pd Budget Check</a></div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-9  Right" style="background-color: grey; d-none d-lg-block">
+                <div class="full" style="margin: 2% 1%; background-color: white; border-radius: 9px; ">
+                    <div
+                        style="background-color: rgb(200, 227, 240); color: blue; border-radius: 3px; padding:2% 1%;font-size: 18px; font-weight: bold;">
+                        <b> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                class="bi bi-credit-card-2-front-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
+                            </svg>&nbsp;&nbsp;&nbsp;&nbsp;Issue Cheque (E-Kuber Cheque From 01/03/2019)</b>
+                    </div>
+                    <div style="font-size: 12px;" class="Point rtmr"><b>Point to remember</b>
+                        <ul class="List">
+                            <li>Please note thaat all cheques which are apporved from the DDO Cheacker/Officer/govt from
+                                01/03/19 shall get paid through E-kuber which is a core banking Solution of RBI.</li>
+                            <li>There is no need to present the cheques at all the bank for these cheques which got
+                                apoorved after 01/01/2019.</li>
+                            <li>Please give the coorect account details as it is when the Acount was opened.</li>
+                            <li>Make sure there is no "Your self" or "Self" in the account name while issuing
+                                cheques.Such cheques get auto rejected by the E-kuber.</li>
+                            <li>Please the exact length of the Bank Account Number and No special chracter are to be
+                                entered ,which leads to auto-rejection.</li>
+                            <li>Finally,in Multiple party Cheques Please do not enter the same party details in the same
+                                chequeno which will be considered as a duplicacy Transaction and gets auto rejected.
+                            </li>
+                            <li>This is just one-time procedure to get your party details corrected and once when
+                                corrected the same details can be re-used for smooth transcations.</li>
+                            <li>PD-to-PD cheques shall be adjusted in tresury itself in the regular procedure.</li>
+                        </ul>
+                    </div>
+                    <div style="font-weight: bold; padding: 1% 1%;" class="Transaction  container">
+                       <div class="row">
+                        <div class="col-md-3">Transaction Type <span class="star">*</span></div>
+                        <div class="col-md-9 col-xs-12 container">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-6"> <input  
+                                    type="radio" name="rdo">Single Party </div>
+                                <div class="col-md-3 col-xs-6"><input  type="radio" name="rdo">Multiple
+                                    Parties</div>
+                                <div class="col-md-3 col-xs-6"><input  type="radio" name="rdo">PD Account to PD Account</div>
+                                <div class="col-md-3 col-xs-6"><input 
+                                    type="radio" name="rdo">PD Account to Other</div>
+                            </div>
+                        </div>
+                       </div>
+                    </div>
+                    <div class="PCP container pad rtmr i">
+                        <!--account details tag starts-->
+                        <div class="row">
+                            <!--party ac no-->
+                            <div class="col-md-3">Party Account No<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><input type="text" placeholder="Enter A/C No"></div>
+                        </div>
+                        <div class="row">
+                            <!--confrm party ac no-->
+                            <div class="col-md-3">Confirm Party Account No<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><input type="text" placeholder="Confirm Party A/C No"></div>
+                        </div>
+                        <div class="row">
+                            <!--party name-->
+                            <div class="col-md-3">Party Name<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><input type="text" placeholder="Enter Party Name"></div>
+                        </div>
+
+                    </div>
+                    <!--acoount details div end-->
+                    <div style="background-color: rgb(241, 241, 241);" class="bank pad rtmr i">
+                        <!--Bank ifsc code,Bank name,branch-->
+                        <div class="row">
+                            <!--IFSC Code-->
+                            <div class="col-md-3">Bank IFSC Code<span class="star">*</span> </div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><input type="text" placeholder="Enter IFSC Code"> <button
+                                    style="font-size: 10px;" type="button" class="btn btn-primary">Search</button></div>
+                        </div>
+                        <div class="row">
+                            <!--Bank Name-->
+                            <div class="col-md-3">Bank Name</div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6">XXXXXX</div>
+                        </div>
+                        <div class="row">
+                            <!--Bank Branch-->
+                            <div class="col-md-3">Bank Branch</div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6">XXXXXX</div>
+                        </div>
+                    </div>
+                    <!--Bank Details End-->
+                    <div class="pad rtmr i">
+                        <!--Another part-->
+                        <div class="row">
+                            <!--Head of Account-->
+                            <div class="col-md-3">Head of Account<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><select>
+                                    <option>select</option>
+                                </select></div>
+                        </div>
+                        <div class="row">
+                            <!--Balance-->
+                            <div class="col-md-3">Balance(in Rs.)<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6">XXXXXX</div>
+                        </div>
+                        <div class="row">
+                            <!--LOC-->
+                            <div class="col-md-3">LOC(in Rs.)<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6">XXXXXX</div>
+                        </div>
+                        <div class="row">
+                            <!--Expenditure-->
+                            <div class="col-md-3">Expenditure Type<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><select>
+                                    <option>Select</option>
+                                </select></div>
+                        </div>
+                        <div class="row">
+                            <!--Purpose Type-->
+                            <div class="col-md-3">Purpose Type<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><select>
+                                    <option>Select</option>
+                                </select></div>
+                        </div>
+                        <div class="row">
+                            <!--Purpose-->
+                            <div class="col-md-3">Purpose</div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><input type="text" placeholder="Enter Purpose Here"></div>
+                        </div>
+                        <div class="row">
+                            <!--Party Amount-->
+                            <div class="col-md-3">Party Amount(in Rs.)<span class="star">*</span></div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6"><input type="text" placeholder="Enter Party Amount"> </div>
+                        </div>
+                        <div class="row">
+                            <!--Party Amount in Words-->
+                            <div class="col-md-3">Party Amount in Words</div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-6">XXXXXX</div>
+                        </div>
+                        <div class="row">
+                            <!--Upload Documents-->
+                            <div class="col-md-3">Upload Documents</div>
+                            <div class="col-md-1 d-none d-lg-block">:</div>
+                            <div class="col-md-3" style="border: 0.5px solid grey; margin-left:5px; height:40%;width: 40%;"> <input type="file" id="myFile" name="filename">
+                            </div>
+                            <div class="col-md-3"><button style="font-size:10px ;" type="button"
+                                    class="btn btn-primary">+ ADD</button></div>
+                        </div>
+                        <div class="row offset-md-3">
+                            <div class="col-md-8 ">Note:Document of Cheque (Letter/G.O etc) can be uploaded here.</div>
+                        </div>
+
+                    </div>
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row offset-5">
+                            <div class="col-md-4" style="margin-bottom: 4%;"><button type="button" class="btn btn-primary">NEXT<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+                              </svg></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
