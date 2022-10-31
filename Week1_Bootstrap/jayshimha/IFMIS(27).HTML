@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="IFMISCSS(27).CSS">
+</head>
+
+<body>
+
+    <!-- <div class="container p-0">
+
+    
+    <div class="row mt-0">
+       <!--header logo-->
+       <div class=" col col-md-2  border-0 d-flex flex-column p-1" style="background-color:rgb(10, 30, 90) "
+        <img class="image-fluid" src="IFMISTP-LOGO.png" alt="" style="padding:3px">
+        <hr>
+        <div class="line text-white">
+            <div class="sidebar" style="background-color:rgb(10, 57, 100)">
+            
+                <ul class="list-group text-align-left ">
+                        <li class="my-2"><a href="#">Home </a></li>
+                        <li class="my-2"><a href="#">Masters </a></li>
+                        <li class="my-2"><a href="#">Transactions </a></li>
+                        <li class="my-2"><a href="#">Reports</a> </li>
+                        <li class="my-2"><a href="#">Return Cheque Generation </a></li>
+                        <li class="my-2"><a href="#">Forest Transactions</a></li>
+                        <li class="my-2"><a href="#">Forest Transaction Report</a></li>
+                        <li class="my-2"><a href="#">E-kuber Returns Received list</a></li>
+                        <li class="my-2"><a href="#">E-kuber Return Challan Print</a></li>
+                        <li class="my-2"><a href="#">UTR Search</a></li>
+                        <li class="my-2"><a href="#">Failed transactions (ACK Reject)</a></li>
+                        <li class="my-2"><a href="#">Cheque Status Report</a></li>
+                        <li  class="my-2"><a href="#"a>Rejected Cheques due to FinYear End</a></li>
+                        <li class="my-2"><a href="#"a>FinYear New Cheques Report</a></li>
+                        <li class="my-2"><a href="#">Pd Budget Check</a></li>
+                        <li class="my-2"><a href="#">Update Receipts Used Amount</a></li>
+                </ul>
+                
+            </div>
+        </div>
+        </div>
+    </div> -->
+
+    <div class="container" id="bg">
+        <div class="row" id="heading">
+            <div class="col-12">
+                <h2>Issue Cheque (E-Kuber Cheque 01/03/2019)</h2>
+            </div>
+        </div>
+        <div class="row" id="points">
+            <div class="col-12">
+                <h2>Points to Remember</h2>
+                <ul>
+                    <li>Please note that all cheques which are approved from DDOChecker/Officer/Govt from 01/03/2019
+                        shall get paid through E-kuber which is a Core Banking Solution of RBI.</li>
+
+                    <li>There is no need to present the cheques at the Bank for these cheques which got approved after
+                        01/03/2019.</li>
+
+                    <li>Please give correct account details as it is when the Account was opened.</li>
+
+                    <li>Make sure there is no "Your self" or "Self" in the account names while issuing cheques. Such
+                        cheques get auto-rejected by the E-Kuber.</li>
+
+                    <li>Please check the exact length of the Bank Account Number and NO special characters are to be
+                        entered, which leads to auto rejection.</li>
+
+                    <li>Finally, in multiple party cheques please do not enter the same party details in the same
+                        chequeno which will be considered as a duplicacy transaction and gets auto-rejeted.</li>
+
+                    <li>This is just a one-time procedure to get your Party details corrected and once when corrected
+                        the same details can be re-used for smooth transactions.</li>
+
+                    <li>PD-to PD cheques shall be adjusted in treasury itself in the regular procedure.</li>
+                </ul>
+
+            </div>
+        </div>
+        <form action="">
+            <div>Transaction Type
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Transaction Type" id="Single Party"
+                        value="Single Party">
+                    <label class="form-check-label" for="inlineRadio1">Single Party</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Transaction Type" id="Multiple Parties"
+                        value="Multiple Parties">
+                    <label class="form-check-label" for="inlineRadio1">Multiple Parties</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Transaction Type" id="PD Account to PD Account"
+                        value="PD Account to PD Account">
+                    <label class="form-check-label" for="inlineRadio1">PD Account to PD Account</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Transaction Type" id="PD Account to Other"
+                        value="PD Account to Other">
+                    <label class="form-check-label" for="inlineRadio1">PD Account to Other</label>
+                </div>
+            </div>
+        </form>
+        <div class="container mt-3">
+
+
+            <div class="form-group row my-4">
+                <label for="Party" class="col-3 col-form-label">Party Account No :</label>
+                <div class="form-group col-6">
+                    <input type="party" class="form-control" id="party" placeholder="Enter A/c No" name="party">
+                </div>
+            </div>
+
+            <div class="form-group row my-4">
+                <label for="A/C No" class="col-3 col-form-label">Confirm Party A/c No :</label>
+                <div class="form-group col-6">
+                    <input type="Confirm" class="form-control" id="Confirm" placeholder="Enter password" name="Confirm">
+                </div>
+            </div>
+
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Party Name :</label>
+                <div class="form-group col-6">
+                    <input type="Name" class="form-control" id="Name" placeholder="Enter Party Name" name="Name">
+                </div>
+            </div>
+
+            <div class="bg-secondary  bg-opacity-10 p-3 my-4">
+                <div class=" form-group row">
+                    <label for="bank id" class="col-3 col-form-label"> <b> Bank IFSC Code :</b></label>
+                    <div class="form-group col-6">
+                        <input type="text" class="form-control" placeholder="Enter IFSC Code">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-primary text-white"
+                                type="button">Search</button>
+                        </div>
+                    </div>
+                    <div class="form-group row my-4">
+                        <label for="Name" class="col-3 col-form-label">Bank Name :</label>
+                        <div class="form-group col-6">
+                            <label>XXXXXX</label>
+                        </div>
+                    </div>
+                    <div class="form-group row my-4">
+                        <label for="Name" class="col-3 col-form-label">Party Name :</label>
+                        <div class="form-group col-6">
+                            <label>XXXXXX</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Head of Account :</label>
+                <div class="form-group col-6">
+                    <select id="head-of-ac" name="head-of-ac" class="form-control" required>
+                        <option value="" selected>Select</option>
+                        <option value="option-1">option 1</option>
+                        <option value="option-2">option 2</option>
+                        <option value="option-3">option 3</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Balance(in Rs.):</label>
+                <div class="form-group col-6">
+                    <label> XXXXXX</label>
+                </div>
+            </div>
+
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">LOC(in Rs.):</label>
+                <div class="form-group col-6">
+                    <label> XXXXXX</label>
+                </div>
+            </div>
+
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Expenditure Type :</label>
+                <div class="form-group col-6">
+                    <select id="head-of-ac" name="head-of-ac" class="form-control" required>
+                        <option value="" selected>Select</option>
+                        <option value="option-1">option 1</option>
+                        <option value="option-2">option 2</option>
+                        <option value="option-3">option 3</option>
+
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Purpose Type :</label>
+                <div class="form-group col-6">
+                    <select id="head-of-ac" name="head-of-ac" class="form-control" required>
+                        <option value="" selected>Select</option>
+                        <option value="option-1">option 1</option>
+                        <option value="option-2">option 2</option>
+                        <option value="option-3">option 3</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Purpose:</label>
+                <div class="form-group col-6">
+                    <input type="Name" class="form-control" id="Name" placeholder="Enter Purpose Here" name="Name">
+                </div>
+            </div>
+
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Party Amount(in Rs.):</label>
+                <div class="form-group col-6"> <input type="Name" class="form-control" id="Name"
+                        placeholder="Enter Party Amount" name="Name">
+                </div>
+            </div>
+            <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Party Amount in Words:</label>
+                <div class="form-group col-6">
+                    <label> XXXXXX</label>
+                </div>
+            </div>
+
+               <div class="form-group row my-4">
+                <label for="Name" class="col-3 col-form-label">Upload Documents</label>
+                <div class="form-group col-6">
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <button type="button" class="btn btn-primary">+ADD</button>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                <label for="Name" class="col-3 col-form-label"></label>
+                <div class="form-group col-6"><p>Note: Documents of cheque (Letter/G.O. etc) can be uploaded here.</p>
+                </div>
+            </div>
+            <hr>
+            <div class="border border-light p-3 mb-4">
+
+                <div class="text-center">
+                  <button type="button" class="btn btn-primary">Next >></button>
+                </div>
+            
+              </div>    
+            
+
+
+
+
+
+</body>
+
+</html>
