@@ -20,11 +20,11 @@
 
   }
   
-  .sidemenu a:hover {
+  .sidemenu ul  li:hover {
     
     border-left: 5px solid #f8be40;
-    opacity:5px;
-    color:lightgray;
+   
+   background-color:gray;
   }
   
   .sidemenu closebtn {
