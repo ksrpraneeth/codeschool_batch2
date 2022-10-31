@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFMIS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="styleTASK.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="sidebar">
+            <img src="imgs/ifmis-logo.png" width="225">
+        <a href="javascript:void(0)" class="closebtn" onclick="closesidebar()">&times;</a>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" role= "button" data-bs-toggle="dropdown" href="#">Master</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                        <li class="dropdown-item">opt1</li>
+                        <li class="dropdown-item">opt2</li>
+                        <li class="dropdown-item">opt3</li>
+                </ul>  
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Transaction</a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li class="dropdown-item">opt1</li>
+                    <li class="dropdown-item">opt2</li>
+                    <li class="dropdown-item">opt3</li>
+                </ul>
+            </li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Return Cheque Generation</a></li>
+            <li><a href="#">Forest Transaction</a></li>
+            <li><a href="#">E-Kuber Return Received List</a></li>
+            <li><a href="#">E-Kuber Return Challan List</a></li>
+            <li><a href="#">UTR search</a></li>
+            <li><a href="#">Failed Transaction</a></li>
+            <li><a href="#">Cheque Status Report</a></li>
+            <li><a href="#">Rejected Chequesdue to Finyear End</a></li>
+            <li><a href="#">Finyear New Cheques Report</a></li>
+            <li><a href="#">Pd Budget Check</a></li>
+            <li><a href="#">Update Receipts Used Amount</a></li>
+        </ul>
+    </div>
+
+    <header>  
+        <div style="background-image:url(imgs/tskimg.jfif) ;" class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 empty">
+
+                </div>
+           
+            <div class=" col-sm-1 menu">
+                <button type="button" class="btn btn-secondary" onclick="opensidebar()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                      </svg></button>
+                    
+            </div>
+            <div class="col-sm-2 module">
+                <button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-boxes" viewBox="0 0 16 16">
+                    <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z"/>
+                  </svg>  Module</button>
+            </div>
+            <div class="col-sm-2 login">
+                <p>Last Login:<br>17-jun-2022<br>04:53 PM</p>
+                
+            </div>
+            <div class="col-sm-2 user">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                      </svg>
+                      Welcome user
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">user1</a></li>
+                      <li><a class="dropdown-item" href="#">user2</a></li>
+                      <li><a class="dropdown-item" href="#">user3</a></li>
+                    </ul>
+                </div>
+                
+
+            </div>
+            <div class="col-sm-2 logout">
+                <button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                  </svg>  Logout</button>
+            </div>
+            
+
+            </div>
+        </div>
+
+    </header>
+
+            <div class="container-fluid" id="main">
+              <div class="col-sm-12">
+                <div class="row row2">
+                    <div col-sm-12>Issue Cheque(E-Kuber Cheque From 01/03/2019)</div>
+                </div>
+               
+                <div class="alert alert-warning">
+                    <strong><h4>Points to Remember</h4></strong>
+                    
+                    <ul>
+
+                        <li>Please note that all cheques which are approved from DDOChecker/Officer/Govt from 01/03/2019 shall get paid through E-kuber which is a Core Banking Solution of RBI.</li>
+                    
+
+                        <li>There is no need to present the cheques at the Bank for these cheques which got approved after 01/03/2019</li>
+
+                        <li>Please give correct account details as it is when the Account was opened.</li>
+
+                        <li>Make sure there is no "Your self" or "Self" in the account names while issuing cheques. Such cheques get auto-rejected by the E-Kuber</li>
+
+                        <li>Please check the exact length of the Bank Account Number and NO special characters are to be entered, which leads to auto rejection.</li>
+
+                        <li> Finally, in multiple party cheques please do not enter the same party details in the same chequeno which will be considered as a duplicacy transaction and gets auto-rejeted</li>
+
+                       <li>This is just a one-time procedure to get your Party details corrected and once when corrected the same details can be re-used for smooth transactions</li>
+
+                       <li>PD-to-PD cheques shall be adjusted in treasury itself in the regular procedure</li>
+                    </ul>
+
+                </div>
+                <form>
+                <div class="row4" id="form">
+                    <div class="col-sm-12">
+                        <div>Transaction Type*        
+                          <input type="radio" id="single party" name="Transaction Type" value="Single Party">
+                          <lable for="Single Party">Single Party</lable>
+                          <input type="radio" id="Multiple party" name="Transaction Type" value="Multiple Party">
+                          <lable for="Multiple Party">Multiple Party</lable>
+                          <input type="radio" id="PD Account to PD Account" name="Transaction Type" value="PD Account to PD Account">
+                          <lable for="PD Account to PD Account">PD Account to PD Account</lable>
+                          <input type="radio" id="PD Account to Other" name="Transaction Type" value="PD Account to Other">
+                          <lable for="PD Account to Other">PD Account to Other</lable>
+                        </div>
+                    </div>
+                </div>  
+                
+                
+                <div class="row row5">
+                    <div class="col-sm-12">   
+                            <label for="party acc no" class="col-5">Party Account No*:</label>
+                            
+                            <input type="text" id="acc no" name="party acc no" placeholder="Enter A/c No" >
+                    </div>
+                     <br><br>
+                    <div class="col-sm-12">
+                           <label for="Confirm party acc no" class="col-5">Confirm Party Account No*:</label>
+                           <input type="text" id="acc no" name="Confirm party acc no" placeholder="Confirm A/c No">
+                    </div>
+                   <br><br>
+                    <div class="col-sm-12">    
+                           <label for="party name" class="col-5">Party Name*:</label>    
+                           <input type="text" id="pname" name="party name" placeholder="Enter Party Name" >
+                    </div>
+                </div>
+                <br><br>
+
+
+                <div class="row6">
+                    <div class="col-sm-12">
+                        <label for="bank IFSC code" class="col-5" >Bank IFSC Code*:</label>
+                      
+                        <input type="text" id="bank IFSC code" name="bank IFSC code" placeholder="Enter IFSC Code">
+                        <button type="button" class="btn btn-primary">Search</button>
+                    </div>
+                    <br>
+                    <div class="col-sm-12">   
+                        <label for="Bank Name" class="col-5">Bank Name*:</label>
+                        <input type="text" readonly id="BANK NAME" value="XXXXXX">
+                        
+                    </div>
+                    <br>
+                    <div class="col-sm-12">   
+                        <label for="Bank Branch" class="col-5">Bank Branch*:</label>
+                        <input type="text" readonly id="BANK BRANCH" value="XXXXXX">
+                        
+                    </div>
+                </div>
+                <br>
+                <div class="row7">
+                    <div class="col-sm-12" >
+                        <label for="Head of Account" class="col-5">Head of Account*:</label>
+                        <select name="head of account" id="head of accounts">
+                            <option value="" selected disabled>Select</option>
+                            <option value="val1">Option1</option>
+                            <option value="val2">Option2</option>
+                            <option value="val3">Option3</option>
+                        </select>
+
+                    </div>
+                    <br>
+                    <div class="col-sm-12">   
+                        <label for="Balance" class="col-5">Balance(in Rs.)*:</label>
+                        <input type="text" readonly id="balance" value="XXXXXX">
+                        
+                    </div>
+                    <br>
+                    <div class="col-sm-12">   
+                        <label for="LOC" class="col-5">LOC(in Rs.)*:</label>
+                        <input type="text" readonly id="LOC" value="XXXXXX">
+                        
+                    </div>
+                    <br>
+                    <div class="col-sm-12" >
+                        <label for="Expenditure Type" class="col-5">Expenditure Type*:</label>
+                        <select name="Expenditure Type" id="Expenditure Type">
+                            <option value="" selected disabled>Select</option>
+                            <option value="val1">Option1</option>
+                            <option value="val2">Option2</option>
+                            <option value="val3">Option3</option>
+                        </select>
+
+                    </div>
+                    <br>
+                    <div class="col-sm-12" >
+                        <label for="Purpose Type" class="col-5">Purpose Type*:</label>
+                        <select name="Purpose Type" id="Purpose Type">
+                            <option value="" selected disabled>Select</option>
+                            <option value="val1">Option1</option>
+                            <option value="val2">Option2</option>
+                            <option value="val3">Option3</option>
+                        </select>
+
+                    </div>
+                    <br>
+
+                    <div class="col-sm-12">   
+                        <label for="Purpose" class="col-5">Purpose*</label>
+                        <textarea id="Purpose" name="Purpose" row="4" cols="10" placeholder="Enter Purpose Here">
+                        </textarea>
+                    </div>
+                    <br>
+                    <div class="col-sm-12">   
+                        <label for="Party Amount " class="col-5">Party Amount(in Rs.)*:</label>
+                        <input type="text" id="Amount" name="Party Amount" placeholder="Enter Party Amount" >
+                    </div>
+                    <br>
+                    <div class="col-sm-12">   
+                        <label for="Party Amount " class="col-5">Party Amount in words:</label>
+                        <input type="text" readonly id="party amount in words" value="XXXXXX">
+                        
+                    </div>
+                
+                    <br>
+                    <div class="col-sm-12">   
+                        <label for="documents" class="col-5">Upload Documents*:</label>
+                        <input type="file" id="documents" name="documents" placeholder="No file chosen" class=" col-5 outline" >
+                        <button type="button" class="btn btn-primary">+ADD</button>
+                    </div>
+                    <br>
+                    <div class="row row10">
+                             <p>Note:Documents of Cheque(Letter/G.O. etc)can be uploaded here.</p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-3 m-auto">
+                            <button type="button" class="btn btn-primary">Next>></button>
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+                </form>
+            </div>
+        
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    
+</body>
+</html>
