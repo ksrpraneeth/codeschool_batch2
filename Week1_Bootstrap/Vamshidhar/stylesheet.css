@@ -1,0 +1,160 @@
+body {
+    font-family: "Lato", sans-serif;
+    
+  }
+  
+  .back{
+    background-image: url('images/background_photo.jpeg');
+    height: 25%;
+    color: #f1f1f1;
+    padding: 10px;
+  }
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f1f1f1;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    background-color: lightgrey;
+    border-left: 5px solid orange;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  .back {
+    transition: margin-left 0.5s;
+    width: auto;
+ 
+  }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  .header{
+    position: relative;
+    text-align: left;
+    color: #f1f1f1;
+    margin: 0px;
+
+    
+  }
+
+  
+ 
+
+  .welcome, .dropdown{
+    display: inline-block;
+  }
+
+ 
+  
+  
+  h4{
+    font-weight: bold;
+    color: #111;
+  }
+
+
+
+  .heading{
+    background-color: rgb(218, 239, 232);
+    width: 100%;
+    padding-left: 5px;
+    display: inline-block;
+
+
+  }
+
+
+  .row2{
+    color: blue;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .row3, .form-check{
+    display: inline-block
+  }
+
+  .row3{
+    background-color: rgb(237, 235, 235);
+    width: 100%;
+    padding: 5px;
+  
+  }
+
+  .row3 .col-lg-3:after{
+    content: "*";
+    color: red;
+  }
+
+
+  .col-sm-12 .col-lg-3:after{
+    content: "*";
+    color: red;
+  }
+
+  .col-sm-12{
+    display: inline-block;
+  }
+
+  #myFile{
+    outline: 1px solid black;
+    padding: 4px;
+    border-radius: 3px;
+    margin-right: 5px;
+  }
+
+  .line{
+    text-align: center;
+    
+  }
+
+  .button{
+    position: relative;
+    left: 60%;
+  }
+
+  #IFSCcode{
+    margin-right: 10px;
+    height: 3rem;
+
+  }
+
+  .cont2{
+    background-color: rgb(231, 227, 227);
+    padding-top: 5px;
+    border-radius: 3px;
+    width: auto;
+   
+  }
+
+  .container{
+    width: 75%;
+  }
+
