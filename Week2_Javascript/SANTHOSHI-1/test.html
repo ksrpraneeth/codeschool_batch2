@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFMIS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="IfmisCSS.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <style>
+        .xl {
+            background-image: url(HEADER.jpeg);
+
+            padding-top: 1%;
+        }
+
+        .BT {
+            margin-top: 2%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="container xl" style=min-width:-webkit-fill-available;>
+        <div class="row">
+
+            <div class="col-md-3">
+                <a href="#">
+                    <img src="logo6.png" />
+                </a>
+            </div>
+            <div class="col-md-1">
+                <div id="main">
+                    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                </div>
+            </div>
+            <div class="col-md-2 BT"><button type="button" class="btn btn-secondary"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-boxes" viewBox="0 0 16 16">
+                        <path
+                            d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z" />
+                    </svg>MODULES</button></div>
+            <div class="col-md-2"> </div>
+            <div class="col-md-1 login">
+                <div>Last Login</div>
+                <div style="font: size 0.8rem;" id="date"></div>
+                <div style="font: size 0.8rem;" id="Time"></div>
+            </div>
+            <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Welcome User
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                fill="green" class="bi bi-person" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                            </svg> Profile</a>
+
+                        <a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                fill="green" class="bi bi-key-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                            </svg> Change Password</a>
+
+                        <a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                fill="green" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                <path fill-rule="evenodd"
+                                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg> Logout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 p-0 m-0">
+                <button type="button" class="btn btn-secondary BT" onclick="textChange()"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                        <path fill-rule="evenodd"
+                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                    </svg>
+                    <span class="LogButtonText">LOGOUT</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Home</a>
+        <a href="#">Masters </a>
+        <a href="#">Transactions</a>
+        <a href="#">Reports</a>
+        <a href="#">Return Cheque Generation </a>
+        <a href="#">Forest Transactions</a>
+        <a href="#">Forest Transaction Report</a>
+        <a href="#">E-kuber Returns Received list</a>
+        <a href="#">E-kuber Return Challan Print</a>
+        <a href="#">UTR Search</a>
+        <a href="#">Failed transactions (ACK Reject)</a>
+        <a href="#">Cheque Status Report</a>
+        <a href="#" a>Rejected Cheques due to FinYear End</a>
+        <a href="#" a>FinYear New Cheques Report</a>
+        <a href="#">Pd Budget Check</a>
+        <a href="#">Update Receipts Used Amount</a>
+    </div>
+
+    <div class="container mainsection" id="bg" style="margin-left: 250px;">
+        <div class="row" id="heading">
+            <div class="col-12">
+                <h2>Issue Cheque (E-Kuber Cheque 01/03/2019)</h2>
+            </div>
+        </div>
+        <div class="row" id="points">
+            <div class="col-12">
+                <h2>Points to Remember</h2>
+                <ul>
+                    <li>Please note that all cheques which are approved from DDOChecker/Officer/Govt from 01/03/2019
+                        shall get paid through E-kuber which is a Core Banking Solution of RBI.</li>
+
+                    <li>There is no need to present the cheques at the Bank for these cheques which got approved after
+                        01/03/2019.</li>
+
+                    <li>Please give correct account details as it is when the Account was opened.</li>
+
+                    <li>Make sure there is no "Your self" or "Self" in the account names while issuing cheques. Such
+                        cheques get auto-rejected by the E-Kuber.</li>
+
+                    <li>Please check the exact length of the Bank Account Number and NO special characters are to be
+                        entered, which leads to auto rejection.</li>
+
+                    <li>Finally, in multiple party cheques please do not enter the same party details in the same
+                        chequeno which will be considered as a duplicacy transaction and gets auto-rejeted.</li>
+
+                    <li>This is just a one-time procedure to get your Party details corrected and once when corrected
+                        the same details can be re-used for smooth transactions.</li>
+
+                    <li>PD-to PD cheques shall be adjusted in treasury itself in the regular procedure.</li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="container pt-1" style="background-color: #E5e5e8;">
+            <label class="inp">Transactions </label>
+            <input type="radio" name="Transaction Type" /><label class="inpt">Single Party</label>
+            <input type="radio" name="Transaction Type" /><label class="inpt">Multiple Parties</label>
+            <input type="radio" name="Transaction Type" /><label class="inpt">PD Account to PD Account</label>
+            <input type="radio" name="Transaction Type" /><label class="inpt">PD Account to Other</label>
+        </div>
+        <form id="main-form">
+            <div class="container mt-3">
+
+                <div class="form-group row my-4 accountno">
+                    <label for="Party" class="col-3 col-form-label">Party Account No</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <input type="number" class="form-control" id="Acc" placeholder="Enter A/c No" name="party">
+                        <span class="errormsg">*Account number is invalid</span>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4 confirmaccountno">
+                    <label for="A/C No" class="col-3 col-form-label">Confirm Party A/c No</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <input type="number" class="form-control" id="confirm" placeholder="Confirm A/c No"
+                            name="Confirm">
+                        <span class="errormsg">*Confirmation is invalid</span>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4 partyname">
+                    <label for="Name" class="col-3 col-form-label">Party Name</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <input type="Name" class="form-control" placeholder="Enter Party Name" name="Name">
+                        <span class="errormsg">*Enter</span>
+                    </div>
+                </div>
+
+                <div class="bg-secondary  bg-opacity-10 p-3 my-4 IFSCcode">
+                    <div class=" form-group row">
+                        <label for="bank id" class="col-3 col-form-label"> Bank IFSC Code</label>
+                        <p class="col-lg-1"> :</p>
+                        <div class="form-group cont1 col-6">
+                            <input type="text" class="form-control" id="ifsc" placeholder="Enter IFSC Code">
+                            <span class="errormsg">*Specify the valid IFSCcode</span>
+                            <button class="btn btn-outline-secondary btn-primary text-white"
+                                type="button">Search</button>
+                        </div>
+                        <div class="form-group row my-4">
+                            <label for="Name" class="col-3 col-form-label">Bank Name</label>
+                            <p class="col-lg-1"> :</p>
+                            <div class="form-group col-6">
+                                <label>XXXXXX</label>
+                            </div>
+                        </div>
+                        <div class="form-group row my-4">
+                            <label for="Name" class="col-3 col-form-label">Bank Branch</label>
+                            <p class="col-lg-1"> :</p>
+                            <div class="form-group col-6">
+                                <label>XXXXXX</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group row my-4 Head">
+                    <label for="Name" class="col-3 col-form-label">Head of Account </label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <select style="width: 95%; padding: 1% 1%;">
+                            <option>Select</option>
+                            <option>option 1</option>
+                            <option>option 2</option>
+                            <option>option 3</option>
+                        </select>
+                        <span class="errormsg">*headofa/c</span>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4">
+                    <label for="Name" class="col-3 col-form-label">Balance(in Rs.)</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <label> XXXXXX</label>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4 ">
+                    <label for="Name" class="col-3 col-form-label">LOC(in Rs.)</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <label> XXXXXX</label>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4 Exp">
+                    <label for="Name" class="col-3 col-form-label">Expenditure Type</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <select id="head-of-ac" name="head-of-ac" class="form-control" style="width: 95%; padding: 1% 1%;" onchange="setPurpose()">
+                            <option value="" selected>Select</option>
+                            <option value="option-1">Capital Expenditure</option>
+                            <option value="option-2">Revenue Expenditure</option>
+                            <option value="option-3">Deferred Revenue Expenditure </option>
+                        </select>
+                        <span class="errormsg">*expenditure</span>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4 purposetype ">
+                    <label for="Name" class="col-3 col-form-label">Purpose Type</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <select id="head-of-ac" name="head-of-ac" class="form-control">
+                            <option value="" selected>Select</option>
+                            <option value="option-1">option 1</option>
+                            <option value="option-2">option 2</option>
+                            <option value="option-3">option 3</option>
+                        </select>
+                        <span class="errormsg">*Enter type of purpose</span>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4 purpose">
+                    <label for="Name" class="col-3 col-form-label">Purpose</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <input type="Name" class="form-control" id="Purpose" placeholder="Enter Purpose Here"
+                            name="Name">
+                        <span class="errormsg">*Please enter below 500</span>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4 partyamt">
+                    <label for="Name" class="col-3 col-form-label">Party Amount(in Rs.)</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <input type="Name" class="form-control" placeholder="Enter Party Amount" name="Name">
+                        <span class="errormsg">*partyamount</span>
+                    </div>
+                </div>
+                <div class="form-group row my-4">
+                    <label for="Name" class="col-3 col-form-label">Party Amount in Words</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <label> XXXXXX</label>
+                    </div>
+                </div>
+
+                <div class="form-group row my-4">
+                    <label for="Name" class="col-3 col-form-label">Upload Documents</label>
+                    <p class="col-lg-1"> :</p>
+                    <div class="form-group col-6">
+                        <input type="file" class="form-control-file" id="uploaddocs" multiple>
+                        <button type="button" class="btn btn-primary">+ADD</button>
+                    </div>
+                </div>
+
+                <div class="form-row row">
+                    <label for="Name" class="col-3 col-form-label"></label>
+                    <div class="form-group col-6">
+                        <p>Note: Documents of cheque (Letter/G.O. etc) can be uploaded here.</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="border border-light p-3 mb-4">
+                    <div class="text-center">
+                        <button type="button" onclick="Next()" class="btn btn-primary">Next >></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            // document.getElementById("main").style.marginLeft = "250px";
+            document.getElementById("bg").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            // document.getElementById("main").style.marginLeft = "0";
+            document.getElementById("bg").style.marginLeft = "auto";
+        }
+    </script>
+    <script src="test.js"></script>
+</body>
+
+</html>
