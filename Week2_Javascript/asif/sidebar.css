@@ -1,0 +1,55 @@
+#sidebar {
+    position: fixed;
+    width: 0;
+    height: 100%;
+    background-color: #1b364d;
+    box-shadow: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+#brand-logo-div {
+    width: 260px;
+    border-bottom: 1px solid rgb(99, 79, 79);
+}
+
+#brand-logo-div img {
+    width: 100%;
+}
+
+
+.sidebar-nav-list {
+    list-style-type: none;
+    margin: auto 10px;
+    padding-left: 0;
+}
+
+.sb-nav-list-item {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    padding-left: 10px;
+    font-size: 1em;
+}
+
+.sb-nav-list-item:hover {
+    background-color: #324a5f;
+    border-left: 5px solid #fbc66a;
+    cursor: pointer;
+}
+
+.sb-nav-list-item a {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu {
+    background-color: #1b364d;
+}
+
+.dropdown-item:hover {
+    background-color: #324a5f;
+}
