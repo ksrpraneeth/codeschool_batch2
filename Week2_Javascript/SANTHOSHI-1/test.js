@@ -3,46 +3,8 @@ const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "O
 var current_date = date.getDate() + "-" + month[date.getMonth()] + "-" + date.getFullYear();
 document.getElementById("date").innerHTML = current_date;
 
-var AM_PM = "";
-var date_var = new Date();
-var Curr_hour = addZero(date_var.getHours());
-
-var expenditure = {
-    'option-1' : [
-        'Maintain current levels of operation within the organization',
-        'Expenses to permit future expansion.'
-    ],
-};
-
-// console.info('purpose', expenditure['option-1']);
-
-
-function setPurpose() {
-    var exp = document.getElementById("head-of-ac").value;
-    var purpose = expenditure[exp];
-    console.info('test', purpose);
-}
-
-function addZero(i){
-    if (i<10){i = "0"+i}
-    return i;
-}
-
-if (Curr_hour < 12) {
-    AM_PM = "AM";
-}
-else {
-    AM_PM = "PM";
-}
-if (Curr_hour == 0) {
-    Curr_hour = 12;
-}
-if (Curr_hour > 12) {
-    Curr_hour = Curr_hour - 12;
-}
-var curr_min = addZero(date_var.getMinutes());
-var Time =(Curr_hour + ":" + curr_min + " " + AM_PM);
-document.getElementById("Time").innerHTML = Time;
+let d = new Date().toLocaleString([], { hour12: true, hour: 'numeric', minute: 'numeric' })
+document.getElementById('Time').innerHTML = d;
 
 function textChange() {
     var logButton = document.getElementsByClassName("LogButtonText")[0];
@@ -51,14 +13,68 @@ function textChange() {
     } else {
         logButton.textContent = "LOGOUT";
     }
-
 }
 
+var expenditure = {
+    'option-1': [
+        'Maintain current levels of operation within the organization',
+        'Expenses to permit future expansion.'
+    ],
+    'option-2': [
+        'Sales costs or All expenses incurred by the firm that are directly tied to the manufacture and selling of its goods or services',
+        'All expenses incurred by the firm to guarantee the smooth operation.'
+    ],
+    'option-3': [
+        'Exorbitant Advertising Expenditures',
+        'Unprecedented Losses',
+        'Development and Research Cost'
+    ]
+};
+
+// console.info('purpose', expenditure['option-1']);
+
+function setPurpose() {
+    var exp = document.getElementById("exptype").value;
+    var purposeTypeElement = document.getElementById("purposetype");
+    if (exp === "option-1") {
+        setOptions(purposeTypeElement, expenditure["option-1"]);
+    } else if (exp === "option-2") {
+        setOptions(purposeTypeElement, expenditure["option-2"]);
+    } else if (exp === "option-3") {
+        setOptions(purposeTypeElement, expenditure["option-3"]);
+    } else {
+        //When the option text is 'Select'
+        setOptions(purposeTypeElement, []);
+    }
+    var purpose = expenditure[exp];
+    console.info('test', purpose);
+}
+
+function setOptions(selectElement, options) {
+    selectElement.innerHTML = "";
+    var defaultSelectElement = document.createElement('option');
+    defaultSelectElement.textContent = "Select";
+    selectElement.appendChild(defaultSelectElement);
+
+    for (var i = 0; i < options.length; i++) {
+        var current_option = document.createElement('option');
+        current_option.textContent = options[i];
+        selectElement.appendChild(current_option);
+    }
+}
+
+
+
+// function resetErrorMsgs() {
+//    var err = document.getElementsByClassName('errormsg');
+//    for()
+// }
 function Next() {
+    resetErrorMsgs();
     var Acc = document.getElementById('Acc').value;
     var Accnomsg = document.querySelector(".accountno .errormsg");
     if (isNaN(Acc) === false) {
-        console.log("Account number is invalid");
+        console.log("Should be min 12 and max 22 digit");
         Accnomsg.style.display = "block";
     }
     if ((Acc.length >= 12) && (Acc.length <= 22)) {
@@ -68,7 +84,7 @@ function Next() {
     var Acc = document.getElementById('confirm').value;
     var Accnomsg = document.querySelector(".confirmaccountno .errormsg");
     if (isNaN(Acc) === false) {
-        console.log("Account number is invalid");
+        console.log("Should be same as account number");
         Accnomsg.style.display = "block";
     }
     if ((Acc.length >= 12) && (Acc.length <= 22)) {
@@ -76,41 +92,33 @@ function Next() {
     }
 
     var IFSC = document.getElementById('ifsc').value;
-    var IFSCerrorspan = document.querySelector(".IFSCcode .errormsg");
-    if (IFSC.length == 11) {
-        IFSCerrorspan.style.display = "none";
-    } else {
-        IFSCerrorspan.style.display = "block";
+    // var IFSCerrorspan = document.querySelector(".IFSCcode .errormsg");
+    if (IFSC.length != 11) {
+        document.getElementById('ifsc_err').textContent= 'IFSC code should be 11 characters';
+        // IFSCerrorspan.style.display = "block";
+    } 
+    else if(!IFSC.match('^[A-Z]{4}0[A-Z0-9]{6}$')) {
+        // IFSCerrorspan.style.display = "block";
+        document.getElementById('ifsc_err').textContent = 'IFSC code is Invalid';
     }
-    // $.validator.addMethod("ifsc", function(value, element) {
-    //     var reg = /^[A-Z]{5}[0-9]{6,7}$/;
-    //     if (this.optional(element)) {
-    //       console.log(value);
-    //       console.log(element);
-    //       return true;                                                
-    //     }
-    //     if (value.match(reg)) {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
+    
 
     var purpose = document.getElementById('Purpose').value;
     var Purposeerrorspan = document.querySelector(".purpose .errormsg");
     if (purpose.length >= 500) {
         Purposeerrorspan.style.display = "block";
     }
-    //  else{
-    //     Purposeerrorspan.style.display = "block";
+    else {
+        Purposeerrorspan.style.display = "none";
+    }
+    var partyAmount = document.getElementById("Partyamount").value;
+    var partyamtspan = document.querySelector(".partyamount .errormsg");
+    if (partyAmount % 1 != 0) {
+        partyamtspan.style.display = "block";
+    }
+    // else {
+    //     partyamtspan.style.display = "none";
     // }
-    // function Multiplefiles() {
-    //     let files = document.getElementById("uploadfiles").files;
-    //     for (let i=0; i<files.length; i++){
-    //         document.getElementById("uploaddocs").innerhtml += "<li class='list-group-item'>" + files[i].name+ "</li>"
-    //     }
-    // }
-
-
 
 
 }

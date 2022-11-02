@@ -165,7 +165,7 @@
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
                         <input type="number" class="form-control" id="Acc" placeholder="Enter A/c No" name="party">
-                        <span class="errormsg">*Account number is invalid</span>
+                        <span class="errormsg">*Should be min 12 and max 22 digits</span>
                     </div>
                 </div>
 
@@ -175,7 +175,7 @@
                     <div class="form-group col-6">
                         <input type="number" class="form-control" id="confirm" placeholder="Confirm A/c No"
                             name="Confirm">
-                        <span class="errormsg">*Confirmation is invalid</span>
+                        <span class="errormsg">*Should be same as account number</span>
                     </div>
                 </div>
 
@@ -183,7 +183,7 @@
                     <label for="Name" class="col-3 col-form-label">Party Name</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <input type="Name" class="form-control" placeholder="Enter Party Name" name="Name">
+                        <input type="Name" class="form-control" id="partyname" placeholder="Enter Party Name" name="Name" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g, '')">
                         <span class="errormsg">*Enter</span>
                     </div>
                 </div>
@@ -194,7 +194,7 @@
                         <p class="col-lg-1"> :</p>
                         <div class="form-group cont1 col-6">
                             <input type="text" class="form-control" id="ifsc" placeholder="Enter IFSC Code">
-                            <span class="errormsg">*Specify the valid IFSCcode</span>
+                            <span  id="ifsc_err"></span> 
                             <button class="btn btn-outline-secondary btn-primary text-white"
                                 type="button">Search</button>
                         </div>
@@ -216,16 +216,15 @@
                     </div>
                 </div>
 
-
                 <div class="form-group row my-4 Head">
-                    <label for="Name" class="col-3 col-form-label">Head of Account </label>
+                    <label for="Name" class="col-3 col-form-label" id="head-of-account">Head of Account </label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
                         <select style="width: 95%; padding: 1% 1%;">
                             <option>Select</option>
-                            <option>option 1</option>
-                            <option>option 2</option>
-                            <option>option 3</option>
+                            <option>0853001020002000000NVN </option>
+                            <option>8342001170004001000NVN </option>
+                            <option>2071011170004320000NVN </option>
                         </select>
                         <span class="errormsg">*headofa/c</span>
                     </div>
@@ -251,7 +250,8 @@
                     <label for="Name" class="col-3 col-form-label">Expenditure Type</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <select id="head-of-ac" name="head-of-ac" class="form-control" style="width: 95%; padding: 1% 1%;" onchange="setPurpose()">
+                        <select id="exptype" name="head-of-ac-1" class="form-control"
+                            style="width: 95%; padding: 1% 1%;" onchange="setPurpose()">
                             <option value="" selected>Select</option>
                             <option value="option-1">Capital Expenditure</option>
                             <option value="option-2">Revenue Expenditure</option>
@@ -265,11 +265,8 @@
                     <label for="Name" class="col-3 col-form-label">Purpose Type</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <select id="head-of-ac" name="head-of-ac" class="form-control">
+                        <select id="purposetype" name="head-of-ac-2" class="form-control">
                             <option value="" selected>Select</option>
-                            <option value="option-1">option 1</option>
-                            <option value="option-2">option 2</option>
-                            <option value="option-3">option 3</option>
                         </select>
                         <span class="errormsg">*Enter type of purpose</span>
                     </div>
@@ -279,18 +276,18 @@
                     <label for="Name" class="col-3 col-form-label">Purpose</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <input type="Name" class="form-control" id="Purpose" placeholder="Enter Purpose Here"
-                            name="Name">
+                        <textarea class="form-control" id="Purpose" placeholder="Enter Purpose Here" rows="3"
+                            name="Name"></textarea>
                         <span class="errormsg">*Please enter below 500</span>
                     </div>
                 </div>
 
-                <div class="form-group row my-4 partyamt">
+                <div class="form-group row my-4 partyamount">
                     <label for="Name" class="col-3 col-form-label">Party Amount(in Rs.)</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <input type="Name" class="form-control" placeholder="Enter Party Amount" name="Name">
-                        <span class="errormsg">*partyamount</span>
+                        <input type="Name" class="form-control" id="Partyamount" placeholder="Enter Party Amount" name="Name">
+                        <span class="errormsg">*Amount should not be in fractions</span>
                     </div>
                 </div>
                 <div class="form-group row my-4">
