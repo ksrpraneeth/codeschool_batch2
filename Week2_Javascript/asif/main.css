@@ -1,0 +1,113 @@
+/* main {
+    /* position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+} */
+
+/* #main-section {
+    width: calc(100vw - 340px);
+    margin: 20px auto 20px 320px;
+
+    background-color: white;
+    border-radius: .8em;
+    height: 100%;
+    position: absolute;
+    top: 4.5rem;
+    transition: 0.4s;
+} */
+
+
+body {
+    background-color: #e2e2e2;
+}
+
+#main-section {
+    margin: 1em;
+    width: auto;
+    background-color: white;
+    border-radius: .8em;
+    transition: margin-left .5s;
+}
+
+#heading {
+    background-color: #eef6ff;
+    border-radius: .8em .8em 0 0;
+}
+
+#heading h5 {
+    font-size: 1em;
+    color: #005baf;
+    margin: auto;
+    padding: 1em 0;
+}
+
+
+#text-box {
+    background-color: #fcf8e3;
+    padding: 1em;
+    border-radius: .6em;
+}
+
+#text-box li {
+    text-align: justify;
+}
+
+
+
+
+/* Styling for form */
+
+form .row {
+    margin: 1em 0;
+}
+
+#radio-row {
+    background-color: #f8f8fa;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+#bank-details-row > div {
+    background-color: #f8f8fa;
+    padding: 0.5em 0em ;
+    border-radius: 0.5em;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+input[type="radio"], input[type="file"]:hover, .form-check-label:hover, .form-control:hover {
+    cursor: pointer;
+}
+
+.form-row > label, .form-group > label {
+    font-weight: 500;
+}
+
+.error-msg {
+    color: red;
+    margin: 0;
+    margin-top: 5px;    
+    padding: 0;
+    font-size: .8em;
+}
+
+
+
+
+
+
+/* to insert asterik */
+.required:after {
+    content: "*";
+    color: red;
+}
+
+
+/* width for colon in the form */
+.w20 {
+    width: 20px;
+}
