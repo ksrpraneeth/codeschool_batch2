@@ -1,0 +1,205 @@
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  header{
+      background-image: url(bg.jpeg);
+  }
+  .r1{
+      display: flex;
+     
+  
+  }
+  .b3,.b4,.b5{
+      padding-top: 2%;
+      margin-left: 2%;
+  }
+  .b2{
+      padding-top: 1%;
+      font-weight: 500;
+      color: white;
+      font-size: 30px;
+  }
+
+
+
+  header {
+
+    color: white;
+
+}
+
+.logo {
+    background-color: #1b364d;
+}
+
+.bt {
+    margin-top: 1%;
+    font-size: 12px;
+
+}
+
+.fr {
+    background-image: url(bg.jpeg);
+
+}
+
+.login {
+    font-size: 12px;
+}
+
+#username {
+    background-color: grey;
+    border-radius: 3px;
+    color: white;
+    padding: 1% 1%;
+}
+
+.second div {
+    margin-top: 15px;
+    padding: 2% 2%;
+
+}
+
+.second a {
+    text-decoration: none;
+    color: white;
+}
+
+.second div:hover {
+    background-color: grey;
+    transition: 0.5s;
+    border-left: 7px solid yellow;
+}
+
+#cheque_date {
+    background-color: rgba(238, 246, 255, 255);
+    color: #2976bd;
+    font-weight: bold;
+    padding: 2% 2%;
+    border-radius: 15px;
+}
+
+.right_container {
+    background-color: white;
+
+    margin: 8px 4px;
+    border-radius: 5px;
+}
+
+.pt_remember {
+    background-color: rgba(252, 248, 227, 255);
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 1% 2%;
+
+}
+
+.radio {
+    background-color: #bac2c9;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 1% 2%;
+}
+
+.mr {
+    margin: 2% 2%;
+}
+
+.star {
+    color: red;
+}
+
+.in_radio {
+    margin-left: 1%;
+}
+
+.last_div {
+    background-color: rgba(226, 226, 226, 255);
+}
+
+.font {
+    font-size: 13px;
+    font-weight: bold;
+    padding-top: 2%;
+}
+
+
+.font div {
+    margin-top: 1%;
+}
+
+.bank_iffc {
+    background-color: #bac2c9;
+    width: 98%;
+    padding-bottom: 1%;
+    border-radius: 9px;
+}
+
+.i {
+    width: 85%;
+    max-width: 100%;
+    padding: 1% 1%;
+    border-radius: 3px;
+    border: 0.5px solid rgba(144, 143, 143, 0.91);
+}
+
+.i:focus {
+    outline: none;
+}
+
+.f {
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+/*making dropdown for profile*/
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+  }
+  .dropdown-content a:hover {background-color: #ddd;}
+  .show {display:block;}
+
+  .dropdown-content svg{
+    color: green;
+  }
