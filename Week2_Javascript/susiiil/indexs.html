@@ -13,7 +13,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  
+
   <link rel="stylesheet" href="style1.css">
 
   <style>
@@ -208,7 +208,8 @@
         <div class="col-md-2 d">
 
           <div class="dropdown">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" style="margin-top:10px;">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+              style="margin-top:10px;">
               Welcome user
             </button>
             <div class="dropdown-menu">
@@ -381,7 +382,7 @@
                   <div class="col-md-8"> <input type="text" placeholder="Enter IFSC Code" class="ifsc" id="ifsc_code">
                     <button type="button" class="btn btn-primary" onclick="Scheck()"
                       style="margin-top: -6px;">Search</button>
-                    <div id="ifsc_valid" style="color:red"></div>
+                    <p id="ifsc_valid" style="color:red"></p>
                   </div>
                 </div>
                 <div class="row">
@@ -407,7 +408,9 @@
                     <option value="8342001170004002000NVN">8342001170004002000NVN</option>
                     <option value="2204000030006300303NVN">2204000030006300303NVN</option>
 
-                  </select><div id="hd" style="color:red"></div></div>
+                  </select>
+                  <div id="hd" style="color:red"></div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-3 font"> Balance(in Rs.)<span style="color:red">*</span> </div>
@@ -424,13 +427,15 @@
                 <div class="col-md-3 font">Expenditure Type<span style="color:red">*</span> </div>
                 <div class="col-md-1 hidden-mobile">:</div>
                 <div class="col-md-6"><select class="input" onclick="fill()" id="exp_type">
-                  <option>select</option>
+                    <option>select</option>
                     <option value="Capital Expenditure">Capital Expenditure</option>
-                    <option  value="Revenue Expenditure"> Revenue Expenditure </option>
+                    <option value="Revenue Expenditure"> Revenue Expenditure </option>
                     <option value="Deferred Revenue Expenditure"> Deferred Revenue Expenditure </option>
-                  </select><div id="type" style="color:red;"></div></div>
+                  </select>
+                  <div id="type" style="color:red;"></div>
+                </div>
               </div>
-              
+
               <div class="row">
                 <div class="col-md-3 font">Purpose Type<span style="color:red">*</span> </div>
                 <div class="col-md-1 hidden-mobile">:</div>
@@ -439,19 +444,23 @@
                     <option id="cap2"></option>
                   </select></div>
               </div>
-            <!-- purpose -->
+              <!-- purpose -->
               <div class="row">
                 <div class="col-md-3 font">Purpose<span style="color:red">*</span> </div>
                 <div class="col-md-1 hidden-mobile">:</div>
                 <div class="col-md-6"><textarea row="30" column="50" id="purpose" placeholder="Enter purpose here..."
-                    class="input"></textarea><p id="pur" style="color:red;"></p>
+                    class="input"></textarea>
+                  <p id="pur" style="color:red;"></p>
                 </div>
               </div>
-             <!-- party ammount -->
+              <!-- party ammount -->
               <div class="row">
                 <div class="col-md-3 font">Party Amount(in Rs.)<span style="color:red">*</span> </div>
                 <div class="col-md-1 hidden-mobile">:</div>
-                <div class="col-md-6"><input type="text"   onchange="update()"placeholder="Enter Party Amount" class="input" id="p_ammount"><p id ="amt" style="color:red;"></p></div>
+                <div class="col-md-6"><input type="text" onchange="update()" placeholder="Enter Party Amount"
+                    class="input" id="p_ammount">
+                  <p id="amt" style="color:red;"></p>
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-3 font">Party Amount in Words<span style="color:red">*</span> </div>
@@ -493,9 +502,9 @@
   </div>
   </div>
   <script>
-$(document).ready(function(){
-  $(".dropdown-toggle").dropdown();
-});
+    $(document).ready(function () {
+      $(".dropdown-toggle").dropdown();
+    });
 
   </script>
 </body>

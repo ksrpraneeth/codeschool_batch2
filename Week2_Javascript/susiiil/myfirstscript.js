@@ -46,7 +46,7 @@ function validation() {
     if (!confirm) {
         document.getElementById('con').innerHTML = " confirm accout no cann't blank.";
     }
-    else if (partyNo != confirm) {
+    else if( partyNO != confirm) {
         document.getElementById('con').innerHTML = " confirm should same as party number";
 
     }
@@ -118,21 +118,34 @@ if(!p_ammount){
 else{
     document.getElementById('amt').innerHTML = "";
 }
-// exeniture type validation
+
 
 }
 
 function Scheck() {
     let ifscCode = document.getElementById('ifsc_code').value;
+    let first_four =  ifscCode.substr(0,4);
+    let fifth_char =  ifscCode[4];
     console.log('ifscCode')
-    if(ifscCode == 'SBIN0000041'){ 
+    if(ifscCode == 'SBIN0444555'){ 
         document.getElementById('bank_name').innerHTML = "SBIBANK";
         document.getElementById('bank_branch').innerHTML = "Bhubaneswar";
     } 
-    else{
+  
+    else if (!ifscCode) {
+        document.getElementById('ifsc_valid').innerHTML = " enter the ifsc_code";
+    }  
+    else if(first_four!= first_four.toUpperCase()){
+        document.getElementById('ifsc_valid').innerHTML = "it first four should be upper case";
+    }
+    else if(ifscCode != 'SBIN0444555') {
         document.getElementById('bank_name').innerHTML = "Wrong ifsc code";
         document.getElementById('bank_branch').innerHTML = "wrong ifsc code";
-    }   
+    } 
+    else if( fifth_char!=0){
+        document.getElementById('ifsc_valid').innerHTML = "the fifth character should be zero";
+
+    }
   
 }
 function autofill(){
@@ -159,8 +172,8 @@ function autofill(){
         document.getElementById('loc').innerHTML = "50000";
     }
     else{
-        document.getElementById('bal').innerHTML = " select head account";
-        document.getElementById('loc').innerHTML = "select head account";
+        
+        document.getElementById('hd').innerHTML = "";
     }
 }
 //expt type...
