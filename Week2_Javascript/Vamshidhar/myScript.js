@@ -78,9 +78,6 @@ function validatefields() {
     }
 
 
-
-
-
     let partyName = document.getElementById("partyName").value;
     document.getElementById('partyName_error').innerHTML = '';
 
@@ -160,6 +157,41 @@ function myFunction() {
         document.getElementById('headOfAccount_error').innerHTML = ' ';
     }
   }
+
+var expenditureType={
+    Capital_Expenditure:['Maintain current levels of operation within the organization','Expenses to permit future expansion'],
+    Revenue_Expenditure:['Sales costs or All expenses incurred by the firm that are directly tied to the manufacture and selling of its goods or services','All expenses incurred by the firm to guarantee the smooth operation'],
+    Deferred_Revenue_Expenditure:['Exorbitant Advertising Expenditures','Unprecedented Losses','Development and Research Cost'],
+}
+
+//getting the main menu and sub menu
+ var main= document.getElementById('main_menu');
+ var sub= document.getElementById('sub_menu');
+
+//Trigger the event when main menu change occurs
+
+main.addEventListener('change',function(){
+
+    //getting a selected option
+    var selected_option=expenditureType[this.value];
+
+    //removing the sub menu options using while loop
+
+    while(sub.options.length>0){
+        sub.options.remove(0);
+    }
+
+    //convert the selected object into array & create options for each array elements
+    //using option constructor it will create HTML element with given value and innerText
+
+    Array.from(selected_option).forEach(function(el){
+        let option= new Option(el,el);
+
+        // append the child option in sub_menu
+        sub.appendChild(option)
+    });
+
+});
 
 
 
