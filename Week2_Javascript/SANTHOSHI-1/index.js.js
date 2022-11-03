@@ -31,7 +31,7 @@ var expenditure = {
     ]
 };
 
-// console.info('purpose', expenditure['option-1']);
+
 
 function setPurpose() {
     var exp = document.getElementById("exptype").value;
@@ -43,7 +43,7 @@ function setPurpose() {
     } else if (exp === "option-3") {
         setOptions(purposeTypeElement, expenditure["option-3"]);
     } else {
-        //When the option text is 'Select'
+        
         setOptions(purposeTypeElement, []);
     }
     var purpose = expenditure[exp];
@@ -64,24 +64,34 @@ function setOptions(selectElement, options) {
 }
 
 document.getElementById('head-of-account').addEventListener("change", function (){
-const HeadofAccount = [
-    { 'HOA': '0853001020002000000NVN','balance': '1000000', 'loc': '5000' },
-    { 'HOA': '88342001170004001000NVN','balance': '1065710', 'loc': '4000' },
-    { 'HOA': '2071011170004320000NVN','balance': '1256400',  'loc': '78000' },
-    { 'HOA': '22204000030006300303NVN','balance': '123465400','loc': '5000'},
-    { 'HOA': '8342001170004002000NVN','balance': '1056400',   'loc' : '34000'}
-    
-];
+const HeadofAccount = {
+    '0853001020002000000NVN' : {
+        'balance' : '1000000',
+        'loc' : 5000,
+    },
+
+    '88342001170004001000NVN': {
+        'balance': '1065710', 
+        'loc': 4000, 
+    },
+    '2071011170004320000NVN' :{
+        'balance': '1256400', 
+         'loc': 78000,
+    },
+    '22204000030006300303NVN':{
+         'balance': '123465400',
+         'loc': '5000'
+    },
+    '8342001170004002000NVN':{
+         'balance': '1056400',   
+         'loc' : '34000'
+    }
+}
  let HeadofAccountselectedoption = document.getElementById('head-of-account').value;
- let getobj = HeadofAccount.find(x => x.HOA  === HeadofAccountselectedoption);
-   document.getElementById('bal').value = getobj.balance;
-   document.getElementById('loc').value = getobj.loc;
+document.getElementById('bal').innerHTML = HeadofAccount[HeadofAccountselectedoption]['balance'];
+document.getElementById('loc').innerHTML = HeadofAccount[HeadofAccountselectedoption]['loc'];
 });
 
-// function resetErrorMsgs() {
-//    var err = document.getElementsByClassName('errormsg');
-//    for()
-// }
 function ifsccodeinput(){
     var IFSC = document.getElementById('ifsc').value;
 if (IFSC.length != 11) {
@@ -96,7 +106,6 @@ else if (!IFSC.match('^[A-Z]{4}0[A-Z0-9]{6}$')) {
 }
 
 function Next() {
-    //     resetErrorMsgs();
     ifsccodeinput();
     var Acc = document.getElementById('Acc').value;
     var Accnomsg = document.querySelector(".accountno .errormsg");
@@ -120,18 +129,15 @@ function Next() {
 
     var purpose = document.getElementById('Purpose').value;
     var Purposeerrorspan = document.querySelector(".purpose .errormsg");
-    if (purpose.length >= 500) {
+    if (purpose.length >= 500 || purpose.length == 0) {
         Purposeerrorspan.style.display = "block";
-    }
-    else {
-        Purposeerrorspan.style.display = "none";
     }
     var partyAmount = document.getElementById("Partyamount").value;
     var partyamtspan = document.querySelector(".partyamount .errormsg");
-    if (partyAmount % 1 != 0) {
+    if (partyAmount.length == 0 || partyAmount % 1 != 0) {
         partyamtspan.style.display = "block";
-    }
-    }
- 
+    } 
+ }
+
     
 
