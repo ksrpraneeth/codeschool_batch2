@@ -14,10 +14,9 @@ function getCurrentDate() {
     return date.getDate()+'-'+month[date.getMonth()]+'-'+date.getFullYear();
 }
 function getCurrentTime() {
-    // let hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
-    // let am_pm = date.getHours() >= 12 ? "PM" : "AM";
-    // return hours + ":" + date.getMinutes() + " " + am_pm;
-    return date.toLocaleTimeString();
+    let hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+    let am_pm = date.getHours() >= 12 ? "PM" : "AM";
+    return hours + ":" + date.getMinutes() + " " + am_pm;
 }
 
 let currentDate =  getCurrentDate();
@@ -164,7 +163,7 @@ function validateForm() {
 
     // for hod
     var hod = document.getElementById("head-of-ac").value;
-    if(hod == "-") {
+    if(hod == "") {
         setError("head-of-ac", "*required");
         returnval = false;
     }
@@ -172,7 +171,7 @@ function validateForm() {
 
     // for expenditure type
     var expType = document.getElementById("expenditure-type").value;
-    if(expType == "-") {
+    if(expType == "") {
         setError("expenditure-type", "*required");
         returnval = false;
     }
@@ -180,7 +179,7 @@ function validateForm() {
 
     // for purpose type
     var purposeType = document.getElementById("purpose-type").value;
-    if(purposeType == "-") {
+    if(purposeType == "") {
         setError("purpose-type", "*required");
         returnval = false;
     }
