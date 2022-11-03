@@ -127,7 +127,7 @@
         </div>
 
         <div class="row mx-2" id="form-box">
-            <form action="/" id="form" class="col-12" name="main-form" onsubmit="return validateForm()" method="post">
+            <form action="#" id="form" class="col-12" name="main-form" onsubmit="return validateForm()" method="post">
                 <div class="form-row" id="radio-row">
                     <label for="transaction-type" class="required col-3">Transaction Type </label>
                     <div class="form-check form-check-inline">
@@ -185,7 +185,7 @@
                                 <span class="error-msg"></span>
                             </div>
                             <div class="form-group col-2">
-                                <button class="btn btn-primary form-control col-1">Search</button>
+                                <button type="button" class="btn btn-primary form-control col-1" id="search-ifsc">Search</button>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -210,13 +210,15 @@
                     <div class="form-group col-1 w20">:</div>
                     <div class="form-group col-6">
                         <select id="head-of-ac" name="head-of-ac" class="form-control required">
-                            <option value="" disabled selected>Select</option>
+                            
+                            <option value="-" disabled selected>Select</option>
                             <option value="0853001020002000000NVN">0853001020002000000NVN</option>
                             <option value="8342001170004001000NVN">8342001170004001000NVN</option>
                             <option value="2071011170004320000NVN">2071011170004320000NVN</option>
                             <option value="8342001170004002000NVN">8342001170004002000NVN</option>
                             <option value="2204000030006300303NVN">2204000030006300303NVN</option>
                         </select>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -241,11 +243,12 @@
                     <div class="form-group col-1 w20">:</div>
                     <div class="form-group col-6">
                         <select id="expenditure-type" name="expenditure-type" class="form-control">
-                            <option value="" disabled selected>Select</option>
+                            <option value="-" disabled selected>Select</option>
                             <option value="Capital Expenditure">Capital Expenditure</option>
                             <option value="Revenue Expenditure">Revenue Expenditure</option>
                             <option value="Deferred Revenue Expenditure">Deferred Revenue Expenditure</option>
                         </select>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -254,10 +257,9 @@
                     <div class="form-group col-1 w20">:</div>
                     <div class="form-group col-6">
                         <select id="purpose-type" name="purpose-type" class="form-control">
-                            <option value="" disabled selected>Select</option>
-                            <!-- <option value="" id="purpose-type-val-1">Option 1</option>
-                            <option value="" id="purpose-type-val-2">Option 2</option> -->
+                            <option value="-" disabled selected>Select</option>
                         </select>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
