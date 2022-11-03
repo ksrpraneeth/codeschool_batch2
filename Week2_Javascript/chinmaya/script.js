@@ -107,7 +107,7 @@ function Search() {
 
   //function for expenditure type
   function expenditure(){
-    document.getElementById('Exerror').innerHTML='';
+    /*document.getElementById('Exerror').innerHTML='';
     let expenditure = document.getElementById('expenditureType').value;
     console.log(expenditure);
     if ((expenditure.slice(0, 3)) == 'Cap') {
@@ -122,9 +122,25 @@ function Search() {
       document.getElementById('purposetype1').innerHTML = 'Exorbitant Advertising Expenditures';
       document.getElementById('purposetype2').innerHTML = 'Unprecedented Losses';
       document.getElementById('purposetype3').innerHTML = 'Development and Research Cost'
+    }*/var elemnt2=document.getElementById('Ptype');
+    while (elemnt2.options.length > 1) {
+      elemnt2.remove(1);
     }
-  }
-  //function to convert into word
+    
+       var option=[['Capital Expenditure','Maintain current levels of operation within the organization','Expenses to permit future expansion.'],['Revenue Expenditure','Sales costs or All expenses incurred by the firm that are directly tied to the manufacture and selling of its goods or services.','All expenses incurred by the firm to guarantee the smooth operation.'],['Deferred Revenue Expenditure','Exorbitant Advertising Expenditures','Unprecedented Losses','Development and Research Cost']];
+   let expenditure = document.getElementById('expenditureType').value;
+   var elemnt=document.getElementById('Ptype');
+   for(let i=0;i<3;i++){
+    if(option[i][0]==expenditure){
+      for(let j=1;j<option[i].length;j++){
+        
+        var s=document.createElement("option");
+        s.innerText=option[i][j];
+        elemnt.append(s);
+      }
+    }
+   }
+  }  //function to convert into word
   function amountword(){
     document.getElementById('partyAmount').innerHTML='';
     let nToword = document.getElementById('partyAmountrs').value;

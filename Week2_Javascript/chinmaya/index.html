@@ -291,7 +291,7 @@
                                 <div class="col-md-1 d-none d-lg-block">:</div>
                                 <div class="col-md-6">
                                     <select class="form-select" id="headAccount" onclick="purpose()">
-                                        <option value=""></option>
+                                        <option value="">select</option>
                                         <option value="0853001020002000000NVN"> 0853001020002000000NVN</option>
                                         <option value="8342001170004001000NVN">8342001170004001000NVN</option>
                                         <option value="2071011170004320000NVN">2071011170004320000NVN</option>
@@ -316,8 +316,8 @@
                                 <div class="col-md-3">Expenditure Type<span class="star">*</span></div>
                                 <div class="col-md-1 d-none d-lg-block">:</div>
                                 <div class="col-md-6"><select class="form-select" id="expenditureType"
-                                        onclick="expenditure()">
-                                        <option value=""></option>
+                                        onchange="expenditure()">
+                                        <option value="">select</option>
                                         <option value="Capital Expenditure">Capital Expenditure</option>
                                         <option value="Revenue Expenditure">Revenue Expenditure</option>
                                         <option value="Deferred Revenue Expenditure"> Deferred Revenue Expenditure
@@ -329,10 +329,9 @@
                             <div class="row">
                                 <div class="col-md-3">Purpose Type<span class="star">*</span></div>
                                 <div class="col-md-1 d-none d-lg-block">:</div>
-                                <div class="col-md-6"><select class="form-select">
-                                        <option id="purposetype1"></option>
-                                        <option id="purposetype2"></option>
-                                        <option id="purposetype3"></option>
+                                <div class="col-md-6"><select class="form-select" id="Ptype">
+                                        <option value="" selected>select</option>
+                                       
                                     </select></div>
                             </div>
                             <div class="row">
@@ -416,6 +415,6 @@
     </main>
 
 </body>
-<script type="text/javascript" src="new.js"></script>
+<script type="text/javascript" src="script.js"></script>
 
 </html>
