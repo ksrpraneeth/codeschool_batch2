@@ -194,22 +194,22 @@
                         <p class="col-lg-1"> :</p>
                         <div class="form-group cont1 col-6">
                             <input type="text" class="form-control" id="ifsc" placeholder="Enter IFSC Code">
-                            <span  id="ifsc_err"></span> 
-                            <button class="btn btn-outline-secondary btn-primary text-white"
+                            <span class="errormsg" id="ifsc_err"></span> 
+                            <button class="btn btn-outline-secondary btn-primary text-white" onclick="ifsccodeinput()"
                                 type="button">Search</button>
                         </div>
                         <div class="form-group row my-4">
                             <label for="Name" class="col-3 col-form-label">Bank Name</label>
                             <p class="col-lg-1"> :</p>
                             <div class="form-group col-6">
-                                <label>XXXXXX</label>
+                                <label id="bankname"></label>
                             </div>
                         </div>
                         <div class="form-group row my-4">
                             <label for="Name" class="col-3 col-form-label">Bank Branch</label>
                             <p class="col-lg-1"> :</p>
                             <div class="form-group col-6">
-                                <label>XXXXXX</label>
+                                <label id="branchname"></label>
                             </div>
                         </div>
 
@@ -217,14 +217,16 @@
                 </div>
 
                 <div class="form-group row my-4 Head">
-                    <label for="Name" class="col-3 col-form-label" id="head-of-account">Head of Account </label>
+                    <label for="Name" class="col-3 col-form-label" >Head of Account </label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <select style="width: 95%; padding: 1% 1%;">
+                        <select style="width: 95%; padding: 1% 1%;" id="head-of-account">
                             <option>Select</option>
-                            <option>0853001020002000000NVN </option>
-                            <option>8342001170004001000NVN </option>
-                            <option>2071011170004320000NVN </option>
+                            <option value ="0853001020002000000NVN">0853001020002000000NVN </option>
+                            <option value ="8342001170004001000NVN">8342001170004001000NVN </option>
+                            <option value ="2071011170004320000NVN">2071011170004320000NVN </option>
+                            <option value ="22204000030006300303NVN">22204000030006300303NVN </option>
+                            <option value ="8342001170004002000NVN">8342001170004002000NVN </option>
                         </select>
                         <span class="errormsg">*headofa/c</span>
                     </div>
@@ -234,7 +236,7 @@
                     <label for="Name" class="col-3 col-form-label">Balance(in Rs.)</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <label> XXXXXX</label>
+                        <label id="bal"></label>
                     </div>
                 </div>
 
@@ -242,7 +244,7 @@
                     <label for="Name" class="col-3 col-form-label">LOC(in Rs.)</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <label> XXXXXX</label>
+                        <label id="loc"></label>
                     </div>
                 </div>
 

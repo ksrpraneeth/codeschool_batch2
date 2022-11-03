@@ -63,14 +63,41 @@ function setOptions(selectElement, options) {
     }
 }
 
-
+document.getElementById('head-of-account').addEventListener("change", function (){
+const HeadofAccount = [
+    { 'HOA': '0853001020002000000NVN','balance': '1000000', 'loc': '5000' },
+    { 'HOA': '88342001170004001000NVN','balance': '1065710', 'loc': '4000' },
+    { 'HOA': '2071011170004320000NVN','balance': '1256400',  'loc': '78000' },
+    { 'HOA': '22204000030006300303NVN','balance': '123465400','loc': '5000'},
+    { 'HOA': '8342001170004002000NVN','balance': '1056400',   'loc' : '34000'}
+    
+];
+ let HeadofAccountselectedoption = document.getElementById('head-of-account').value;
+ let getobj = HeadofAccount.find(x => x.HOA  === HeadofAccountselectedoption);
+   document.getElementById('bal').value = getobj.balance;
+   document.getElementById('loc').value = getobj.loc;
+});
 
 // function resetErrorMsgs() {
 //    var err = document.getElementsByClassName('errormsg');
 //    for()
 // }
+function ifsccodeinput(){
+    var IFSC = document.getElementById('ifsc').value;
+if (IFSC.length != 11) {
+    document.getElementById('ifsc_err').textContent = 'IFSC code should be 11 characters';
+}
+else if (!IFSC.match('^[A-Z]{4}0[A-Z0-9]{6}$')) {
+    document.getElementById('ifsc_err').textContent = 'IFSC code is Invalid';
+}else {
+    document.getElementById("bankname").innerHTML = "DBS";
+    document.getElementById("branchname").innerHTML = "warangal";
+}
+}
+
 function Next() {
-    resetErrorMsgs();
+    //     resetErrorMsgs();
+    ifsccodeinput();
     var Acc = document.getElementById('Acc').value;
     var Accnomsg = document.querySelector(".accountno .errormsg");
     if (isNaN(Acc) === false) {
@@ -91,18 +118,6 @@ function Next() {
         Accnomsg.style.display = "none";
     }
 
-    var IFSC = document.getElementById('ifsc').value;
-    // var IFSCerrorspan = document.querySelector(".IFSCcode .errormsg");
-    if (IFSC.length != 11) {
-        document.getElementById('ifsc_err').textContent= 'IFSC code should be 11 characters';
-        // IFSCerrorspan.style.display = "block";
-    } 
-    else if(!IFSC.match('^[A-Z]{4}0[A-Z0-9]{6}$')) {
-        // IFSCerrorspan.style.display = "block";
-        document.getElementById('ifsc_err').textContent = 'IFSC code is Invalid';
-    }
-    
-
     var purpose = document.getElementById('Purpose').value;
     var Purposeerrorspan = document.querySelector(".purpose .errormsg");
     if (purpose.length >= 500) {
@@ -116,9 +131,7 @@ function Next() {
     if (partyAmount % 1 != 0) {
         partyamtspan.style.display = "block";
     }
-    // else {
-    //     partyamtspan.style.display = "none";
-    // }
+    }
+ 
+    
 
-
-}
