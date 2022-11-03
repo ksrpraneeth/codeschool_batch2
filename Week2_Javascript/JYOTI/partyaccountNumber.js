@@ -25,6 +25,10 @@ function check() {
     document.getElementById("CACE").innerHTML =
       "Please enter correct account number ";
   }
+  else{
+    document.getElementById("CACE").innerHTML ="";
+  }
+  
   //PARTRY NAME
 
   let partyName = document.getElementById("PN").value;
@@ -53,9 +57,9 @@ function check() {
 
   if (bankIfsc_Code == "") {
     document.getElementById("EBIC").innerHTML = "Please Enter IFSC Code";
-  } else if (bankIfsc_Code > 11) {
+  } else if (bankIfsc_Code.length > 10) {
     document.getElementById("EBIC").innerHTML = "IFSC Code is too Large";
-  } else if (bankIfsc_Code < 11) {
+  } else if (bankIfsc_Code.length < 10) {
     document.getElementById("EBIC").innerHTML = "IFSC Code is too Small";
   }
   if (!code.match(regEx2)) {
@@ -69,26 +73,30 @@ function check() {
     document.getElementById("EBIC").innerHTML =
       "Please Enter correct IFSC Code";
   }
+  else{
+    document.getElementById("EBIC").innerHTML ="";
+      
+  }
 }
 
 //...............................
 
 function check2() {
   var IFSC = document.getElementById("BIC").value;
-  var code4 = IFSC.slice(0,4);
+  var code4 = IFSC;
   var temp_bank_details = [
     {
-      ifsc_key: "SBIN",
+      ifsc_key: "SBIN0111111",
       name: "SBI",
       branch: "AMEERPET",
     },
     {
-      ifsc_key: "ICIC",
+      ifsc_key: "ICIC0111111",
       name: "ICICI",
       branch: "HITECH CITY",
     },
     {
-      ifsc_key: "HDFC",
+      ifsc_key: "HDFC0111111",
       name: "HDFC",
       branch: "LB NAGAR",
     },
@@ -181,7 +189,8 @@ function showLeftNav() {
    console.log(purpose);
      
    
-     if (!purpose.length <500){
+   // string length
+     if (purpose.length > 500){
         document.getElementById("PURPOSEER").innerHTML="Maximum 500 characters are allowed";
      }
      else {
@@ -227,3 +236,13 @@ else{
   document.getElementById("expenditure_error")="";
 }
 }
+
+
+//TRANSACTION
+
+let TRAN=document.getElementById("M").value;
+if(TRAN==0){
+  document.getElementById("TERROR")="YTGF";
+}
+
+InputDeviceInfo.setAttribute('required','');
