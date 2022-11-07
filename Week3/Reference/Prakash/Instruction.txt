@@ -6,7 +6,7 @@ Task For : Asif & Chinmay
 1. Validate the form by jquery only.
 2. Name Of HOD Dropdown (10 List)
 3. Budget Year (5 years)
-4.Establishment/Scheme Drop Down (Establishment & Scheme)
+4. Establishment/Scheme Drop Down (Establishment & Scheme)
 5. Others fields, 2 fields in both line
 	1. First filds value only put,
    2. Second fields value will be auto add depend on value putten in first fields.
