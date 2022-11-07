@@ -1,0 +1,33 @@
+Task Description
+1. create a 'login' page as provided in reference, ie : loginPage.png
+2. after succesful login from 'login' page, it should redirect to 'home' page (ie. the form and side menu page which you people worked on last 2 weeks), (integrate below login API for login functionality).
+3. on clicking 'Logout' option from 'Home' page, it should redirect to 'Login' page.
+4. on loading the website, initially login page only should open. If user try to access the 'home' page by entering the URL without login, it should not open, it should redirect to 'login' page.
+5. After succesul login, if user click back button or if try to open login page by entering the URL, it should not open, it should redirect to 'home' page.
+6. seperate header and footer. (create a seperate header.html file header part and include the file in respective pages.)
+
+
+Instructions
+1. Naming conventions should be proper (use camelCase for variables, function names).
+2. Always give relevant names to your variables, functions, id's, classes. (do not name it like 'aa', 'abc', 'data1', 'data2).
+
+
+API's for above Task
+1. registration 
+http://restapi.adequateshop.com/api/authaccount/registration
+Content-Type : application/json
+Post Method
+data : {
+    "name":"<your name>",
+    "email":"<your email>",
+    "password":"<your password>"
+    }
+
+2. login
+http://restapi.adequateshop.com/api/authaccount/login
+Content-Type : application/json
+Post Method
+data : {
+    "email":"<your email>",
+    "password":"<your password>"
+    }
