@@ -42,7 +42,7 @@ userLoginButton.addEventListener("click", function() {
 
 
 
-// code for form validation
+// misc functions for form validations
 function clearErrors() {
     let errors = document.getElementsByClassName('error-msg');
     for(let item of errors)
@@ -56,10 +56,70 @@ function setError(id, error) {
     element.innerHTML = error;
 }
 
+
+
+// for validating ifsc code on click of the search button
+function validateIfsc() {
+    let returnval = true;
+    clearErrors();
+
+    var ifscCode = document.getElementById("ifsc-code").value;
+    if(ifscCode.length == 0) {
+        setError("ifsc-code", "*required");
+        returnval = false;
+    }
+    else if(ifscCode.length != 11) {
+        setError("ifsc-code", "*Should be of 11 characters only");
+        returnval = false;
+    }
+    else {
+        for(let i=0; i<4; i++) {
+            if((/[A-Z]/).test(ifscCode[i]) == false) {
+                setError("ifsc-code", "*First four characters should be uppercase alphabets only");
+                returnval = false;
+            }         
+        }
+        if(ifscCode[4] != "0") {
+            setError("ifsc-code", "*Fifth character should be zero only");
+            returnval = false;
+        }
+        else if(containsSpecialChars(ifscCode.substr(5, 10)) || (/[a-z]/).test(ifscCode.substr(5, 10)) ) {
+            setError("ifsc-code", "*Last six characters should be numeric or uppercase alphabets only");
+            returnval = false;
+        }
+    }
+    return returnval;
+}
+
+
+// code for prefilling bank name and branch if ifsc code is valid
+document.getElementById("search-ifsc").addEventListener("click", function() {
+    const bankNameslist = [
+        {"name": "State Bank Of India", "branch": "Mehdipatnam Branch"},
+        {"name": "IDBI Bank", "branch": "Rajendra Nagar Branch"},
+        {"name": "HDFC Bank", "branch": "Attapur Branch"},
+        {"name": "Union Bank of India", "branch": "Shamsheer Gunj Branch"},
+        {"name": "Bank of Baroda", "branch": "Film Nagar Branch"},
+        {"name": "Axis Bank", "branch": "Bahadurpura Branch"},
+    ];
+    let isIfscValid = validateIfsc();
+    if(isIfscValid) {
+        let x = Math.floor((Math.random() * bankNameslist.length));
+        document.getElementById("bank-name").value = bankNameslist[x].name;
+        document.getElementById("bank-branch").value = bankNameslist[x].branch;
+    }
+});
+
+
+
+// validating form fields
 function validateForm() {
     var returnval = true;
     clearErrors();
     
+    // validating ifsc on click of form submit button also
+    returnval = validateIfsc();
+
     // for party account number
     var partyAcNo = document.getElementById("party-ac-no").value;
     if(partyAcNo.length == 0) {
@@ -101,35 +161,28 @@ function validateForm() {
         returnval = false;
     }
 
-    // for bank ifsc code
-    var ifscCode = document.getElementById("ifsc-code").value;
-    if(ifscCode.length == 0) {
-        setError("ifsc-code", "*required");
+    // for hod
+    var hod = document.getElementById("head-of-ac").value;
+    if(hod == "") {
+        setError("head-of-ac", "*required");
         returnval = false;
     }
-    else if(ifscCode.length != 11) {
-        setError("ifsc-code", "*Should be of 11 characters only");
+
+
+    // for expenditure type
+    var expType = document.getElementById("expenditure-type").value;
+    if(expType == "") {
+        setError("expenditure-type", "*required");
         returnval = false;
     }
-    else {
-        for(let i=0; i<4; i++) {
-            if((/[A-Z]/).test(ifscCode[i]) == false) {
-                setError("ifsc-code", "*First four characters should be uppercase alphabets only");
-                returnval = false;
-            }         
-        }
-        if(ifscCode[4] != "0") {
-            setError("ifsc-code", "*Fifth character should be zero only");
-            returnval = false;
-        }
-        // else if(containsSpecialChars(ifscCode.substr(5, 10))) {
-        //     setError("ifsc-code", "*Last six characters should be numeric or alphabets only");
-        //     returnval = false;
-        // }
 
+
+    // for purpose type
+    var purposeType = document.getElementById("purpose-type").value;
+    if(purposeType == "") {
+        setError("purpose-type", "*required");
+        returnval = false;
     }
-
-
 
     // for purpose
     var purpose = document.getElementById("purpose").value;
@@ -144,7 +197,11 @@ function validateForm() {
 
     // for party amount in rs
     var partyAmount = document.getElementById("party-amount").value;
-    if(partyAmount%1 != 0) {
+    if(partyAmount == 0) {
+        setError("party-amount", "*required");
+        returnval = false;
+    }
+    else if(partyAmount%1 != 0) {
         setError("party-amount", "*Should not be in fractions");
         returnval = false;
     }    
@@ -154,30 +211,30 @@ function validateForm() {
 
 
 
-// for head of account - balance - loc
+
+// for head of account - balance - loc select options
 document.getElementById("head-of-ac").addEventListener("change", function() {
     const headOfAcs = [
-        ["0853001020002000000NVN", 1000000, 5000],
-        ["8342001170004001000NVN", 1008340, 4000],
-        ["2071011170004320000NVN", 14530000, 78000],
-        ["8342001170004002000NVN", 1056400, 34000],
-        ["2204000030006300303NVN", 123465400, 5000]
+        {"hod": "0853001020002000000NVN", "bal": "1000000", "loc": "5000"},
+        {"hod": "8342001170004001000NVN", "bal": "1008340", "loc": "4000"},
+        {"hod": "2071011170004320000NVN", "bal": "14530000", "loc": "78000"},
+        {"hod": "8342001170004002000NVN", "bal": "1056400", "loc": "34000"},
+        {"hod": "2204000030006300303NVN", "bal": "123465400", "loc": "5000"}
     ];
     
-    var headOfAcSelectedOption = document.getElementById("head-of-ac").value;
-    for(let headOfAcsItems of headOfAcs) {
-        for(let items of headOfAcsItems) {
-            if(headOfAcSelectedOption == items){
-                document.getElementById("bal-in-rs").value = headOfAcsItems[1];
-                document.getElementById("loc-in-rs").value = headOfAcsItems[2];
-            }
-        }
-    }
+    let headOfAcSelectedOption = document.getElementById("head-of-ac").value;
+    
+    let getObj = headOfAcs.find(x => x.hod === headOfAcSelectedOption);
+    
+    document.getElementById("bal-in-rs").value = getObj.bal;
+    document.getElementById("loc-in-rs").value = getObj.loc;
 });
 
 
 
-// for expenditure type and purpose type
+
+
+// for expenditure type and purpose type select options
 function clearOptions() {
     const purposeType = document.getElementById('purpose-type');
     while (purposeType.options.length > 1) {
@@ -203,15 +260,8 @@ document.getElementById("expenditure-type").addEventListener("change", function(
                 purposeType.add(newOption, undefined);
                 i++;
             }
-            // let option1 = new Option(item[1], item[1]);
-            // // let option2 = new Option(item[2], item[2]);
-            // const purposeType = document.getElementById('purpose-type'); 
-            // purposeType.add(option1, undefined);
-            // // purposeType.add(option2, undefined);
         }
     }
-
-
 });
 
 
@@ -234,4 +284,3 @@ toggleButton.addEventListener("click", function() {
         document.getElementById("header-bg").style.marginLeft = "0";
     }
 });
-
