@@ -1,0 +1,2 @@
+https://dummyjson.com/products/category/smartphones
+https://dummyjson.com/comments
