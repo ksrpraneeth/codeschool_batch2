@@ -1,0 +1,67 @@
+/* #product-div {
+    height: 70vh;
+    background-color: blue; 
+}
+
+#product-name {
+    height: 10vh;
+    background-color: red;
+}
+#product-rating {
+    height: 10vh;
+    background-color: green;
+}
+
+#px {
+    height: 50vh;
+    background-color: white;
+}
+
+#product-images {
+    height: 50vh;
+    background-color: gray;
+}
+
+#product-specs {
+    height: 50vh;
+    background-color: wheat;
+}
+
+button {
+    border-radius: 30%;
+    padding: 20px;
+} */
+
+
+.button {
+    background-color: lightgray;
+    padding: 5px 2px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#product-details {
+    height: 60vh;
+    background-color: blue;
+}
+
+#product-images {
+    background-color: wheat;
+    height: inherit;
+}
+
+#product-images img {
+    width: 100%;
+    margin: 20px auto;
+}
+
+#product-specs {
+    height: inherit;
+    background-color: white;
+    margin: auto 0;
+    padding: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
