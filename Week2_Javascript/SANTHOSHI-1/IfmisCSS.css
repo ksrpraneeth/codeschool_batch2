@@ -1,0 +1,46 @@
+#points {
+    background-color: #fcf8e3;
+
+}
+
+#heading {
+    background-color: rgb(129, 183, 237);
+    margin-top: 10px;
+}
+
+#bg {
+    background-color: white;
+    height: 100vh;
+}
+
+#uploaddocs {
+    outline: 1px solid grey;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.form-group .col-form-label:after {
+    content: "*";
+    color: red;
+}
+
+.inpt {
+    margin-right: 30px;
+}
+
+.inp {
+    margin-left: 30px;
+    margin-right: 90px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.inp::after {
+    content: "*";
+    color: red;
+}
+
+.errormsg{
+    display:none;
+    color: red;
+}

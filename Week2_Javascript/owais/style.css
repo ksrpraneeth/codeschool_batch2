@@ -1,0 +1,111 @@
+body{
+    margin: 0;
+background-color: #e2e2e2;  
+}
+
+.sidenav{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #1b364d;
+    overflow-x:hidden;
+    transition: 0.5x;
+   
+}
+
+.sidenav ul li a{
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+   
+}
+.sidenav ul li {
+    
+    list-style-type: none;
+}
+.sidenav ul{
+    padding: 5px;
+}
+.sidenav ul li:hover{
+    background-color: gray;
+    border-left: 5px solid orangered;
+
+}
+.sidenav .closebtn{
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+.menu{
+    padding:10px;
+    color: white;
+}
+.module{
+    padding-top: 10px;
+}
+.login{
+
+    padding-top: 10px;
+     color: white;
+     font-size: small;
+}
+.user{
+    padding-top: 10px;
+
+}
+.logout{ 
+    padding-top: 10px;
+
+}
+#main{
+    transition: margin-left .5s;
+
+    width:auto;
+    background:white;
+    margin: 20px 5px 20px 20px;
+    border-radius: 10px;
+
+}
+.row2{
+    background: lightblue;
+    color: blue;
+    margin-bottom: 10px;
+    border-radius: 10px 10px 0 0;
+}
+form .row{
+    margin: 15px;
+
+}
+.form-row > label,.form-group > label{
+    font-weight: 500;
+}
+#bgcolor, .form-row{
+background: #f8f8fa;
+}
+
+
+
+.w20{
+    width:20px
+}
+.required::after{
+    content: "*";
+    color: red;
+}
+input:focus{
+    outline: none;
+}
+#outline{
+    border: 3px solid #ced4da;
+}
+.form_error{
+    color: red;
+}
