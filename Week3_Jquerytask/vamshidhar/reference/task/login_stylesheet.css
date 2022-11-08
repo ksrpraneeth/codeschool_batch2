@@ -1,0 +1,33 @@
+body{
+    margin: 0px;
+    background-image: url('images/background_diamond.png');
+}
+
+.top{
+    background-image: url('images/background_photo.jpeg');
+    height:120px;
+}
+
+
+.ifmisLogo{
+    padding-top: 25px;
+}
+
+.kcrPhoto, .harishPhoto{
+    padding-top: 20px;
+}
+
+/* .topNav{
+    background-color: blue;
+} */
+
+.login{
+    background-color: white;
+}
+
+.signIn{
+    position: relative;
+    left: 75%;
+    margin-bottom: 5px;
+    
+}
