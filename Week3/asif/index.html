@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JS File -->
+    <script src="week3.js"></script>
+    <link rel="shortcut icon" href="https://d20exy1ygbh3sg.cloudfront.net/fms/images/favicon.ico" type="image/x-icon">
+    <title>IFMIS</title>
+    <style>
+        #name-of-hod option{
+            overflow: scroll;
+        }
+        label:after {
+            content: "*";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section id="form-section" class="container-fluid bg-dark m-3 w-auto">
+            <div class="row bg-danger"><h1 class="col-12 h4 text-light my-auto p-2">Add New Head Of Account</h1></div>
+            <form class="row text-light mx-3">
+                <!-- name of head of account -->
+                <div class="row align-items-center my-3">
+                    <label for="name-of-hod" class="col-12 col-md-4 col-form-label">Name Of HOD:</label>
+                    <div class="col-12 col-md-7">
+                        <select id="name-of-hod" name="name-of-hod" class="form-select form-control">
+                            <option selected>Select</option>
+                            <option value="1">OneOneOneOneOneOneOneOneOneOneOneOneOneOneOneOneOneOneOne</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Four</option>
+                            <option value="5">Five</option>
+                            <option value="6">Six</option>
+                            <option value="7">Seven</option>
+                            <option value="8">Eight</option>
+                            <option value="9">Nine</option>
+                            <option value="10">Ten</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- budget year -->
+                <div class="row align-items-center mb-3">
+                    <label for="budget-year" class="col-12 col-md-4 col-form-label">Budget Year:</label>
+                    <div class="col-12 col-md-7">
+                        <select id="budget-year" name="budget-year" class="form-select form-control">
+                            <option selected>Select</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2021-2022">2021-2022</option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2019-2020">2019-2020</option>
+                            <option value="2018-2019">2018-2019</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- establishment/scheme -->
+                <div class="row align-items-center mb-3">
+                    <label for="establishment-scheme" class="col-12 col-md-4 col-form-label">Establishment/Scheme:</label>
+                    <div class="col-12 col-md-7">
+                        <select id="establishment-scheme" name="establishment-scheme" class="form-select form-control">
+                            <option selected>Select</option>
+                            <option value="establishment">Establishment</option>
+                            <option value="scheme">Scheme</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- major head -->
+                <div class="row align-items-center mb-3">
+                    <label for="major-head" class="col-12 col-md-12 col-form-label">Major Head:</label>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="major-head" name="major-head" placeholder="Enter Value">
+                    </div>
+                    <div class="col-12 col-md-7 my-1">
+                        <input type="text" class="form-control" id="major-head-description" name="major-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- sub major head -->
+                <div class="row align-items-center mb-3">
+                    <label for="sub-major-head" class="col-12 col-md-12 col-form-label">Sub-Major Head:</label>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="sub-major-head" name="sub-major-head" placeholder="Enter Value">
+                    </div>
+                    <div class="col-12 col-md-7 my-1">
+                        <input type="text" class="form-control" id="sub-major-head-description" name="sub-major-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- minor head -->
+                <div class="row align-items-center mb-3">
+                    <label for="minor-head" class="col-12 col-md-12 col-form-label">Minor Head:</label>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="minor-head" name="minor-head" placeholder="Enter Value">
+                    </div>
+                    <div class="col-12 col-md-7 my-1">
+                        <input type="text" class="form-control" id="minor-head-description" name="minor-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- group sub head -->
+                <div class="row align-items-center mb-3">
+                    <label for="group-sub-head" class="col-12 col-md-12 col-form-label">Group Sub Head:</label>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="group-sub-head" name="group-sub-head" placeholder="Enter Value">
+                    </div>
+                    <div class="col-12 col-md-7 my-1">
+                        <input type="text" class="form-control" id="group-sub-head-description" name="group-sub-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- sub head -->
+                <div class="row align-items-center mb-3">
+                    <label for="sub-head" class="col-12 col-md-12 col-form-label">Sub Head:</label>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="sub-head" name="sub-head" placeholder="Enter Value">
+                    </div>
+                    <div class="col-12 col-md-7 my-1">
+                        <input type="text" class="form-control" id="sub-head-description" name="sub-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- detailed head -->
+                <div class="row align-items-center mb-3">
+                    <label for="detailed-head" class="col-12 col-md-12 col-form-label">Detailed Head:</label>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="detailed-head" name="detailed-head" placeholder="Enter Value">
+                    </div>
+                    <div class="col-12 col-md-7 my-1">
+                        <input type="text" class="form-control" id="detailed-head-description" name="detailed-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- sub detailed head -->
+                <div class="row align-items-center mb-3">
+                    <label for="sub-detailed-head" class="col-12 col-md-12 col-form-label">Sub Detailed Head:</label>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="sub-detailed-head" name="sub-detailed-head" placeholder="Enter Value">
+                    </div>
+                    <div class="col-12 col-md-7 my-1">
+                        <input type="text" class="form-control" id="sub-detailed-head-description" name="sub-detailed-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- charged/voted -->
+                <div class="row align-items-center mb-3">
+                    <label for="charged-voted" class="col-12 col-md-4 col-form-label">Charged/Voted:</label>
+                    <div class="col-12 col-md-7">
+                        <select id="charged-voted" name="charged-voted" class="form-select form-control">
+                            <option selected>Select</option>
+                            <option value="charged">Charged</option>
+                            <option value="voted">Voted</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mb-3">
+                    <button type="button" class="btn btn-light col-4 mx-3">Clear Filled Data</button>
+                    <button type="submit" class="btn btn-primary col-4 col-xxl-4 mx-3">Submit HOA</button>
+                </div>
+            </form>
+        <!-- end of form section -->
+        </section>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome Icons Kit -->
+    <script src="https://kit.fontawesome.com/e4637f793f.js" crossorigin="anonymous"></script>
+</body>
+</html>
