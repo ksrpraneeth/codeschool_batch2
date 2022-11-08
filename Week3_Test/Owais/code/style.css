@@ -1,0 +1,74 @@
+#bg{
+    background:rgba(229,37,40,255);
+}
+#first{
+    
+    padding: 10px;
+    border-bottom: 1px solid white;
+}
+#first div a{
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: 700;
+
+}
+.easy{
+    border-right: 1px solid white;
+}
+.next{
+    border-right: 1px solid white;
+}
+.service{
+    border-right: 1px solid white;
+}
+.unmatched{
+    border-right: 1px solid white;
+}
+.find{
+    border-right: 1px solid white;
+}
+.reslogo{
+    width: 40px;
+}
+
+#second{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin: auto 0;
+}
+#second div a{
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+}
+.logo{
+    width: 180px;
+    margin: auto 0;
+}
+.select{
+    border-right: 1px solid white;
+}
+.cart{
+    border-right: 1px solid white;
+}
+
+
+#third{
+    background: #113380;
+    color:white
+}
+
+#list{
+    background: #f9f9fa;
+}
+.iphone{
+    width: 400px;
+}
+.apple{
+   font-size:large;
+   font-weight: 600;
+}
+.left{
+    border-right: .5px solid black;
+}
