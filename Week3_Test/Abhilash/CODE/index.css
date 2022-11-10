@@ -1,0 +1,83 @@
+.btn1
+{
+    background-color: #eaeaea;
+
+    border-radius: 8%;
+   color: black;
+   border: 2px primary;
+   border-radius: 12px;
+   padding: 5px;
+ 
+}
+
+.img
+{
+    border: 2px outset;
+    border-radius: 12px;
+    padding: 5px;
+
+}
+
+ul
+{
+font-weight: 5px;
+font-family:Optima;
+
+}
+
+.p1
+{
+
+    font-weight: 5px;
+font-family:Optima;
+
+}
+.p2
+{
+    font-family: Georgia, serif;
+    font-size: 20px;
+
+
+}
+.btn2
+
+{
+
+    background-color: #d7f1fc;
+     margin: 10px;
+    border:none;
+   border: 45px success;
+   border-radius: 12px;
+   padding: 10px;
+   text-align: center;
+   color: darkgreen;
+}
+
+.btn3
+{
+    background-color: #c8e8f6;
+    margin: 10px;
+    border:none;
+   border-radius: 12px;
+   padding: 10px;
+   text-align: center;
+   color:cornflowerblue
+
+
+}
+.search
+
+{
+    border-radius: 12px;
+width: 100%;
+
+
+
+}
+
+.p4
+{
+
+    font-weight: bold;
+    font-size: larger;
+}

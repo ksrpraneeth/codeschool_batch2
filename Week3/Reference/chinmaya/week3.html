@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <title>HOD IFMIS</title>
+    <style>
+        header {
+            background-image: url(bg.jpeg);
+            color: white;
+            font-weight: 900;
+            border-bottom: 4px solid orange;
+        }
+
+        .profile {
+            font-size: 11px;
+            background-color: grey;
+            font-weight: 100;
+        }
+
+        #navbar {
+            background-color: #1b364d;
+        }
+
+        #navbar div {
+            padding: 4% 0%;
+            text-align: left;
+            border-bottom: 0.5px solid white;
+
+
+        }
+
+        .navbutton {
+            padding-left: 2%;
+        }
+
+        .navbutton a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #navbar div:hover {
+            background-color: #2a4459;
+
+        }
+
+        .maincontainer {
+            background-color: gray;
+        }
+
+        .containerdiv {
+            background-color: white;
+            padding-left: 3%;
+        }
+
+        .star {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container-fluid">
+        <div class="row ">
+            <div class="col-lg-3 col-md-4">
+                <img src="logo.png" style="max-width:100%">
+            </div>
+            <div class="col-lg-4 col-md-6 mt-2">
+                <button type="button" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </button>
+                <button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                        height="20" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                        <path
+                            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+                    </svg>MODULES</button>
+                <button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="18"
+                        height="18" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    </svg>PROFILE</button>
+                <button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="18"
+                        height="18" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                        <path fill-rule="evenodd"
+                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                    </svg>LOGOUT</button>
+
+
+            </div>
+            <div class="col-lg-2 col-md-2 mt-1" style="font-size: 12px;">
+                <div>Last Login</div>
+                <div>14-jan-2022</div>
+                <div>10:32:am</div>
+            </div>
+            <div class="col-lg-2 d-none d-lg-block ">
+                <div class="profile mt-2">
+                    <div style="font-weight: 500;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                            fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        </svg>Welcome pixelvide solution</div>
+                    <div class="ms-5" style="font-size: 13px;">(bro-pixelvide)</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 " id="navbar">
+                <div class="row navbutton"><a href="#">Home</a></div>
+                <div class="row navbutton"><a href="#">BRO</a></div>
+                <div class="row navbutton"><a href="#">Additional Fund</a></div>
+                <div class="row navbutton"><a href="#">Reappropriation</a></div>
+                <div class="row navbutton"><a href="#">HOA List</a></div>
+                <div class="row navbutton"><a href="#">Contingency</a></div>
+                <div class="row navbutton"><a href="#">Add HOA</a></div>
+                <div class="row navbutton"><a href="#">Users Mapping</a></div>
+                <div class="row navbutton"><a href="#">Section User Mapping</a></div>
+                <div class="row navbutton"><a href="#">Export Report</a></div>
+                <div class="row navbutton"><a href="#">Section List</a></div>
+                <div class="row navbutton"><a href="#">Section HODs</a></div>
+                <div class="row navbutton"><a href="#">BRO Logs</a></div>
+                <div class="row navbutton"><a href="#">User Permission</a></div>
+                <div class="row navbutton"><a href="#">HOD Non Listing</a></div>
+                <div class="row navbutton"><a href="#">BRO Clr Memo Submission List</a></div>
+            </div>
+            <!--navbar-->
+            <div class="col-md-10 maincontainer">
+                <div class=" mt-2 containerdiv pb-5">
+                    <div class="row">
+                        <div class="col-lg-3 mt-1"><b>Add New Head Of Account</b></div>
+                        <div class="col-lg-1 offset-7 mt-1"> <button type="button" style="background-color:#5cb85c;"
+                                class="btn btn-success">Submit</button></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-3">Name Of HOD<span class="star">*</span></div>
+                        <div class="col-lg-7"><select class="form-select" aria-label="Default select example">
+                                <option selected> Select Here </option>
+                                <option value="">ENERGY,SECRETARIAT DEPARTMENT</option>
+                                <option value="">WATER,SECRETARIAT DEPARTMENT</option>
+                                <option value="">CONSTRUCTION,SECRETARIAT DEPARTMENT</option>
+                                <option value="">HEALTH,SECRETARIAT DEPARTMENT</option>
+                                <option value="">ROAD,SECRETARIAT DEPARTMENT</option>
+                                <option value="">FOOD,SECRETARIAT DEPARTMENT</option>
+                                <option value="">CHILDCARE,SECRETARIAT DEPARTMENT</option>
+                                <option value="">TRAFIC,SECRETARIAT DEPARTMENT</option>
+                                <option value="">SECURITY,SECRETARIAT DEPARTMENT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Budget Year<span class="star">*</span></div>
+                        <div class="col-lg-7"><select class="form-select" aria-label="Default select example">
+                                <option>Select Here</option>
+                                <option value="">2019-2020</option>
+                                <option value="">2021-2022</option>
+                                <option value="">2022-2023</option>
+                                <option value="">2023-2024</option>
+                                <option value="">2024-2025</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Establishment/Scheme<span class="star">*</span></div>
+                        <div class="col-lg-7">
+                            <select class="form-select" aria-label="Default select example">
+                                <option>Select Here</option>
+                                <option value="">Establishment</option>
+                                <option value="">Scheme</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Major Head<span class="star">*</span></div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="" aria-label="default input example"></div>
+                        <div class="col-lg-5"><input class="form-control" type="text" placeholder="Description" aria-label="default input example"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Sub-Major Head<span class="star">*</span></div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="" aria-label="default input example"></div>
+                        <div class="col-lg-5"><input class="form-control" type="text" placeholder="Description" aria-label="default input example"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Minor Head<span class="star">*</span></div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="" aria-label="default input example"></div>
+                        <div class="col-lg-5"><input class="form-control" type="text" placeholder="Description" aria-label="default input example"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Group Sub Head<span class="star">*</span></div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="" aria-label="default input example"></div>
+                        <div class="col-lg-5"><input class="form-control" type="text" placeholder="Description" aria-label="default input example"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Sub Head<span class="star">*</span></div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="" aria-label="default input example"></div>
+                        <div class="col-lg-5"><input class="form-control" type="text" placeholder="Description" aria-label="default input example"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Detailed Head<span class="star">*</span></div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="" aria-label="default input example"></div>
+                        <div class="col-lg-5"><input class="form-control" type="text" placeholder="Description" aria-label="default input example"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Sub Detailed Head<span class="star">*</span></div>
+                        <div class="col-lg-2"><input class="form-control" type="text" placeholder="" aria-label="default input example"></div>
+                        <div class="col-lg-5"><input class="form-control" type="text" placeholder="Description" aria-label="default input example"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-3">Charged/Voted<span class="star">*</span></div>
+                        <div class="col-lg-7">
+                            <select class="form-select" aria-label="Default select example">
+                                <option>Select Here</option>
+                                <option value="">Charged</option>
+                                <option value="">Voted</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3  ">
+                        <div class="col-lg-3  offset-lg-5"><button type="button" class="btn btn-secondary btn-sm">Clear Filled Data</button></div>
+                        <div class="col-lg-2"><button type="button" class="btn btn-primary btn-sm" style="background-color: #10364f;">Submit HOA</button></div>
+                    </div>
+                </div>
+            </div>
+            <!--main content-->
+        </div>
+    </main>
+</body>
+
+</html>
