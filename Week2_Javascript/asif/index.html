@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="main.css">
     <!-- JavaScript -->
-    <script src="script.js" defer></script>
+    <!-- <script src="script.js" defer></script> -->
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="jquery.js"></script>
+    <link rel="shortcut icon" href="https://d20exy1ygbh3sg.cloudfront.net/fms/images/favicon.ico" type="image/x-icon">
     <title>IFMIS</title>
 </head>
 <body <body onload="document.main-form.reset();">
@@ -127,23 +131,22 @@
         </div>
 
         <div class="row mx-2" id="form-box">
-            <form action="#" id="form" class="col-12" name="main-form" onsubmit="return validateForm()" method="post">
+            <form action="#" id="form" class="col-12" name="main-form" method="post">
                 <div class="form-row" id="radio-row">
-                    <label for="transaction-type" class="required col-3">Transaction Type </label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="transaction-type" id="single-party" value="single-party">
+                    <label for="transaction-type" class="required col-3">Transaction Type </label>                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="transaction-type" id="single-party" value="single-party" required>
                         <label class="form-check-label" for="single-party">Single Party</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="transaction-type" id="multiple-parties" value="multiple-parties">
+                        <input class="form-check-input" type="radio" name="transaction-type" id="multiple-parties" value="multiple-parties" required>
                         <label class="form-check-label" for="multiple-parties">Multiple Parties</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="transaction-type" id="pd-to-pd" value="pd-to-pd">
+                        <input class="form-check-input" type="radio" name="transaction-type" id="pd-to-pd" value="pd-to-pd" required>
                         <label class="form-check-label" for="pd-to-pd">PD Account to PD Account</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="transaction-type" id="pd-to-other" value="pd-to-other">
+                        <input class="form-check-input" type="radio" name="transaction-type" id="pd-to-other" value="pd-to-other" required>
                         <label class="form-check-label" for="pd-to-other">PD Account to Other</label>
                     </div>
                 </div>

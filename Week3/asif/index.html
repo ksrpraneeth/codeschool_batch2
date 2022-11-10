@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JS File -->
+    <script src="script.js"></script>
+    <link rel="shortcut icon" href="https://d20exy1ygbh3sg.cloudfront.net/fms/images/favicon.ico" type="image/x-icon">
+    <title>IFMIS</title>
+</head>
+<body>
+    <div id="sidebar">
+        <div id="brand-logo-div" class="mx-auto my-2 pb-2"><a href="#"><img src="images/ifmis-logo.png" alt="ifmis-logo"></a></div>
+        
+        <ul class="sidebar-nav-list">
+            <li class="sb-nav-list-item"><a href="#">Home</a></li>
+            <li class="sb-nav-list-item dropend">
+                <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Masters </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li class="dropdown-item">Option 1</li>
+                    <li class="dropdown-item">Option 2</li>
+                    <li class="dropdown-item">Option 3</li>
+                </ul>
+            </li>
+            <li class="sb-nav-list-item dropend">
+                <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Transactions </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li class="dropdown-item">Option 1</li>
+                    <li class="dropdown-item">Option 2</li>
+                    <li class="dropdown-item">Option 3</li>
+                </ul>
+            </li>
+            <li class="sb-nav-list-item"><a href="#">Reports</a></li>
+            <li class="sb-nav-list-item"><a href="#">Return Cheque Generation</a></li>
+            <li class="sb-nav-list-item"><a href="#">Forest Transactions</a></li>
+            <li class="sb-nav-list-item"><a href="#">Forest Transactions Reports</a></li>
+            <li class="sb-nav-list-item"><a href="#">E-Kuber Returns Received List</a></li>
+            <li class="sb-nav-list-item"><a href="#">E-Kuber Return Challan Print</a></li>
+            <li class="sb-nav-list-item"><a href="#">UTR Search</a></li>
+            <li class="sb-nav-list-item"><a href="#">Failed Transactions(ACK Reject)</a></li>
+            <li class="sb-nav-list-item"><a href="#">Check Status Report</a></li>
+            <li class="sb-nav-list-item"><a href="#">Rejected Cheques due to FinYear End</a></li>
+            <li class="sb-nav-list-item"><a href="#">FinYear New Cheques Report</a></li>
+            <li class="sb-nav-list-item"><a href="#">Pd Budget Check</a></li>
+            <li class="sb-nav-list-item"><a href="#">Update Receipts Used Amount </a></li>
+        </ul>
+    <!-- end of sidebar -->
+    </div>
+
+    <header class="container-fluid g-0">
+        <nav class="navbar navbar-expand navbar-dark bg-dark px-2 row-fluid" id="header">
+            <div id="side-nav-button" class="col-1 w-auto mx-3 my-auto p-2 text-light">
+                <i class="fa fa-solid fa-bars"></i>
+            </div>
+            
+            <ul class="navbar-nav col-1 w-auto">
+                <li class="nav-item mx-2 my-auto header-li">
+                    <a class="nav-link text-light" href="#"><i class="fa fa-thin fa-cubes"></i><span class="d-none d-sm-none d-md-inline ms-2">Modules</span></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav col-auto ms-auto">
+
+                <li class="nav-item mx-2 my-auto col-1 w-auto" id="login-time">
+                    <a class="nav-link text-light" href="#">Last Login: <br> <span id="current-date"></span> <br> <span id="current-time"></span></a>
+                </li>
+                
+                <li class="nav-item navbar-collapse mx-2 my-auto header-li col-2 w-auto">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown" id="user-dropdown">
+                            <a class="nav-link text-light dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#"><i class="fa-solid fa-user"></i><span class="d-none d-sm-none d-md-inline ms-2">Welcome User </span></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start bg-light">
+                                <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-user me-2"></i>Profile</a></li>
+                                <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-key me-2"></i>Change Password</a></li>
+                                <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item mx-2 my-auto col-1 w-auto header-li">
+                    <a class="nav-link text-light" href="#"><i class="fa-solid fa-right-from-bracket"></i><span id="user-login" class="d-none d-sm-none d-md-inline ms-2">Logout</span></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="form-section" class="container-fluid m-3 w-auto">
+            <div class="row">
+                <h1 class="col-12 col-md-7 h4 my-4">Add New Head Of Account</h1>
+
+                <!-- Form preview button -->
+                <button type="button" id="form-preview-btn" class="btn btn-primary col-12 col-md-2 w-auto m-auto" data-bs-toggle="modal" data-bs-target="#preview-form">
+                    Preview Form
+                </button>
+
+                <!-- Preview Form -->
+                <div class="modal fade" id="preview-form" tabindex="-1" aria-labelledby="preview-form-title" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="preview-form-title">Add New Head Of Account</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            <!-- end of row -->
+            </div>
+
+            
+  
+            
+  
+            <form class="row mx-3" name="hod-form">
+                <!-- name of head of account -->
+                <div class="row align-items-center my-3">
+                    <label for="name-of-hod" class="col-12 col-md-4 col-form-label">Name Of HOD:</label>
+                    <div class="col-12 col-md-7">
+                        <select id="name-of-hod" name="name-of-hod" class="form-select form-control disp-required">
+                            <option value="" selected>Select</option>
+                            <option value="one">One</option>
+                            <option value="two">Two</option>
+                            <option value="three">Three</option>
+                            <option value="four">Four</option>
+                            <option value="five">Five</option>
+                            <option value="six">Six</option>
+                            <option value="seven">Seven</option>
+                            <option value="eight">Eight</option>
+                            <option value="nine">Nine</option>
+                            <option value="ten">Ten</option>
+                        </select>
+                        <span class="error-msg"></span>
+                    </div>
+                </div>
+
+                <!-- budget year -->
+                <div class="row align-items-center mb-3">
+                    <label for="budget-year" class="col-12 col-md-4 col-form-label">Budget Year:</label>
+                    <div class="col-12 col-md-7">
+                        <select id="budget-year" name="budget-year" class="form-select form-control disp-required">
+                            <option value="" selected>Select</option>
+                            <option value="2022-2023">2022-2023</option>
+                            <option value="2021-2022">2021-2022</option>
+                            <option value="2020-2021">2020-2021</option>
+                            <option value="2019-2020">2019-2020</option>
+                            <option value="2018-2019">2018-2019</option>
+                        </select>
+                        <span class="error-msg"></span>
+                    </div>
+                </div>
+
+                <!-- establishment/scheme -->
+                <div class="row align-items-center mb-3">
+                    <label for="establishment-scheme" class="col-12 col-md-4 col-form-label">Establishment/Scheme:</label>
+                    <div class="col-12 col-md-7">
+                        <select id="establishment-scheme" name="establishment-scheme" class="form-select form-control disp-required">
+                            <option value="" selected>Select</option>
+                            <option value="establishment">Establishment</option>
+                            <option value="scheme">Scheme</option>
+                        </select>
+                        <span class="error-msg"></span>
+                    </div>
+                </div>
+
+                <!-- major head -->
+                <div class="row align-items-center mb-3">
+                    <label for="major-head" class="col-12 col-md-4 col-form-label">Major Head: </label>
+                    <div class="col-12 col-md-3 my-1">
+                        <input type="text" class="form-control disp-required" id="major-head" name="major-head" placeholder="Enter Value">
+                        <span class="error-msg"></span>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="major-head-description" name="major-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- sub major head -->
+                <div class="row align-items-center mb-3">
+                    <label for="sub-major-head" class="col-12 col-md-4 col-form-label">Sub-Major Head:</label>
+                    <div class="col-12 col-md-3 my-1">
+                        <input type="text" class="form-control disp-required" id="sub-major-head" name="sub-major-head" placeholder="Enter Value">
+                        <span class="error-msg"></span>
+                    </div>
+                    
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="sub-major-head-description" name="sub-major-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- minor head -->
+                <div class="row align-items-center mb-3">
+                    <label for="minor-head" class="col-12 col-md-4 col-form-label">Minor Head:</label>
+                    <div class="col-12 col-md-3 my-1">
+                        <input type="text" class="form-control disp-required" id="minor-head" name="minor-head" placeholder="Enter Value">
+                        <span class="error-msg"></span>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="minor-head-description" name="minor-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- group sub head -->
+                <div class="row align-items-center mb-3">
+                    <label for="group-sub-head" class="col-12 col-md-4 col-form-label">Group Sub Head:</label>
+                    <div class="col-12 col-md-3 my-1">
+                        <input type="text" class="form-control disp-required" id="group-sub-head" name="group-sub-head" placeholder="Enter Value">
+                        <span class="error-msg"></span>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="group-sub-head-description" name="group-sub-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- sub head -->
+                <div class="row align-items-center mb-3">
+                    <label for="sub-head" class="col-12 col-md-4 col-form-label">Sub Head:</label>
+                    <div class="col-12 col-md-3 my-1">
+                        <input type="text" class="form-control disp-required" id="sub-head" name="sub-head" placeholder="Enter Value">
+                        <span class="error-msg"></span>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="sub-head-description" name="sub-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- detailed head -->
+                <div class="row align-items-center mb-3">
+                    <label for="detailed-head" class="col-12 col-md-4 col-form-label">Detailed Head:</label>
+                    <div class="col-12 col-md-3 my-1">
+                        <input type="text" class="form-control disp-required" id="detailed-head" name="detailed-head" placeholder="Enter Value">
+                        <span class="error-msg"></span>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="detailed-head-description" name="detailed-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- sub detailed head -->
+                <div class="row align-items-center mb-3">
+                    <label for="sub-detailed-head" class="col-12 col-md-4 col-form-label">Sub Detailed Head:</label>
+                    <div class="col-12 col-md-3 my-1">
+                        <input type="text" class="form-control disp-required" id="sub-detailed-head" name="sub-detailed-head" placeholder="Enter Value">
+                        <span class="error-msg"></span>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <input type="text" class="form-control" id="sub-detailed-head-description" name="sub-detailed-head-description" placeholder="Description" readonly>
+                    </div>
+                </div>
+
+                <!-- charged/voted -->
+                <div class="row align-items-center mb-3">
+                    <label for="charged-voted" class="col-12 col-md-4 col-form-label">Charged/Voted:</label>
+                    <div class="col-12 col-md-7">
+                        <select id="charged-voted" name="charged-voted" class="form-select form-control disp-required">
+                            <option value="" selected>Select</option>
+                            <option value="charged">Charged</option>
+                            <option value="voted">Voted</option>
+                        </select>
+                        <span class="error-msg"></span>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mb-3">
+                    <button type="button" id="form-clear-btn" class="btn text-light col-2 my-1 w-auto mx-3">Clear Filled Data</button>
+                    <button type="submit" id="form-submit-btn" class="btn text-light col-2 my-1 w-auto mx-3">Submit HOA</button>
+                </div>
+            </form>
+        <!-- end of form section -->
+        </section>
+    </main>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome Icons Kit -->
+    <script src="https://kit.fontawesome.com/e4637f793f.js" crossorigin="anonymous"></script>
+</body>
+</html>
