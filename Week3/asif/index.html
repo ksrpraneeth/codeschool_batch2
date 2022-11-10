@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="https://d20exy1ygbh3sg.cloudfront.net/fms/images/favicon.ico" type="image/x-icon">
     <title>IFMIS</title>
 </head>
-<body>
+<body onload="document.hodform.reset();">
     <div id="sidebar">
         <div id="brand-logo-div" class="mx-auto my-2 pb-2"><a href="#"><img src="images/ifmis-logo.png" alt="ifmis-logo"></a></div>
         
@@ -95,43 +95,16 @@
     <main>
         <section id="form-section" class="container-fluid m-3 w-auto">
             <div class="row">
-                <h1 class="col-12 col-md-7 h4 my-4">Add New Head Of Account</h1>
-
-                <!-- Form preview button -->
-                <button type="button" id="form-preview-btn" class="btn btn-primary col-12 col-md-2 w-auto m-auto" data-bs-toggle="modal" data-bs-target="#preview-form">
-                    Preview Form
-                </button>
-
-                <!-- Preview Form -->
-                <div class="modal fade" id="preview-form" tabindex="-1" aria-labelledby="preview-form-title" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="preview-form-title">Add New Head Of Account</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            <!-- end of row -->
+                <h1 class="col-12 h4 my-4">Add New Head Of Account</h1>
             </div>
 
-            
   
-            
-  
-            <form class="row mx-3" name="hod-form">
+            <form class="row mx-3" id="hod-form" name="hodform">
                 <!-- name of head of account -->
                 <div class="row align-items-center my-3">
                     <label for="name-of-hod" class="col-12 col-md-4 col-form-label">Name Of HOD:</label>
                     <div class="col-12 col-md-7">
-                        <select id="name-of-hod" name="name-of-hod" class="form-select form-control disp-required">
+                        <select id="name-of-hod" name="name-of-hod" class="form-select form-control">
                             <option value="" selected>Select</option>
                             <option value="one">One</option>
                             <option value="two">Two</option>
@@ -152,7 +125,7 @@
                 <div class="row align-items-center mb-3">
                     <label for="budget-year" class="col-12 col-md-4 col-form-label">Budget Year:</label>
                     <div class="col-12 col-md-7">
-                        <select id="budget-year" name="budget-year" class="form-select form-control disp-required">
+                        <select id="budget-year" name="budget-year" class="form-select form-control">
                             <option value="" selected>Select</option>
                             <option value="2022-2023">2022-2023</option>
                             <option value="2021-2022">2021-2022</option>
@@ -168,7 +141,7 @@
                 <div class="row align-items-center mb-3">
                     <label for="establishment-scheme" class="col-12 col-md-4 col-form-label">Establishment/Scheme:</label>
                     <div class="col-12 col-md-7">
-                        <select id="establishment-scheme" name="establishment-scheme" class="form-select form-control disp-required">
+                        <select id="establishment-scheme" name="establishment-scheme" class="form-select form-control">
                             <option value="" selected>Select</option>
                             <option value="establishment">Establishment</option>
                             <option value="scheme">Scheme</option>
@@ -181,11 +154,12 @@
                 <div class="row align-items-center mb-3">
                     <label for="major-head" class="col-12 col-md-4 col-form-label">Major Head: </label>
                     <div class="col-12 col-md-3 my-1">
-                        <input type="text" class="form-control disp-required" id="major-head" name="major-head" placeholder="Enter Value">
+                        <input type="text" class="form-control" id="major-head" name="major-head" placeholder="Enter Value">
                         <span class="error-msg"></span>
                     </div>
                     <div class="col-12 col-md-4 my-1">
                         <input type="text" class="form-control" id="major-head-description" name="major-head-description" placeholder="Description" readonly>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -193,12 +167,13 @@
                 <div class="row align-items-center mb-3">
                     <label for="sub-major-head" class="col-12 col-md-4 col-form-label">Sub-Major Head:</label>
                     <div class="col-12 col-md-3 my-1">
-                        <input type="text" class="form-control disp-required" id="sub-major-head" name="sub-major-head" placeholder="Enter Value">
+                        <input type="text" class="form-control" id="sub-major-head" name="sub-major-head" placeholder="Enter Value">
                         <span class="error-msg"></span>
                     </div>
                     
                     <div class="col-12 col-md-4 my-1">
                         <input type="text" class="form-control" id="sub-major-head-description" name="sub-major-head-description" placeholder="Description" readonly>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -206,11 +181,12 @@
                 <div class="row align-items-center mb-3">
                     <label for="minor-head" class="col-12 col-md-4 col-form-label">Minor Head:</label>
                     <div class="col-12 col-md-3 my-1">
-                        <input type="text" class="form-control disp-required" id="minor-head" name="minor-head" placeholder="Enter Value">
+                        <input type="text" class="form-control" id="minor-head" name="minor-head" placeholder="Enter Value">
                         <span class="error-msg"></span>
                     </div>
                     <div class="col-12 col-md-4 my-1">
                         <input type="text" class="form-control" id="minor-head-description" name="minor-head-description" placeholder="Description" readonly>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -218,11 +194,12 @@
                 <div class="row align-items-center mb-3">
                     <label for="group-sub-head" class="col-12 col-md-4 col-form-label">Group Sub Head:</label>
                     <div class="col-12 col-md-3 my-1">
-                        <input type="text" class="form-control disp-required" id="group-sub-head" name="group-sub-head" placeholder="Enter Value">
+                        <input type="text" class="form-control" id="group-sub-head" name="group-sub-head" placeholder="Enter Value">
                         <span class="error-msg"></span>
                     </div>
                     <div class="col-12 col-md-4 my-1">
                         <input type="text" class="form-control" id="group-sub-head-description" name="group-sub-head-description" placeholder="Description" readonly>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -230,11 +207,12 @@
                 <div class="row align-items-center mb-3">
                     <label for="sub-head" class="col-12 col-md-4 col-form-label">Sub Head:</label>
                     <div class="col-12 col-md-3 my-1">
-                        <input type="text" class="form-control disp-required" id="sub-head" name="sub-head" placeholder="Enter Value">
+                        <input type="text" class="form-control" id="sub-head" name="sub-head" placeholder="Enter Value">
                         <span class="error-msg"></span>
                     </div>
                     <div class="col-12 col-md-4 my-1">
                         <input type="text" class="form-control" id="sub-head-description" name="sub-head-description" placeholder="Description" readonly>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -242,11 +220,12 @@
                 <div class="row align-items-center mb-3">
                     <label for="detailed-head" class="col-12 col-md-4 col-form-label">Detailed Head:</label>
                     <div class="col-12 col-md-3 my-1">
-                        <input type="text" class="form-control disp-required" id="detailed-head" name="detailed-head" placeholder="Enter Value">
+                        <input type="text" class="form-control" id="detailed-head" name="detailed-head" placeholder="Enter Value">
                         <span class="error-msg"></span>
                     </div>
                     <div class="col-12 col-md-4 my-1">
                         <input type="text" class="form-control" id="detailed-head-description" name="detailed-head-description" placeholder="Description" readonly>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -254,11 +233,12 @@
                 <div class="row align-items-center mb-3">
                     <label for="sub-detailed-head" class="col-12 col-md-4 col-form-label">Sub Detailed Head:</label>
                     <div class="col-12 col-md-3 my-1">
-                        <input type="text" class="form-control disp-required" id="sub-detailed-head" name="sub-detailed-head" placeholder="Enter Value">
+                        <input type="text" class="form-control" id="sub-detailed-head" name="sub-detailed-head" placeholder="Enter Value">
                         <span class="error-msg"></span>
                     </div>
                     <div class="col-12 col-md-4 my-1">
                         <input type="text" class="form-control" id="sub-detailed-head-description" name="sub-detailed-head-description" placeholder="Description" readonly>
+                        <span class="error-msg"></span>
                     </div>
                 </div>
 
@@ -266,7 +246,7 @@
                 <div class="row align-items-center mb-3">
                     <label for="charged-voted" class="col-12 col-md-4 col-form-label">Charged/Voted:</label>
                     <div class="col-12 col-md-7">
-                        <select id="charged-voted" name="charged-voted" class="form-select form-control disp-required">
+                        <select id="charged-voted" name="charged-voted" class="form-select form-control">
                             <option value="" selected>Select</option>
                             <option value="charged">Charged</option>
                             <option value="voted">Voted</option>
@@ -277,7 +257,26 @@
 
                 <div class="row justify-content-center mb-3">
                     <button type="button" id="form-clear-btn" class="btn text-light col-2 my-1 w-auto mx-3">Clear Filled Data</button>
-                    <button type="submit" id="form-submit-btn" class="btn text-light col-2 my-1 w-auto mx-3">Submit HOA</button>
+                    <button type="button" id="form-preview-btn" class="btn text-light col-2 my-1 w-auto mx-3" data-bs-toggle="modal" data-bs-target="#preview-form">Preview Form</button>
+                </div>
+
+                <!-- Preview Form -->
+                <div class="modal fade" id="preview-form" tabindex="-1" aria-labelledby="preview-form-title" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="preview-form-title">Add New Head Of Account</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="form-preview-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" id="form-submit-btn" class="btn text-light col-2 my-1 w-auto mx-3">Submit HOA</button>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </form>
         <!-- end of form section -->
