@@ -1,0 +1,47 @@
+
+.head
+{
+
+    height: 100px; ;
+
+}
+.head .h3{
+
+font-size: large;
+font-weight:20px;
+font-family: sans-serif;
+color: white;
+
+}
+
+.h5{
+
+    font-size: large;
+    font-weight:40px bold;
+    font-family: sans-serif;
+    color: white;
+
+}
+
+.images
+{
+width:50%;
+height: 200px;
+
+}
+.image{
+    background-color: azure;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+margin-top: 50px;
+padding-bottom: 100px;
+
+}
+.display
+{
+display: inline-block;
+width:30%;
+height: 200px;
+color: blue;
+}
