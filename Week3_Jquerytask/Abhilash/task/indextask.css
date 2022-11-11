@@ -30,7 +30,7 @@ height: 200px;
 
 }
 .image{
-    background-color: azure;
+ background-color: azure;
 display: flex;
 justify-content: center;
 flex-wrap: wrap;
@@ -41,7 +41,25 @@ padding-bottom: 100px;
 .display
 {
 display: inline-block;
-width:30%;
+width:22%;
 height: 200px;
-color: blue;
+color: rgb(173, 124, 106);
+font-weight: bold;
+}
+
+.btn-alert
+
+{
+    display: none;
+    background-color: #514E61;
+    color: #FFFFFF;
+    border: 1px solid #aaa;
+    position: fixed;
+    width: 250px;
+    left: 50%;
+    margin-left: -100px;
+    padding: 6px 8px 8px;
+    box-sizing: border-box;
+    text-align: center;
+
 }

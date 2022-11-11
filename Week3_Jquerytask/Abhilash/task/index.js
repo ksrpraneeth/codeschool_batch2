@@ -52,7 +52,7 @@ $('#item3').click(function(){
     console.log(cartArray);
 })
 
-$('#item').click(function(){
+$('#item4').click(function(){
     cartArray.push(products[3]);
     $('#cartvalue').text(cartArray.length)
     console.log(cartArray);
