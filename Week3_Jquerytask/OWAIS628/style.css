@@ -1,0 +1,126 @@
+body{
+background: #000;  
+}
+
+.module{
+    padding-top: 10px;
+}
+.login{
+
+     padding-top: 10px;
+     color:white;
+     font-size: small;
+}
+.user{
+    padding-top: 10px;
+
+}
+.logout{ 
+    padding-top: 10px;
+
+}
+#main{
+    width:auto;
+    background:white;
+    margin: 50px 50px 20px 20px;
+    border-radius: 10px;  
+}
+
+#pao{
+    padding: 20px;
+    border: 1px dotted gray;
+    border-radius: 10px 0 0 0;
+}
+#pd-roscap{
+    margin: 0;
+    border: 1px dotted gray;
+}
+#pd{
+    margin: 0;
+    border: 1px dotted gray;
+}
+#dta{
+    margin: 0;
+    border: 1px dotted gray;
+    border-radius: 0 10px 0 0;
+}
+#dta-cash{
+    padding: 20px;
+    border: 1px dotted gray;
+    border-radius: 0 0 0 10px;
+}
+#dwa-works{
+    margin: 0;
+    border: 1px dotted gray;
+}
+#dwa-est{
+    margin: 0;
+    border: 1px dotted gray;
+}
+#priority{
+    margin: 0;
+    border: 1px dotted gray;
+    border-radius: 0 0 10px 0;
+}
+
+#second{
+    background: #fefde1;
+    margin-left: 5px;
+    border-radius: 10px;
+}
+#regular{
+    padding: 20px;
+    border: 1px dotted gray;
+    border-radius: 10px 10px 0 0 ;   
+}
+#pension{
+    padding: 20px;
+    border: 1px dotted gray;
+    border-radius: 0 0 10px 10px;
+}
+
+#temp{
+    color: blue;
+}
+
+#third{
+    padding: 1px;
+    background: skyblue;
+    color: blue;
+}
+#covid{
+    padding: 20px;
+    border: 1px dotted blue;
+   
+}
+#css-central{
+    padding: 20px;
+    border: 1px dotted blue;
+   
+}
+#css-state{
+    padding: 20px;
+    border: 1px dotted blue;
+   
+}
+#rythu{
+    padding: 20px;
+    border: 1px dotted blue;
+   
+}
+#palle{
+    padding: 20px;
+    border: 1px dotted blue;
+   
+}
+#admin{
+    padding: 20px;
+    border: 1px dotted blue;
+   
+}
+#medical{
+    padding: 20px;
+    border: 1px dotted blue;
+   
+}
+
