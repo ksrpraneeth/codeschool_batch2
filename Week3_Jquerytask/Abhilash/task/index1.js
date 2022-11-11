@@ -19,7 +19,7 @@ function order(){
 
    
         
-    alert("Order placed Successfully!");
+    // alert("Order placed Successfully!");
     localStorage.removeItem('cart_items');
     window.location.href="indextask.html";
 }
