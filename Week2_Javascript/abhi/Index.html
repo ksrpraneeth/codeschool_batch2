@@ -11,9 +11,12 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>   
   <title>Task</title>
   <link rel="stylesheet" href="Task.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+    
 </head>
 
 <body>
@@ -22,7 +25,7 @@
   <div class="container-fluid">
     <div class="row">
       <!--header logo-->
-      <div id="side_Nav" class="col-lg-3 col -md-12 col-sm-12 d-none d-lg-block p-0 "
+      <div id="sidebar" class="col-lg-3 col -md-12 col-sm-12 d-none d-lg-block p-0"
         style="Background: #092641; height:150%x;">
         <!--<img class="img-fluid" src="navbg.jpeg" alt="nav1">-->
         <img class="img-fluid" style="width:100%" src="\img/logo.png">
@@ -47,7 +50,7 @@
 
           </ul>
 
-          
+
         </div>
 
 
@@ -68,14 +71,14 @@
                   IFMIS
                 </h4>
               </div>
-              
-              <div class="text-white py-4 align-items-center" onclick="hamberger">
+
+              <div  class="text-white py-4 align-items-center " onclick="toggleSidebar()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list"
                   viewBox="0 0 16 16">
                   <path fill-rule="evenodd"
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
                 </svg>
-              </div>    
+              </div>
 
               <div class="align-items-center py-2 px-2 d-flex rounded-3"
                 style="background-color:rgba(149, 145, 145, 0.614)">
@@ -98,39 +101,48 @@
               <div class="row text-white d-none d-lg-block text-white" style="font-size:0.8rem">
                 <p class="m-0 text-secondary  text-white"> Last Login</p>
                 <p class="m-0 text-secondary text-white" id="currentTime"></p>
-                
-              </div>
-
-              
-            <div class ="dropdown bg-secondary"style="width:%">
-               <button class=" btn btn-secondary dropdown-toggle "type="button"data-bs-toggle="dropdown" id="dropdownMenuLink"  aria-expanded="false">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                </svg>
-                <span class = "caret"></span>
-                   WELCOME
-               </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <div class="dropdown-divider"></div>
-                    
-                    <li><a href="#" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="25" fill="currentColor" color="#5EA662"class="bi bi-person" viewBox="0 0 16 16">
-                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                    </svg>&nbsp;Profile</a></li>
-                    <li><a href="#" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="25" fill="currentColor" color="#5EA662" class="bi bi-key" viewBox="0 0 16 16">
-                      <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
-                      <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                    </svg>&nbsp;Change Password</a></li>
-                    <li><a href="#" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="25" fill="currentColor" color="#5EA662" class="bi bi-box-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd"d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                      <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                    </svg>&nbsp;Logout</a></li>
-
-                        
-                      </ul>
 
               </div>
-              
+
+
+              <div class="dropdown bg-secondary" >
+                <button class=" btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown"
+                  id="dropdownMenuLink" aria-expanded="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-person" viewBox="0 0 16 16">
+                    <path
+                      d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                  </svg>
+                  <span class="caret"></span>
+                  WELCOME
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-divider"></div>
+
+                  <li><a href="#" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="25"
+                        fill="currentColor" color="#5EA662" class="bi bi-person" viewBox="0 0 16 16">
+                        <path
+                          d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                      </svg>&nbsp;Profile</a></li>
+                  <li><a href="#" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="25"
+                        fill="currentColor" color="#5EA662" class="bi bi-key" viewBox="0 0 16 16">
+                        <path
+                          d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                        <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                      </svg>&nbsp;Change Password</a></li>
+                  <li><a href="#" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="25"
+                        fill="currentColor" color="#5EA662" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                        <path fill-rule="evenodd"
+                          d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                      </svg>&nbsp;Logout</a></li>
+
+
+                </ul>
+
+              </div>
+
 
 
               <div class="d-none d-lg-block">
@@ -160,8 +172,8 @@
                   </svg>&nbsp;&nbsp;&nbsp; Issue Cheque (E-Kuber Cheque From 01/03/2019)
                 </p>
               </div>
-
-              <div class="container p-0" style="background-color:#Fbf0bb; border-radius:4px; ">
+                      
+              <div id="" class="container p-0" style="background-color:#Fbf0bb; border-radius:4px; ">
                 <ul class="main">
                   <h5>point to remember</h5>
                   <ul>
@@ -199,9 +211,9 @@
 
                 <form id="form">
                   <div class="row">
-
+                    
                     <div>
-                      <div class="col-md-3 label">
+                      <div id="div1"class="col-md-3 label">
                         <label for="party_Ac">Party Account Number </label>
                       </div>
                       <div class="col-md-1 label">
@@ -220,7 +232,8 @@
                         <label>:</label>
                       </div>
                       <div class="col-md-5 label">
-                        <input class="int2" type="text" id="party_C" name="Confirm_party_ac_num" placeholder="Confirm A/c No">
+                        <input class="int2" type="text" id="party_C" name="Confirm_party_ac_num"
+                          placeholder="Confirm A/c No">
                       </div>
                     </div>
 
@@ -260,7 +273,7 @@
                           <label>:</label>
                         </div>
                         <div class="col-md-5 label">
-                          <p class="int2"id="Bank_Name"></p>
+                          <p class="int2" id="Bank_Name"></p>
                         </div>
                       </div>
 
@@ -272,7 +285,7 @@
                           <label>:</label>
                         </div>
                         <div class="col-md-5 label">
-                          <p class="int2"id="Bank_Branch"></p>
+                          <p class="int2" id="Bank_Branch"></p>
                         </div>
                       </div>
                     </div>
@@ -283,12 +296,19 @@
                       <div class="col-md-1 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label"id="HEAD_AC">
-                        <select input="text" class="int2">
-                          <option value="select">select</option>
-                          <option value="select">1</option>
-                          <option value="select">2</option>
+                      <div class="col-md-5 label">
+                        <select input="text" class="int2" id="HEAD_AC" onchange="myFunction()">
+                          <option value="select">Select</option>
+                          <option value="0853001020002000000NVN">0853001020002000000NVN</option>
+                          <option value="8342001170004001000NVN">8342001170004001000NVN</option>
+                          <option value="2071011170004320000NVN">2071011170004320000NVN</option>
+                          <option value="8342001170004002000NVN">8342001170004002000NVN</option>
+                          <option value="2204000030006300303NVN">2204000030006300303NVN</option>
+
                         </select>
+                        <div>
+                          <small class="text-danger" id="headOfAc_error"></small>
+                        </div>
                       </div>
                     </div>
 
@@ -299,8 +319,8 @@
                       <div class="col-md-1 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label"id="Balance">
-                        <p>XXXXXX</p>
+                      <div class="col-md-5 label" id="Balance">
+                        <p></p>
                       </div>
                     </div>
 
@@ -311,8 +331,8 @@
                       <div class="col-md-1 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label"Id="LOC">
-                        <p>XXXXXX</p>
+                      <div class="col-md-5 label" Id="LOC">
+                        <p></p>
                       </div>
                     </div>
 
@@ -324,14 +344,14 @@
                         <label>:</label>
                       </div>
                       <div class="col-md-5 label">
-                        <select input="text" id="Expenditure_type" class="int2">
-                          <option value="select">select</option>
-                          <option value="select">1</option>
-                          <option value="select">2</option>
+                        <select input="text" onclick="Expenditure()" id="drp" class="int2">
+                          <option value="Capital_Expenditure">Capital Expenditure</option>
+                          <option value="Revenue_Expenditure">Revenue Expenditure</option>
+                          <option value="Deferred_Revenue_Expenditure">Deferred Revenue Expenditure</option>
                         </select>
                       </div>
                     </div>
-
+                      
                     <div>
                       <div class="col-md-3 label">
                         <label for="Purpose_type">Purpose Type</label>
@@ -340,10 +360,10 @@
                         <label>:</label>
                       </div>
                       <div class="col-md-5 label">
-                        <select input="text"id="Purpose_type" class="int2">
-                          <option value="select">select</option>
-                          <option value="select">1</option>
-                          <option value="select">2</option>
+                        <select input="text" id="Purpose_type" class="int2" id="sub_menu">
+                          <option id="capE"></option>
+                          <option id="capE2"></option>
+                          <option id="capE3"></option>
                         </select>
                       </div>
                     </div>
@@ -368,7 +388,9 @@
                         <label>:</label>
                       </div>
                       <div class="col-md-5 label">
-                        <input class="int2" type="text" id="pay_Amount" name="pay Amount" placeholder="Enter party amount">
+                        <input class="int2" type="text" id="pay_Amount" name="pay Amount" onchange="numbers()"
+                          placeholder="Enter party amount">
+
                       </div>
                     </div>
 
@@ -379,8 +401,8 @@
                       <div class="col-md-1 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label"id="In_words">
-                        <p>XXXXXX</p>
+                      <div class="col-md-5 label" id="In_words">
+                        <p></p>
                       </div>
                     </div>
 
@@ -393,7 +415,7 @@
                       </div>
                       <div class="col-md-5 label">
 
-                        <input class="int3" type="file" id="myfile" name="myfile" />
+                        <input class="int3" type="file" id="myfile" name="myfile" multiple>
                         <button class="btn btn-primary " type="button ">+ADD</button>
 
                       </div>
@@ -419,6 +441,7 @@
   </div>
 
   <script src="Task.js"></script>
+  <script src="numberTowords.js"></script>
 </body>
 
 </html>

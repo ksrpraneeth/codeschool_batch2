@@ -131,11 +131,11 @@ label:after {
 #form-clear-btn {
     background-color: #4d6274;
 }
-#form-submit-btn {
+#form-submit-btn, #form-preview-btn {
     background-color: #073554;
 }
 
-#form-clear-btn:hover, #form-submit-btn:hover {
+#form-clear-btn:hover, #form-submit-btn:hover, #form-preview-btn:hover {
     opacity: .9;
 }
 
