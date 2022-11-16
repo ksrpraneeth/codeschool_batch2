@@ -5,14 +5,14 @@ $status=true;
 if($partyamount==""){
    array_push( $partyamountError['partyamountError'],"Party amount can not be blank");
     $response=["status"=>false,"output"=>$partyamountError];
-    json_encode($response);
+    
     echo json_encode($response);
     return;
 }
 if($partyamount<0){
     array_push( $partyamountError['partyamountError'],"Party amount can not be negative");
     $response=["status"=>false,"output"=>$partyamountError];
-    json_encode($response);
+    
     echo json_encode($response);
     return;
 }
@@ -26,7 +26,7 @@ if(round($partyamount)!=$partyamount){
 }
 if(!$status){
     $response=["status"=>false,"output"=>$partyamountError];
-    json_encode($response);
+    
     echo json_encode($response);
     return;
 }
@@ -35,7 +35,7 @@ $partyamount=(string)$partyamount;
 if(strlen($partyamount)>10){
     array_push( $partyamountError['partyamountError'],"Amount Overflow");
     $response=["status"=>false,"output"=>$partyamountError];
-    json_encode($response);
+    
     echo json_encode($response);
     return;
 }
@@ -43,7 +43,7 @@ $partyamount="000000000".$partyamount;
 if((int)$partyamount==0){
     $partyamountInword['Partyamountinword']='ZERO';
     $response=["status"=>true,"output"=>$partyamountInword];
-    json_encode($response);
+  
     echo json_encode($response);
     return;
 }
@@ -101,7 +101,7 @@ $Ten=['','','Twenty','Thirty','Fourty','Fifty','Sixty','Seventy','Eighty','Ninty
 };
 //json encode form
 $response=["status"=>true,"output"=>$partyamountInword];
-json_encode($response);
+
 echo json_encode($response);
 return;
 

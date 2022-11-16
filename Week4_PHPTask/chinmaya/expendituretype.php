@@ -8,10 +8,10 @@ $purposetype=["Capital Expenditure"=>["Maintain current levels of operation with
 if($expenditureType=='option'){
     $expendituretypeError['expenditureeroor']="Expenditure type can not be empty";
     $response=["status"=>false,"output"=>$expendituretypeError];
-    json_encode($response);
+   
     echo json_encode($response);
     return;
 }
 $response=["status"=>true,"output"=>$purposetype[$expenditureType]];
-json_encode($response);
+
 echo json_encode($response);

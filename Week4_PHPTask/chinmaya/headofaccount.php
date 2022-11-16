@@ -11,18 +11,18 @@ $headofaccountBalance=array(
 if(strcmp($headofAccount,'options')==0){
     $headaccountError['headaccountError']="Enter Head Of Account";
     $response=["status"=>false,"output"=>$headaccountError];
-    json_encode($response);
+   
     echo json_encode($response);
     return;
 }
 if(!array_key_exists($headofAccount,$headofaccountBalance)){
     $headaccountError['headaccountError']="Invalid Head Of Account";
     $response=["status"=>false,"output"=>$headaccountError];
-    json_encode($response);
+    
     echo json_encode($response);
     return;
 }
 $response=["status"=>true,"output"=>$headofaccountBalance[$headofAccount]];
-json_encode($response);
+
 echo json_encode($response);
 

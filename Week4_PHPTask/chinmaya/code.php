@@ -91,7 +91,7 @@ if(!$partyamount){
 }
 if(!$status){
     $coderesponse=["status"=>false,"output"=>$error];
-json_encode ($coderesponse);
+
 echo json_encode ($coderesponse);
 return;
 }

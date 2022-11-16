@@ -6,14 +6,14 @@ $status=true;
 if(!$ifsccode){
     array_push($ifscError['iffsccodeError'],"IFSC code can not be blank");
     $response=["status"=>false,"output"=>$ifscError];
-    json_encode($response);
+    
     echo json_encode($response);
     return;
 }
 if(strlen($ifsccode)!=11){
     array_push($ifscError['iffsccodeError'],"IFSC code should be 11 character");
     $response=["status"=>false,"output"=>$ifscError];
-    json_encode($response);
+    
     echo json_encode($response);
     return;
 }
@@ -35,7 +35,7 @@ if($ifsccode[4]!=0){
 }
 if(!$status){
     $response=["status"=>false,"output"=>$ifscError];
-    json_encode($response);
+   
     echo json_encode($response);
     return;
 }
@@ -51,13 +51,13 @@ $bankName=array(
 if(!array_key_exists($ifsccode,$bankName)){
     array_push($ifscError['iffsccodeError'],"Invalid IFSC code");
     $response=["status"=>false,"output"=>$ifscError];
-    json_encode($response);
+   
     echo json_encode($response);
     return;
    
 }
 $response=["status"=>true,"output"=>$bankName[$ifsccode]];
-json_encode($response);
+
 echo json_encode($response);
 
     
