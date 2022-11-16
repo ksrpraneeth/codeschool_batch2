@@ -166,7 +166,7 @@
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
                         <input type="number" class="form-control" id="Acc" placeholder="Enter A/c No" name="party">
-                        <span class="errormsg">*Should be min 12 and max 22 digits</span>
+                        <span class="errormsg" id="AccError"></span>
                     </div>
                 </div>
 
@@ -184,7 +184,8 @@
                     <label for="Name" class="col-3 col-form-label">Party Name</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <input type="Name" class="form-control" id="partyname" placeholder="Enter Party Name" name="Name" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g, '')">
+                        <input type="Name" class="form-control" id="partyname" placeholder="Enter Party Name"
+                            name="Name" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g, '')">
                         <span class="errormsg">*Enter</span>
                     </div>
                 </div>
@@ -195,8 +196,8 @@
                         <p class="col-lg-1"> :</p>
                         <div class="form-group cont1 col-6">
                             <input type="text" class="form-control" id="ifsc" placeholder="Enter IFSC Code">
-                            <span class="errormsg" id="ifsc_err"></span> 
-                            <button class="btn btn-outline-secondary btn-primary text-white" 
+                            <span class="errormsg" id="ifsc_err"></span>
+                            <button class="btn btn-outline-secondary btn-primary text-white" id="search"
                                 type="button">Search</button>
                         </div>
                         <div class="form-group row my-4">
@@ -218,16 +219,16 @@
                 </div>
 
                 <div class="form-group row my-4 Head">
-                    <label for="Name" class="col-3 col-form-label" >Head of Account </label>
+                    <label for="Name" class="col-3 col-form-label">Head of Account </label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <select style="width: 95%; padding: 1% 1%;" id="head-of-account">
+                        <select style="width: 95%; padding: 1% 1%;" id="head-of-account" >
                             <option>Select</option>
-                            <option value ="0853001020002000000NVN">0853001020002000000NVN </option>
-                            <option value ="8342001170004001000NVN">8342001170004001000NVN </option>
-                            <option value ="2071011170004320000NVN">2071011170004320000NVN </option>
-                            <option value ="22204000030006300303NVN">22204000030006300303NVN </option>
-                            <option value ="8342001170004002000NVN">8342001170004002000NVN </option>
+                            <option value="0853001020002000000NVN">0853001020002000000NVN</option>
+                            <option value="8342001170004001000NVN">8342001170004001000NVN</option>
+                            <option value="2071011170004320000NVN">2071011170004320000NVN</option>
+                            <option value="2204000030006300303NVN">2204000030006300303NVN</option>
+                            <option value="8342001170004002000NVN">8342001170004002000NVN</option>
                         </select>
                         <span class="errormsg">*headofa/c</span>
                     </div>
@@ -237,7 +238,7 @@
                     <label for="Name" class="col-3 col-form-label">Balance(in Rs.)</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <label id="bal"></label>
+                        <label id="balance"></label>
                     </div>
                 </div>
 
@@ -289,7 +290,8 @@
                     <label for="Name" class="col-3 col-form-label">Party Amount(in Rs.)</label>
                     <p class="col-lg-1"> :</p>
                     <div class="form-group col-6">
-                        <input type="Name" class="form-control" id="Partyamount" placeholder="Enter Party Amount" name="Name">
+                        <input type="Name" class="form-control" id="Partyamount" placeholder="Enter Party Amount"
+                            name="Name">
                         <span class="errormsg">*Amount should not be in fractions</span>
                     </div>
                 </div>
@@ -319,7 +321,7 @@
                 <hr>
                 <div class="border border-light p-3 mb-4">
                     <div class="text-center">
-                        <button type="button"  class="btn btn-primary" id="nextbutton">Next >></button>
+                        <button type="button" class="btn btn-primary" id="nextbutton">Next >></button>
                     </div>
                 </div>
             </div>
@@ -340,48 +342,67 @@
     </script>
     <!-- <script src="index.js"></script> -->
     <script>
-            $(document).ready(function(){
-                // console.info('calling');
-            //     $("#nextbutton").click(function(){
-            //         var  formData = {
-            //         partyAccountnumber :$("#Acc"),
-            //         confirmAccountnumber  :$("#confirm"),
-            //         partyname :$("#partyname").val(),
-            //         purpose :  $("#purpose").val(),
-                   
-            //     }
-            // $.ajax({
-            //         url: 'http://localhost/CODESCHOOL_TASKS/Phpvalidations/validationspush.php',
-            //         datatype: 'json',
-            //         type: 'POST',
-            //         data:  'formData',
-            //         success: function (data,xmlHTTPReq){
-            //         var  data = JSON.parse(data);
-            //             console.log(data)
-            //         }
-            // })
-            //     })
-                $("#ifsc").click(function(){
-                    var ifsccode ={
-                        ifscCode :$("#ifsc").val()
-                    }
-                    $.ajax({
-                    url: 'http://localhost/CODESCHOOL_TASKS/Phpvalidations/ifsccode.php',
+        $(document).ready(function () {
+            console.info('calling');
+            $("#nextbutton").click(function () {
+                var formData = {
+                    partyAccountnumber: $("#Acc").val(),
+                    confirmAccountnumber: $("#confirm").val(),
+                    partyname: $("#partyname").val(),
+                    purpose: $("#purposetype").val(),
+
+                }
+                $.ajax({
+                    url: 'http://localhost/CODESCHOOL_TASKS/Phpvalidations/validationspush.php',
                     datatype: 'json',
                     type: 'POST',
-                    data:  'ifsccode',
-                    success: function (data,success,xmlHTTPReq){
-                    var  data = JSON.parse(data);
-                        console.log(data)
+                    data: formData,
+                    success: function (data, status, xmlHTTPReq) {
+                        var d = JSON.parse(data);
+                        console.log(d);
+                        // console.log(d.message.partyAccountNumber);
+                        // $("body").append("<p>"+d.message.partyAccountNumber+"</p>");
+                        $("#AccError").val(d.message.partyAccountNumber);
                     }
-            })
                 })
+            })
+            $("#search").click(function () {
+                var ifsccode = $("#ifsc").val();
+                $.ajax({
+                    url: 'http://localhost/CODESCHOOL_TASKS/Phpvalidations/ifsccode.php',
+                    type: 'POST',
+                    data : {
+                        ifscCode : ifsccode
+                    },
+                    success: function(result) {
+                        var res = JSON.parse(result); 
+                        // console.log(res.bankDetails.bankBranch);
+                        $(ifsc).text(res.ifscCode);
+                        $(bankname).text(res.bankDetails.bankName);
+                        $(branchname).text(res.bankDetails.bankBranch);
+                    }
+                })
+            })
 
-            })  
-
-            
+            $("#head-of-account").change(function () {
+                var headofaccount = $("#head-of-account").val();
+                $.ajax({
+                    url: 'http://localhost/CODESCHOOL_TASKS/Phpvalidations/headofaccount.php',
+                    type: 'POST',
+                    data: {
+                        headOfaccount: headofaccount
+                    },
+                    success: function (result) {
+                        var res = JSON.parse(result);
+                        // console.log(res.headOfAccountDetails.loc);
+                        // $(head-of-account).text(res.headOfAccountDetails);
+                        $(balance).text(res.headOfAccountDetails.balance);
+                        $(loc).text(res.headOfAccountDetails.loc)
+                    }
+                })
+            })
+        })
     </script>
-    
 </body>
 
-</html> 
+</html>

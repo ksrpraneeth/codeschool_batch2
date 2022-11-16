@@ -1,35 +1,55 @@
 <?php
 $errors = [];
 
-if (!isset($_POST["ifscCode"])){
+if(!isset($_POST['ifscCode'])){
     array_push($errors, "Please enter your IFSC CODE");
+    echo json_encode([
+        'status' => false,
+        'error' => $errors
+    ]);
+    return;
 }
-$range =strlen($_POST['ifscCode']);
-  if ($range != 11){
-    array_push($errors,"IFSC CODE should be 11 characters long");
+
+$ifscCode = $_POST['ifscCode'];
+
+if(array_key_exists("ifscCode",$_POST))
+{
+    $range = strlen($_POST["ifscCode"]);
+    if ($range != 11){
+        array_push($errors,"IFSC CODE should be 11 characters long");
+    }
+    $regex = "[[A-Z]{4}0[A-Z0-9]{6}]";
+    if (!preg_match($regex, $_POST["ifscCode"])){
+        array_push($errors,"IFSC CODE is invalid");
+    } 
 }
-$regex = "[[A-Z]{4}0[A-Z0-9]{6}]";
-if (!preg_match($regex, $_POST['ifscCode'])){
-    array_push($errors,"IFSC CODE is invalid");
-}
-$ifscCode= $_POST["ifscCode"];
-   $banknamebranchname =[
+
+$banknamebranchname =[
     "SBIN0123451" => [
-        'Bank name'=> 'SBI',
-        'Bank branch'=> 'Wanaparthy',
+        'bankName'=> 'SBI',
+        'bankBranch'=> 'Wanaparthy',
     ],
     "DBSL0123456" => [ 
-        'Bank name'=> 'DBS',
-        'Bank branch'=> 'Rangareddy',
+        'bankName'=> 'DBS',
+        'bankBranch'=> 'Rangareddy',
     ],
     "KARB0123458" => [
-        'Bank name'=> 'Karurvyshya',
-        'Bank branch'=> 'Nalgonda',
+        'bankName'=> 'Karurvyshya',
+        'bankBranch'=> 'Nalgonda',
     ]
-  ];
-  echo json_encode($banknamebranchname[$ifscCode]);
+];
 
+if(count($errors) || !array_key_exists($ifscCode, $banknamebranchname)) {
+    echo json_encode([
+        'status' => false,
+        'error' => $errors
+    ]);
+}
 
-// print_r($errors);
+else {
+    echo json_encode([
+        'status' => true,
+        'bankDetails' => $banknamebranchname[$ifscCode]
+    ]);
+}
 ?>
-<!-- '^[A-Z]{4}0[A-Z0-9]{6}$' -->

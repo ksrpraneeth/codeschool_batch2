@@ -68,18 +68,18 @@ document.getElementById('head-of-account').addEventListener("change", function (
 const HeadofAccount = {
     '0853001020002000000NVN' : {
         'balance' : '1000000',
-        'loc' : 5000,
+        'loc' : '5000',
     },
 
     '88342001170004001000NVN': {
         'balance': '1065710', 
-        'loc': 4000, 
+        'loc': '4000', 
     },
     '2071011170004320000NVN' :{
         'balance': '1256400', 
-         'loc': 78000,
+         'loc': '78000',
     },
-    '22204000030006300303NVN':{
+    '2204000030006300303NVN':{
          'balance': '123465400',
          'loc': '5000'
     },
