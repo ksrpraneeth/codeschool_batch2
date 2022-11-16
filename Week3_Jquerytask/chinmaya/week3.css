@@ -1,0 +1,55 @@
+header {
+    background-image: url(bg.jpeg);
+    color: white;
+    font-weight: 900;
+    border-bottom: 4px solid orange;
+}
+
+.profile {
+    font-size: 11px;
+    background-color: grey;
+    font-weight: 100;
+}
+
+#navbar {
+    background-color: #1b364d;
+}
+
+#navbar div {
+    padding: 4% 0%;
+    text-align: left;
+    border-bottom: 0.5px solid #5b5a5a;
+
+
+}
+
+.navbutton {
+    padding-left: 2%;
+}
+
+.navbutton a {
+    text-decoration: none;
+    color: white;
+}
+
+#navbar div:hover {
+    background-color: #2a4459;
+
+}
+
+.maincontainer {
+    background-color: gray;
+}
+
+.containerdiv {
+    background-color: white;
+    padding-left: 3%;
+}
+
+.star {
+    color: red;
+}
+#modal-body{
+    padding:3% 3%;
+}
+
