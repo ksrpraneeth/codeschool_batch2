@@ -10,14 +10,9 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "postApi.php",
-
             data: formdata,
-
             success: function (data) {
-                console.log('data')
                 var data = JSON.parse(data);
-                console.log('data')
-
                 $("#partyAccountError").text(data.message["partyAccountError"]);
                 $("#confirmAccountError").text(data.message["confirmAccountError"]);
                 $("#partyNameError").text(data.message["partyNameError"]);
@@ -44,15 +39,15 @@ $(document).ready(function () {
             type: "POST",
             url: "postApiIfsc.php",
             data: formdata,
+            data: formdata,
             success: function (response) {
                 response = JSON.parse(response);
-                if (response.status)
-                    $("#error_Ifsc").text(res["bankIfscError"]);
-                    console.log('data2')
-                    $("#bankName").text(res.bankDetails.bankName);
-                    console.log('data3')
-                    $("#Branch").text(res.bankDetails.Branch);
-                    console.log('data4')
+                if (response.status) {
+                    $("#error_Ifsc").text("");
+                    $("#bankName").text(response.data.bankName);
+                    $("#Branch").text(response.data.Branch);
+                } else
+                    $("#error_Ifsc").text(response.message);
             }
         })
     })
@@ -87,23 +82,58 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    $('#search').click(function () {
+    $('#dropdown').change(function ($value) {
+        $("#ExpenditureError").text("");
         let formdata = {
-            bankIFSC: $("#bankIfsc").val()
+            expenditure_type: $(this).val()
         }
         $.ajax({
             type: "POST",
-            url: "PostHeadApi.php",
+            url: "Expendituretype.php",
             data: formdata,
             success: function (response) {
                 response = JSON.parse(response);
                 if (response.status) {
-                    $("#headOfAc_error").text("");
-                    $("#Balance").text(response.data.Balance);
-                    $("#LOC").text(response.data.LOC);
+                    $("#ExpenditureError").text(response.message);
+                    console.log("ExpenditureError")
+                }
+                console.log("Purpose_type1")
+                $("#Purpose_type").empty();
+                $("#Purpose_type").append(`<option value="">Select</option>`)
+                for (let i = 0; i < response.data.length; i++) {
+                    console.log("Purpose_type2")
+                    $("#Purpose_type").append(`<option>${response.data[i]}</option>`)
+
+                }
+
+            }
+        })
+    })
+
+});
+// /////////////////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function () {
+    $('#pay_Amount').change(function ($value) {
+        let formdata = {
+            pay_amount: $(this).val()
+        }
+        $.ajax({
+            type: "POST",
+            url: "Payamountapi.php",
+            data: formdata,
+            success: function (response)
+             { console.log("Purpose_type2")
+                response = JSON.parse(response);
+                if (response.status) {
+                    $("#payAmountError").text("");
+                    for (let i = 0; i < response.data.length; i++) {
+                        console.log("Purpose_type2")
+                        $("#in_words").append(`${response.data[i]}`)
+                    }
                 } else
                     $("#headOfAc_error").text(response.message);
             }
         })
     })
-});
+})
+

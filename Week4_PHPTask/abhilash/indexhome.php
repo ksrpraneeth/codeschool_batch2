@@ -213,26 +213,26 @@
                   <div class="row">
 
                     <div>
-                      <div id="div1" class="col-md-3 label">
+                      <div id="div1" class="col-md-3 col-sm-5 label">
                         <label for="party_Ac">Party Account Number </label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
+                      <div class="col-md-5 col-sm-5 label">
                         <input class="int2" type="text" id="partyAccount" name="party_ac_num" placeholder="Enter A/C No">
                         <small class="text-danger" id="partyAccountError"></small>
                       </div>
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="party_C">Confirm Party Account</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
+                      <div class="col-md-5 col-sm-5 label">
                         <input class="int2" type="text" id="confirmAccount" name="Confirm_party_ac_num"
                           placeholder="Confirm A/c No">
                           <small class="text-danger" id="confirmAccountError"></small>
@@ -241,26 +241,26 @@
 
 
                     <div>
-                      <div class="col-md-3  label">
+                      <div class="col-md-3 col-sm-5  label">
                         <label for="party_N">Party Name</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
+                      <div class="col-md-5 col-sm-5 label">
                         <input class="int2" type="text" id="partyName" name="party_Name" placeholder="Enter Party Name">
                         <small class="text-danger" id="partyNameError"></small>
                       </div>
                     </div>
                     <div style="background-color:#Eeeef1">
                       <div>
-                        <div class="col-md-3 label ">
+                        <div class="col-md-3 col-sm-5 label ">
                           <label for="Bank">Bank IFSC Code</label>
                         </div>
-                        <div class="col-md-1 label">
+                        <div class="col-md-1 col-sm-2 label">
                           <label>:</label>
                         </div>
-                        <div class="col-md-5 label">
+                        <div class="col-md-5 col-sm-12 label">
                           <input class="int2" type="text" id="bankIfsc" name="bank_IFSC" placeholder="Enter IFSC Code">
                           <button class="btn btn-primary " type="button"  id="search" onclick="search()">search</button>
                           <small class="text-danger" id="error_Ifsc"></small>
@@ -269,37 +269,37 @@
 
 
                       <div>
-                        <div class="col-md-3 label">
+                        <div class="col-md-3 col-sm-5 label">
                           <label for="Bank_Name">Bank name</label>
                         </div>
-                        <div class="col-md-1 label">
+                        <div class="col-md-1 col-sm-2 label">
                           <label>:</label>
                         </div>
-                        <div class="col-md-5 label">
+                        <div class="col-md-5 col-sm-5 label">
                           <p class="int2" id="bankName"></p>
                         </div>
                       </div>
 
                       <div>
-                        <div class="col-md-3 label">
+                        <div class="col-md-3 col-sm-5 label">
                           <label for="Bank_Branch">Bank Branch </label>
                         </div>
-                        <div class="col-md-1 label">
+                        <div class="col-md-1 col-sm-2 label">
                           <label>:</label>
                         </div>
-                        <div class="col-md-5 label">
+                        <div class="col-md-5 col-sm-5 label">
                           <p class="int2" id="Branch"></p>
                         </div>
                       </div>
                     </div>
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="HEAD_AC">Head Of Account</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
+                      <div class="col-md-5 col-sm-5 label">
                         <!-- <select input="text" class="int2" id="headAc" onchange="myFunction()"> -->
                         <select input="text" class="int2" id="headAc" >
 
@@ -318,108 +318,112 @@
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="Balance">Balance(in Rs)</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label" id="Balance">
+                      <div class="col-md-5 col-sm-5 label" id="Balance">
                         <p></p>
                       </div>
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="LOC">LOC (in Rs)</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label" Id="LOC">
+                      <div class="col-md-5 col-sm-5 label" Id="LOC">
                         <p></p>
                       </div>
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="Expenditure_type">Expenditure type</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
-                        <select input="text" onclick="Expenditure()" id="drp" class="int2">
+                      <div class="col-md-5 col-sm-5 label">
+                        <!-- <select input="text" onclick="Expenditure()" id="drp" class="int2"> -->
+                        <select input="text"  id="dropdown" class="int2">
+
                           <option value="Capital_Expenditure">Capital Expenditure</option>
                           <option value="Revenue_Expenditure">Revenue Expenditure</option>
                           <option value="Deferred_Revenue_Expenditure">Deferred Revenue Expenditure</option>
                         </select>
+                        <small class="text-danger" id="ExpenditureError"></small>
                       </div>
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="Purpose_type">Purpose Type</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
+                      <div class="col-md-5 col-sm-5 label">
                         <select input="text" id="Purpose_type" class="int2" id="sub_menu">
-                          <option id="capE"></option>
-                          <option id="capE2"></option>
-                          <option id="capE3"></option>
+                          <option value="" ></option>
+                          <option  value="" ></option>
+                          <option value=""></option>
                         </select>
                       </div>
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="Purpose">Purpose</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
+                      <div class="col-md-5 col-sm-5 label">
                         <input class="int3" type="text" id="purpose" name="Purpose" placeholder="enter Purpose here...">
                         <small class="text-danger" id="purposeError"></small>
                       </div>
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="pay_Amount">Pay Amont(in Rs)</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
-                        <input class="int2" type="text" id="pay_Amount" name="pay Amount" onchange="numbers()"
+                      <div class="col-md-5 col-sm-5 label">
+                        <!-- <input class="int2" type="text" id="pay_Amount" name="pay Amount" onchange="numbers()"
+                      --><input class="int2" type="text" id="pay_Amount" name="pay Amount" 
                           placeholder="Enter party amount">
-
+                          <small class="text-danger" id="payAmountError"></small>
                       </div>
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="In_words">Party Amount In Words</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label" id="In_words">
+                      <div class="col-md-5 col-sm-5  label" id="In_words">
                         <p></p>
                       </div>
                     </div>
 
                     <div>
-                      <div class="col-md-3 label">
+                      <div class="col-md-3 col-sm-5 label">
                         <label for="Upload">Upload Documents</label>
                       </div>
-                      <div class="col-md-1 label">
+                      <div class="col-md-1 col-sm-2 label">
                         <label>:</label>
                       </div>
-                      <div class="col-md-5 label">
+                      <div class="col-md-5 col-sm-5 label">
 
                         <input class="int3" type="file" id="myfile" name="myfile" multiple>
                         <button class="btn btn-primary " type="button ">+ADD</button>
@@ -436,9 +440,6 @@
                   </div>
                 </form>
                 <p id="outPut"></p>
-
-
-
               </div>
             </div>
           </div>
