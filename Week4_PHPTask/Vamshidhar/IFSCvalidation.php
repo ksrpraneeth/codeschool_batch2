@@ -4,33 +4,33 @@ $errors = [
     "IFSCcode_error" => [],
     "bankDetails" => []
 ];
+
+$IFSCcode = isset($_POST['IFSCcode']) ? $_POST['IFSCcode']:null ;
 $doesErrorExist = false;
 
 
-if(!array_key_exists('IFSCcode',$_POST)){
-    $errors["IFSCcode_error"]="IFSC code key doesn't exist";
+if(!$IFSCcode){
+    $errors["IFSCcode_error"]="IFSC code is required";
     $doesErrorExist = true;
+}else{
+        
+    if(strlen($IFSCcode)!=11){
+        $errors["IFSCcode_error"]="IFSC code should be 11 characters";
+        $doesErrorExist = true;
+    }
+
+    if(!preg_match("/^[A-Z]{4}0[A-Z0-9]{6}$/",$IFSCcode)){
+        $errors["IFSCcode_error"]="Invalid IFSC code";
+        $doesErrorExist = true;
+    }
+
 
 }
 
 if($doesErrorExist){
-    echo json_encode($errors);
+    echo json_encode($errors["IFSCcode_error"]);
     return;
 }
-
-//if key exists
-$IFSCcode = $_POST['IFSCcode'];
-
-if(strlen($IFSCcode)!=11){
-    $errors["IFSCcode_error"]="IFSC code should be 11 characters";
-    $doesErrorExist = true;
-}
-
-if(!preg_match("/^[A-Z]{4}0[A-Z0-9]{6}$/",$IFSCcode)){
-    $errors["IFSCcode_error"]="Invalid IFSC code";
-    $doesErrorExist = true;
-}
-
 
 
 $bankDetails = [
@@ -61,7 +61,7 @@ if(!array_key_exists($IFSCcode,$bankDetails)){
 }
 
 if($doesErrorExist){
-    echo json_encode($errors);
+    echo json_encode($errors["IFSCcode_error"]);
     return;
 }
 

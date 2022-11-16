@@ -170,8 +170,8 @@ var expenditureType={
 }
 
 //getting the main menu and sub menu
- var main= document.getElementById('main_menu');
- var sub= document.getElementById('sub_menu');
+ var main= document.getElementById('expenditureType');
+ var sub= document.getElementById('purposeType');
 
 //Trigger the event when main menu change occurs
 
@@ -192,7 +192,7 @@ main.addEventListener('change',function(){
     Array.from(selected_option).forEach(function(el){
         let option= new Option(el,el);
 
-        // append the child option in sub_menu
+        // append the child option in purposeType
         sub.appendChild(option)
     });
 

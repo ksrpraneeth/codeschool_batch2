@@ -257,7 +257,10 @@
           <div class="col-sm-12 mt-2 mb-2">
             <label for="headOfAccount" class="col-lg-3 ">Head Of Account</label>
             <p class="col-lg-1">:</p>
-            <select class="col-lg-3" id="headOfAccount" onchange="myFunction()">
+            <!-- <select class="col-lg-3" id="headOfAccount" onchange="myFunction()"> -->
+            <select class="col-lg-3" id="headOfAccount">
+
+
               <option value="select">Select</option>
               <option value="0853001020002000000NVN">0853001020002000000NVN</option>
               <option value="8342001170004001000NVN">8342001170004001000NVN</option>
@@ -286,17 +289,21 @@
             <label for="expenditureType" class="col-lg-3">Expenditure Type</label>
             <p class="col-lg-1">:</p>
 
-            <select  name="expenditureType" class="col-lg-3 custom_select" id="main_menu" >
+            <select  name="expenditureType" class="col-lg-3 custom_select" id="expenditureType" >
               <option value="Capital_Expenditure">Capital_Expenditure</option>
               <option value="Revenue_Expenditure">Revenue_Expenditure</option>
               <option value="Deferred_Revenue_Expenditure">Deferred_Revenue_Expenditure</option>
             </select>
+            <div>
+              <small class="text-danger" id="expenditureType_error"></small>
+            </div>
+            
           </div>
 
           <div class="col-sm-12 mt-2 mb-2">
             <label for="purposeType" class="col-lg-3">Purpose Type</label>
             <p class="col-lg-1">:</p>
-            <select name="purposeType" class="col-lg-3 custom_select"  id="sub_menu">
+            <select name="purposeType" class="col-lg-3 custom_select"  id="purposeType">
             </select>
           </div>
 
@@ -304,18 +311,25 @@
             <label for="purpose" class="col-lg-3">Purpose</label>
             <p class="col-lg-1">:</p>
             <textarea  class="col-lg-3" placeholder="Enter Purpose Here.." id="purpose" maxlength="500"></textarea>
+            <div>
+              <small class="text-danger" id="purpose_error"></small>
+            </div>
           </div>
 
           <div class="col-sm-12 mt-2 mb-2">
             <label for="partyAmount" class="col-lg-3">Party Amount(in Rs.)</label>
             <p class="col-lg-1">:</p>
             <input type="number" class="col-lg-3" placeholder="Enter Party Amount" id="partyAmount">
+            <div>
+              <small class="text-danger" id="partyAmount_error"></small>
+            </div>
+            
           </div>
 
           <div class="col-sm-12 mt-2 mb-2">
             <label for="loc" class="col-lg-3">Party Amount in Words</label>
             <p class="col-lg-1">:</p>
-            <p class="col-lg-4">XXXXXX</p>
+            <p class="col-lg-4" id="PartyAmountInWords"></p>
           </div>
 
           <div class="col-sm-12 mt-2 mb-2">

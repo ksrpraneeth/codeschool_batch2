@@ -5,7 +5,9 @@ $(document).ready( function(){
         var formdata ={
             partyAccountNumber : $("#partyAccountNumber").val(),
             confirmAccountNumber : $("#confirmAccountNumber").val(),
-            partyName : $("#partyName").val()
+            partyName : $("#partyName").val(),
+            purpose : $("#purpose").val()
+
         }
         console.log( formdata);
         $.ajax({
@@ -17,6 +19,8 @@ $(document).ready( function(){
                 $(partyAccountNumber_error).text(d.partyAccountNoErrors);
                 $(confirmaccountNumber_error).text(d.confirmAccountNoErrors);
                 $(partyName_error).text(d.partyNameErrors);
+                $(purpose_error).text(d.purpose_error);
+
             }
 
         })
@@ -35,6 +39,7 @@ $(document).ready( function(){
             data: formdata,
             success: function (data,status,xmlHTTPReq){
                 var d = JSON.parse(data);
+                console.log(d);
                 $(IFSCcode_error).text(d.IFSCcode_error);
                 $(bankName).text(d.bankDetails.bankName);
                 $(bankBranch).text(d.bankDetails.bankBranch);
