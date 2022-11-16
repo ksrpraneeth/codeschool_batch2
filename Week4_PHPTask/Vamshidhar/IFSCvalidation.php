@@ -28,7 +28,7 @@ if(!$IFSCcode){
 }
 
 if($doesErrorExist){
-    echo json_encode($errors["IFSCcode_error"]);
+    echo json_encode($errors);
     return;
 }
 
@@ -61,9 +61,12 @@ if(!array_key_exists($IFSCcode,$bankDetails)){
 }
 
 if($doesErrorExist){
-    echo json_encode($errors["IFSCcode_error"]);
+    echo json_encode($errors);
     return;
 }
+
+
+
 
 $errors["bankDetails"] = $bankDetails[$IFSCcode];
 

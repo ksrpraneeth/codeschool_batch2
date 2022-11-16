@@ -49,6 +49,7 @@ if(round($partyAmount)!=$partyAmount) {
 // Numbers to words
 
 $partyAmount = ltrim($partyAmount, "0");
+echo $partyAmount;
 
 if(strlen($partyAmount)>10){
     $errors[ "partyAmount_error"][]= " Number overflow(Enter value less than 100,00,00,000)";
