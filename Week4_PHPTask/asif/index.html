@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JS File -->
+    <script src="script.js"></script>
+    <link rel="shortcut icon" href="https://d20exy1ygbh3sg.cloudfront.net/fms/images/favicon.ico" type="image/x-icon">
+    <title>IFMIS</title>
+</head>
+<body>
+    <div id="sidebar">
+        <div id="brand-logo-div" class="mx-auto my-2 pb-2"><a href="#"><img src="images/ifmis-logo.png " alt="ifmis-logo"></a></div>
+        
+        <ul class="sidebar-nav-list">
+            <li class="sb-nav-list-item"><a href="#">Home</a></li>
+            <li class="sb-nav-list-item dropend">
+                <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Masters </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li class="dropdown-item">Option 1</li>
+                    <li class="dropdown-item">Option 2</li>
+                    <li class="dropdown-item">Option 3</li>
+                </ul>
+            </li>
+            <li class="sb-nav-list-item dropend">
+                <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">Transactions </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li class="dropdown-item">Option 1</li>
+                    <li class="dropdown-item">Option 2</li>
+                    <li class="dropdown-item">Option 3</li>
+                </ul>
+            </li>
+            <li class="sb-nav-list-item"><a href="#">Reports</a></li>
+            <li class="sb-nav-list-item"><a href="#">Return Cheque Generation</a></li>
+            <li class="sb-nav-list-item"><a href="#">Forest Transactions</a></li>
+            <li class="sb-nav-list-item"><a href="#">Forest Transactions Reports</a></li>
+            <li class="sb-nav-list-item"><a href="#">E-Kuber Returns Received List</a></li>
+            <li class="sb-nav-list-item"><a href="#">E-Kuber Return Challan Print</a></li>
+            <li class="sb-nav-list-item"><a href="#">UTR Search</a></li>
+            <li class="sb-nav-list-item"><a href="#">Failed Transactions(ACK Reject)</a></li>
+            <li class="sb-nav-list-item"><a href="#">Check Status Report</a></li>
+            <li class="sb-nav-list-item"><a href="#">Rejected Cheques due to FinYear End</a></li>
+            <li class="sb-nav-list-item"><a href="#">FinYear New Cheques Report</a></li>
+            <li class="sb-nav-list-item"><a href="#">Pd Budget Check</a></li>
+            <li class="sb-nav-list-item"><a href="#">Update Receipts Used Amount </a></li>
+        </ul>
+    <!-- end of sidebar -->
+    </div>
+
+    <header class="container-fluid g-0">
+        <nav class="navbar navbar-expand navbar-dark bg-dark px-2 row-fluid" id="header">
+            <div id="side-nav-button" class="col-1 w-auto mx-3 my-auto p-2 text-light rounded-1">
+                <i class="fa fa-solid fa-bars"></i>
+            </div>
+            
+            <ul class="navbar-nav col-1 w-auto">
+                <li class="nav-item mx-2 my-auto header-li rounded-1">
+                    <a class="nav-link text-light" href="#"><i class="fa fa-thin fa-cubes"></i><span class="d-none d-sm-none d-md-inline ms-2">Modules</span></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav col-auto ms-auto">
+
+                <li class="nav-item mx-2 my-auto col-1 w-auto text-end" id="login-time">
+                    <a class="nav-link text-light" href="#">Last Login: <br> <span id="current-date"></span> <br> <span id="current-time"></span></a>
+                </li>
+                
+                <li class="nav-item navbar-collapse mx-2 my-auto header-li rounded-1 col-2 w-auto">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown" id="user-dropdown">
+                            <a class="nav-link text-light dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#"><i class="fa-solid fa-user"></i><span class="d-none d-sm-none d-md-inline ms-2">Welcome User </span></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start bg-light">
+                                <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-user me-2"></i>Profile</a></li>
+                                <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-key me-2"></i>Change Password</a></li>
+                                <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item mx-2 my-auto col-1 w-auto header-li rounded-1">
+                    <a class="nav-link text-light" href="#"><i class="fa-solid fa-right-from-bracket"></i><span id="user-login" class="d-none d-sm-none d-md-inline ms-2">Logout</span></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="rounded-3">
+        <section id="form-section" class="container-fluid">
+            <div class="row align-items-center rounded-top" id="h1-div">
+                <h1 class="col-12 h5 my-2"><i class="fa fa-sharp fa-solid fa-money-check"></i>&nbsp;Issue Cheque (E-Kuber Cheque From 01/03/2019)</h1>
+            </div>
+
+            <div class="row align-items-center mx-2 my-3 rounded-2" id="text-box">
+                <div class="col-12 px-3">
+                    <p class="my-2 h5">Points to remember</p>
+                    <ul>
+                        <li >Please note that all cheques which are approved from DDOChecker/Officer/Govt from 01/03/2019 shall get paid through E-kuber which is a Core Banking Solution of RBI.</li>
+                        <li >There is no need to present the cheques at the Bank for these cheques which got approved after 01/03/2019.</li>
+                        <li >Please give correct account details as it is when the Account was opened.</li>
+                        <li >Make sure there is no "Your self" or "Self" in the account names while issuing cheques. Such cheques get auto-rejected by the E-Kuber.</li>
+                        <li >Please check the exact length of the Bank Account Number and NO special characters are to be entered, which leads to auto rejection.</li>
+                        <li >Finally, in multiple party cheques please do not enter the same party details in the same chequeno which will be considered as a duplicacy transaction and gets auto-rejeted.</li>
+                        <li >This is just a one-time procedure to get your Party details corrected and once when corrected the same details can be re-used for smooth transactions.</li>
+                        <li >PD-to PD cheques shall be adjusted in treasury itself in the regular procedure.</li>
+                    </ul>
+                </div>
+            <!-- end of text-box -->
+            </div>
+
+            <form action="#" method="post" name="mainForm" id="mainForm" class="row mx-2">
+                <!-- for transaction type -->
+                <div class="row-fluid align-items-center mb-3 py-2" id="transactionTypeRow">
+                    <label for="transactionType" class="col-11 col-md-3 required">Transaction Type</label>
+                    <div class="col-1 d-inline"></div>           
+                    <div class="form-check form-check-inline col-12  col-md-2 w-auto">
+                        <input class="form-check-input" type="radio" name="transactionType" id="single-party" value="single-party">
+                        <label class="form-check-label" for="single-party">Single Party</label>
+                    </div>
+                    <div class="form-check form-check-inline col-12  col-md-2 w-auto">
+                        <input class="form-check-input" type="radio" name="transactionType" id="multiple-parties" value="multiple-parties">
+                        <label class="form-check-label" for="multiple-parties">Multiple Parties</label>
+                    </div>
+                    <div class="form-check form-check-inline col-12  col-md-2 w-auto">
+                        <input class="form-check-input" type="radio" name="transactionType" id="pd-to-pd" value="pd-to-pd">
+                        <label class="form-check-label" for="pd-to-pd">PD Account to PD Account</label>
+                    </div>
+                    <div class="form-check form-check-inline col-12  col-md-2 w-auto">
+                        <input class="form-check-input" type="radio" name="transactionType" id="pd-to-other" value="pd-to-other">
+                        <label class="form-check-label" for="pd-to-other">PD Account to Other</label>
+                    </div>
+                    <span class="error-msg" id="transactionTypeError"></span>
+                </div>
+
+                <!-- for party account number -->
+                <div class="row align-items-center mb-3">
+                    <label for="partyAccountNumber" class="col-11 col-md-3 col-form-label required">Party Account No</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6 ">
+                        <input type="text" class="form-control" id="partyAccountNumber" name="partyAccountNumber" value="" placeholder="Enter A/C No">
+                        <span class="error-msg" id="partyAccountNumberError"></span>
+                    </div>
+                </div>
+
+                <!-- for confirm party account number -->
+                <div class="row align-items-center mb-3">
+                    <label for="confirmPartyAccountNumber" class="col-11 col-md-3 col-form-label required">Confirm Party Account No</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" class="form-control" id="confirmPartyAccountNumber" name="confirmPartyAccountNumber" placeholder="Confirm A/C No">
+                        <span class="error-msg" id="confirmPartyAccountNumberError"></span>
+                    </div>
+                </div>
+
+                <!-- for party name -->
+                <div class="row align-items-center mb-3">
+                    <label for="partyName" class="col-11 col-md-3 col-form-label required">Party Name</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" class="form-control" id="partyName" name="partyName" placeholder="Enter Party Name">
+                        <span class="error-msg" id="partyNameError"></span>
+                    </div>
+                </div>
+
+                <!-- for bank details -->
+                <div class="row mx-auto p-0 align-items-center mb-3" >
+                    <div class="col-11 col-md-9" id="bankDetailsRow">
+                        <div class="row align-items-center my-3">
+                            <label for="ifscCode" class="col-11 col-md-4 col-form-label required">Bank IFSC Code</label>
+                            <div class="col-1 w20">:</div>
+                            <div class="col-12 col-md-5 my-1">
+                                <input type="text" class="form-control" id="ifscCode" name="ifscCode" placeholder="Enter IFSC Code">
+                                <span class="error-msg" id="ifsccodeError"></span>
+                            </div>
+                            <div class="col-12 col-md-2 w-auto my-1">
+                                <button type="button" class="btn btn-primary form-control col-1" id="searchIfsc">Search</button>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mb-3">
+                            <label for="bankName" class="col-11 col-md-4 col-form-label">Bank Name</label>
+                            <div class="col-1 w20">:</div>
+                            <div class="col-12 col-md-6">
+                                <input type="text" readonly class="form-control-plaintext" id="bankName" name="bankName" value="XXXXXX">
+                            </div>
+                        </div>
+                        <div class="row align-items-center mb-3">
+                            <label for="bankBranch" class="col-11 col-md-4 col-form-label">Bank Branch</label>
+                            <div class="col-1 w20">:</div>
+                            <div class="col-12 col-md-6">
+                                <input type="text" readonly class="form-control-plaintext" id="bankBranch" name="bankBranch" value="XXXXXX">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- for head of account -->
+                <div class="row align-items-center mb-3">
+                    <label for="headOfAccount" class="col-11 col-md-3 col-form-label required">Head of Account</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <select id="headOfAccount" name="headOfAccount" class="form-select form-control required">
+                            <option value="" selected>Select</option>
+                            <option value="0853001020002000000NVN">0853001020002000000NVN</option>
+                            <option value="8342001170004001000NVN">8342001170004001000NVN</option>
+                            <option value="2071011170004320000NVN">2071011170004320000NVN</option>
+                            <option value="8342001170004002000NVN">8342001170004002000NVN</option>
+                            <option value="2204000030006300303NVN">2204000030006300303NVN</option>
+                        </select>
+                        <span class="error-msg" id="headOfAccountError"></span>
+                    </div>
+                </div>
+
+                <!-- for hod balance -->
+                <div class="row align-items-center mb-3">
+                    <label for="headOfAccountBalance" class="col-11 col-md-3 col-form-label required">Balance (in Rs.)</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" readonly class="form-control-plaintext" id="headOfAccountBalance" name="headOfAccountBalance" value="XXXXXX">
+                    </div>
+                </div>
+
+                <!-- for hod loc -->
+                <div class="row align-items-center mb-3">
+                    <label for="headOfAccountLOC" class="col-11 col-md-3 col-form-label required">LOC (in Rs.) </label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" readonly class="form-control-plaintext" id="headOfAccountLOC" name="headOfAccountLOC" value="XXXXXX">
+                    </div>
+                </div>
+
+                <!-- for expenditure type -->
+                <div class="row align-items-center mb-3">
+                    <label for="expenditureType" class="col-11 col-md-3 col-form-label required">Expenditure Type</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <select id="expenditureType" name="expenditureType" class="form-select form-control">
+                            <option value="" selected>Select</option>
+                            <option value="Capital Expenditure">Capital Expenditure</option>
+                            <option value="Revenue Expenditure">Revenue Expenditure</option>
+                            <option value="Deferred Revenue Expenditure">Deferred Revenue Expenditure</option>
+                        </select>
+                        <span class="error-msg" id="expenditureTypeError"></span>
+                    </div>
+                </div>
+
+                <!-- for purpose type -->
+                <div class="row align-items-center mb-3">
+                    <label for="purposeType" class="col-11 col-md-3 col-form-label required">Purpose Type</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <select id="purposeType" name="purposeType" class="form-select form-control">
+                            <option value="" selected>Select</option>
+                        </select>
+                        <span class="error-msg" id="purposeTypeError"></span>
+                    </div>
+                </div>
+
+                <!-- for purpose -->
+                <div class="row align-items-center mb-3">
+                    <label for="purpose" class="col-11 col-md-3 col-form-label required">Purpose</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6 form-floating">
+                        <textarea class="form-control" id="purpose" name="purpose" placeholder="Enter Purpose Here.." style="height: 100px"></textarea>
+                        <label for="purpose" class="ms-2">Enter Purpose Here..</label>
+                        <span class="error-msg" id="purposeError"></span>
+                    </div>
+                </div>
+
+                <!-- for party amount -->
+                <div class="row align-items-center mb-3">
+                    <label for="partyAmount" class="col-11 col-md-3 col-form-label required">Party Amount (in Rs.)</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" class="form-control" id="partyAmount" name="partyAmount" placeholder="Enter Party Amount">
+                        <span class="error-msg" id="partyAmountError"></span>
+                    </div>
+                </div>
+
+                <!-- for party amount in words -->
+                <div class="row align-items-center mb-3">
+                    <label for="partyAmountInWords" class="col-11 col-md-3 col-form-label">Party Amount in Words</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" readonly class="form-control-plaintext" id="partyAmountInWords" name="partyAmountInWords" value="XXXXXX">
+                    </div>
+                </div>
+                
+                <!-- for upload documents -->
+                <div class="row align-items-center mb-3">
+                    <label for="uploadedDocuments" class="col-11 col-md-3 col-form-label">Upload Documents</label>
+                    <div class="col-1 w20">:</div>
+                    <div class="col-12 col-md-6">
+                        <input type="file" class="form-control-file" id="uploadedDocuments" name="uploadedDocuments" placeholder="Choose File" multiple>
+                    </div>
+                </div>
+
+                <!-- for note -->
+                <div class="row align-items-center mb-3">
+                    <!-- <label for="note" class="col-11 col-md-3 col-form-label"></label> -->
+                    <div class="col-11 col-md-3"></div>
+                    <div class="col-1 w-auto"></div>
+                    <div class="col-12 col-md-8">
+                        <p>Note: Documents of Cheque (Letter/G.O. etc) can be uploaded here.</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- for form submit button -->
+                <div class="row justify-content-center mb-3">
+                    <button type="button" class="btn text-light col-2 w-auto my-1" id="form-submit-btn">Next >></button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome Icons Kit -->
+    <script src="https://kit.fontawesome.com/e4637f793f.js" crossorigin="anonymous"></script>
+</body>
+</html>
