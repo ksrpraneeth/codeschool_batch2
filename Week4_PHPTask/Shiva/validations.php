@@ -14,7 +14,8 @@ $partyAccountno = isset($_POST['partyAccountno']) ? $_POST['partyAccountno'] : n
 
 if (empty($partyAccountno)) {
     array_push($errors["partyAccountnoerr"],"Please enter party Account no");
-} else {
+} 
+else {
     if (strlen($partyAccountno) < 12 || strlen($partyAccountno) > 22) {
        array_push($errors["partyAccountnoerr"] ,"Account no should be greaterthan 12 and lessthan 22 digits");
     }

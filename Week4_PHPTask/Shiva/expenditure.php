@@ -1,17 +1,14 @@
 <?php
 $expenditure = [
-    "dropdown1" => [
-        "Select",
+    "Capital Expenditure" => [
         "Maintain current levels of operation within the organization",
         "Expenses to permit future expansion"
     ],
-    "dropdown2" => [
-        "Select",
+    "Revenue Expenditure" => [
         "Sales costs or All expenses incurred by the firm that are directly tied to the manufacture and selling of its goods or services",
         "All expenses incurred by the firm to guarantee the smooth operation"
     ],
-    "dropdown3" => [
-        "Select",
+    "Deferred Revenue Expenditure" => [
         "Exorbitant Advertising Expenditure",
         "Unprecedented Losses",
         "Development and Research Cost"

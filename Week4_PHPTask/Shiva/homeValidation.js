@@ -34,7 +34,8 @@ $.ajax({
 //Ajaxcall for IFSC CODE
 
 $("document").ready(function () {
-  $("#search").click(function () {
+  $("#next").click(function () {
+    
     let ifscCode = $("#ifscCode").val()
     $.ajax({
       url: "http://localhost/codeschool/ifscvalidations.php",
@@ -115,7 +116,8 @@ $("document").ready(function () {
 })
 
 //Ajaxcall for Expenditure
-function expenditureSelect() {
+
+// function expenditureSelect() {
   $("#expenditureType").change(function() {
   expenditureType = $("#expenditureType").val();
   $("#purposeTypeerr").html('');
@@ -125,23 +127,50 @@ function expenditureSelect() {
       data: {'expenditureType': expenditureType},
       url: 'http://localhost/codeschool/expenditure.php',
       success: function (result) {
-          result = JSON.parse(result);
-          console.log('see',result);
-          if(result.status==false){
-              $("#purposeTypeerr").html(result.error);
+          var res = JSON.parse(result);
+          console.log('see',res);
+          if(res.status==false){
+              $("#purposeTypeerr").html(res.error);
           }else{
-              console.log(result.data);
+              console.log(res.data);
               $('#purposeType').append(`<option value="0">Select</option>`);
-              for (let i=0;i<result.data.length;i++){
-                  let optionText = result.data[i];
-                  let optionValue = result.data[i];
+              for (let i=0;i<res.data.length;i++){
+                  let optionText = res.data[i];
+                  let optionValue = res.data[i];
                   $('#purposeType').append(`<option value="${optionValue}">${optionText}</option>`);
               }
           }
       }
   });
 })
-}
+
+//Ajaxcall for purpose
+
+
+$("document").ready(function(){
+  console.info('calling');
+  $("#next").click(function(e){
+    let purpose = $("#purpose").val()
+  e.preventDefault();
+$.ajax({
+      url: 'http://localhost/codeschool/purpose.php',
+      datatype: JSON,
+      type: 'POST',
+      data:  {
+        purpose
+      },
+      success: (data) => {
+        data = JSON.parse(data);
+        console.log(data.errors.purposeerr)
+
+        $(purposeerr).text(data.errors.purposeerr)
+
+
+      }
+    })
+  })
+})
+
 
 
 
