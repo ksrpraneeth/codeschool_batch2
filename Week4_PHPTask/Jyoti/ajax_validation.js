@@ -78,7 +78,34 @@ error:function(){
 })
 
 
+
 //Number to word
+
+$('#amount').blur(function(){
+  $('#amountError').text('');
+  var amountInNumber={conversion:$('#amount').val()}
+  $.ajax({
+    type:'POST',
+    url:'convert.php',
+    datatype:'JSON',
+    data:amountInNumber,
+    success:function(data){
+      data=JSON.parse(data)
+      if(data.status==0){
+        $('#amountError').text(data.output.number_Error)
+        $('#word').text("")
+        return;
+      }
+      $('#word').text(data.output)
+    }
+  })
+})
+
+
+
+
+
+
 //party name
 
 $('#next').click(function(){
