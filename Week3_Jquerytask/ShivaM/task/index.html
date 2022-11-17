@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css">
+
+
+  <title>pixelvide</title>
+</head>
+
+<body>
+  <div id="sidebar">
+
+    <ul class="sidebar-nav-list">
+      <li class="sb-nav-list-item"><a href="#">SURVEY LIST</a></li>
+      <li class="sb-nav-list-item"><a href="#">CREATE SURVEY</a></li>
+      <li class="sb-nav-list-item"><a href="#">CONTRACTOR LIST</a></li>
+      <li class="sb-nav-list-item"><a href="#">SURVEYOR LIST</a></li>
+      <li class="sb-nav-list-item"><a href="#">CREATE MASTER DATA</a></li>
+      <li class="sb-nav-list-item"><a href="#">ASSIGN SURVEYOR</a></li>
+      <li class="sb-nav-list-item dropend">
+        <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">USC MASTER </a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li class="dropdown-item">Option 1</li>
+          <li class="dropdown-item">Option 2</li>
+          <li class="dropdown-item">Option 3</li>
+        </ul>
+      </li>
+      <li class="sb-nav-list-item"><a href="#">SURVEY POINT APPROVAL REQUEST</a></li>
+    </ul>
+
+  </div>
+
+  <header>
+    <div class="container-fluid g-0">
+      <nav class="navbar navbar-expand navbar-dark bg-dark px-2 " id="header-bg">
+        <img src="pixelvide_logo.png" height="80" width="380">
+        <div class="brand col-1">
+          <div id="side-nav-button" class="ms-2 me-3 my-auto p-2 text-light">
+            <i class="fa fa-solid fa-bars"></i>
+          </div>
+
+        </div>
+
+
+
+        <div class="col-5"></div>
+
+        <ul class="navbar-nav col-2">
+          <li class="nav-item navbar-collapse mx-2 my-auto p-1 header-li col-2 w-25">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown" id="user-dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#"><i
+                    class="fa-solid fa-user me-2"></i>SURVEY ADMIN <span class="p-0"></span></a>
+                <ul class="dropdown-menu dropdown-menu-dark bg-light">
+                  <li><a href="#" class="dropdown-item text-dark"><i
+                        class="text-danger fa-solid fa-user me-2"></i>Profile</a></li>
+                  <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-key me-2"></i>Change
+                      Password</a></li>
+                  <li><a href="#" class="dropdown-item text-dark"><i
+                        class="text-danger fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container-fluid" id="main-section">
+    <div class="row" id="heading">
+      <div class="col-12 my-auto">
+        <h6>CONTRACTOR LIST</h6>
+        <hr>
+        <div class="row">
+          <div class="col-1">
+            <h6>Total:</h6>
+          </div>
+          <div class="col-1"> </div>
+
+    <div class="col-10">
+      <button type="button" class="btn btn-primary" onclick="openForm()">+ ADD NEW</button>
+      <div class="form-popup" id="myForm">
+        <div id="data">
+
+          <form class="form-container">
+            <h5>ADD CONTRACTOR</h5>
+
+
+            <label for="id"><b>id</b></label>
+            <input type="text" placeholder="Enter id" id="id" name="id" required>
+
+            <label for="email"><b>email</b></label>
+            <input type="text" placeholder="Enter Email" id="email" name="email" required>
+
+            <label for="first_name"><b>first_name</b></label>
+            <input type="text" placeholder="Enter Name" id="first_name" name="first_name" required>
+
+            <label for="last_name"><b>last_name</b></label>
+            <input type="text" placeholder="Enter Last Name" id="last_name" name="last_name" required>
+
+            <button type="button" class="btn" onclick="addData(this)">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!---- <div id="tab">  
+
+          <table class="table table-striped" id="list">
+            <thead>
+              <tr>
+                <th scope="col">S.NO</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Username</th>
+                <th scope="col">Created at</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>G. Sudhakar Reddy</td>
+                <td>-</td>
+                <td>9063049770</td>
+                <td>Contractor13</td>
+                <td>20-10-2022 12:06:36 PM</td>
+
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>G. Gangadhar</td>
+                <td>-</td>
+                <td>9494571490</td>
+                <td>Contractor12</td>
+                <td>19-10-2022 18:07:52 PM</td>
+
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>C. Vishwanath Reddy</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor11</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>P. Mallikarjuna</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor10</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>Rajashekhar Reddy</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor9</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>B. Rajashekhar</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor8</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>A. Jagadeesh</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor7</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">8</th>
+                <td>Mallesh Reddy</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor6</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">9</th>
+                <td>T Amarnath Reddy</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor5</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">10</th>
+                <td>S Srinivas</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor4</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">11</th>
+                <td>M Amarnath Reddy</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor3</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">12</th>
+                <td>PR Suresh</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor2</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+              <tr>
+                <th scope="row">13</th>
+                <td>Parmesh</td>
+                <td>-</td>
+                <td>9642589240</td>
+                <td>Contractor1</td>
+                <td>17-10-2022 10:18:50 AM</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>   ---->
+    </div>
+    </div>
+    <div class="table-responsive">
+
+      <br />
+
+      <table id="list" class="table table-bordered table-striped" id="employee_table">
+        <tr>
+
+          <td>id
+
+          <td>email
+
+          <td>first_name
+
+          <td>last_name
+
+        </tr>
+
+
+      </table>
+
+    </div>
+
+
+  </main>
+</body>
+
+</html>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/e4637f793f.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="index.js"></script>
+
+
+
+
+
+</body>
+
+</html>
