@@ -9,19 +9,18 @@ $headofaccountBalance=array(
     "2204000030006300303NVN"=>["Balance"=>154545,"Loc"=>50000]
 );
 if(!$headAccount){
-    $headAccoutError['headaccountError']='Enter Head of Account';
-    $respose=["status"=>0,"output"=>$headAccoutError];
-    json_encode($respose);
+    $respose=["status"=>0,"error"=>'Enter Head of Account'];
     echo json_encode($respose);
     return;
 }
+
 if(!array_key_exists($headAccount,$headofaccountBalance)){
-    $headAccoutError['headaccountError']="Invalid Head Of Account";
-    json_encode($headAccoutError);
-    echo json_encode($headAccoutError);
+    $respose=["status"=>0,"error"=>'Invalid Head Of Account'];
+    echo json_encode($respose);
     return;
 }
+
 $respose=["status"=>1,"output"=>$headofaccountBalance[$headAccount]];
-json_encode($respose);
+
 echo json_encode($respose);
 ?>  

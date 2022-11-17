@@ -1,17 +1,17 @@
 <?php
  $ifscError=["ifscError"=>[]];
 $ifsccode=$_POST['ifscCode']; 
-$status=true;
+$status=1;
   if(!$ifsccode){
       array_push($ifscError['ifscError'],'Please Enter IFSC Code');
-      $response=["staus"=>false,"output"=>$ifscError];
+      $response=["status"=>0,"output"=>$ifscError];
       json_encode($response);
       echo json_encode($response);
       return;
  }
    elseif(strlen($ifsccode)!=11){
     array_push($ifscError['ifscError'],'IFSC Code Should Be Eleven Character');
-    $response=["staus"=>0,"output"=>$ifscError];
+    $response=["status"=>0,"output"=>$ifscError];
     json_encode($response);
     echo json_encode($response);
     return;
@@ -44,11 +44,11 @@ if(!$status){
   return;
 }
 
-     $bankDetails=[];
+     //$bankDetails=[];
     $temporarybankDetails=[
-        "CNRB0426544"=>["bankName"=>"CANARA","Loc"=>"CUTTACK"],
-        "SBIN0123456"=>["bankName"=>"SBI","Loc"=>"AMMERPET"],
-        "UTBIB000008"=>["bankName"=>"AXIS","Loc"=>"HITECH CITY"]
+        "CNRB0426544"=>["bankName"=>"CANARA","Branchname"=>"CUTTACK"],
+        "SBIN0123456"=>["bankName"=>"SBI","Branchname"=>"AMMERPET"],
+        "UTBIB000008"=>["bankName"=>"AXIS","Branchname"=>"HITECH CITY"]
     ];
     if(!array_key_exists($ifsccode,$temporarybankDetails)){
       array_push($ifscError['ifscError'],"Invalid IFSC Code");
@@ -60,12 +60,12 @@ if(!$status){
       return;
       
     }
-else{
+
   //echo json_encode($ifscError);
   $response=["status"=>1,"output"=>$temporarybankDetails[$ifsccode]];
   
   echo json_encode($response); 
 
-}
+
 
     ?>

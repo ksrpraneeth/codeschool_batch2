@@ -9,11 +9,10 @@ $purposeType=["capital Expenditure"=>[" Maintain current levels of operation wit
 if(!$expenditureType){
     $expenditureError['expenditureError']='Please Select Expenditure Type';
     $response=["status"=>0,"output"=>$expenditureError];
-    json_encode( $expenditureError);
+    
     echo json_encode( $expenditureError);
     return;
 }
 $response=["status"=>1,"output"=>$purposeType[$expenditureType]];
-json_encode($response);
 echo json_encode($response);
 ?>

@@ -358,7 +358,7 @@
                 <div class="col-md-3 font"> Confirm Party Account Number<span style="color:red">*</span> </div>
                 <div class="col-md-1 hidden-mobile">:</div>
                 <div class="col-md-6"> <input type="text" placeholder="Confirm A/c No" class="input" id="confirm">
-                  <div id="con" class="text-danger"></div>
+                  <div id="confirmParty" class="text-danger"></div>
                 </div>
               </div>
               <!-- party name section -->
@@ -375,8 +375,8 @@
                 <div class="row">
                   <div class="col-md-3 font">Bank IFSC Code<span style="color:red">*</span> </div>
                   <div class="col-md-1 hidden-mobile">:</div>
-                  <div class="col-md-8"> <input type="text" placeholder="Enter IFSC Code" class="ifsc" id="ifsc_code">
-                    <button type="button" class="btn btn-primary" onclick="Scheck()" id="search"
+                  <div class="col-md-8"> <input type="text" placeholder="Enter IFSC Code" class="ifsc" id="ifsc_code" value="">
+                    <button type="button" class="btn btn-primary" id="search"
                       style="margin-top: -6px;">Search</button>
                     <p id="ifsc_valid" style="color:red"></p>
                   </div>
@@ -396,8 +396,8 @@
               <div class="row">
                 <div class="col-md-3 font">Head Account <span style="color:red">*</span> </div>
                 <div class="col-md-1 hidden-mobile">:</div>
-                <div class="col-md-6"><select class="input" id="head_account" onclick="autofill()">
-                    <option></option>
+                <div class="col-md-6"><select class="input" id="head_account" >
+                    <option>select</option>
                     <option value="0853001020002000000NVN">0853001020002000000NVN</option>
                     <option value="8342001170004001000NVN">8342001170004001000NVN</option>
                     <option value="2071011170004320000NVN">2071011170004320000NVN </option>
@@ -451,7 +451,7 @@
               <div class="row">
                 <div class="col-md-3 font">Party Amount(in Rs.)<span style="color:red">*</span> </div>
                 <div class="col-md-1 hidden-mobile">:</div>
-                <div class="col-md-6"><input type="text" onchange="update()" placeholder="Enter Party Amount"
+                <div class="col-md-6"><input type="text" placeholder="Enter Party Amount"
                     class="input" id="p_ammount">
                   <p id="amt" style="color:red;"></p>
                 </div>
@@ -478,7 +478,7 @@
           </div>
           <footer>
             <div class="ft">
-              <button type="button" onclick="validation()" class="btn btn-primary"
+              <button type="button"class="btn btn-primary" id="Next"
                 style="max-width:100%; font-size: 15px;">Next<svg xmlns="http://www.w3.org/2000/svg" width="16"
                   height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd"

@@ -1,6 +1,6 @@
 <?php
 $errorsArr=[];
-if (!isset($_POST['partyNumber']) || strlen($_POST['partyNumber'])=0){
+if (!isset($_POST['partyNumber'])){
     array_push($errorsArr,'Please Enter Party Number');
 }
 elseif (!is_numeric($_POST['partyNumber'])){
