@@ -24,7 +24,7 @@ if(!$partyname){
 elseif(is_numeric($partyname)==1){
     $error['partynamer']="Numbers are not allowed";
 }
-elseif(preg_match("/[^a-zA-Z]/",$partyname)==1){
+elseif(preg_match("/[^a-zA-Z]/",$partyname)!=0){
     $error['partynamerror']="Special characters are not allowed";
 }
 $ifsccode=$_POST['ifsccode'];

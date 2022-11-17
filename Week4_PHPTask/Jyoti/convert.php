@@ -20,8 +20,8 @@ if($number<0){
     echo json_encode($response);
     return;
 }
-if($number>100000){
-    $numberError['number_Error'] = 'Please enter small amount less than 100000';
+if($number>21000){
+    $numberError['number_Error'] = 'Please enter small amount less than 21000';
     $response=["status"=>0,"output"=>$numberError];
     echo json_encode($response);
     return;
