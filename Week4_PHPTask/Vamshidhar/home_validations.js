@@ -39,7 +39,6 @@ $(document).ready( function(){
             data: formdata,
             success: function (data,status,xmlHTTPReq){
                 var d = JSON.parse(data);
-                console.log(d.bankDetails);
                 $(IFSCcode_error).text(d.IFSCcode_error);
                 $(bankName).text(d.bankDetails.bankName);
                 $(bankBranch).text(d.bankDetails.bankBranch);
@@ -63,9 +62,10 @@ $(document).ready( function(){
             data: formdata,
             success: function (data){
                 var data = JSON.parse(data);
-                $(headOfAccount_error).text(data);
-                $(balance).text(data.balance);
-                $(LOC).text(data.LOC);
+                console.log(data.headOfAccount_error);
+                $(headOfAccount_error).text(data.headOfAccount_error);
+                $(balance).text(data.hoaDetails.balance);
+                $(LOC).text(data.hoaDetails.LOC);
             }
         })
     })

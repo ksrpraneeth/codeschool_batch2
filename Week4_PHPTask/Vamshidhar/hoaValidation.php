@@ -13,8 +13,7 @@ if(!$selectedHoa){
 }
 
 if($doesErrorExist){
-    echo json_encode($errors["headOfAccount_error"]);
-    return;
+    return echo json_encode($errors);
 }
 
 $hoaDetails = [
@@ -43,6 +42,11 @@ $hoaDetails = [
         "balance" => "123465400",
         "LOC" => "5000"
 
+    ],
+    "undefined" =>[
+        "balance" => " ",
+        "LOC" => " "
+
     ]
 
     ];
@@ -50,18 +54,19 @@ $hoaDetails = [
 
 if(!in_array($selectedHoa, array_keys($hoaDetails))) {
         $errors["headOfAccount_error"]="Option doesn't exist";
+        $selectedHoa = "undefined";
+        $errors["hoaDetails"] = $hoaDetails[$selectedHoa];
         $doesErrorExist = true; 
 }
     
   
 if($doesErrorExist){
-        echo json_encode($errors["headOfAccount_error"]);
-        return;
+    return echo json_encode($errors);
 }
     
 $errors["hoaDetails"] = $hoaDetails[$selectedHoa];
     
-echo json_encode($errors["hoaDetails"]);
+echo json_encode($errors);
     
     
 ?>

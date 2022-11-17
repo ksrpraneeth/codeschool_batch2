@@ -27,11 +27,6 @@ if(!$IFSCcode){
 
 }
 
-if($doesErrorExist){
-    echo json_encode($errors);
-    return;
-}
-
 
 $bankDetails = [
     "SBIN0123456" => [
@@ -52,11 +47,18 @@ $bankDetails = [
     "HDFC0123456" => [
         "bankName" =>  "HDFC Bank",
         "bankBranch" =>  "Karmanghat"
+    ],
+    "undefined" => [
+        "bankName" =>  " ",
+        "bankBranch" =>  " "
+
     ]
     ];
 
 if(!array_key_exists($IFSCcode,$bankDetails)){
     $errors["IFSCcode_error"]="IFSC code doesn't exist";
+    $IFSCcode = "undefined";
+    $errors["bankDetails"] = $bankDetails[$IFSCcode];
     $doesErrorExist = true;
 }
 
