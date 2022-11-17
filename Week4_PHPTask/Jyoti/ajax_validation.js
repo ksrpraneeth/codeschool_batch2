@@ -76,21 +76,67 @@ error:function(){
 }
     });
 })
+
+
 //Number to word
+//party name
 
-$("#amount").change(function (){
-    $('#amountError').text('');
-    var partyAmount={conversion:$('#amount').val()};
+$('#next').click(function(){
+  $('#amountError').text("")
+  $('#PURPOSEER').text("")
+  $('#expenditure_error').text("")
+  $('#headOfAccountError').text("")
+  $('#PNE').text("")
+  $('#EBIC').text("")
+  $('#CACE').text("")
+  $('#ACE').text(" ")
+  var dataWraper={
+    partyaccount:$('#AC').val(),
+    confirmPartyAmount:$('#CAN').val(),
+    partyName:$('#PN').val(),
+    ifsccode:$('#BIC').val(),
+    headaccount:$('#headOfAccount').val(),
+    expenditure:$('#expenditure').val(),
+    purpose:$('#PURPOSE').val(),
+    partyamount:$('#amount').val()
+  }
+  console.log(dataWraper)
+  $.ajax({
+type:"POST",
+url:"formvalidation.php",
+datatype:"JSON",
+data:dataWraper,
+success:function(data){
+  data=JSON.parse(data)
+  if("partyaccountError" in data){
+    $('#ACE').text(data.partyaccountError)
+  }
+  if('confirmpartyerror' in data){
+    $('#CACE').text(data.confirmpartyerror)
+  }
+  if('partynamer' in data){
+    $('#PNE').text(data.partynamer)
+  }
+  if('ifscerror'in data){
+    $('#EBIC').text(data.ifscerror)
+  }
+  if('headacountError' in data){
+    $('#headOfAccountError').text(data.headacountError)
+  }
+  if('expenditurerror' in data){
+    $('#expenditure_error').text(data.expenditurerror)
+  }
+  if('purposeerror' in data){
+    $('#PURPOSEER').text(data.purposeerror)
+  }
+  if('partyamounterror' in data){
+    $('#amountError').text(data.partyamounterror)
+  }
+},
+error:function(){
+
+}
+  })
 
 
-    $.ajax({
-        type:'POST',
-        url:'head-of-account.php',
-        datatype:'JSON',
-        data:partyAmount,
-        success:function(data){
-            data=JSON.parse(data);
-            
-        }
-    })
 })

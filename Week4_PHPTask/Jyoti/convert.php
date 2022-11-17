@@ -1,5 +1,5 @@
 <?php
-$number = (abs($_POST['conversion']));
+$number = ($_POST['conversion']);
 
 
 $numberError = ['number_Error' => ''];
@@ -10,20 +10,43 @@ $dictionary  = array(0 => '', 1 => 'One', 2 => 'Two', 3 => 'Three', 4 => 'Four',
 
 if (!is_numeric($number)) {
     $numberError['number_Error'] = 'Please Enter Number';
+    $response=["status"=>0,"output"=>$numberError];
+    echo json_encode($response);
+    return;
+}
+if($number<0){
+    $numberError['number_Error'] = 'Negative number are not allowed';
+    $response=["status"=>0,"output"=>$numberError];
+    echo json_encode($response);
+    return;
+}
+if($number>100000){
+    $numberError['number_Error'] = 'Please enter small amount less than 100000';
+    $response=["status"=>0,"output"=>$numberError];
+    echo json_encode($response);
+    return;
 }
 
-if ($number % $number != 0) {
+if ($number/ $number != 1) {
     $numberError['number_Error'] = 'Fraction not Allowed';
+    $response=["status"=>0,"output"=>$numberError];
+    echo json_encode($response);
+    return;
 } elseif ($number < 21) {
-    json_encode($dictionary[$number]);
-    echo json_encode($dictionary[$number] . ' ' . 'Rupees Only');
+    $response=["status"=>1,"output"=>($dictionary[$number] . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
 } elseif ($number < 100) {
     $tens = ((int)($number / 10)) * 10;
     $units = $number % 10;
     if ($units == 0) {
-        echo json_encode(($dictionary[$tens]) . ' ' . 'Rupees Only');
+        $response=["status"=>1,"output"=>(($dictionary[$tens]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
     } else {
-        echo json_encode(($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only');
+        $response=["status"=>1,"output"=>(($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
     }
 } elseif ($number < 1000) {
     $hundreds = ((int)($number / 100));
@@ -32,13 +55,21 @@ if ($number % $number != 0) {
     $units = $remainder % 10;
 
     if ($units == 0) {
-        echo json_encode(($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . 'Rupees Only');
+        $response=["status"=>1,"output"=>(($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
     } else {
         if($remainder<21){
-            echo json_encode(($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$remainder]) . ' ' . 'Rupees Only');
+            $response=["status"=>1,"output"=>(($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$remainder]) . ' ' . 'Rupees Only')];
+            echo json_encode($response);
+            return;
         }
+            
         else{
-            echo json_encode(($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only');
+
+            $response=["status"=>1,"output"=>(($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only')];
+            echo json_encode($response);
+            return;
         }
         
     }
@@ -47,15 +78,29 @@ elseif ($number < 10000){
 $thousand=((int)($number / 1000));
 $remainder=(abs($number%1000));
 if($remainder<21){
-    echo json_encode(($dictionary[$thousand]) . ' ' . 'Thousands' . ' ' . ($dictionary[$remainder]) . ' ' . 'Rupees Only');
+    $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' ' . 'Thousands' . ' ' . ($dictionary[$remainder]) . ' ' . 'Rupees Only')];
+    echo json_encode($response);
+    return;
+
+    
 }
 elseif($remainder<100){
     $tens = ((int)($remainder / 10)) * 10;
     $units = $remainder  % 10;
     if ($units == 0) {
-        echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$tens]) . ' ' . 'Rupees Only');
+
+        $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$tens]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
+        
+        
     } else {
-        echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$tens]) . ' ' . ($dictionary[$units]) . '' . 'Rupees Only');
+
+        $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$tens]) . ' ' . ($dictionary[$units]) . '' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
+
+       
     }
 }
 elseif($remainder<1000){
@@ -65,13 +110,27 @@ elseif($remainder<1000){
     $units = $remainder2 % 10;
 
     if ($units == 0) {
-        echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . 'Rupees Only');
+
+        $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
+
+       
     } else {
         if($remainder2<21){
-            echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$remainder2]) . ' ' . 'Rupees Only');
+         
+            $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$remainder2]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
+
+            
         }
         else{
-            echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only');
+
+            $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only')];
+            echo json_encode($response);
+            return;
+            
         }
         
     }
@@ -90,15 +149,30 @@ elseif ($number < 100000){
 $remainder3=(abs($number % 1000));
 
 if($remainder3<21){
-    echo json_encode(($dictionary[$thousand]). ' ' . 'Thousands' . ' ' . ($dictionary[$remainder3]) . ' ' . 'Rupees Only');
+
+    $response=["status"=>1,"output"=>(($dictionary[$thousand]). ' ' . 'Thousands' . ' ' . ($dictionary[$remainder3]) . ' ' . 'Rupees Only')];
+    echo json_encode($response);
+    return;
+
+
 }
 elseif($remainder3<100){
     $tens = ((int)($remainder3 / 10)) * 10;
     $units = $remainder3  % 10;
     if ($units == 0) {
-        echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$tens]) . ' ' . 'Rupees Only');
+
+        $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$tens]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
+
+        
     } else {
-        echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only');
+
+        $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
+
+      
     }
 }
 elseif($remainder3<1000){
@@ -109,13 +183,30 @@ elseif($remainder3<1000){
     $units = $remainder2 % 10;
 
     if ($units == 0) {
-        echo json_encode(($dictionary[$thousand]). ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . 'Rupees Only');
+
+
+        $response=["status"=>1,"output"=>(($dictionary[$thousand]). ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . 'Rupees Only')];
+        echo json_encode($response);
+        return;
+
+
+        
     } else {
         if($remainder2<21){
-            echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$remainder2]) . ' ' . 'Rupees Only');
+
+            $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$remainder2]) . ' ' . 'Rupees Only')];
+            echo json_encode($response);
+            return;
+
+           
         }
         else{
-            echo json_encode(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only');
+
+            $response=["status"=>1,"output"=>(($dictionary[$thousand]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only')];
+            echo json_encode($response);
+            return;
+
+           
         }
         
     }
@@ -136,13 +227,37 @@ elseif($remainder3<10000){
         $units = $remainder2 % 10;
     
         if ($units == 0) {
-            echo json_encode(($dictionary[$thousands]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . 'Rupees Only');
+
+
+            $response=["status"=>1,"output"=>(($dictionary[$thousands]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . 'Rupees Only')];
+            echo json_encode($response);
+            return;
+
+
+
+     
         } else {
             if($remainder2<21){
-                echo json_encode(($dictionary[$thousands]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$remainder2]) . ' ' . 'Rupees Only');
+
+
+                $response=["status"=>1,"output"=>(($dictionary[$thousands]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$remainder2]) . ' ' . 'Rupees Only')];
+                echo json_encode($response);
+                return;
+
+
+
+
+               
             }
             else{
-                echo json_encode(($dictionary[$thousands]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only');
+
+
+                $response=["status"=>1,"output"=>(($dictionary[$thousands]) . ' '. 'Thousands' . ' ' .($dictionary[$hundreds]) . ' ' . 'Hundred' . ' ' . ($dictionary[$tens]) . ' ' . ($dictionary[$units]) . ' ' . 'Rupees Only')];
+                echo json_encode($response);
+                return;
+
+
+               
             }
             
         }
@@ -152,9 +267,23 @@ elseif($remainder3<10000){
         $tens = ((int)($hundred / 10)) * 10;
         $unit1 = $hundred % 10;
         if ($units == 0) {
-            echo json_encode(($dictionary[$thousands]).' '.'Thousands'.' '.   ($dictionary[$tens]) . ' ' . 'Rupees Only');
+
+
+            $response=["status"=>1,"output"=>(($dictionary[$thousands]).' '.'Thousands'.' '.   ($dictionary[$tens]) . ' ' . 'Rupees Only')];
+            echo json_encode($response);
+            return;
+
+
+
+           
         } else {
-            echo json_encode(($dictionary[$tens]) . ' ' . ($dictionary[$unit1]) . ' ' . 'Rupees Only');
+
+            $response=["status"=>1,"output"=>(($dictionary[$tens]) . ' ' . ($dictionary[$unit1]) . ' ' . 'Rupees Only')];
+            echo json_encode($response);
+            return;
+
+
+           
         }
     }
 

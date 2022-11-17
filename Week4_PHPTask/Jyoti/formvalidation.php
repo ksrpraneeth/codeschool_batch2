@@ -1,46 +1,47 @@
 <?php
-
-$error= array();
-
-if (!isset($_POST['partyAccountNumber'])){
-     array_push($error,"Please Enter Party Account Number");
+$error=[];
+$partyaccount=$_POST['partyaccount'];
+if(!$partyaccount){
+    $error['partyaccountError']="Party Amount  Should not be kept blank";
 }
-elseif (!is_numeric($_POST['partyAccountNumber'])){
-    array_push($error,"Party Account Number schould be only Number");
-    
+else if(is_numeric($partyaccount)!=1){
+    $error['partyaccountError']="Party Amount should be Number only";
 }
-
-elseif ((strlen($_POST['partyAccountNumber']))<12 or strlen(strlen($_POST['partyaccountNumber']))>22){
-    array_push($error,' Party Account Number should be between 12 and 22 characters');
+elseif(strlen($partyaccount)<12 or strlen($partyaccount)>22){
+    $error['partyaccountError']="Party Amount should be minimum  12 and maximum 22 characters";
 }
-
-//conirm party account number
-if(!isset($_POST['confirmPartyaccountNumber'])){
-    array_push($error,' Confirm  Party Account Number schould not be kept blank');
-   
+$confirmpartyaccount=$_POST['confirmPartyAmount'];
+if(!$confirmpartyaccount){
+    $error['confirmpartyerror']="Confirm Party Account Number  Should not be kept blank";
 }
-elseif (($_POST['confirmPartyaccountNumber'])!=($_POST['partyAccountNumber'])){
-    array_push($error,' Confirm Party Account Number mismatched, Please Enter correct Party Account Number');
-    
+elseif($partyaccount!=$confirmpartyaccount){
+    $error['confirmpartyerror']="Confirm Party Account should be same as the Party Account Number";
 }
-
-//Party name
-
-if (!isset($_POST['partyName'])){
-    array_push($error,'Please Enter the Party Name');
-    
+$partyname=$_POST['partyName'];
+if(!$partyname){
+    $error['partynamer']="Party Name  Should not be kept blank";
 }
-elseif (is_numeric($_POST['partyName'])){
-    array_push($error,"Party Name schould not contain any number");
-    
+elseif(is_numeric($partyname)==1){
+    $error['partynamer']="Numbers are not allowed";
 }
-elseif (preg_match("/[^a-zA-Z]+/",($_POST['partyName']))){
-    array_push($error,"Party Name schould not contain any Special character");
+elseif(preg_match("/[^a-zA-Z]/",$partyname)==1){
+    $error['partynamerror']="Special characters are not allowed";
 }
-
-if(count($error)>0){
-    $response=["status"=>false,"output"=>$error];
-      echo json_encode($response);
-
-}  
-?>
+$ifsccode=$_POST['ifsccode'];
+if(!$ifsccode){
+    $error['ifscerror']="IFSC code  Should not be kept blank";
+}
+$headaccount=$_POST['headaccount'];
+if($headaccount=='Select Here'){
+    $error['headacountError']="Please select Head of Account";
+}
+if($_POST['expenditure']=="Select Here"){
+    $error['expenditurerror']="Please select  Expenditure Type";
+}
+if($_POST['purpose']==""){
+    $error['purposeerror']="Please write the Purpose here";
+}
+if(!($_POST['partyamount'])){
+    $error['partyamounterror']="Party Amount Should not be kept blank";
+}
+echo json_encode($error);

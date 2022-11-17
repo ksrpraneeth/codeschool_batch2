@@ -1,9 +1,4 @@
 <?php
-//IFSC Code
-
-// var_dump($_POST);
-//  die();
-
 
 $ifscError=["ifscCodeError"=>[]];
 $ifscCode=$_POST['IFSC_Code'];
@@ -57,7 +52,7 @@ if($status==0){
     "HDFC0111111"=>["Bankname"=>"HDFC","BranchName"=>"LB NAGAR"],
     "PUNB0111111"=>["Bankname"=>"PNB","BranchName"=>"RAIDURG"]];
      if(!array_key_exists($ifscCode,$temporaryBankDetails)){
-        array_push($ifscError["ifscCodeError"],"Invalid IFSC code");
+        array_push($ifscError["ifscCodeError"],"IFSC code not Found");
     $response=["status"=>0,"output"=>$ifscError];
     echo json_encode($response);
 return;
