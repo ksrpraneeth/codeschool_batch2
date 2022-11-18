@@ -30,11 +30,13 @@ $bankDetails = [
     ]
 ];
 
-if (!array_key_exists(($_POST['headOfAccount']), $headOfAccountDetails)) {
+if (!array_key_exists(($_POST['bankIFSC']), $bankDetails)) {
     $res = ["status" => false, "message" => "Invalid IFSC code."];
     echo json_encode($res);
     return;
 }
 
-
+$res = ["status" => true, "data" => $bankDetails[($_POST['bankIFSC'])]];
+echo json_encode($res);
+return;
 ?>
