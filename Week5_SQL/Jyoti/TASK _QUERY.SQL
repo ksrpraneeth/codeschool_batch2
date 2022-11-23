@@ -7,20 +7,21 @@
 
 
 
-SELECT  DoctorName,D.DoctorID,COUNT(P.PatientID) AS countPatient FROM Doctors AS D 
+SELECT  DoctorName,D.DoctorID,COUNT(P.PatientID) AS count_Patient FROM Doctors AS D 
  INNER JOIN Prescriptions AS P ON
 D.DoctorID=P.DoctorID
 GROUP BY D.DoctorID
-ORDER BY (countPatient) DESC LIMIT 1;
+ORDER BY (count_Patient) DESC LIMIT 1;
 
 
 -- Q3 What is the most common method of payment 
 
 
 
-SELECT P.PaymentMethod, count(P.PaymentID) AS PP FROM Payments AS P
-GROUP BY P.PaymentMethod
-ORDER BY (PP) DESC LIMIT 1;
+
+
+SELECT MAX(PaymentMethod) FROM (SELECT count(P.PrescriptionID) AS E ,P.PaymentMethod FROM Payments AS P
+GROUP BY (P.PaymentMethod)) AS W;
 
 
 
@@ -42,9 +43,9 @@ HAVING (count(P.PrescriptionID)>2);
 
 
 SELECT   D.DoctorName, count(P.PrescriptionID) FROM Prescriptions AS P
-INNER JOIN Doctors AS D ON 
+RIGHT JOIN Doctors AS D ON 
 D.DoctorID=P.DoctorID
-GROUP BY D.DoctorName
+GROUP BY D.DoctorName;
 
 
 
@@ -55,7 +56,7 @@ GROUP BY D.DoctorName
 SELECT P.PatientID,P.FirstName,count(PR.PrescriptionID) FROM Patients AS P 
 LEFT JOIN Prescriptions AS PR ON
 P.PatientID=PR.PatientID
-GROUP BY P.PatientID
+GROUP BY P.PatientID;
 
 
 
@@ -67,17 +68,12 @@ SELECT MED.MedicineName,(count(PR.PrescriptionID) ) FROM Medicines AS MED
 INNER JOIN Prescriptions AS PR ON
 MED.MedicineID=PR.MedicineID
 GROUP BY MED.MedicineName
-ORDER BY ((count(PR.PrescriptionID) )) asc
-
-
-select p.Patientid ,COUNT(p.prescriptionid)as total_prescription ,p.prescriptionid from prescriptions as p
-group by (p.Patientid);
-
+ORDER BY ((count(PR.PrescriptionID) )) asc;
 
 
 --Q9  What is the average cost of each prescription
-SELECT PrescriptionID,avg(cost) FROM Prescriptions
-GROUP BY PrescriptionID;
+SELECT avg(cost) FROM Prescriptions;
+
 
 
 
@@ -111,8 +107,8 @@ GROUP BY A.AddressID;
 
 SELECT PaymentMethod, count(PaymentID) AS prefered_count FROM Payments
 GROUP BY PaymentMethod
-ORDER BY (prefered_count) DESC
-;
+ORDER BY (prefered_count) DESC;
+
 
 
 
@@ -125,4 +121,4 @@ ORDER BY (prefered_count) DESC
 SELECT MAX(MedicineName)FROM (SELECT MED.MedicineName, count(PR.PrescriptionID)  FROM Prescriptions AS PR
 INNER JOIN Medicines AS MED ON
 MED.MedicineID=PR.MedicineID
-GROUP BY (MED.MedicineName)) AS Y
+GROUP BY (MED.MedicineName)) AS Y;
