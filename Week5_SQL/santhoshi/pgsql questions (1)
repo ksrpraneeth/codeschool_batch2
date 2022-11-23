@@ -1,0 +1,42 @@
+==>Employees (30)
+id, firstname lastname, surname, doj, dob, gender, phone, working_status_id, designation_id, location_id;
+fk : working_status_id, designation_id, location_id
+
+==> working status (working, expired, retired)
+id, description
+
+==> designations (5)
+id, description
+
+==> location (5)
+id, district
+
+==> Salary Components (earnings =>(Basic Pay, House rent allowance, city compensatory allowance, dearness allowance), deductions => (professional tax, income tax))
+id, description, type (1 => earning, 2 => deduction)
+
+==> employee Salary Details
+id, employee_id, salary_component_id, amount
+fk : employee_id, salary_component_id,
+
+==> transactions 
+id, employee_id, month, year, paid_on, gross, deduction, net
+fk : employee_id
+
+==> transactions Details
+id, transaction_id, salary_component_id, amount
+fk : transaction_id
+
+
+
+==> questions
+1. list of employees (name, doj, dob, gender, phone, working_status, designation, location)
+2. count of employees location wise(location,employee count), 
+3. count of employees designation wise (designation,employee count), 
+4. count of employees working status (working status,employee count)
+5. show all employees retirement date (empoyee_id, employee_name, dob, doj, retirement_date) (if retirement ll be at age of 60)
+6. show salary break up(each salary compoment) of each employee wise. 
+7. maximum, minimun salary of employee, average salary of employees of each designation.
+8. salary received by each employee for last month (employee_id, name, salary_year, salary_month, gross, deduction, net).
+9. list of employees who have not received salary for last month
+10. list of employees whos actual salary net amount not matched with net amount of salary received in last month.
+
