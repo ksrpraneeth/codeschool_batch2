@@ -1,0 +1,165 @@
+* {
+    font-family: "Arial", Helvetica, sans-serif;
+}
+body {
+    background-color: #e2e2e2;
+}
+
+
+
+/* for header */
+#header {
+    background-image: url("images/header-bg.jpg");
+    height: 4rem;
+    transition: .5s;
+    border-bottom: 3px solid #fbc66a;
+}
+.header-li {
+    background-color: #4d6274;
+}
+.header-li:hover {
+    transform: scale(1.03);
+}
+
+#login-time a{
+    font-size: .65rem;
+}
+
+#user-dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(77, 98, 116, .6);
+}
+
+
+
+/* for sidebar */
+#side-nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
+#side-nav-button:hover {
+    background-color: #324a5f;
+}
+
+#sidebar {
+    position: fixed;
+    width: 0;
+    height: 100%;
+    background-color: #1b364d;
+    box-shadow: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+#brand-logo-div {
+    width: 280px;
+    border-bottom: 1px solid rgb(99, 79, 79);
+}
+#brand-logo-div img {
+    width: 80%;
+}
+
+.sidebar-nav-list {
+    list-style-type: none;
+    margin: auto 10px;
+    padding-left: 0;
+}
+
+.sb-nav-list-item {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    padding-left: 10px;
+    font-size: 1em;
+}
+.sb-nav-list-item:hover {
+    background-color: #324a5f;
+    border-left: 5px solid #fbc66a;
+    cursor: pointer;
+}
+.sb-nav-list-item a {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu {
+    background-color: #1b364d;
+}
+.dropdown-item:hover {
+    background-color: #324a5f;
+}
+
+
+
+/* for main section */
+main {
+    margin: 1em;
+    width: auto;
+    background-color: white;
+    transition: margin-left .5s;
+}
+
+
+
+/* for form section elements */
+#h1-div {
+    background-color: #eef6ff;
+}
+
+#text-box {
+    background-color: #fcf8e3;
+    /* padding: .5em; */
+}
+#text-box li {
+    text-align: justify;
+}
+
+
+
+/* for form contents */
+
+#transactionTypeRow, #bankDetailsRow {
+    background-color: #f8f8fa;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-control:hover, input[type="radio"]:hover, .form-check-label:hover, input[type="file"]:hover {
+    cursor: pointer;
+}
+
+#form-submit-btn {
+    background-color: #073554;
+}
+
+#form-submit-btn:hover {
+    opacity: .9;
+}
+
+.error-msg {
+    color: red;
+    margin: 0;
+    margin-top: 5px;    
+    padding: 0;
+    font-size: .8em;
+}
+
+
+/* to insert asterik */
+.required:after {
+    content: " *";
+    color: red;
+}
+
+
+/* width for colon in the form */
+.w20 {
+    width: 20px;
+}

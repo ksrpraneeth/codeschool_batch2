@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+   
+</head>
+<body>
+    <header id="header">  
+        <div style="background-image:url(/tskimg.jfif) ;" class="container-fluid" id="header">
+            <div class="row">
+
+                <div class="my-auto col-2">
+                    <img src="/ifmis-logo.png" width="200">
+                </div>
+        
+                <div class="my-auto col-sm-1 text-light menu">
+                        <span style="font-size:30px;  cursor:pointer" onclick="openNav()">&#9776;</span>      
+                </div>
+
+                <div class="my-auto col-sm-1 module">
+                    <button type="button" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+                      </svg>  Module</button>
+                </div>
+
+                <div class=" my-auto col-sm-1 logout">
+                    <button type="button" onclick="log()" class="btn btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                    </svg> Logout</button>
+                </div>
+                
+                <div class="my-auto col-2">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="EMPCODE/Bank Ac No" aria-label="Search">
+                        
+                    </form>
+
+                </div>
+
+                <div class="d-flex justify-content-end my-auto col-sm-2 login" >
+                    <p>last login:</p>
+                    <p class="date"></p>
+                    <p class="time"></p>
+                    
+                </div>
+
+                <div class="my-auto d-flex justify-content-end col-sm-2 user">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                       (govt_demo)
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  color="#5EA662" class="bi bi-person" viewBox="0 0 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                          </svg> Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color="#5EA662" class="bi bi-key" viewBox="0 0 16 16">
+                            <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                            <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                          </svg> Change password</a></li>
+                        <li><a class="dropdown-item" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color="#5EA662" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                        </svg> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+
+            </div>
+        </div>
+
+    </header>
+
+<div class="container-fluid" id="main">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-expenditure-tab" data-bs-toggle="tab" data-bs-target="#nav-expenditure" type="button" role="tab" aria-controls="nav-expenditure" aria-selected="true">Expenditure</button>
+
+          <button class="nav-link" id="nav-analytics-tab" data-bs-toggle="tab" data-bs-target="#nav-analytics" type="button" role="tab" aria-controls="nav-analytics" aria-selected="false">Analytics Dashboard</button>
+
+          <button class="nav-link" id="nav-hr-tab" data-bs-toggle="tab" data-bs-target="#nav-hr" type="button" role="tab" aria-controls="nav-hr" aria-selected="false">HR</button>
+
+          <button class="nav-link" id="nav-daily-tab" data-bs-toggle="tab" data-bs-target="#nav-daily" type="button" role="tab" aria-controls="nav-daily" aria-selected="false">Daily Report</button>
+
+          <button class="nav-link" id="nav-vehcile-tab" data-bs-toggle="tab" data-bs-target="#nav-vehcile" type="button" role="tab" aria-controls="nav-vehcile" aria-selected="false">Vehcile Hire(0)</button>
+
+          <button class="nav-link" id="nav-bro-tab" data-bs-toggle="tab" data-bs-target="#nav-bro" type="button" role="tab" aria-controls="nav-bro" aria-selected="false">BRO(4)</button>
+
+
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active p-3" id="nav-expenditure" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="container-fluid">
+            <div class="col-10">
+                <div class="row">
+                   <div class="col-2" id="search">
+                    <button type="button" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg>
+                        Quick Search
+                    </button>
+                    </div>
+
+                    <div class="col-2" id="date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                          </svg>
+                        <p class="date"></p>
+                        <p class="time"></p>
+
+                    </div>
+
+                    <div class="col-1">
+
+                    </div>
+
+                    <div class="col-1 w-auto">
+                        <p id="total-adj">Tot adj:.</p>
+                    </div>
+
+                        
+
+                    <div class="col-1 w-auto">
+                        <p id="total-cash">Tot cash:</p>
+                    </div>
+
+                    <div class="col-1">
+                        <button type="button" class="btn btn-white" id="refresh">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                              </svg>
+
+                        </button>
+                    </div>
+
+                    <div class="col-2">
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             To Be Authorized
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">option1</a></li>
+                              <li><a class="dropdown-item" href="#">option2</a></li>
+                              <li><a class="dropdown-item" href="#">option3</a></li>
+                            </ul>
+                          </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="row" id="first">
+                                <div class="col-3" id="pao">
+                                    PAO<br>
+                                    <span id="amount">cr</span>
+                                    <span id="count">()</span>
+
+                                </div>
+
+                                <div class="col-3" id="pd-roscap">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+                                        <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                                        <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
+                                      </svg>
+                                    PD(ROS+CAP.)<br>
+                                    <span id="amount">cr</span>
+                                    <span id="count">()</span>
+                                </div>
+
+                                <div class="col-3" id="pd">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+                                        <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                                        <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
+                                      </svg>
+                                    PD(10L)<br>
+                                    <span id="amount">cr</span>
+                                    <span id="count">()</span>
+                                </div>
+
+                                <div class="col-3" id="dta">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                                        <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                      </svg>
+                                    DTA(Adj)<br>
+                                    <span id="amount">cr</span>
+                                    <span id="count">()</span>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-3" id="dta-cash">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                                        <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                      </svg>
+                                    DTA(Cash)<br>
+                                    <span id="amount">cr</span>
+                                    <span id="count">()</span>
+
+                                </div>
+
+                                <div class="col-3" id="dwa-works">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                                        <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                      </svg>
+                                    DWA(Works)<br>
+                                    <span id="amount">cr</span>
+                                    <span id="count">()</span>
+                                </div>
+
+                                <div class="col-3" id="dwa-est">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                                        <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                                      </svg>
+                                    DWA(Est./Other)<br>
+                                    <span id="amount">cr</span>
+                                    <span id="count">()</span>
+                                </div>
+                                <div class="col-3" id="priority">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                      </svg>
+                                    Priority<br>
+                                    <span id="amount">cr</span>
+                                    <span id="count">()</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-3" id="second">
+                            <div class="row" >
+                                <div class="col-12" id="regular" >
+                                    <i class="fa-light fa-money-check-dollar-pen"></i>
+                                    Regular Salary<br>
+                                    <span id="amount">cr</span>
+                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12" id="pension">
+                                    Pension Salary<br>
+                                    <span id="amount">cr</span>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <p id="temp"><b>Temporary Categories</b></p>
+
+                    <div class="row" id="third">
+                        <div class="col-2" id="covid">
+                            COVID def.pay(salaries)<br>
+                            <span id="amount">cr</span>
+                           
+                        </div>
+
+                        <div class="col-1" id="css-central">
+                            CSS(Central)<br>
+                            <span id="amount">cr</span>
+                           
+                        </div>
+
+                        <div class="col-1" id="css-state">
+                            CSS(State)<br>
+                            <span id="amount">cr</span>
+                           
+                        </div>
+
+                        <div class="col-2" id="rythu">
+                            Rythu Bandhu(Bill-wise)<br>
+                            <span id="amount">cr</span>
+                           
+                        </div>
+
+                        <div class="col-2" id="palle">
+                            Palle/Pattana Pragathi<br>
+                            <span id="amount">cr</span>
+                           
+                        </div>
+
+                        <div class="col-2" id="admin">
+                            Admin.of Justice<br>
+                            <span id="amount">cr</span>
+                           
+                        </div>
+
+                        <div class="col-2" id="medical">
+                            Medical and health<br>
+                           <div> <span id="amount">cr</span></div>
+                           
+                        </div>
+
+
+                    </div>
+
+
+                    
+                        
+
+                </div>
+             </div>
+            </div>
+           
+        </div>
+      
+
+
+
+        </div>
+
+        <div class="tab-pane fade p-3" id="nav-analytics" role="tabpanel" aria-labelledby="nav-home-tab">
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam saepe voluptatem ut maiores ab mollitia fuga quaerat iure commodi maxime provident optio perferendis hic repudiandae deleniti, ipsam tempora consectetur doloribus?</p><i class="bi bi-2-square-fill"></i>
+
+        </div>
+
+        <div class="tab-pane fade p-3" id="nav-hr" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+        </div>
+
+        <div class="tab-pane fade p-3" id="nav-daily" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+        </div>
+
+        <div class="tab-pane fade p-3" id="nav-vehcile" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+        </div>
+
+        <div class="tab-pane fade p-3" id="nav-bro" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="script.js">
+    </script>
+
+    
+
+</body>
+</html>
