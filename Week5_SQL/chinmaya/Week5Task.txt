@@ -1,0 +1,35 @@
+Table & columns name Given respectively.
+
+Table : employees (Add 20 Employees)
+Columns : id, firstname lastname, surname, doj, dob, gender, phone, working_status_id, designation_id, location_id, gross,created_at;
+
+Table : working_status (working, expired, retiared, suspended)
+Columns : id, description
+
+Table : designations (5 Designation)  
+Columns : id, description
+
+Table : location (6 Locations)
+Columns : id, district
+
+Table : salary_components 1:(Basic, DA, HRA, CA, Medical allowance,Bonus) 2: (TDS, PF)
+Columns : id, description, type (1: Earning, 2: Deduction)
+
+Table : salaries (50 - 100 records)
+Columns : id, employee_id, month, year, paid_on, gross, created_at, deduction, net
+
+Table : salary_details
+Columns : id, salary_id, salary_component_id, amount, created_at
+
+
+
+Write query according to below details: 
+1. list of employees (name, doj, dob, gender, phone, working_status, designation, location)
+2. count of employees in location wise(location,employee count), 
+3. count of employees in designation wise (designation,employee count), 
+4. count of employees in working status (working status,employee count)
+5. employees retirement date (empoyee_id, employee_name, dob, doj, retirement_date)
+6. salary received by each employee for last month (employee_id, name, salary_year, salary_month, gross, deduction, net).
+7. maximum, minimun salary of employee, average salary of employees.
+8. show salary break up(each salary compoment) of each employee wise. 
+9. list of emp who have not received salary for last month.

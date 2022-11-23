@@ -54,7 +54,7 @@ where sd.salary_component_id=sc.id and sd.salary_id=s.id and s.employee_id=e.id
 --question 9
 select s.employee_id,concat(e.surename,' ',e.firstname,' ',e.lastname),e.id as name from salaries as s
 ,employees as e
-where s.employee_id=e.id  and e.id not in(select concat(e.surename,' ',e.firstname,' ',e.lastname) as name,s.month,s.year,s.paid_on,s.gross,s.deduction,s.net from salaries as s inner join employees as e
+where s.employee_id=e.id  and e.id not in(select e.id from salaries as s inner join employees as e
 on s.employee_id=e.id
 where s.month=10 and s.year=2022 )
 group by (s.employee_id,s.gross,name)
