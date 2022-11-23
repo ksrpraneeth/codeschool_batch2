@@ -1,0 +1,156 @@
+#header-bg {
+    height: 4.5rem;
+    transition: .5s;
+}
+
+
+.brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.header-li {
+    background-color: #4d6274;
+    border-radius: 4px;
+}
+
+.header-li a {
+    color: white;
+}
+
+.header-li:hover {
+    transform: scale(1.03);
+}
+
+
+
+
+
+
+#side-nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+
+#side-nav-button:hover {
+    background-color: #324a5f;
+    border-radius: 20%;
+}
+
+
+#user-dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(77, 98, 116, .4);
+
+}
+
+
+
+body {
+    background-color: #e2e2e2;
+}
+
+#main-section {
+    margin: 1em;
+    width: auto;
+    background-color: white;
+    border-radius: .8em;
+    transition: margin-left .5s;
+}
+
+#heading {
+    background-color: #f6efef;
+    border-radius: .8em .8em 0 0;
+}
+
+#sidebar {
+    position: fixed;
+    width: 0;
+    height: 100%;
+    background-color: #1b2227;
+    box-shadow: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.sidebar-nav-list {
+    list-style-type: none;
+    margin: auto 10px;
+    padding-left: 0;
+}
+
+.sb-nav-list-item {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    padding-left: 10px;
+    font-size: 1em;
+}
+
+.sb-nav-list-item:hover {
+    background-color: #324a5f;
+    cursor: pointer;
+}
+
+.sb-nav-list-item a {
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown-menu {
+    background-color: #1b364d;
+}
+
+.dropdown-item:hover {
+    background-color: #324a5f;
+}
+
+
+  
+
+  
+  .form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  .form-container input[type=text]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  .form-container input[type=text]:focus, .form-container input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  .form-container .btn {
+    background-color: #5039a4;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  .form-container .cancel {
+    background-color: rgb(205, 24, 24);
+  }
+  
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 10;
+  }

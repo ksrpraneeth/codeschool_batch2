@@ -7,17 +7,17 @@ if (!array_key_exists('expenditure_type', $_POST) || !isset($_POST['expenditure_
 }
 $Expenditures = [
     "Capital_Expenditure" => [
-        "capE" => "Maintain current levels of operation within the organization",
-        "capE2" => "All expenses incurred by the firm to guarantee the smooth operation"
+        "Maintain current levels of operation within the organization",
+         "All expenses incurred by the firm to guarantee the smooth operation"
     ],
-    "RevenueExpenditure" => [
-        "capE" => "Sales costs or All expenses incurred by the firm that are directly tied to the manufacture and selling of its goods or services",
-        "capE2" => "All expenses incurred by the firm to guarantee the smooth operation."
+    "Revenue_Expenditure" => [
+        "Sales costs or All expenses incurred by the firm that are directly tied to the manufacture and selling of its goods or services",
+        "All expenses incurred by the firm to guarantee the smooth operation."
     ],
     "Deferred_Revenue_Expenditure" => [
-        "capE" => "Exorbitant Advertising Expenditures",
-        "capE2" => "Unprecedented Losses",
-        "capE3" => "Development and Research Cost"
+         "Exorbitant Advertising Expenditures",
+        "Unprecedented Losses",
+        "Development and Research Cost"
     ]
 ];
 
@@ -27,7 +27,7 @@ if(!array_key_exists(($_POST['expenditure_type']), $Expenditures)) {
     return;
 }
 
-$res = ["status" => true, "data" => $Expenditures[($_POST['expenditure_type'])]];
+$res = ["status" => true,"data" => $Expenditures[($_POST['expenditure_type'])]];
 echo json_encode($res);
 return;
 ?>
