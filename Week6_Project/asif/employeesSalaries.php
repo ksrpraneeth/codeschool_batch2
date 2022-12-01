@@ -17,10 +17,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body table-responsive-md">
+          <div id="employeeDetails"></div>
           <table class="table table-sm table-striped table-bordered" id="viewSalaryBreakupModalTable">
             <thead></thead>
             <tbody></tbody>
           </table>
+          <div id="viewSalaryError"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

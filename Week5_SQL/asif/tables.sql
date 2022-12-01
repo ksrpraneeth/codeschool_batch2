@@ -4,21 +4,21 @@ CREATE DATABASE organization;
 -- working status
 CREATE TABLE working_status(
     id SERIAL PRIMARY KEY,
-    _description VARCHAR(25) NOT NULL CHECK(_description <> '')
+    description VARCHAR(25) NOT NULL CHECK(description <> '')
 );
 
-INSERT INTO working_status(_description)
-VALUES('working'), ('expired'), ('retired'), ('suspended');
+INSERT INTO working_status(description)
+VALUES('Working'), ('Expired'), ('Retired'), ('Suspended');
 
 
 -- designations
 CREATE TABLE designations(
     id SERIAL PRIMARY KEY,
-    _description VARCHAR(50) NOT NULL CHECK(_description <> '')
+    description VARCHAR(50) NOT NULL CHECK(description <> '')
 );
 
-INSERT INTO designations(_description)
-VALUES('Chief Executive Officer(CEO)'), ('Human Resources'), ('Tech Lead'), ('Test Engineer'), ('Intern');
+INSERT INTO designations(description)
+VALUES('Chief Executive Officer(CEO)'), ('Human Resources'), ('Software Developer'), ('Test Engineer'), ('Intern');
 
 
 -- location
@@ -76,11 +76,11 @@ VALUES('Mr.', 'Lalit', 'Modi', '2003-05-31', '1965-08-25', 'Male', '9645235688',
 -- salary components
 CREATE TABLE salary_components(
     id SERIAL PRIMARY KEY,
-    _description VARCHAR(25) NOT NULL CHECK(_description <> ''),
-    _type VARCHAR(25) NOT NULL CHECK(_type <> '')
+    description VARCHAR(25) NOT NULL CHECK(description <> ''),
+    type VARCHAR(25) NOT NULL CHECK(type <> '')
 );
 
-INSERT INTO salary_components(_description, _type)
+INSERT INTO salary_components(description, type)
 VALUES('Basic Pay', 'Earning'), ('DA', 'Earning'), ('HRA', 'Earning'), ('CA', 'Earning'), ('Medical Allowance', 'Earning'), ('Bonus', 'Earning'), ('TDS', 'Deduction'), ('PF', 'Deduction');
 
 
@@ -88,8 +88,8 @@ VALUES('Basic Pay', 'Earning'), ('DA', 'Earning'), ('HRA', 'Earning'), ('CA', 'E
 CREATE TABLE salaries(
     id SERIAL PRIMARY KEY,
     employee_id INTEGER REFERENCES employees(id),
-    _month SMALLINT NOT NULL CHECK(_month > 0 AND _month < 13),
-    _year SMALLINT NOT NULL CHECK(_year > 2000 AND _year < 2099),
+    month SMALLINT NOT NULL CHECK(_month > 0 AND month < 13),
+    year SMALLINT NOT NULL CHECK(_year > 2000 AND year < 2099),
     paid_on DATE NOT NULL,
     gross_salary INTEGER,
     deductions INTEGER,
@@ -98,7 +98,7 @@ CREATE TABLE salaries(
 );
 
 
-INSERT INTO salaries(employee_id, _month, _year, paid_on, gross_salary, deductions, net_salary)
+INSERT INTO salaries(employee_id, month, year, paid_on, gross_salary, deductions, net_salary)
 VALUES(2, 8, 2022, '2022-09-04', 250000, 45000, 205000),
 (3, 8, 2022, '2022-09-04', 100000, 18000, 82000),
 (4, 8, 2022, '2022-09-04', 105000, 18900, 86100),
@@ -113,7 +113,7 @@ VALUES(2, 8, 2022, '2022-09-04', 250000, 45000, 205000),
 (17, 8, 2022, '2022-09-04', 45000, 8100, 36900);
 
 
-INSERT INTO salaries(employee_id, _month, _year, paid_on, gross_salary, deductions, net_salary)
+INSERT INTO salaries(employee_id, month, year, paid_on, gross_salary, deductions, net_salary)
 VALUES(2, 9, 2022, '2022-10-01', 250000, 45000, 205000),
 (3, 9, 2022, '2022-10-01', 100000, 18000, 82000),
 (4, 9, 2022, '2022-10-01', 105000, 18900, 86100),
@@ -127,7 +127,7 @@ VALUES(2, 9, 2022, '2022-10-01', 250000, 45000, 205000),
 (17, 9, 2022, '2022-10-01', 45000, 8100, 36900);
 
 
-INSERT INTO salaries(employee_id, _month, _year, paid_on, gross_salary, deductions, net_salary)
+INSERT INTO salaries(employee_id, month, year, paid_on, gross_salary, deductions, net_salary)
 VALUES(3, 10, 2022, '2022-11-02', 100000, 18000, 82000),
 (4, 10, 2022, '2022-11-02', 105000, 18900, 86100),
 (5, 10, 2022, '2022-11-02', 70000, 12600, 57400),
@@ -394,3 +394,18 @@ VALUES(24, 1, 71000),
 (33, 5, 5000),
 (33, 7, 4050),
 (33, 8, 4050);
+
+
+CREATE TABLE users(
+	id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL CHECK(name <> ''),
+    phone VARCHAR(50) NOT NULL CHECK(phone <> '' AND phone < 11),
+    email VARCHAR(50) NOT NULL CHECK(email <> ''),
+    passwd VARCHAR(32) NOT NULL CHECK(passwd <> ''),
+    created_at TIMESTAMP DEFAULT NOW,
+    current_status VARCHAR(30),
+    token VARCHAR(30),
+    last_login TIMESTAMP
+);
+
+INSERT INTO users(name, phone, email, passwd) VALUES('asif', '9346136029', 'asif@gmail.com', '25f9e794323b453885f5181f1b624d0b');

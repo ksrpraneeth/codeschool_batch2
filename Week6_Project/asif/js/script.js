@@ -64,12 +64,36 @@ function getEmployeesData() {
             } else {
                 $('#tableContainer').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
             }
+        },
+        error: function(jXHR,exception) {
+            $('#tableContainer').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
+        }
+    });
+}
+
+// function to get data of one employee
+function getEmployee(employeeId) {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getEmployee.php',
+        data: {id: employeeId},
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            let employeeData = output.data[0];
+            if(output.status) {
+                $('#employeeDetails').empty().append('<div class="row"><p class="col-sm-6"><strong>Name:</strong> '+employeeData.name+'</p>'+
+                '<p class="col-sm-6"><strong>DOJ:</strong> '+employeeData.date_of_joining+'</p></div>'+
+                '<div class="row"><p class="col-sm-6"><strong>Working Status:</strong> '+employeeData.working_status+'</p>'+
+                '<p class="col-sm-6"><strong>Designation:</strong> '+employeeData.designation+'</p></div>'            
+                );
+            }
         }
     });
 }
 
 // function to view salary recieved by each/clicked employee
 function viewSalaryDetails(employeeId) {
+    getEmployee(employeeId);
     $.ajax({
         type: 'POST',
         url: 'api/getEmployeesSalaries.php',
@@ -78,7 +102,7 @@ function viewSalaryDetails(employeeId) {
             let output = JSON.parse(response);
             if(output.status) {
                 // table head
-                $('#viewSalaryModalTable thead, #viewSalaryModalTable tbody').empty();
+                $('#viewSalaryModalTable thead, #viewSalaryModalTable tbody, #viewSalaryError').empty();
                 $('#viewSalaryModalTable thead').append('<tr>'+
                 '<th scope="col">S.No</th>'+
                 '<th scope="col">Salary Month</th>'+
@@ -99,8 +123,12 @@ function viewSalaryDetails(employeeId) {
                 });
             }
             else {
-                $('#viewSalaryModalTable').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
+                $('#viewSalaryModalTable thead, #viewSalaryModalTable tbody, #viewSalaryError').empty();
+                $('#viewSalaryError').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
             }
+        },
+        error: function(jXHR,exception) {
+            $('#viewSalaryError').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
         }
     });
 }
@@ -112,6 +140,7 @@ function getEmployeesSalaries() {
     $.ajax({
         type: 'POST',
         url: 'api/getEmployeesSalaries.php',
+        data: {id: '*'},
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
             if(output.status) {
@@ -141,21 +170,25 @@ function getEmployeesSalaries() {
                     '<td>'+salaryVal.deductions+'</td>'+
                     '<td>'+salaryVal.net_salary+'</td>'+
                     '<td>'+salaryVal.created_at+'</td>'+
-                    '<td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewSalaryBreakupModal" onClick="viewSalaryBreakup('+salaryVal.id+')">View</a></td>'+
+                    '<td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewSalaryBreakupModal" onClick="viewSalaryBreakup('+salaryVal.id, salaryVal.employee_id+')">View</a></td>'+
                     '</tr>');
                 });
 
             } else {
                 $('#tableContainer').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
             }
+        },
+        error: function(jXHR,exception) {
+            $('#tableContainer').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
         }
+        
     });
 }
 
 
 // function to display salary breakup of selected salary transaction on salaries table
-function viewSalaryBreakup(salaryId) {
-    console.log(salaryId);
+function viewSalaryBreakup(salaryId, employeeId) {
+    getEmployee(employeeId);
     $.ajax({
         type: 'POST',
         url: 'api/getSalaryBreakup.php',
@@ -174,7 +207,6 @@ function viewSalaryBreakup(salaryId) {
             
                 // table body
                 output.data.forEach((val, index) => {
-                    console.log(val);
                     $('#viewSalaryBreakupModalTable tbody').append('<tr>'+
                     '<td>'+(index + 1)+'</td>'+
                     '<td>'+val.description+'</td>'+
@@ -184,8 +216,11 @@ function viewSalaryBreakup(salaryId) {
                 });
             }
             else {
-                $('#viewSalaryModalBreakupTable').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
+                $('#viewSalaryError').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
             }
+        },
+        error: function(jXHR,exception) {
+            $('#viewSalaryError').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
         }
     });
 }
