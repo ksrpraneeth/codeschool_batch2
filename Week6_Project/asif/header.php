@@ -12,6 +12,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- JS File -->
     <script src="js/script.js"></script>
+    <script type="text/javascript">
+        if (!localStorage.getItem('user_data')) {
+            window.location.replace("login.html");
+        }
+    </script>
     <link rel="shortcut icon" href="https://d20exy1ygbh3sg.cloudfront.net/fms/images/favicon.ico" type="image/x-icon">
     <title>Organization Database</title>
 </head>
@@ -31,34 +36,28 @@
         <div id="side-nav-button" class="col-1 w-auto mx-3 my-auto p-2 text-light rounded-1">
             <i class="fa fa-solid fa-bars"></i>
         </div>
-        
-        <ul class="navbar-nav col-1 w-auto">
-            <li class="nav-item mx-2 my-auto header-li rounded-1">
-                <a class="nav-link text-light" href="#"><i class="fa fa-thin fa-cubes"></i><span class="d-none d-sm-none d-md-inline ms-2">Modules</span></a>
-            </li>
-        </ul>
 
         <ul class="navbar-nav col-auto ms-auto">
 
             <li class="nav-item mx-2 my-auto col-1 w-auto text-end" id="login-time">
-                <a class="nav-link text-light" href="#">Last Login: <br> <span id="current-date"><?php echo date("d-M-Y") ?></span> <br> <span id="current-time"><?php echo date("h:i A")?></span></a>
+                <a class="nav-link text-light" href="#">Last Login: <br> <span id="current-date"></span> <br> <span id="current-time"></span></a>
             </li>
 
             <li class="nav-item navbar-collapse mx-2 my-auto header-li rounded-1 col-2 w-auto">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown" id="user-dropdown">
-                        <a class="nav-link text-light dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#"><i class="fa-solid fa-user"></i><span class="d-none d-sm-none d-md-inline ms-2">Welcome User </span></a>
+                        <a class="nav-link text-light dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#"><i class="fa-solid fa-user"></i><span class="d-none d-sm-none d-md-inline ms-2" id="username">Welcome to </span></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start bg-light">
                             <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-user me-2"></i>Profile</a></li>
                             <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-key me-2"></i>Change Password</a></li>
-                            <li><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+                            <li onclick="logout()"><a href="#" class="dropdown-item text-dark"><i class="text-danger fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item mx-2 my-auto col-1 w-auto header-li rounded-1">
-                <a class="nav-link text-light" href="#"><i class="fa-solid fa-right-from-bracket"></i><span id="user-login" class="d-none d-sm-none d-md-inline ms-2">Logout</span></a>
+            <li class="nav-item mx-2 my-auto col-1 w-auto header-li rounded-1" onclick="logout()">
+                <a class="nav-link text-light" href="#"><i class="fa-solid fa-right-from-bracket"></i><span id="logout" class="d-none d-sm-none d-md-inline ms-2">Logout</span></a>
             </li>
         </ul>
     </nav>

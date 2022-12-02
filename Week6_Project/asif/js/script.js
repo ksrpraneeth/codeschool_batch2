@@ -15,13 +15,19 @@ $(document).ready(function(){
         }
     });
 
-    // code for user login and logout functionality
+    // code for date, time and username
+    if(localStorage.getItem('user_data')){
+        let user_data = JSON.parse(localStorage.getItem('user_data'));
+        $('#current-date').empty().text(user_data.date);
+        $('#current-time').empty().text(user_data.time);
+        $('#username').empty().text('Welcome to ' +user_data.name+ ' ');
+    }
     
 });
 
 
 
-// function to fetch all employees data from api/db & display on frontend 
+// function to fetch all employees data from api/db & display on frontend on page load employeesData.php
 function getEmployeesData() {
     $.ajax({
         type: 'POST',
@@ -37,17 +43,17 @@ function getEmployeesData() {
                 '<th scope="col">DOB</th>'+
                 '<th scope="col">Gender</th>'+
                 '<th scope="col">Phone</th>'+
-                '<th scope="col">Working Status</th>'+
+                '<th scope="col">Work Status</th>'+
                 '<th scope="col">Designation</th>'+
                 '<th scope="col">Location</th>'+
                 '<th scope="col">Date Created</th>'+
-                '<th scope="col">Salary Details</th>'+
+                '<th scope="col">Action</th>'+
                 '</tr>');
                 
                 // table body
-                output.data.forEach((employeeData) => {
+                output.data.forEach((employeeData, index) => {
                     $('#employeesTable tbody').append('<tr>'+
-                    '<td>'+employeeData.id+'</td>'+
+                    '<td>'+(index+1)+'</td>'+
                     '<td>'+employeeData.name+'</td>'+
                     '<td>'+employeeData.date_of_joining+'</td>'+
                     '<td>'+employeeData.date_of_birth+'</td>'+
@@ -57,8 +63,9 @@ function getEmployeesData() {
                     '<td>'+employeeData.designation+'</td>'+
                     '<td>'+employeeData.location+'</td>'+
                     '<td>'+employeeData.created_at+'</td>'+
-                    '<td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewSalaryModal" onClick="viewSalaryDetails('+employeeData.id+')">View</a></td>'+
-                    '</tr>');
+                    '<td><a href="#" class="btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryModal" onClick="viewSalaryDetails('+employeeData.id+')">View</a>'+
+                    '<a href="#" class="btn btn-danger btn-sm m-1" onClick="">Delete</a>'+
+                    '</td></tr>');
                 });
 
             } else {
@@ -71,8 +78,8 @@ function getEmployeesData() {
     });
 }
 
-// function to get data of one employee
-function getEmployee(employeeId) {
+// function to get data of one employee for modal of page employeesData.php
+function getEmployeeForSalary(employeeId) {
     $.ajax({
         type: 'POST',
         url: 'api/getEmployee.php',
@@ -91,9 +98,9 @@ function getEmployee(employeeId) {
     });
 }
 
-// function to view salary recieved by each/clicked employee
+// function to view salary recieved by each/clicked employee for modal on page employeesData.php
 function viewSalaryDetails(employeeId) {
-    getEmployee(employeeId);
+    getEmployeeForSalary(employeeId);
     $.ajax({
         type: 'POST',
         url: 'api/getEmployeesSalaries.php',
@@ -135,7 +142,8 @@ function viewSalaryDetails(employeeId) {
 
 
 
-// function to fetch all employees salaries data from api/db & display on frontend 
+
+// function to fetch all employees salaries data from api/db & display on frontend on page employeesSalaries.php
 function getEmployeesSalaries() {
     $.ajax({
         type: 'POST',
@@ -170,7 +178,7 @@ function getEmployeesSalaries() {
                     '<td>'+salaryVal.deductions+'</td>'+
                     '<td>'+salaryVal.net_salary+'</td>'+
                     '<td>'+salaryVal.created_at+'</td>'+
-                    '<td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewSalaryBreakupModal" onClick="viewSalaryBreakup('+salaryVal.id, salaryVal.employee_id+')">View</a></td>'+
+                    '<td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewSalaryBreakupModal" onClick="viewSalaryBreakup('+salaryVal.id+','+ salaryVal.employee_id+')">View</a></td>'+
                     '</tr>');
                 });
 
@@ -186,18 +194,46 @@ function getEmployeesSalaries() {
 }
 
 
-// function to display salary breakup of selected salary transaction on salaries table
+// function to get data of one employee for modal on page employeesSalaries.php
+function getEmployeeforSalaryBreakup(employeeId) {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getEmployee.php',
+        data: {id: employeeId},
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            let employeeData = output.data[0];
+            if(output.status) {
+                $('#employeeDetails').empty().append('<div class="row"><p class="col-sm-6"><strong>Name:</strong> '+employeeData.name+'</p>'+
+                '<p class="col-sm-6"><strong>DOJ:</strong> '+employeeData.date_of_joining+'</p></div>'+
+                '<div class="row"><p class="col-sm-6"><strong>Working Status:</strong> '+employeeData.working_status+'</p>'+
+                '<p class="col-sm-6"><strong>Designation:</strong> '+employeeData.designation+'</p></div>');
+            }
+        }
+    });
+}
+
+
+
+
+// function to display salary breakup of selected salary transaction for modal on page employeesSalaries.php
 function viewSalaryBreakup(salaryId, employeeId) {
-    getEmployee(employeeId);
+    getEmployeeforSalaryBreakup(employeeId);
     $.ajax({
         type: 'POST',
         url: 'api/getSalaryBreakup.php',
         data: {id: salaryId},
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
+            let employeeData = output.data[0];
             if(output.status) {
+                // salary details
+                $('#employeeDetails').append('<div class="row"><p class="col-sm-6"><strong>Salary Month:</strong> '+employeeData.salary_month+'</p>'+
+                '<p class="col-sm-6"><strong>Salary Year:</strong> '+employeeData.salary_year+'</p></div>'+
+                '<div class="row"><p class="col-sm-6"><strong>Date of Payment:</strong> '+employeeData.paid_on+'</p></p></div>');
+                
                 // table head
-                $('#viewSalaryBreakupModalTable thead, #viewSalaryBreakupModalTable tbody').empty();
+                $('#viewSalaryBreakupModalTable thead, #viewSalaryBreakupModalTable tbody, #viewSalaryError').empty();
                 $('#viewSalaryBreakupModalTable thead').append('<tr>'+
                 '<th scope="col">S.No</th>'+
                 '<th scope="col">Description</th>'+
@@ -214,14 +250,189 @@ function viewSalaryBreakup(salaryId, employeeId) {
                     '<td>'+val.amount+'</td>'+
                     '</tr>');
                 });
+
+                $('#viewSalaryError').prepend('<div class="row"><p class="col-sm-4"><strong>Gross Salary:</strong> Rs. '+employeeData.gross_salary+'</p>'+
+                '<p class="col-sm-4"><strong>Deductions:</strong> Rs. '+employeeData.deductions+'</p>'+
+                '<p class="col-sm-4"><strong>Net Salary:</strong> Rs. '+employeeData.net_salary+'</p></p></div>');
             }
             else {
-                $('#viewSalaryError').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
+                $('#viewSalaryError').empty().append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
             }
         },
         error: function(jXHR,exception) {
-            $('#viewSalaryError').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
+            $('#viewSalaryError').empty().append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
         }
     });
 }
 
+
+
+// function to fetch designations
+function getDesignations(forForm) {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getDesignations.php',
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                if(forForm) {
+                    $('#designation').empty().append('<option hidden disabled>Select</option>');
+                    output.data.forEach((designation) => {
+                        $('#designation').append('<option value="'+designation.id+'">'+designation.description+'</option>');
+                    });
+                }
+                else {
+                    $('.designation').empty().append('<option value="all" selected>All</option>');
+                    output.data.forEach((designation) => {
+                        $('.designation').append('<option value="'+designation.id+'">'+designation.description+'</option>');
+                    });
+                }
+            }
+        }
+    });
+}
+
+
+// function to fetch working status
+function getWorkingStatus(forForm) {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getWorkingStatus.php',
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                if(forForm) {
+                    $('#workingStatus').empty().append('<option hidden disabled>Select</option>');
+                    output.data.forEach((workingStatus) => {
+                        $('#workingStatus').append('<option value="'+workingStatus.id+'">'+workingStatus.description+'</option>');
+                    });
+                }
+                else {
+                    $('.workingStatus').empty().append('<option value="all" selected>All</option>');
+                    output.data.forEach((workingStatus) => {
+                        $('.workingStatus').append('<option value="'+workingStatus.id+'">'+workingStatus.description+'</option>');
+                    });
+                }
+            }
+        }
+    });
+}
+
+
+// function to fetch locations
+function getLocations(forForm) {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getLocations.php',
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                if(forForm) {
+                    $('#location').empty().append('<option hidden disabled>Select</option>');
+                    output.data.forEach((location) => {
+                        $('#location').append('<option value="'+location.id+'">'+location.district+'</option>');
+                    });
+                }
+                else {
+                    $('.location').empty().append('<option value="all" selected>All</option>');
+                    output.data.forEach((location) => {
+                        $('.location').append('<option value="'+location.id+'">'+location.district+'</option>');
+                    });
+                }
+            }
+        }
+    });
+}
+
+
+// function for login form validation
+function login() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/login.php',
+        data: {
+            email: $("#email").val(),
+            password: $("#password").val()
+        },
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                $("#form-div").empty().append('<div class="text-center"><img src="/Week6Task/css/images/success.png"><p>'+output.message+'</p></div>');
+                localStorage.setItem("user_data",JSON.stringify(output.data[0]));
+                window.location.replace("index.php");
+                
+            } else {
+                $("#emailError").text("").text(output.data.emailError);
+                $("#passwordError").text("").text(output.data.passwordError);
+                $("#error").text("").text(output.message);
+            }
+        }
+    });
+}
+
+// function for logout
+function logout() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/logout.php',
+        data: {
+            token: JSON.parse(localStorage.getItem("user_data.token"))
+        },
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                localStorage.removeItem("user_data");
+                window.location.replace("login.html");
+            } else {
+                window.alert("Please Try Again Later!");
+            }
+        }
+    });
+}
+
+function searchFilters() {
+
+}
+
+function clearFilters() {
+
+}
+
+function checkSession() {
+
+}
+
+function formValidation() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/formValidation.php',
+        data: {
+            surname: $('#surname').val(),
+            firstName: $('#firstName').val(),
+            lastName: $('#lastName').val(),
+            dateOfJoining: $('#dateOfJoining').val(),
+            dateOfBirth: $('#dateOfBirth').val(),
+            mobileNumber: $('#mobileNumber').val(),
+            grossSalary: $('#grossSalary').val(),
+            gender: $('#gender').val(),
+            workingStatus: $('#workingStatus').val(),
+            designation: $('#designation').val(),
+            location: $('#location').val()
+        },
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status.errors) {
+                let errors = output.errors;
+                $('#firstNameError').empty().text(errors.firstNameError);
+                $('#lastNameError').empty().text(errors.lastNameError);
+                $('#dateOfJoiningError').empty().text(errors.dateOfJoiningError);
+                $('#dateOfBirthError').empty().text(errors.dateOfBirthError);
+                $('#mobileNumberError').empty().text(errors.mobileNumberError);
+                $('#grossSalaryError').empty().text(errors.grossSalaryError);
+            } else {
+                window.alert(output.message);
+                getEmployeesData();
+            }
+        }
+    });
+}

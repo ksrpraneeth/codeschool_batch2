@@ -107,3 +107,9 @@ main {
     background-color: white;
     transition: margin-left .5s;
 }
+
+.errorMsgs {
+    color: red;
+    font-size: 0.8em;
+    margin: 0.5em;
+}

@@ -10,24 +10,8 @@ if(!array_key_exists('id', $_POST)) {
     return;
 }
 
-if($_POST['id'] == '*') {
-    $query = "SELECT s.id, CONCAT(e.surname, ' ', e.firstname, ' ', e.lastname) AS employee_name, MONTHNAME(s.for_month) AS salary_month, YEAR(s.for_month) AS salary_year, s.paid_on, s.gross_salary, s.deductions, s.net_salary, s.created_at FROM salaries AS s, employees AS e WHERE s.employee_id = e.id ORDER BY s.id";
-
-    try {
-        $statement = $pdo->query($query);
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
-        $response['status'] = true;
-        $response['message'] = 'Records found.';
-        $response['data'] = $result;
-        
-    } catch(PDOException $e) {
-        $response['status'] = false;
-        $response['message'] = $e->getMessage();
-    }
-
-} else {
-    $query = "SELECT employee_id, MONTHNAME(for_month) AS salary_month, YEAR(for_month) AS salary_year, paid_on, net_salary FROM salaries WHERE employee_id = ?";
+if(is_numeric($_POST['id'])) {
+    $query = "SELECT MONTHNAME(for_month) AS salary_month, YEAR(for_month) AS salary_year, paid_on, net_salary FROM salaries WHERE employee_id = ?";
 
     try {
         $statement = $pdo->prepare($query);
@@ -49,6 +33,22 @@ if($_POST['id'] == '*') {
         $response['status'] = false;
         $response['message'] = $e->getMessage();
     }
+
+} else {
+    $query = "SELECT s.id, s.employee_id, CONCAT(e.surname, ' ', e.firstname, ' ', e.lastname) AS employee_name, MONTHNAME(s.for_month) AS salary_month, YEAR(s.for_month) AS salary_year, s.paid_on, s.gross_salary, s.deductions, s.net_salary, s.created_at FROM salaries AS s, employees AS e WHERE s.employee_id = e.id ORDER BY s.id";
+
+    try {
+        $statement = $pdo->query($query);
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        
+        $response['status'] = true;
+        $response['message'] = 'Records found.';
+        $response['data'] = $result;
+        
+    } catch(PDOException $e) {
+        $response['status'] = false;
+        $response['message'] = $e->getMessage();
+    }   
 }
 
 echo json_encode($response);

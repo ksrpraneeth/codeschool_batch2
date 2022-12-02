@@ -6,7 +6,7 @@
         <div class="card-body">
             <h5 class="card-title">Employees</h5>
             <p class="card-text">Get details about all the employees.</p>
-            <a href="employeesData.php" class="btn btn-primary">Get Data</a>
+            <a href="employeesData.php" class="btn btn-primary">View</a>
         </div>
         </div>
     </div>
@@ -15,9 +15,14 @@
         <div class="card-body">
             <h5 class="card-title">Salary Details</h5>
             <p class="card-text">Get salary details of all employees.</p>
-            <a href="employeesSalaries.php" class="btn btn-primary">Get Data</a>
+            <a href="employeesSalaries.php" class="btn btn-primary">View</a>
         </div>
         </div>
     </div>
 </div>
+<script>
+    if (!localStorage.getItem('user_data')) {
+        window.location.replace("login.html");
+    }
+</script>
 <?php include_once 'footer.php' ?>
