@@ -1,3 +1,7 @@
+if(!('user_status' in localStorage)){
+    window.location.replace('login.php');
+}
+
 $('#allsalaryinfo').click(function(){
     $('#allinfoTable').removeClass('d-none')
     $.ajax({

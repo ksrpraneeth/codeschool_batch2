@@ -22,24 +22,23 @@ try {
 
 
     if(count($employeedetails)==0){
-        $response=["status"=>false,"output"=>"data is not found"];
+        $response=["status"=>false,"message"=>"data is not found"];
         echo json_encode($response);
         return;
     }
-    $response=["status"=>true,"output"=>$employeedetails,"earning"=>$earning,"deduction"=>$deduction];
+    // $response=["status"=>true,"output"=>$employeedetails,"earning"=>$earning,"deduction"=>$deduction];
+    $response=["status"=>true,"message"=>"","Data"=>["output"=>$employeedetails,"earning"=>$earning,"deduction"=>$deduction]];
     echo json_encode($response);
 
 
-} catch (PDOException $e) {
-    $response=["status"=>false,"output"=>"data is not found"];
+} 
+
+
+catch (PDOException $e) {
+    $response=["status"=>false,"message"=>"data is not found"];
     echo json_encode($response);
     return;
 
 
 }
 
-finally {
-    if ($pdo) {
-        $pdo = null;
-    }
-}

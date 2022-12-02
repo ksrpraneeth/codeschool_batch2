@@ -34,7 +34,7 @@ include_once "navbar.php";
  
 
 <!-- Modal -->
-<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-lg " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -52,8 +52,13 @@ include_once "navbar.php";
             <div class="col-6"><div>Working position:</div ><div id="workingposition" class="salarybreakupHead"></div></div>
           </div>
         </div>
+        <!--table for earning and deduction-->
+<div class="container">
+  <div class="row">
 
-<h3 class="mt-3">EARNINGS</h3>
+
+    <div class="col-6">
+    <h3 class="mt-3">EARNINGS</h3>
         <!--tables-->
         <table class="table table-striped" id="earnings">
         <thead>
@@ -68,7 +73,11 @@ include_once "navbar.php";
 
         </table>
 
-<h3 class="mt-3">DEDUCTION</h3>
+    </div>
+
+
+    <div class="col-6">
+    <h3 class="mt-3">DEDUCTION</h3>
 <!--tables-->
 <table class="table table-striped" id="deduction">
         <thead>
@@ -82,7 +91,12 @@ include_once "navbar.php";
 </tbody>
 
         </table>
-        <div style="font-size:20px;font-weight:bold;">Net salary:<span id ="netsalary"></span> </div>
+    </div>
+  </div>
+</div>
+
+
+        <div style="font-size:20px;font-weight:bold; ">Net salary:<span id ="netsalary"></span> </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

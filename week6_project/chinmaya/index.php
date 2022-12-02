@@ -1,7 +1,5 @@
 <?php
-#including the header file
 include_once "header.php";
-#including the nav bar
 include_once "navbar.php";
 ?>
 
@@ -12,8 +10,13 @@ include_once "navbar.php";
 <!--isuue cheque instruction in blue box-->
 WELCOME TO EMPLOYEEE DATABASE
 
+
 </div>
 
+<script>if(localStorage.getItem('User_status')!=1){
+    window.location.replace('login.php');
+}
+</script>
 
 
 <?php
