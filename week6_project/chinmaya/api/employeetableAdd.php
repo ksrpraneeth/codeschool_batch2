@@ -87,7 +87,7 @@ try{
         return;
     }
 
-    $response=["status"=>true,"message"=>"Added employee sucessfully"];
+    $response=["status"=>true,"message"=>"Employee added sucessfully"];
     echo json_encode($response);
 
 }

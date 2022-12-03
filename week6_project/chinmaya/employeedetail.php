@@ -32,7 +32,7 @@ include_once "navbar.php";
   </div>
 
   <div class="col-2">
-  <button type="button" class="btn btn-primary">Search</button>
+  <button type="button" class="btn btn-primary" id="filterbutton">Search</button>
   </div>
   </div>
   
@@ -145,8 +145,8 @@ include_once "navbar.php";
 
 
 <!--employee table-->
-            <div class="row d-none "id="details">
-                <table class="table table-striped" >
+            <div class="row  "id="details">
+                <table class="table table-striped" id="maintable" >
                     <thead>
                         <tr>
                             <th scope="col">SL.No</th>
@@ -162,6 +162,28 @@ include_once "navbar.php";
                         </tr>
                       </thead>
                       <tbody id="mytable">
+
+                      </tbody>
+                </table>
+
+                <!--second filter table-->
+
+                <table class="table table-striped d-none" id="secondtable" >
+                    <thead>
+                        <tr>
+                            <th scope="col">SL.No</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">DOJ</th>
+                          <th scope="col">DOB</th>
+                          <th scope="col">Gender</th>
+                          
+                          <th scope="col">Status</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Location</th>
+                          <th scope="col">Salary</th>
+                        </tr>
+                      </thead>
+                      <tbody id="mytable2">
 
                       </tbody>
                 </table>

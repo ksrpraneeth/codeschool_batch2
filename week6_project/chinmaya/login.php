@@ -35,7 +35,7 @@ include_once "header.php";
                                 </div>
 
                                <button class="btn btn-outline-light btn-lg px-5"  id="loginButton">Login</button></div>
-                                <
+                               
 
                                 
 
@@ -45,6 +45,7 @@ include_once "header.php";
 
 
                             <div id="error" class="text-danger"></div>
+                            
                         </div>
                     </div>
                 </div>
@@ -53,7 +54,7 @@ include_once "header.php";
     </section>
 </body>
 <script>
-if(localStorage.getItem('User_status')==1){
+if('user_token' in localStorage){
     window.location.replace('index.php');
 }
 

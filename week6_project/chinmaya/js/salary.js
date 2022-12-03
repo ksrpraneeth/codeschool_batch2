@@ -1,7 +1,6 @@
-if(localStorage.getItem('User_status')!=1){
+if(!('user_token' in localStorage)){
     window.location.replace('login.php');
 }
-
 function viewsalarybreakup(employeeId){
     var formdata={
         employeeid:employeeId,

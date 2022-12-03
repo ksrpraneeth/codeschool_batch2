@@ -1,4 +1,4 @@
-if(!('user_status' in localStorage)){
+if(!('user_token' in localStorage)){
     window.location.replace('login.php');
 }
 
