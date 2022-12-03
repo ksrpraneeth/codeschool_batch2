@@ -22,7 +22,7 @@
 </head>
 <body>
 <div id="sidebar">
-        <div id="brand-logo-div" class="mx-auto my-2 pb-2"><a href="#"><img src="css/images/ifmis-logo.png " alt="ifmis-logo"></a></div>
+        <div id="brand-logo-div" class="mx-auto my-2 pb-2"><a href="#"><img src="assets/images/ifmis-logo.png " alt="ifmis-logo"></a></div>
         
         <ul class="sidebar-nav-list">
             <li class="sb-nav-list-item"><a href="index.php">Home</a></li>

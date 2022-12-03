@@ -85,7 +85,7 @@ try {
 
     $statement = $pdo->prepare($query);
     
-    $isQueryExecuted = $statement->execute([$_POST['surname', 'firstName', 'lastName', 'dateOfJoining', 'dateOfBirth', 'gender', 'mobileNumber', 'workingStatus', 'designation', 'location', 'grossSalary']]);
+    $isQueryExecuted = $statement->execute([$_POST['surname'], $_POST['firstName'], $_POST['lastName'], $_POST['dateOfJoining'], $_POST['dateOfBirth'], $_POST['gender'], $_POST['mobileNumber'], $_POST['workingStatus'], $_POST['designation'], $_POST['location'], $_POST['grossSalary']]);
     
     if($isQueryExecuted) {
         $response['status'] = true;

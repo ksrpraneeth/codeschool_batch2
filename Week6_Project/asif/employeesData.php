@@ -17,13 +17,13 @@
       <select class="form-select form-select-sm location"></select>
     </div>
     <div class="filtersDivs col-12 col-lg-1 w-auto my-1 text-center">
-      <button class="btn btn-info btn-sm mt-4">Search</button>
+      <button class="btn btn-info btn-sm mt-4" onclick="searchFilters()">Search</button>
     </div>
     <div class="filtersDivs col-12 col-lg-1 w-auto my-1 text-center">
-      <button class="btn btn-secondary btn-sm mt-4">Clear</button>
+      <button class="btn btn-secondary btn-sm mt-4" onclick="clearFilters()">Clear</button>
     </div>
-    <div class="filtersDivs col-12 col-lg-1 w-auto my-1 text-center">
-      <button class="btn btn-primary btn-sm mt-4" data-bs-toggle="modal" data-bs-target="#addEmployeeModal" onclick="getWorkingStatus(1); getDesignations(1); getLocations(1);">Add New Employee</button>
+    <div class="filtersDivs col-12 col-lg-1 w-auto my-1 ms-auto text-center">
+      <button class="btn btn-primary btn-sm mt-4" data-bs-toggle="modal" data-bs-target="#addEmployeeModal" onclick="getWorkingStatus(1); getDesignations(1); getLocations(1); clearErrors();">Add New Employee</button>
     </div>
     <!-- end of filters -->
   </div>
@@ -33,6 +33,10 @@
       <thead></thead>
       <tbody></tbody>
     </table>
+  </div>
+
+  <div class="row" id="getEmployeesError">
+   
   </div>
   
 
@@ -45,7 +49,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="#" class="container-fluid">
+          <form action="#" class="container-fluid" id="newEmployeeForm">
             <!-- for name -->
             <div class="row mb-3">
                 <div class="col-2">
@@ -152,8 +156,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="formValidation()">Submit</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="formValidation()">Submit</button>
         </div>
       </div>
     </div>
@@ -182,11 +186,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Modal for Edit -->
-
-
-  <!-- Modal for Delete -->
 
 <!-- END OF TABLE CONTAINER -->
 </div>
