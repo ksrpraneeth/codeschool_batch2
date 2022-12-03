@@ -9,7 +9,7 @@ body {
 
 /* for header */
 #header {
-    background-image: url("images/header-bg.jpg");
+    background-image: url("../assets/images/header-bg.jpg");
     height: 4rem;
     transition: .5s;
     border-bottom: 3px solid #fbc66a;

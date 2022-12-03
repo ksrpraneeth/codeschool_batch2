@@ -28,12 +28,18 @@ $(document).ready(function(){
 
 
 // function to fetch all employees data from api/db & display on frontend on page load employeesData.php
-function getEmployeesData() {
+function getEmployeesData(workingStatusId, designationId, locationId) {
     $.ajax({
         type: 'POST',
         url: 'api/getEmployeesData.php',
+        data: {
+            workingStatusId: workingStatusId,
+            designationId: designationId,
+            locationId: locationId
+        },
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
+            $('#employeesTable thead, #employeesTable tbody, #getEmployeesError').empty();
             if(output.status) {
                 // table head
                 $('#employeesTable thead').append('<tr>'+
@@ -46,6 +52,7 @@ function getEmployeesData() {
                 '<th scope="col">Work Status</th>'+
                 '<th scope="col">Designation</th>'+
                 '<th scope="col">Location</th>'+
+                '<th scope="col">Gross Salary</th>'+
                 '<th scope="col">Date Created</th>'+
                 '<th scope="col">Action</th>'+
                 '</tr>');
@@ -62,18 +69,21 @@ function getEmployeesData() {
                     '<td>'+employeeData.working_status+'</td>'+
                     '<td>'+employeeData.designation+'</td>'+
                     '<td>'+employeeData.location+'</td>'+
+                    '<td>'+employeeData.gross_salary+'</td>'+
                     '<td>'+employeeData.created_at+'</td>'+
-                    '<td><a href="#" class="btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryModal" onClick="viewSalaryDetails('+employeeData.id+')">View</a>'+
-                    '<a href="#" class="btn btn-danger btn-sm m-1" onClick="">Delete</a>'+
+                    '<td><a href="#" class="btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryModal" onclick="viewSalaryDetails('+employeeData.id+')">View</a>'+
+                    '<a href="#" class="btn btn-danger btn-sm m-1" onclick="deleteEmployeeData('+employeeData.id+')">Delete</a>'+
                     '</td></tr>');
                 });
 
             } else {
-                $('#tableContainer').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
+                $('#employeesTable thead, #employeesTable tbody').empty();
+                $('#getEmployeesError').empty().append('<div class="text-center"><p>'+output.message+'</p></div>');
             }
         },
         error: function(jXHR,exception) {
-            $('#tableContainer').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
+            $('#employeesTable thead, #employeesTable tbody').empty();
+            $('#getEmployeesError').append('<div class="text-center"><img src="assets/images/error_img.webp"><p>'+exception+'</p></div>');
         }
     });
 }
@@ -131,11 +141,11 @@ function viewSalaryDetails(employeeId) {
             }
             else {
                 $('#viewSalaryModalTable thead, #viewSalaryModalTable tbody, #viewSalaryError').empty();
-                $('#viewSalaryError').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
+                $('#viewSalaryError').append('<div class="text-center"><p>'+output.message+'</p></div>');
             }
         },
         error: function(jXHR,exception) {
-            $('#viewSalaryError').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
+            $('#viewSalaryError').append('<div class="text-center"><img src="assets/images/error_img.webp"><p>'+exception+'</p></div>');
         }
     });
 }
@@ -183,11 +193,11 @@ function getEmployeesSalaries() {
                 });
 
             } else {
-                $('#tableContainer').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
+                $('#tableContainer').append('<div class="text-center"><img src="assets/images/error_img.webp"><p>'+output.message+'</p></div>');
             }
         },
         error: function(jXHR,exception) {
-            $('#tableContainer').append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
+            $('#tableContainer').append('<div class="text-center"><img src="assets/images/error_img.webp"><p>'+exception+'</p></div>');
         }
         
     });
@@ -256,11 +266,11 @@ function viewSalaryBreakup(salaryId, employeeId) {
                 '<p class="col-sm-4"><strong>Net Salary:</strong> Rs. '+employeeData.net_salary+'</p></p></div>');
             }
             else {
-                $('#viewSalaryError').empty().append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+output.message+'</p></div>');
+                $('#viewSalaryError').empty().append('<div class="text-center"><p>'+output.message+'</p></div>');
             }
         },
         error: function(jXHR,exception) {
-            $('#viewSalaryError').empty().append('<div class="text-center"><img src="/Week6Task/css/images/error_img.webp"><p>'+exception+'</p></div>');
+            $('#viewSalaryError').empty().append('<div class="text-center"><img src="../assets/images/error_img.webp"><p>'+exception+'</p></div>');
         }
     });
 }
@@ -282,7 +292,7 @@ function getDesignations(forForm) {
                     });
                 }
                 else {
-                    $('.designation').empty().append('<option value="all" selected>All</option>');
+                    $('.designation').empty().append('<option value="" selected>All</option>');
                     output.data.forEach((designation) => {
                         $('.designation').append('<option value="'+designation.id+'">'+designation.description+'</option>');
                     });
@@ -308,7 +318,7 @@ function getWorkingStatus(forForm) {
                     });
                 }
                 else {
-                    $('.workingStatus').empty().append('<option value="all" selected>All</option>');
+                    $('.workingStatus').empty().append('<option value="" selected>All</option>');
                     output.data.forEach((workingStatus) => {
                         $('.workingStatus').append('<option value="'+workingStatus.id+'">'+workingStatus.description+'</option>');
                     });
@@ -334,7 +344,7 @@ function getLocations(forForm) {
                     });
                 }
                 else {
-                    $('.location').empty().append('<option value="all" selected>All</option>');
+                    $('.location').empty().append('<option value="" selected>All</option>');
                     output.data.forEach((location) => {
                         $('.location').append('<option value="'+location.id+'">'+location.district+'</option>');
                     });
@@ -345,7 +355,7 @@ function getLocations(forForm) {
 }
 
 
-// function for login form validation
+// function for login form validation and login redirection
 function login() {
     $.ajax({
         type: 'POST',
@@ -357,7 +367,7 @@ function login() {
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
             if(output.status) {
-                $("#form-div").empty().append('<div class="text-center"><img src="/Week6Task/css/images/success.png"><p>'+output.message+'</p></div>');
+                $("#form-div").empty().append('<div class="text-center"><img src="../assets/images/success.png"><p>'+output.message+'</p></div>');
                 localStorage.setItem("user_data",JSON.stringify(output.data[0]));
                 window.location.replace("index.php");
                 
@@ -370,13 +380,16 @@ function login() {
     });
 }
 
+
 // function for logout
 function logout() {
+    var user = JSON.parse(localStorage.getItem("user_data"));
+    var token = user.token;
     $.ajax({
         type: 'POST',
         url: 'api/logout.php',
         data: {
-            token: JSON.parse(localStorage.getItem("user_data.token"))
+            token: token
         },
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
@@ -390,19 +403,30 @@ function logout() {
     });
 }
 
+
+// function to fetch employee data with filters on page employeesData.php
 function searchFilters() {
-
+    let workingStatusId = $('.workingStatus').val();
+    let designationId = $('.designation').val();
+    let locationId = $('.location').val();
+    getEmployeesData(workingStatusId, designationId, locationId);
 }
 
+// function to clear filters
 function clearFilters() {
-
+    $('.workingStatus, .designation, .location').val("");
+    getEmployeesData();
 }
 
-function checkSession() {
 
+// function to clear errors in form
+function clearErrors() {
+    $('.errorMsgs').text("");
 }
 
+// function to validate form and add employee in database on the page employeesData.php
 function formValidation() {
+    clearErrors();
     $.ajax({
         type: 'POST',
         url: 'api/formValidation.php',
@@ -421,7 +445,7 @@ function formValidation() {
         },
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
-            if(output.status.errors) {
+            if(output.errors) {
                 let errors = output.errors;
                 $('#firstNameError').empty().text(errors.firstNameError);
                 $('#lastNameError').empty().text(errors.lastNameError);
@@ -429,10 +453,31 @@ function formValidation() {
                 $('#dateOfBirthError').empty().text(errors.dateOfBirthError);
                 $('#mobileNumberError').empty().text(errors.mobileNumberError);
                 $('#grossSalaryError').empty().text(errors.grossSalaryError);
-            } else {
+            } else if(output.status) {
+                $('#newEmployeeForm')[0].reset();
+                $('#addEmployeeModal').modal('hide');
                 window.alert(output.message);
                 getEmployeesData();
             }
+            else {
+                window.alert(output.message);
+                getEmployeesData();
+            }
+        }
+    });
+    
+}
+
+// function to delete employee from the database on page employeesData.php
+function deleteEmployeeData(employeeId) {
+    $.ajax({
+        type: 'POST',
+        url: 'api/deleteEmployeeData.php',
+        data: {id: employeeId},
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            window.alert(output.message);
+            getEmployeesData();
         }
     });
 }
