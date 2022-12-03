@@ -12,7 +12,7 @@ try{
 
 
 if(count($result)==0){
-    $response=["status"=>false,"message"=>"something went wrong"];
+    $response=["status"=>false,"message"=>"Data not found"];
     echo json_encode($response);
     return;
 }

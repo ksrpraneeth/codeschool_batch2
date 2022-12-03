@@ -22,7 +22,7 @@ try {
 
 
     if(count($employeedetails)==0){
-        $response=["status"=>false,"message"=>"data is not found"];
+        $response=["status"=>false,"message"=>"Data is not found"];
         echo json_encode($response);
         return;
     }

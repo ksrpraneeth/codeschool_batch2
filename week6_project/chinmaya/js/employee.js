@@ -1,4 +1,4 @@
-if(localStorage.getItem('User_status')!=1){
+if(!('user_token' in localStorage)){
     window.location.replace('login.php');
 }
 
@@ -249,7 +249,7 @@ $.ajax({
         data = JSON.parse(data);
         if (data.status) {
 
-        $('#employeeworking').append(`<option disabled selected>Working Status</option>`);
+        $('#employeeworking').append(`<option  selected value="">All</option>`);
 
       data.Data[0].forEach(function(element){
          $('#employeeworking').append(`
@@ -257,7 +257,7 @@ $.ajax({
          `)
       })
 
-    $('#employeedesignation').append(`<option disabled selected>Designation</option>`);
+    $('#employeedesignation').append(`<option  selected value="">All</option>`);
 
       data.Data[1].forEach(function(element){
         $('#employeedesignation').append(`
@@ -265,7 +265,7 @@ $.ajax({
         `)
      })
 
-     $('#employeelocation').append(`<option disabled selected>Location</option>`);
+     $('#employeelocation').append(`<option selected value="">All</option>`);
 
      data.Data[2].forEach(function(element){
         $('#employeelocation').append(`
@@ -281,3 +281,57 @@ $.ajax({
 
     }
 })
+
+
+
+
+$('#filterbutton').click(function(){
+    $('#mytable2').empty();
+    $('#maintable').addClass('d-none');
+    $('#secondtable').removeClass('d-none')
+    var formdata={
+        workingstatus:$('#employeeworking').val(),
+        location:$('#employeelocation').val(),
+        designation:$('#employeedesignation').val()
+    }
+    console.log(formdata)
+    $.ajax({
+        type:"POST",
+        url:"api/filterapi.php",
+        data:formdata,
+        datatype:"JSON",
+        success:function(data){
+            data=JSON.parse(data)
+            if(data.status){
+                data.Data.forEach(function (element, index) {
+                    $("#mytable2").append(`<tr>
+                     <td>${index + 1}</td>
+                     <td>${element.concat}</td>
+                     <td>${element.date_of_joining}</td>
+                     <td>${element.dob}</td>
+                     <td>${element.gender}</td>
+                     <td>${element.status_description}</td>
+                     <td>${element.description}</td>
+                     <td>${element.district}</td>
+                     <td>${element.gross}</td>
+                     <td><button onclick="viewEmployee(${element.id})" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button></td>
+                       
+                        <td><button class="btn btn-danger" onclick=deleteemployee(${element.id})>Delete</button></td>
+                        </tr>`);
+                        console.log(2659)
+                })
+            }
+            else{
+                $('#maintable').removeClass('d-none');
+                $('#secondtable').addClass('d-none')
+            }
+
+        },error:function(){
+            
+        }
+    })
+})
+
+
+
+

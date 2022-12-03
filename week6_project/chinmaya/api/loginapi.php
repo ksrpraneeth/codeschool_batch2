@@ -63,7 +63,7 @@ $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-if(count($result)==0){
+if(count($result)==0 || $result[0]['status']==0){
     $response=["status"=>false,"message"=>"Invalid login credential"];
     echo json_encode($response);
     return;  
@@ -73,12 +73,13 @@ $token=  bin2hex($bytes);
 $statement2=$pdo->prepare("update users set token=? where id=?");
 $statement2->execute([$token,$result[0]['id']]);
 
-$status=$pdo->prepare("update users set status=1 where id=?");
-$status->execute([$result[0]['id']]);
+
 
 $statement1=$pdo->prepare("select * from users where email=? and password=?");
 $statement1->execute([$email,md5($password)]);
 $result1=$statement1->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 
 $response=["status"=>true,"message"=>"login sucessfully","Data"=>$result1];
