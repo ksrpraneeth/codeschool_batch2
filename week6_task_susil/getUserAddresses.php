@@ -2,6 +2,7 @@
 include('dbconnect.php');
 $response = [];
 $userID = $_GET['user_id'];
+
 $statement = $pdo->prepare(" select * from useraddress where id = ?");
 $statement->execute([$userID]);
 $result = $statement->fetchall(PDO::FETCH_ASSOC);

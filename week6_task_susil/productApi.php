@@ -17,7 +17,7 @@ $response = [
     'message'=>'' 
 ];
 
-$statement = $pdo->prepare("select productimg,productname,price,productid  from Products");
+$statement = $pdo->prepare("select productimg,productname,price,productid from Products");
 $statement->execute();
 $result = $statement->fetchall(PDO::FETCH_ASSOC);
 if($result){

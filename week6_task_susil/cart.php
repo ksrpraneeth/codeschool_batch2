@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['userdetails'])){
+    header("Location:login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +63,7 @@
             <div class="col-md-1" style="margin-top:50px">CATEGORY</div>
             <div class="col-md-1" style="margin-top:50px">ABOUT</div>
             <div class="col-md-1" style="margin-top:50px">CONTACT</div>
-            <div class="col-md-1" style="margin-top:50px"><a href="logout.php">LOGOUT</a></div>
+            <div class="col-md-1" style="margin-top:50px" id="logout"><a href="logout.php">LOGOUT</a></div>
             <div class="col-md-1 cart1" id="cart" style="margin-top:50px"></div>
 
 
@@ -91,10 +97,13 @@
       <script>
 
 
-                var cartItems = localStorage.getItem('cart')
+                var cartItems = localStorage.getItem('cart');
                 var users=localStorage.getItem('user_data')
 
 cartItems = JSON.parse(cartItems);
+if(!cartItems){
+                    cartItems = [];
+                }
 users=JSON.parse(users);
 
 for(let i=0;i<cartItems.length;i++){
@@ -111,28 +120,30 @@ $('#output').append(`
     }
 
 
-
-
-
     $.ajax({
             type:'GET',
-            url:'.php?usergetUserAddresses?user_id='+users.id,
+            url:'getUserAddresses.php?user_id='+users.id,
             success:function(response){
-                $("#address").append("<option>")
+                response = JSON.parse(response);
+                for(let i=0;i<response.output.length;i++){
+                    $("#address").append(`<option value="${response.output[i].addressid}">${response.output[i].city}</option>`);
+                }
             },
             error:function(){
-
     }
         })
 
-
-
     $('#placeorder').click(function(){
-    var formData = {
-            id:localStorage.getItem('user_data'),
-            item:localStorage.getItem('cart')
+        let products = JSON.parse(localStorage.getItem('cart'));
+        let items = [];
+        for(let i=0;i<products.length;i++){
+            items.push({productid:products[i].productid,quantity:products[i].quantity});
         }
-        console.log(formData)
+    var formData = {
+            address_id:$("#address").val(),
+            user_id:JSON.parse(localStorage.getItem('user_data')).id,
+            items:items
+        }
     
     $.ajax({
         type:'POST',
@@ -145,7 +156,13 @@ $('#output').append(`
 
 }
     })
+alert("Order Placed Successfully" );
+localStorage.removeItem('cart');
+window.location.replace('product.php');
 
+    })
+    $('#logout').click(function(){
+        localStorage.clear();
     })
       </script>
 </body>

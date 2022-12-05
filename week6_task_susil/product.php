@@ -1,9 +1,8 @@
-<?php
+ <?php
 session_start();
 if(!isset($_SESSION['userdetails'])){
     header("location:login.php");
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -77,7 +76,7 @@ if(!isset($_SESSION['userdetails'])){
             <div class="col-md-1" style="margin-top:50px">CONTACT</div>
             <div class="col-md-1" style="margin-top:50px"><a href="logout.php">LOGOUT</a></div>
             <div class="col-md-1 cart1" id="cart" style="margin-top:50px">
-                <a href="cart.html">
+                <a href="cart.php">
                     <ion-icon name="basket"></ion-icon>CART
                 </a><span id="count"></span>
 

@@ -58,14 +58,14 @@ if(!isset($_SESSION['userdetails'])){
         </div>
         <div class="row header2">
             <div class=" col-md-2"><img src="shoplogo-removebg-preview.png" id="logoimg"></div>
-            <div class=" offset-md-3 col-md-1" style="margin-top:50px"><a href="index.html">HOME</a></div>
+            <div class=" offset-md-3 col-md-1" style="margin-top:50px"><a href="product.php">HOME</a></div>
             <div class="col-md-1" style="margin-top:50px">SHOP</div>
             <div class="col-md-1" style="margin-top:50px">CATEGORY</div>
             <div class="col-md-1" style="margin-top:50px">ABOUT</div>
             <div class="col-md-1" style="margin-top:50px">CONTACT</div>
-            <div class="col-md-1" style="margin-top:50px"><a href="logout.php">LOGOUT</a></div>
+            <div class="col-md-1" style="margin-top:50px" id="logout"><a href="logout.php">LOGOUT</a></div>
             <div class="col-md-1 cart1" id="cart" style="margin-top:50px">
-                <a href="cart.html">
+                <a href="cart.php">
                     <ion-icon name="basket"></ion-icon>CART
                 </a><span id="count"></span>
 
@@ -173,7 +173,7 @@ if(!isset($_SESSION['userdetails'])){
                                     d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                             </svg></span>(1,456)</div>
                             <div>PRICE:${product.price}</div>
-                            <h4>Avaialable offers</h4>
+                            <h4>Available offers</h4>
                             <diV>Special PriceGet extra ₹900 off (price inclusive of cashback/coupon)<span class="text-primary">T&C</span></diV>
                             <div>Bank Offer5% Cashback on Flipkart Axis Bank Card <span class="text-primary">T&C</span></div>
                             <div>Partner OfferSign up for Flipkart Pay Later and get Flipkart Gift Card worth up to<span class="text-primary">know more</span></div>
@@ -228,10 +228,14 @@ if(!isset($_SESSION['userdetails'])){
                 product.quantity = 1;
                 cartArray.push(product);
             }
+            $('#count').text(cartArray.length);
 
-            localStorage.setItem('cart',JSON.stringify(cartArray));
-        
-           
+            localStorage.setItem('cart',JSON.stringify(cartArray));   
+            alert('Added to Cart Successfully');
+            $('#logout').click(function(){
+        localStorage.clear();
+    })
+
         }
 
     </script>
