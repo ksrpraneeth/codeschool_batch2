@@ -24,7 +24,7 @@ if(!array_key_exists('productid',$_POST)){
         }
 
 
-        $productName=$_POST['productid'];
+        $productId=$_POST['productid'];
         $usertoken=$_POST['usertoken'];
 
         $statement=$pdo->prepare("select id from users where token =?");
@@ -32,11 +32,11 @@ if(!array_key_exists('productid',$_POST)){
         $userid=$statement->fetchAll(PDO::FETCH_ASSOC);
 
         $statement2=$pdo->prepare("insert into orders(userid,productid)values(?,?)");
-       $isqueryexecuted= $statement2->execute([$userid[0]['id'],$productName]);
+       $isqueryexecuted= $statement2->execute([$userid[0]['id'],$productId]);
          
 
        if($isqueryexecuted){
-        $response=["status"=>true,"message"=>"Add to cart sucessfully"];
+        $response=["status"=>true,"message"=>"Added to cart sucessfully 👍"];
         echo json_encode($response);
        }
 

@@ -3,6 +3,10 @@
 if(!('token' in localStorage) ){
     window.location.replace('login.php')
 }
+
+if(localStorage.getItem('role_id')==2){
+  window.location.replace('admin.php')
+}
   
   var formdata = {
     phonenumber: $("#mobileNumber").val(),
@@ -81,7 +85,7 @@ if(!('token' in localStorage) ){
   
   
   
-
+// Add to cart
 
 
   $('#cart').click(function(){
@@ -94,14 +98,20 @@ if(!('token' in localStorage) ){
       success:function(data){
        data=JSON.parse(data)
        if(data.status){
+        let totalprice=0;
         for(let i=0;i<data.output.length;i++){
           $('#myCart').append(`
-          <img src="${data.output[i].imagelink}">
+          <img src="${data.output[i].imagelink}"></div>
           <div>Name: ${data.output[i].productname}</div>
           <div>Effective Price: INR ${data.output[i].offerprice}</div>
+          <div class="row justify-content-end"><button onclick="deleteitem(${data.output[i].orderid})"type="button" class="btn btn-danger col-3 mb-2  ">Remove</button></div>
+          <hr>
           
           `)
+          
+          totalprice=totalprice+Number(data.output[i].offerprice);
         }
+        $('#totalprice').text(totalprice);
        }
       },
       error:function(){
@@ -110,4 +120,62 @@ if(!('token' in localStorage) ){
       
     })
   })
-  
+
+// Remove item from cart
+
+  function deleteitem(orderid){
+    var formdata={
+      orderId:orderid
+    }
+
+    $.ajax({
+      type:"POST",
+      url:"api/deletecartapi.php",
+      datatype:"JSON",
+      data:formdata,
+      success:function(data){
+       data=JSON.parse(data)
+       if(data.status){
+        window.alert(data.output)
+        window.location.replace("product.php")
+       }
+       else{
+        window.alert(data.output)
+       }
+      },
+      error:function(){
+
+      }
+    })
+  }
+
+
+
+//Place Order
+
+
+
+  $('#placeOrder').click(function(){
+    var formdata={userid:localStorage.getItem('token')}
+$.ajax({
+  type:"POST",
+  url:"api/placeorderapi.php",
+  datatype:"JSON",
+  data:formdata,
+  success:function(data){
+    data=JSON.parse(data)
+    if (data.status){
+      window.alert("Order Placed Successfully 😃.")
+      window.location.reload()
+    }
+    else{
+      window.alert(data.message)
+      window.location.reload()
+     }
+  },
+  error:function(){
+
+  }
+})
+
+  })

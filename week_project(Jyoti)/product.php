@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
     <style>
@@ -33,7 +34,7 @@
             <div class="col-2"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="cart">Cart <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg></button></div>
-                    <div class="col-2 justify-content-right"><a class="btn btn-primary" id="orders" >Orders</a>
+                    <div class="col-2 justify-content-right"><a class="btn btn-primary" id="myOrders" href="myorders.php">Orders</a>
                 
             </div>
             <div class="col-2 justify-content-right"><a class="btn btn-primary" id="logout" >Log Out</a>
@@ -42,7 +43,7 @@
             </div>
         </div>
         <div class="container-xxl">
-            <div class="row pt-3" id="itemdetails" style="background-color:rgb(209, 243, 195); padding-bottom:4%;">
+            <div class="row pt-3" id="itemdetails" style="background-color:rgb(209, 243, 195);font-size: 16px; font-weight:bold; padding-bottom:4%;">
 
             </div>
             <div class="container-xxl"style="background-color:rgb(0, 0, 0)">
@@ -139,17 +140,26 @@
                             <div class="row" id="myCart">
 
                             </div>
+                            
                         </div>
                         <div class="modal-footer">
                             <div id="Error" class="text-danger"></div>
+                            <div style="font-size: 20px; font-weight:bold;">Total price: INR <span id="totalprice"></span></div>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="add">Place Order</button>
+                            <button type="button" class="btn btn-primary" id="placeOrder">Place Order</button>
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+     
+
+<!-- Modal -->
+
+
+        
     </div>
 
 </body>

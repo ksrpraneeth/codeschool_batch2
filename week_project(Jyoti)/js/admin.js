@@ -1,6 +1,9 @@
 if(!('token' in localStorage) ){
     window.location.replace('login.php')
 }
+if(localStorage.getItem('role_id')==1){
+  window.location.replace('product.php')
+}
 
 function myFunction() {
     
@@ -40,6 +43,7 @@ for(let i=0;i<data.output.length;i++){
 <div>Price : INR ${data.output[i].productprice}</div>
 <div>Offer Price : INR ${data.output[i].offerprice}</div>
 <div class="description">Description :${data.output[i].productdescription}</div>
+<div class="row justify-content-center"><button onclick="deleteitem(${data.output[i].id})"type="button" class="btn btn-danger col-3 mb-2 mt-2 ">Remove</button></div>
 <div>
 `)
 }
@@ -56,3 +60,30 @@ $('#logout').click(function(){
     localStorage.clear()
     window.location.replace('login.php')
   })
+
+
+
+  function deleteitem(productid){
+    var formdata={productId:productid}
+
+    $.ajax({
+      type:"POST",
+      url:"api/admindeleteapi.php",
+      data:formdata,
+      datatype:"JSON",
+      success:function(data){
+        data=JSON.parse(data);
+if(data.status){
+  window.alert(data.output);
+  window.location.replace('admin.php')
+}
+else{
+  window.alert(data.output);
+}
+      },
+      error:function(){
+
+      }
+
+    })
+  }

@@ -31,7 +31,7 @@ if (!$password){
     $status=false;
 }
 if (!$status){
-    $response=["status"=>false,"output"=>"Please Enter correct Phone Number and Password"];
+    $response=["status"=>false,"message"=>"Please Enter  Phone Number and Password"];
     echo json_encode($response);
     return;
 }
@@ -43,7 +43,7 @@ $statement->execute([$phoneNumber,$password]);
 $result= $statement->fetchAll(PDO::FETCH_ASSOC);
 if(count($result)==0){
     $response['status']=false;
-    $response['message']="Mobile Number or Password is wrong";
+    $response['message']="Mobile Number or Password is wrong 😌";
     echo json_encode($response);
     return;
 

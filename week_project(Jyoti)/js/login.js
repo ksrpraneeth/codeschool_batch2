@@ -21,7 +21,7 @@ $("#login").click(function () {
         data = JSON.parse(data);
         if (data.status) {
           
-  window.alert("Login succesfully")
+  window.alert("Login Succesful 😃")
   localStorage.setItem('token',data.output[0].token);
   localStorage.setItem('role_id',data.output[0].role_id);
   if(data.output[0].role_id==1){
@@ -35,7 +35,8 @@ $("#login").click(function () {
   
         
         else {
-          $("error").text(data.output);
+          window.alert(data.message)
+          window.location.reload()
         }
       },
   

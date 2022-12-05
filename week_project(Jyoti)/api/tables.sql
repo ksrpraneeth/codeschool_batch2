@@ -82,7 +82,7 @@ CREATE TABLE cartDetails(
 --Create Table Order Details
 
 
-CREATE TABLE orderDetails(
+CREATE TABLE orderdetails(
     orderDetailsId SERIAL PRIMARY KEY,
     productId INT REFERENCES products(id),
     order_id  INT REFERENCES orders(orderId)
@@ -101,3 +101,26 @@ CREATE TABLE orderDetails(
 
 select o.productid,o.userId,p.imagelink,p.offerprice,p.productName,sum(p.offerPrice)  from orders as o ,products as p where o.productid=p.id
 GROUP BY o.productId
+
+
+
+CREATE TABLE placeorder(
+    Id serial primary key,
+    user_id INT references  users(id),
+    product_id INT references  products(id),
+    created_time  timestamptz default now()
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+

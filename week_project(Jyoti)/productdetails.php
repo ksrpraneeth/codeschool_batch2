@@ -23,6 +23,10 @@
   if(!('token' in localStorage) ){
     window.location.replace('login.php')
 }
+
+if(localStorage.getItem('role_id')==2){
+  window.location.replace('admin.php')
+}
 var formdat={productid:localStorage.getItem('productid')}
 
 
