@@ -3,12 +3,25 @@ include "dbconnection.php";
 
 try{
 
-$statement=$pdo->prepare("select e.id,concat(e.surename,' ',e.firstname,' ',e.lastname),e.date_of_joining,e.dob,e.gender,w.status_description,d.description,l.district,e.gross from employees as e,working_status as w,location as l,designation as d
-where e.working_status_id=w.id and e.location_id=l.id and e.designation_id=d.id");
+    $query="select e.id,concat(e.surename,' ',e.firstname,' ',e.lastname),e.date_of_joining,e.dob,e.gender,w.status_description,d.description,l.district,e.gross from employees as e,working_status as w,location as l,designation as d
+where e.working_status_id=w.id and e.location_id=l.id and e.designation_id=d.id ";
+
+if(array_key_exists('workingstatus', $_POST) && $_POST['workingstatus'] != "") {
+    $query .= ' AND e.working_status_id = '.$_POST['workingstatus'].'';
+}
+
+if(array_key_exists('location', $_POST) && $_POST['location'] != "") {
+    $query .= ' AND e.location_id = '.$_POST['location'].'';
+}
+
+if(array_key_exists('designation', $_POST) && $_POST['designation'] != "") {
+    $query .= ' AND e.designation_id = '.$_POST['designation'].'';
+}
+$query.=' order by id desc';
+
+$statement=$pdo->prepare($query);
 $statement->execute();
- $result=$statement->fetchAll(PDO::FETCH_ASSOC);
-
-
+$result=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 if(count($result)==0){
     $response=["status"=>false,"message"=>"Data not found"];
@@ -16,16 +29,10 @@ if(count($result)==0){
     return;
 }
 
-
-
-$response=["status"=>true,
-"message"=>"",
-"Data"=>$result];
+$response=["status"=>true, "message"=>"", "Data"=>$result];
 echo  json_encode($response);
-}
 
-
-catch(PDOException $e){
+} catch(PDOException $e){
     $response=["status"=>false,"message"=>$e->getMessage()];
     echo json_encode($response);
 }

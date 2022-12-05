@@ -1,56 +1,22 @@
 <?php
 include "dbconnection.php";
 try{
-$workingstatus=$_POST['workingstatus'];
-$location=$_POST['location'];
-$designation=$_POST['designation'];
-
-if(!$workingstatus && !$location && !$designation){
-    $response=["status"=>false,"message"=>"No filter"];
-    echo json_encode($response);
-    return;
-}
-
 
 $query="select e.id,concat(e.surename,' ',e.firstname,' ',e.lastname),e.date_of_joining,e.dob,e.gender,w.status_description,d.description,l.district,e.gross from employees as e,working_status as w,location as l,designation as d
 where e.working_status_id=w.id and e.location_id=l.id and e.designation_id=d.id ";
 
-
-
-if(!$location && !$designation){
-    $query=$query.'and e.working_status_id='."{$workingstatus}";
-  
-}
-else if(!$workingstatus && !$designation){
-    $query=$query.'and e.location_id='."{$location}";
-   
+if(array_key_exists('workingstatus', $_POST) && $_POST['workingstatus'] != "") {
+    $query .= ' AND e.working_status_id = '.$_POST['workingstatus'].'';
 }
 
-
-else if(!$workingstatus && !$location){
-
-    $query=$query.'and e.designation_id='.'{$designation}';
-    
-}
-else if(!$workingstatus){
-    $query=$query.'and e.designation_id='."{$designation}".'and e.location_id='.'{$location}';
-    
+if(array_key_exists('location', $_POST) && $_POST['location'] != "") {
+    $query .= ' AND e.location_id = '.$_POST['location'].'';
 }
 
-else if(!$location){
-
-    $query=$query.'and e.designation_id='.'{$designation}'."and e.working_status_id=".'{$workingstatus}';
-   
+if(array_key_exists('designation', $_POST) && $_POST['designation'] != "") {
+    $query .= ' AND e.designation_id = '.$_POST['designation'].'';
 }
 
-else if(!$designation){
-    $query=$query.'and e.location_id='."{$location}".'and e.working_status_id'.'{$workingstatus}';
-    
-}
-
-else{
-    $query=$query.'and e.location_id='.'{$location}'.'and e.working_status_id='.'{$workingstatus}'.'and e.designation_id='.'{$designation}';
-}
 $statement=$pdo->prepare($query);
 $statement->execute();
 $result=$statement->fetchAll(PDO::FETCH_ASSOC);
@@ -59,10 +25,8 @@ echo json_encode($response);
 
 
 
-}
-
-catch (PDOException $e) {
-    $response=["status"=>false,"output"=>"Can not login"];
+} catch (PDOException $e) {
+    $response=["status"=>false,"message"=>$e->getMessage()];
     echo json_encode($response);
     return;
 }

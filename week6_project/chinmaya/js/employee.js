@@ -297,7 +297,7 @@ $('#filterbutton').click(function(){
     console.log(formdata)
     $.ajax({
         type:"POST",
-        url:"api/filterapi.php",
+        url:"api/employee.php",
         data:formdata,
         datatype:"JSON",
         success:function(data){
