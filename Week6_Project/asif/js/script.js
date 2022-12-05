@@ -397,7 +397,12 @@ function logout() {
                 localStorage.removeItem("user_data");
                 window.location.replace("login.html");
             } else {
-                window.alert("Please Try Again Later!");
+                swal({
+                    title: "Error",
+                    text: output.message,
+                    icon: "error",
+                    button: "Close",
+                });
             }
         }
     });
@@ -456,11 +461,21 @@ function formValidation() {
             } else if(output.status) {
                 $('#newEmployeeForm')[0].reset();
                 $('#addEmployeeModal').modal('hide');
-                window.alert(output.message);
+                swal({
+                    title: "Success",
+                    text: output.message,
+                    icon: "success",
+                    button: "Close",
+                });
                 getEmployeesData();
             }
             else {
-                window.alert(output.message);
+                swal({
+                    title: "Failed",
+                    text: output.message,
+                    icon: "error",
+                    button: "Close",
+                });
                 getEmployeesData();
             }
         }
@@ -476,7 +491,12 @@ function deleteEmployeeData(employeeId) {
         data: {id: employeeId},
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
-            window.alert(output.message);
+            swal({
+                title: "Success",
+                text: output.message,
+                icon: "success",
+                button: "Close",
+            });
             getEmployeesData();
         }
     });
