@@ -11,7 +11,7 @@ if(!array_key_exists('id', $_POST)) {
 }
 
 if(is_numeric($_POST['id'])) {
-    $query = "SELECT MONTHNAME(for_month) AS salary_month, YEAR(for_month) AS salary_year, paid_on, net_salary FROM salaries WHERE employee_id = ?";
+    $query = "SELECT MONTHNAME(for_month) AS salary_month, YEAR(for_month) AS salary_year, DATE_FORMAT(paid_on, '%d/%m/%Y') AS paid_on, FORMAT(net_salary, 2, 'en_IN') AS net_salary FROM salaries WHERE employee_id = ?";
 
     try {
         $statement = $pdo->prepare($query);
@@ -35,7 +35,7 @@ if(is_numeric($_POST['id'])) {
     }
 
 } else {
-    $query = "SELECT s.id, s.employee_id, CONCAT(e.surname, ' ', e.firstname, ' ', e.lastname) AS employee_name, MONTHNAME(s.for_month) AS salary_month, YEAR(s.for_month) AS salary_year, s.paid_on, s.gross_salary, s.deductions, s.net_salary, s.created_at FROM salaries AS s, employees AS e WHERE s.employee_id = e.id ORDER BY s.id";
+    $query = "SELECT s.id, s.employee_id, CONCAT(e.surname, ' ', e.firstname, ' ', e.lastname) AS employee_name, MONTHNAME(s.for_month) AS salary_month, YEAR(s.for_month) AS salary_year, DATE_FORMAT(s.paid_on, '%d/%m/%Y') AS paid_on, FORMAT(e.gross_salary, 2, 'en_IN') AS gross_salary, FORMAT(s.deductions, 2, 'en_IN') AS deductions, FORMAT(s.net_salary, 2, 'en_IN') AS net_salary, DATE_FORMAT(s.created_at, '%d/%m/%Y %h:%i %p') AS created_at FROM salaries AS s, employees AS e WHERE s.employee_id = e.id ORDER BY s.id";
 
     try {
         $statement = $pdo->query($query);

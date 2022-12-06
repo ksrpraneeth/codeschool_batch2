@@ -15,7 +15,7 @@
     <script src="js/script.js"></script>
     <script type="text/javascript">
         if (!localStorage.getItem('user_data')) {
-            window.location.replace("login.html");
+            window.location.replace("login.php");
         }
     </script>
     <link rel="shortcut icon" href="https://d20exy1ygbh3sg.cloudfront.net/fms/images/favicon.ico" type="image/x-icon">
