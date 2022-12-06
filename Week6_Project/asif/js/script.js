@@ -43,13 +43,13 @@ function getEmployeesData(workingStatusId, designationId, locationId) {
             if(output.status) {
                 // table head
                 $('#employeesTable thead').append('<tr>'+
-                '<th scope="col">ID</th>'+
+                '<th scope="col">S.No</th>'+
                 '<th scope="col">Name</th>'+
-                '<th scope="col">Date Joined</th>'+
-                '<th scope="col">DOB</th>'+
+                '<th scope="col">Date of Joining</th>'+
+                '<th scope="col">Date of Birth</th>'+
                 '<th scope="col">Gender</th>'+
                 '<th scope="col">Phone</th>'+
-                '<th scope="col">Work Status</th>'+
+                '<th scope="col">Working Status</th>'+
                 '<th scope="col">Designation</th>'+
                 '<th scope="col">Location</th>'+
                 '<th scope="col">Gross Salary</th>'+
@@ -71,8 +71,8 @@ function getEmployeesData(workingStatusId, designationId, locationId) {
                     '<td>'+employeeData.location+'</td>'+
                     '<td>'+employeeData.gross_salary+'</td>'+
                     '<td>'+employeeData.created_at+'</td>'+
-                    '<td><a href="#" class="btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryModal" onclick="viewSalaryDetails('+employeeData.id+')">View</a>'+
-                    '<a href="#" class="btn btn-danger btn-sm m-1" onclick="deleteEmployeeData('+employeeData.id+')">Delete</a>'+
+                    '<td><a href="#" class="btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryModal" onclick="viewSalaryDetails('+employeeData.id+')">View Salaries</a>'+
+                    '<a href="#" class="btn btn-danger btn-sm m-1" onclick="deleteEmployeeData('+employeeData.id+')">Delete Employee</a>'+
                     '</td></tr>');
                 });
 
@@ -99,7 +99,7 @@ function getEmployeeForSalary(employeeId) {
             let employeeData = output.data[0];
             if(output.status) {
                 $('#employeeDetails').empty().append('<div class="row"><p class="col-sm-6"><strong>Name:</strong> '+employeeData.name+'</p>'+
-                '<p class="col-sm-6"><strong>DOJ:</strong> '+employeeData.date_of_joining+'</p></div>'+
+                '<p class="col-sm-6"><strong>Date of Joining:</strong> '+employeeData.date_of_joining+'</p></div>'+
                 '<div class="row"><p class="col-sm-6"><strong>Working Status:</strong> '+employeeData.working_status+'</p>'+
                 '<p class="col-sm-6"><strong>Designation:</strong> '+employeeData.designation+'</p></div>'            
                 );
@@ -215,7 +215,7 @@ function getEmployeeforSalaryBreakup(employeeId) {
             let employeeData = output.data[0];
             if(output.status) {
                 $('#employeeDetails').empty().append('<div class="row"><p class="col-sm-6"><strong>Name:</strong> '+employeeData.name+'</p>'+
-                '<p class="col-sm-6"><strong>DOJ:</strong> '+employeeData.date_of_joining+'</p></div>'+
+                '<p class="col-sm-6"><strong>Date of Joining:</strong> '+employeeData.date_of_joining+'</p></div>'+
                 '<div class="row"><p class="col-sm-6"><strong>Working Status:</strong> '+employeeData.working_status+'</p>'+
                 '<p class="col-sm-6"><strong>Designation:</strong> '+employeeData.designation+'</p></div>');
             }
@@ -395,9 +395,14 @@ function logout() {
             let output = JSON.parse(response);
             if(output.status) {
                 localStorage.removeItem("user_data");
-                window.location.replace("login.html");
+                window.location.replace("login.php");
             } else {
-                window.alert("Please Try Again Later!");
+                swal({
+                    title: "Error",
+                    text: output.message,
+                    icon: "error",
+                    button: "Close",
+                });
             }
         }
     });
@@ -456,11 +461,21 @@ function formValidation() {
             } else if(output.status) {
                 $('#newEmployeeForm')[0].reset();
                 $('#addEmployeeModal').modal('hide');
-                window.alert(output.message);
+                swal({
+                    title: "Success",
+                    text: output.message,
+                    icon: "success",
+                    button: "Close",
+                });
                 getEmployeesData();
             }
             else {
-                window.alert(output.message);
+                swal({
+                    title: "Failed",
+                    text: output.message,
+                    icon: "error",
+                    button: "Close",
+                });
                 getEmployeesData();
             }
         }
@@ -468,15 +483,34 @@ function formValidation() {
     
 }
 
+
 // function to delete employee from the database on page employeesData.php
 function deleteEmployeeData(employeeId) {
-    $.ajax({
-        type: 'POST',
-        url: 'api/deleteEmployeeData.php',
-        data: {id: employeeId},
-        success: function(response, status, xhr) {
-            let output = JSON.parse(response);
-            window.alert(output.message);
+    swal({
+        title: "Are you sure?",
+        text: "All data of the employee will be deleted!",
+        icon: "warning",
+        buttons: ["Cancel", "Delete"],
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                type: 'POST',
+                url: 'api/deleteEmployeeData.php',
+                data: {id: employeeId},
+                success: function(response, status, xhr) {
+                    let output = JSON.parse(response);
+                    swal({
+                        title: "Success",
+                        text: output.message,
+                        icon: "success",
+                        button: "Close",
+                    });
+                    getEmployeesData();
+                }
+            });
+        }
+        else {
             getEmployeesData();
         }
     });

@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- JQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- JS File -->
     <script src="js/script.js"></script>
     <script type="text/javascript">
         if (!localStorage.getItem('user_data')) {
-            window.location.replace("login.html");
+            window.location.replace("login.php");
         }
     </script>
     <link rel="shortcut icon" href="https://d20exy1ygbh3sg.cloudfront.net/fms/images/favicon.ico" type="image/x-icon">

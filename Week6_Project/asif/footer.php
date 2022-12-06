@@ -8,7 +8,7 @@
 
     <script type="text/javascript">
         if (!localStorage.getItem('user_data')) {
-            window.location.replace("login.html");
+            window.location.replace("login.php");
         }
     </script>
 </body>

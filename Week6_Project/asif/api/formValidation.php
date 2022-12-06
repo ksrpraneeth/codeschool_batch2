@@ -41,10 +41,17 @@ if(!array_key_exists("dateOfJoining", $_POST) || $_POST["dateOfJoining"] == "") 
     $response["errors"]["dateOfJoiningError"] = "Please select date of joining";
     $response["status"] = false;
 }
-
+if($_POST["dateOfJoining"] < '2000-01-01' || $_POST["dateOfJoining"] > date("y-m-d") || $_POST["dateOfJoining"] < $_POST["dateOfBirth"]) {
+    $response["errors"]["dateOfJoiningError"] = "Please select valid date of joining";
+    $response["status"] = false;
+}
 
 if(!array_key_exists("dateOfBirth", $_POST) || $_POST["dateOfBirth"] == "") {
     $response["errors"]["dateOfBirthError"] = "Please enter date of birth";
+    $response["status"] = false;
+}
+else if($_POST["dateOfBirth"] < '1930-01-01' || $_POST["dateOfBirth"] > date("y-m-d") || $_POST["dateOfBirth"] > $_POST["dateOfJoining"]) {
+    $response["errors"]["dateOfBirthError"] = "Please select valid date of birth";
     $response["status"] = false;
 }
 
@@ -54,7 +61,7 @@ if(!array_key_exists("mobileNumber", $_POST) || strlen($_POST["mobileNumber"]) =
     $response["status"] = false;
 }
 else if(!preg_match("/^[0-9]+$/", $_POST["mobileNumber"]) || strlen($_POST["mobileNumber"]) != 10) {
-    $response["errors"]["mobileNumberError"] = "Enter correct mobile number";
+    $response["errors"]["mobileNumberError"] = "Mobile number should be 10 digits number only!";
     $response["status"] = false;
 }
 

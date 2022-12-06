@@ -6,12 +6,12 @@ include 'response.php';
 // return if email and password are empty
 if(!array_key_exists('email', $_POST) || strlen($_POST['email']) == 0) {
     $response['status'] = false;
-    $response['message'] = 'Error';
+    $response['message'] = 'Invalid Credentials!';
     $response['data'] += [ "emailError" => 'Please enter email'];
     
     if(!array_key_exists('password', $_POST) || strlen($_POST['password']) == 0) {
         $response['status'] = false;
-        $response['message'] = 'Error';
+        $response['message'] = 'Invalid Credentials!';
         $response['data'] += [ "passwordError" => 'Please enter password'];
     }
 
