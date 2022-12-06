@@ -74,12 +74,16 @@ if('user_token' in localStorage){
                 localStorage.setItem('user_token',JSON.stringify(data.Data[0].token));
                 localStorage.setItem('User_status',JSON.stringify(data.Data[0].status))
                 localStorage.setItem('User_name',JSON.stringify(data.Data[0].name))
-                alert(data.message);
+                swal(data.message, "", "success");
+
+               
                 window.location.replace("index.php");
                
             }
             else{
-                $('#error').text(data.message).removeClass('text-success').addClass('text-danger');
+                swal(data.message, "", 'error');
+                
+                
             }
             },
             error:function(err){
