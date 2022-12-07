@@ -5,8 +5,6 @@ include 'db.php';
 
 $token = isset($_POST['token']) ? $_POST['token'] : null;
 
-
-
 if(!$token){
     $response['status'] = false;
     $response['message'] = "Invalid";
@@ -29,18 +27,5 @@ $response['message'] = "Valid";
 $response['data'] = $resultSet[0];
 echo json_encode($response);
 return;
-
-// session_start();
-
-// if(array_key_exists('user_data',$_SESSION))
-
-// $_SESSION["user_data"];
-
-
-
-// $statement = $pdo->prepare("select * from employees");
-// $statement->execute()
-
-
 
 ?>

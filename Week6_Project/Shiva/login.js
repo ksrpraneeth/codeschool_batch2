@@ -6,12 +6,6 @@ $(document).ready(function(){
         location.href="login.html";
     } 
 
-    // localStorage.getItem("user_data", null);
-    // window.location.replace("login.html");
-       
-
-
-
 var formData = {
     token: localStorage.getItem("user_data"),
 }

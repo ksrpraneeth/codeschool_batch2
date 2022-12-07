@@ -19,7 +19,6 @@ CREATE TABLE menus(
 INSERT INTO menus(menu,slug)
 VALUES ('Employees','employee_details'),('Attendance','employee_attendance'),('Tasks','employee_tasks');
 
-
 -- Table 1
 
 CREATE TABLE organizations(
@@ -93,4 +92,3 @@ CREATE TABLE tasks(
         priority VARCHAR(50),
         taskDetails VARCHAR(500)
 );
-

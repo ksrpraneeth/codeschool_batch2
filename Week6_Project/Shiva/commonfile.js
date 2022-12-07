@@ -5,13 +5,13 @@ $(document).ready(function(){
         url: 'menu.php',
         type: 'GET',  
         success: function (data, status) {
-            data = JSON.parse(data);
-            if(!data.status) {
+            var response = JSON.parse(data);
+            if(!response.status) {
     
             }
     
-            for(var i = 0; i<data.data.length; i++) {
-                menus += "<li><a href='"+data.data[i]['slug']+".html'>"+data.data[i]['menu']+"</a></li>";
+            for(var i = 0; i<response.data.length; i++) {
+                menus += "<li><a href='"+response.data[i]['slug']+".html'>"+response.data[i]['menu']+"</a></li>";
             }
             $('#menubar').html(menus);
             console.log(menus);

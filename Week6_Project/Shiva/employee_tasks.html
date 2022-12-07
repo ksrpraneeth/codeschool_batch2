@@ -253,8 +253,6 @@
                             <th>Priority</th>
 
                             <th>Task Details</th>
-
-
                         </tr>
                     </thead>
 
@@ -295,7 +293,6 @@
     }
 
 $('#submitbtn').click(function () {
-    
 
         var formData = {
             employee_id: $('#empid').val(),
@@ -325,16 +322,23 @@ $('#submitbtn').click(function () {
             }
         })
     });
+    $("#logoutbutton").click(function () {
+        localStorage.removeItem('user_data');
+        window.location.replace("login.html");
+
+    })
 
 
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
-          
 
 </script>
+
 <script src="login.js"></script>
+
 <script src="commonfile.js"></script>
+
 <script>
 
 </script>

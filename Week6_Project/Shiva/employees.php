@@ -26,4 +26,5 @@ catch (PDOException $e) {
         'message'=>$$e->getMessage(),
     ]);
 }
+
 ?>
