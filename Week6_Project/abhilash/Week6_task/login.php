@@ -6,13 +6,13 @@ include 'db.php';
 
 if (!array_key_exists('email', $_POST) || !isset($_POST['email'])) {
     $response['status'] = false;
-    $response['message'] = "Please Enter EMAIL";
+    $response['message'] = "Please Enter Email";
     echo json_encode($response);
     return;
 }
 if (strlen($_POST['email']) == 0) {
     $response['status'] = false;
-    $response['message'] = "Please Enter EMAIL";
+    $response['message'] = "Please Enter Email";
     echo json_encode($response);
     return;
 }
@@ -35,7 +35,7 @@ try {
     $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
     if (count($resultSet) == 0) {
         $response['status'] = false;
-        $response['message'] = "Email or Password is wrong";
+        $response['message'] = "Email or Password Is Wrong";
         echo json_encode($response);
         return;
     }

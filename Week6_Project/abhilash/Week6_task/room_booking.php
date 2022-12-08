@@ -59,7 +59,7 @@ try {
     $isQueryExecuted = $statement->execute([$userId, $_POST['room_id'], $_POST['total_amount'], $check_in, $check_out]);
     if ($isQueryExecuted) {
         $response['status'] = true;
-        $response['message'] = "Room Booking Successful";
+        $response['message'] = "Booking Successful";
         echo json_encode($response);
         return;
     }
