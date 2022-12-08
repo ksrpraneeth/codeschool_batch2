@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid  p-0">
+            <div class="row">
+                <div class=" col-lg-12 col-sm-12 p-0 m-0">
+                    <div class="d-flex flex-row  bg-dark head">
+                        <div class="d-flex justify-content-start align-items-center mx-5 ">
+                            <div>
+                                <h3 class="text-white">𝐀𝐇𝐨𝐭𝐞𝐥𝐬.𝐜𝐨𝐦</h3>
+                            </div>
+                        </div>
+                        <div class=" d-flex  ms-auto p-2 align-items-center mx-5">
+                            <div><button class="btn btn-dark text-white">
+                                    <h5 class="h5"><a href="index.html" class=" text-white ">Home</a></h5>
+                                </button>
+                                <button class="btn btn-dark text-white">
+                                    <h5 class="h5"><a href="hotels.html" class=" text-white">Hotels</a></h5>
+                                </button>
+                                <button class="btn btn-dark text-white">
+                                    <h5 class="h5"><a href="About.html" class=" text-white">About</a></h5>
+                                </button>
+                                <button class="btn btn-dark text-white">
+                                    <h5 class="h5"><a href="" class=" text-white" id="logoutbutton">logout</a></h5>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- section images -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-lg-12 col-sm-12 p-0 m-0">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner ">
+                        <div class="carousel-item active">
+                            <img class="img-fluid hotelimg " src="img/hotelimg.jpeg">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="img-fluid hotelimg" src="img/hotelroom1.jpg">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="img-fluid hotelimg" src="img/hotelimg5.jpeg">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- section images end -->
+    <!-- section rooms -->
+
+
+    <div class="container-fluid p-5 ">
+        <div class="row">
+            <h1 class="h1">Rooms</h1>
+            <div class=" col-lg-12 col-sm-12 image">
+                <div>
+                    <ul class=" list-group list-group-horizontal">
+                        <li class="list-group-item justify-content-between" id="available">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+
+</body>
+<script>
+    if (localStorage.getItem('user_data') == null) {
+        window.location.replace("login.html");
+    }
+    $("#logoutbutton").click(function () {
+        localStorage.removeItem('user_data');
+        window.location.replace("login.html");
+
+    })
+
+    function enablebookoption(id) {
+        console.log(id);
+        var room_id = "book_room_" + id;
+
+        $("#" + room_id).removeClass("hidden");
+        console.log('vy');
+
+    }
+    var params = new URLSearchParams(window.location.search);
+
+    $.ajax({
+        type: "GET",
+        url: "booking.php",
+        data: {
+            'id': params.get('id'),
+        },
+        success: function (res, status, xhr) {
+            let response = JSON.parse(res);
+            if (response.status) {
+                for (let i = 0; i < response.output.length; i++) {
+                    $('#available').append(`
+                    <div class="display">
+                       
+                     <a onclick="enablebookoption(${response.output[i].available_room})"><img src="${response.output[i].room_images}"style="width:100%;height:300px"></style></a>
+                   <p>${response.output[i].hotel_name}<p>
+                    <p>${response.output[i].hotel_type}<p> 
+                    <p>${response.output[i].available_room}<p>
+                    <p>${response.output[i].room_type}<p>
+                    <p>${response.output[i].price}<p>
+                        <button type="button" class="btn btn-success col-sm-3 hidden"
+                    id="book_room_${response.output[i].available_room}" onclick="bookings('${response.output[i].available_room}','${response.output[i].price}')">Book</button>
+                    </div>
+                            `)
+
+                }
+            }
+        }
+    });
+
+    var booking = localStorage.getItem('dates')
+    userid = localStorage.getItem('user_data')
+    dates = JSON.parse(booking);
+    userId = JSON.parse(userid);
+
+    console.log(dates)
+    console.log(userId)
+
+
+    function bookings(roomDetails, price) {
+        var formData = {
+            user_id: userId,
+            room_id: roomDetails,
+            total_amount: price,
+            check_in: dates.checkin_date,
+            check_out: dates.checkout_date
+        }
+        console.log(formData);
+        $.ajax({
+            type: "POST",
+            url: "http://172.31.112.1/Week5_task/room_booking.php",
+            data: formData,
+            success: function (response, status, xhr) {
+                res = JSON.parse(response);
+                if (res.status) {
+                    window.alert(res.message);
+                    window.location.replace("index.html");
+                } else {
+                    $('#error').text(res.message);
+                }
+            },
+            error: function () {
+
+            }
+        })
+    }
+
+
+
+</script>
+
+</html>
