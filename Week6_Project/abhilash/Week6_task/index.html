@@ -154,9 +154,9 @@
         window.location.replace("login.html");
 
     })
-
+    
     $(document).ready(function () {
-
+       
         $('#next').click(function () {
 
             if ($('#checkin').val() == "" || $('#checkout').val() == "") {
@@ -171,6 +171,7 @@
                 }
                 localStorage.setItem("dates", JSON.stringify(dates))
                 console.log('ff')
+                $('#hotels').empty();
                 $.ajax({
                     type: "POST",
                     url: "index.php",
