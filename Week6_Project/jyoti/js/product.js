@@ -7,12 +7,14 @@ if(!('token' in localStorage) ){
 if(localStorage.getItem('role_id')==2){
   window.location.replace('admin.php')
 }
+$('#cartsize').text('');
   
   var formdata = {
     phonenumber: $("#mobileNumber").val(),
     password: $("#password").val(),
   };
-  console.log(formdata);
+ 
+  
   
   $.ajax({
     type: "POST",
@@ -21,6 +23,7 @@ if(localStorage.getItem('role_id')==2){
     datatype: "JSON",
     success: function (data) {
       data = JSON.parse(data);
+     
       if (data.status) {
         for (let i = 0; i < data.output.length; i++) {
           $("#itemdetails").append(`
@@ -71,7 +74,7 @@ if(localStorage.getItem('role_id')==2){
       document.getElementById('time').innerHTML=time;
   }
 
-  
+  //Product Details
   function getitem(id){
    localStorage.setItem('productid',id.toString())
    window.location.replace("productdetails.php");
@@ -98,6 +101,7 @@ if(localStorage.getItem('role_id')==2){
       success:function(data){
        data=JSON.parse(data)
        if(data.status){
+        $('#userName').append(localStorage.getItem('username'))
         let totalprice=0;
         for(let i=0;i<data.output.length;i++){
           $('#myCart').append(`
@@ -178,4 +182,22 @@ $.ajax({
   }
 })
 
+  })
+
+//Cart Count
+var formdata2={usertoken:localStorage.getItem('token')}
+console.log(formdata2)
+  $.ajax({
+    type:"POST",
+    url:"api/cartcountapi.php",
+    data:formdata2,
+    datatype:"JSON",
+    success:function(data){
+     data=JSON.parse(data)
+      if(data.status){
+     
+        console.log(data.output);
+$('#cartsize').text(data.output);
+      }
+    }
   })
