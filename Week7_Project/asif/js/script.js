@@ -71,7 +71,8 @@ function getEmployeesData(workingStatusId, designationId, locationId) {
                     '<td>'+employeeData.location+'</td>'+
                     '<td>'+employeeData.gross_salary+'</td>'+
                     '<td>'+employeeData.created_at+'</td>'+
-                    '<td><a href="#" class="btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryModal" onclick="viewSalaryDetails('+employeeData.id+')">View Salaries</a>'+
+                    '<td><a href="#" class="btn btn-info btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryModal" onclick="viewSalaryDetails('+employeeData.id+')">View Salaries</a>'+
+                    '<a href="#" class="btn btn-secondary btn-sm m-1" data-bs-toggle="modal" data-bs-target="" onclick="editEmployeeData('+employeeData.id+')">Edit Employee</a>'+
                     '<a href="#" class="btn btn-danger btn-sm m-1" onclick="deleteEmployeeData('+employeeData.id+')">Delete Employee</a>'+
                     '</td></tr>');
                 });
@@ -162,6 +163,9 @@ function getEmployeesSalaries() {
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
             if(output.status) {
+
+                $('#salariesTable thead, #salariesTable tbody').empty();
+
                 // table head
                 $('#salariesTable thead').append('<tr>'+
                 '<th scope="col">S.No</th>'+
@@ -188,7 +192,8 @@ function getEmployeesSalaries() {
                     '<td>'+salaryVal.deductions+'</td>'+
                     '<td>'+salaryVal.net_salary+'</td>'+
                     '<td>'+salaryVal.created_at+'</td>'+
-                    '<td><a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewSalaryBreakupModal" onClick="viewSalaryBreakup('+salaryVal.id+','+ salaryVal.employee_id+')">View</a></td>'+
+                    '<td><a href="#" class="btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryBreakupModal" onclick="viewSalaryBreakup('+salaryVal.id+','+ salaryVal.employee_id+')">View</a>'+
+                    '<a href="#" class="btn btn-danger btn-sm m-1" onclick="deleteSalary('+salaryVal.id+')">Delete Salary</a></td>'+
                     '</tr>');
                 });
 
@@ -236,6 +241,7 @@ function viewSalaryBreakup(salaryId, employeeId) {
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
             let employeeData = output.data[0];
+            $('#viewSalaryBreakupModalTable thead, #viewSalaryBreakupModalTable tbody, #viewSalaryError').empty();
             if(output.status) {
                 // salary details
                 $('#employeeDetails').append('<div class="row"><p class="col-sm-6"><strong>Salary Month:</strong> '+employeeData.salary_month+'</p>'+
@@ -243,7 +249,7 @@ function viewSalaryBreakup(salaryId, employeeId) {
                 '<div class="row"><p class="col-sm-6"><strong>Date of Payment:</strong> '+employeeData.paid_on+'</p></p></div>');
                 
                 // table head
-                $('#viewSalaryBreakupModalTable thead, #viewSalaryBreakupModalTable tbody, #viewSalaryError').empty();
+                
                 $('#viewSalaryBreakupModalTable thead').append('<tr>'+
                 '<th scope="col">S.No</th>'+
                 '<th scope="col">Description</th>'+
@@ -278,7 +284,7 @@ function viewSalaryBreakup(salaryId, employeeId) {
 
 
 // function to fetch designations
-function getDesignations(forForm) {
+function getDesignations(forForm, formId) {
     $.ajax({
         type: 'POST',
         url: 'api/getDesignations.php',
@@ -286,9 +292,9 @@ function getDesignations(forForm) {
             let output = JSON.parse(response);
             if(output.status) {
                 if(forForm) {
-                    $('#designation').empty().append('<option hidden disabled>Select</option>');
+                    $(formId+' #designation').empty().append('<option hidden disabled>Select</option>');
                     output.data.forEach((designation) => {
-                        $('#designation').append('<option value="'+designation.id+'">'+designation.description+'</option>');
+                        $(formId+' #designation').append('<option value="'+designation.id+'">'+designation.description+'</option>');
                     });
                 }
                 else {
@@ -304,7 +310,7 @@ function getDesignations(forForm) {
 
 
 // function to fetch working status
-function getWorkingStatus(forForm) {
+function getWorkingStatus(forForm, formId) {
     $.ajax({
         type: 'POST',
         url: 'api/getWorkingStatus.php',
@@ -312,9 +318,9 @@ function getWorkingStatus(forForm) {
             let output = JSON.parse(response);
             if(output.status) {
                 if(forForm) {
-                    $('#workingStatus').empty().append('<option hidden disabled>Select</option>');
+                    $(formId+' #workingStatus').empty().append('<option hidden disabled>Select</option>');
                     output.data.forEach((workingStatus) => {
-                        $('#workingStatus').append('<option value="'+workingStatus.id+'">'+workingStatus.description+'</option>');
+                        $(formId+' #workingStatus').append('<option value="'+workingStatus.id+'">'+workingStatus.description+'</option>');
                     });
                 }
                 else {
@@ -330,7 +336,7 @@ function getWorkingStatus(forForm) {
 
 
 // function to fetch locations
-function getLocations(forForm) {
+function getLocations(forForm, formId) {
     $.ajax({
         type: 'POST',
         url: 'api/getLocations.php',
@@ -338,9 +344,9 @@ function getLocations(forForm) {
             let output = JSON.parse(response);
             if(output.status) {
                 if(forForm) {
-                    $('#location').empty().append('<option hidden disabled>Select</option>');
+                    $(formId+' #location').empty().append('<option hidden disabled>Select</option>');
                     output.data.forEach((location) => {
-                        $('#location').append('<option value="'+location.id+'">'+location.district+'</option>');
+                        $(formId+' #location').append('<option value="'+location.id+'">'+location.district+'</option>');
                     });
                 }
                 else {
@@ -513,5 +519,210 @@ function deleteEmployeeData(employeeId) {
         else {
             getEmployeesData();
         }
+    });
+}
+
+
+function editEmployeeData(employeeId) {
+    swal({
+        title: "Are you sure?",
+        text: "Do you really want to edit this employee data?",
+        icon: "warning",
+        buttons: ["Cancel", "Edit"],
+        dangerMode: true,
+    }).then((willEdit) => {
+        if (willEdit) {
+            $('#editEmployeeModal').modal('show');
+            $('#editEmployeeForm .errorMsgs').text("");
+            getWorkingStatus(1, '#editEmployeeForm');
+            getDesignations(1, '#editEmployeeForm');
+            getLocations(1, '#editEmployeeForm');
+            editEmployeeDataAjax(employeeId);
+        }
+        else {
+            getEmployeesData();
+        }
+    });
+}
+
+
+function editEmployeeDataAjax(employeeId) {
+    $.ajax({
+        type: 'POST',
+        url: 'api/editEmployeeData.php',
+        data: {id: employeeId},
+        success: function(response, status, xhr) {
+            let employee = JSON.parse(response);
+            employee = employee.data[0];
+            $('#editEmployeeForm #surname').val(employee.surname);
+            $('#editEmployeeForm #firstName').val(employee.firstname);
+            $('#editEmployeeForm #lastName').val(employee.lastname);
+            $('#editEmployeeForm #dateOfBirth').val(employee.date_of_birth);
+            $('#editEmployeeForm #dateOfJoining').val(employee.date_of_joining);
+            $('#editEmployeeForm #mobileNumber').val(employee.phone);
+            $('#editEmployeeForm #grossSalary').val(employee.gross_salary);
+            $('#editEmployeeForm #gender').val(employee.gender);
+            $('#editEmployeeForm #workingStatus').val(employee.working_status_id);
+            $('#editEmployeeForm #designation').val(employee.designation_id);
+            $('#editEmployeeForm #location').val(employee.location_id);
+            localStorage.setItem('edit_token', JSON.stringify(employee.id));
+        }
+    });
+}
+
+
+function updateEmployeeData() {
+    if(formVal('#editEmployeeForm')) {
+        var employeeData = {
+            id: JSON.parse(localStorage.getItem('edit_token')),
+            surname: $('#editEmployeeForm #surname').val(),
+            firstname: $('#editEmployeeForm #firstName').val(),
+            lastname: $('#editEmployeeForm #lastName').val(),
+            date_of_birth: $('#editEmployeeForm #dateOfBirth').val(),
+            date_of_joining: $('#editEmployeeForm #dateOfJoining').val(),
+            phone: $('#editEmployeeForm #mobileNumber').val(),
+            gross_salary: $('#editEmployeeForm #grossSalary').val(),
+            gender: $('#editEmployeeForm #gender').val(),
+            working_status_id: $('#editEmployeeForm #workingStatus').val(),
+            designation_id: $('#editEmployeeForm #designation').val(),
+            location_id: $('#editEmployeeForm #location').val(),    
+        } 
+        $.ajax({
+            type: 'POST',
+            url: 'api/updateEmployeeData.php',
+            data: employeeData,
+            success: function(response, status, xhr) {
+                let output = JSON.parse(response);
+                swal({
+                    title: "Success!",
+                    text: "Employee data updated.",
+                    icon: "success",
+                    buttons: "Close",
+                });
+                $('#editEmployeeModal').modal('hide');
+                getEmployeesData();
+            }
+        });
+    }
+}
+
+
+function formVal(formId) {
+    
+    $(formId+ ' .errorMsgs').text("");
+    
+    let toSubmit = true;
+    
+    let firstName = $(formId+' #firstName').val();
+    let lastName = $(formId+' #lastName').val();
+    let dateOfBirth = $(formId+' #dateOfBirth').val();
+    let dateOfJoining = $(formId+' #dateOfJoining').val();
+    let mobileNumber = $(formId+' #mobileNumber').val();
+    let grossSalary = $(formId+' #grossSalary').val();
+
+
+    // for first name
+    if(firstName == "") {
+        $(formId+' #firstNameError').text("Please enter first name");
+        toSubmit = false;
+    } else if(!(/^[A-Z]+$/i).test(firstName)) {
+        $(formId+' #firstNameError').text("Please enter valid first name");
+        toSubmit = false;
+    }
+
+
+    // for last name
+    if(lastName == "") {
+        $(formId+' #lastNameError').text("Please enter last name");
+        toSubmit = false;
+    } else if(!(/^[A-Z]+$/i).test(lastName)) {
+        $(formId+' #lastNameError').text("Please enter valid last name");
+        toSubmit = false;
+    } 
+
+
+    // for date of birth
+    if(dateOfBirth == "") {
+        $(formId+' #dateOfBirthError').text("Please enter date of birth");
+        toSubmit = false;
+    } else if(dateOfBirth > dateOfJoining) {
+        $(formId+' #dateOfBirthError').text("Date of birth should be less than date of joining");
+        toSubmit = false;
+    }
+    
+
+    // for date of joining
+    if(dateOfJoining == "") {
+        $(formId+' #dateOfJoiningError').text("Please enter date of joining");
+        toSubmit = false;
+    } else if(dateOfJoining < dateOfBirth) {
+        $(formId+' #dateOfJoiningError').text("Date of joining should not be less than date of birth");
+        toSubmit = false;
+    }
+    
+
+    // for mobile number
+    if(mobileNumber == "") {
+        $(formId+' #mobileNumberError').text("Please enter mobile number");
+        toSubmit = false;
+    } else if(mobileNumber.length != 10) {
+        $(formId+' #mobileNumberError').text("Mobile number should be of 10 digits only");
+        toSubmit = false;
+    } else if(!(/^[0-9]+$/).test(mobileNumber)) {
+        $(formId+' #mobileNumberError').text("Mobile number should contain only numbers");
+        toSubmit = false;
+    }
+
+
+    // for gross salary
+    if(grossSalary == "") {
+        $(formId+' #grossSalaryError').text("Please enter gross salary")
+        toSubmit = false;
+    } else if(grossSalary < 1000 || grossSalary > 1000000) {
+        $(formId+' #grossSalaryError').text("Please enter valid salary amount")
+        toSubmit = false;
+    } 
+
+    return toSubmit;
+}
+
+
+// function to delete employee salary details 
+function deleteSalary(salaryId) {
+    swal({
+        title: "Are you sure?",
+        text: "Do you want to delete this employee salary data?",
+        icon: "warning",
+        buttons: ["Cancel", "Delete"],
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                type: 'POST',
+                url: 'api/deleteSalary.php',
+                data: {id: salaryId},
+                success: function(response, status, xhr) {
+                    let output = JSON.parse(response);
+                    if(output.status) {
+                        console.log(output.status);
+                        swal({
+                            title: "Success",
+                            text: output.message,
+                            icon: "success",
+                            button: "Close",
+                        });
+                    }
+                    else {
+                        swal({
+                            title: "Error",
+                            text: output.message,
+                            icon: "error",
+                            button: "Close",
+                        });
+                    }
+                }
+            });
+        }
+        getEmployeesSalaries();
     });
 }
