@@ -34,7 +34,8 @@ function myFunction() {
 for(let i=0;i<data.output.length;i++){
     
     $('#itemdetails').append(`
-<div class="col-lg-4 sm-12" style="padding-top:10%;">
+    <div class="col-lg-4 sm-12" style="padding-top:10%;" onclick="getitem(${data.output[i].id})">
+
 <div class="image"><img src="${data.output[i].imagelink}" style="width:250px;height:250px;"></div>
 <div>Product Name :${data.output[i].productname}</div>
 <div>Category :${data.output[i].category}</div>
@@ -63,6 +64,15 @@ $('#logout').click(function(){
 
 
 
+//Product Details
+function getitem(id){
+  localStorage.setItem('productid',id.toString())
+  window.location.replace("adminproductdetails.php");
+ }
+
+
+//Delete Item
+
   function deleteitem(productid){
     var formdata={productId:productid}
 
@@ -87,3 +97,15 @@ else{
 
     })
   }
+
+    
+
+
+
+  //View all orders of Customers
+
+
+  $('#allorders').click(function(){
+    
+    window.location.replace('allorders.php')
+  })

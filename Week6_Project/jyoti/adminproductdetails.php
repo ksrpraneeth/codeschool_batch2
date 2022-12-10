@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,22 +16,24 @@
         <div class="row" style=></div>
         <div class="row" id="product" style="padding-bottom: 8%;background-color: white;"></div>
     </div>
+
 </body>
 
 <script>
-  if(!('token' in localStorage) ){
-    window.location.replace('login.php')
-}
+//   if(!('token' in localStorage) ){
+//     window.location.replace('login.php')
+// }
 
- if(!localStorage.getItem('role_id')==2){
-   window.location.reload();
- }
+ //if(localStorage.getItem('role_id')==2){
+  //   window.location.reload();
+//}
 var formdat={productid:localStorage.getItem('productid')}
-
+// console.log(localStorage.getItem('productid'))
+// console.log('testing console')
 
 $.ajax({
     type:"POST",
-    url:"api/productdetailapi.php",
+    url:"api/adminproductdetailsapi.php",
     data:formdat,
     datatype:"JSON",
     success:function(data){
@@ -55,7 +56,7 @@ $.ajax({
                 <div>Price : INR ${data.output[0].productprice}</div>
                 <div>Offer Price : INR ${data.output[0].offerprice}</div>
                 <div class="description">Description :${data.output[0].productdescription}</div>
-                <div class="addtoCart mt-4 " ><button id="addCart" class ="btn btn-primary" onclick="addtoCart()">Add To Cart</button></div>
+            
                 
                 
                 </div></div>
@@ -69,40 +70,13 @@ $.ajax({
     }
 })
 
+
+//Back
+
 function back(){
     
-    window.location.replace('product.php')
+    window.location.replace('admin.php')
 
 }
-    
-
-    function addtoCart(){
-
- var formCartData={
-     productid:localStorage.getItem('productid'),
-        usertoken:localStorage.getItem('token')}
-        
-       
-    $.ajax({
-    type:"POST",
-    url:"api/addToCartapi.php",
-    data:formCartData,
-    datatype:"JSON",
-    success:function(data){
-        data=JSON.parse(data);
-            if(data.status){
-window.alert("Added to cart")
-
-            }
-    },
-    error:function(){
-
-    }
-})
-
-}
-
-   
-
 </script>
-</html>
+
