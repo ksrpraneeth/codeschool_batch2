@@ -1,4 +1,4 @@
-if(!('user_token' in localStorage)){
+if (!('user_token' in localStorage)) {
     window.location.replace('login.php');
 }
 
@@ -6,6 +6,7 @@ function viewEmployee(employeeId) {
     $('#salaryerror').text("");
     $('#employeedata').empty();
     $('#employeesalary').removeClass('d-none')
+    $('#employeename').text('');
     var id = { employeeid: employeeId }
     $.ajax({
         type: "POST",
@@ -48,9 +49,11 @@ function viewEmployee(employeeId) {
 
             }
             else {
-                $('#employeename').text(data.Data[0].concat)
-                $('#employeesalary').addClass('d-none')
-                $('#salaryerror').text(data.message);
+                swal(data.message, "", 'error');
+                // window.location.reload();
+                // $('#employeename').text(data.Data[0].concat)
+                // $('#employeesalary').addClass('d-none')
+                // $('#salaryerror').text(data.message);
             }
 
 
@@ -89,12 +92,12 @@ function employee_details() {
 
                 //     </tr>`);
                 // }
-                
+
                 data.Data.forEach(function (element, index) {
                     $("#mytable").append(`<tr>
                      <td>${index + 1}</td>
                      <td>${element.concat}</td>
-                     <td>${element.date_of_joining}</td>
+                     <td>${element.doj}</td>
                      <td>${element.dob}</td>
                      <td>${element.gender}</td>
                      <td>${element.status_description}</td>
@@ -134,29 +137,29 @@ $('#employeeData').click(function () {
             data = JSON.parse(data);
             if (data.status) {
 
-            $('#workingStatus').append(`<option disabled selected>Select Here</option>`);
+                $('#workingStatus').append(`<option disabled selected>Select Here</option>`);
 
-          data.Data[0].forEach(function(element){
-             $('#workingStatus').append(`
+                data.Data[0].forEach(function (element) {
+                    $('#workingStatus').append(`
              <option value=${element.id}>${element.status_description}</option>
              `)
-          })
+                })
 
-        $('#designation').append(`<option disabled selected>Select Here</option>`);
+                $('#designation').append(`<option disabled selected>Select Here</option>`);
 
-          data.Data[1].forEach(function(element){
-            $('#designation').append(`
+                data.Data[1].forEach(function (element) {
+                    $('#designation').append(`
             <option value=${element.id}>${element.description}</option>
             `)
-         })
+                })
 
-         $('#location').append(`<option disabled selected>Select Here</option>`);
+                $('#location').append(`<option disabled selected>Select Here</option>`);
 
-         data.Data[2].forEach(function(element){
-            $('#location').append(`
+                data.Data[2].forEach(function (element) {
+                    $('#location').append(`
             <option value=${element.id}>${element.district}</option>
             `)
-         })
+                })
 
 
 
@@ -170,37 +173,37 @@ $('#employeeData').click(function () {
 
 
 
-$('#addEmployee').click(function(){
+$('#addEmployee').click(function () {
     $('#error').text("")
-    var formdata={
-     firstname:$('#firstname').val(),
-     lastname:$('#lastname').val(),
-     surename:$('#surname').val(),
-     doj:$('#doj').val(),
-     dob:$('#dob').val(),
-     gender:$('#gender').val(),
-     working_status:$('#workingStatus').val(),
-     designation:$('#designation').val(),
-     location:$('#location').val(),
-     grosssalary:$('#grosssalary').val()
+    var formdata = {
+        firstname: $('#firstname').val(),
+        lastname: $('#lastname').val(),
+        surename: $('#surname').val(),
+        doj: $('#doj').val(),
+        dob: $('#dob').val(),
+        gender: $('#gender').val(),
+        working_status: $('#workingStatus').val(),
+        designation: $('#designation').val(),
+        location: $('#location').val(),
+        grosssalary: $('#grosssalary').val()
 
     }
     $.ajax({
-        type:"POST",
-        url:"api/employeetableAdd.php",
-        data:formdata,
-        datatype:"JSON",
-        success:function(data){
-         data=JSON.parse(data);
-         if(data.status){
-            window.alert(data.message)
-            window.location.replace("employeedetail.php")
-         }
-         else{
-           $('#error').text(data.message)
-         }
+        type: "POST",
+        url: "api/employeetableAdd.php",
+        data: formdata,
+        datatype: "JSON",
+        success: function (data) {
+            data = JSON.parse(data);
+            if (data.status) {
+                swal(data.message, "", "success");
+                window.location.replace("employeedetail.php")
+            }
+            else {
+                $('#error').text(data.message)
+            }
         },
-        error: function(){
+        error: function () {
 
         }
     })
@@ -208,24 +211,24 @@ $('#addEmployee').click(function(){
 
 
 
-function deleteemployee(emploeeid){
+function deleteemployee(emploeeid) {
     $('#deleteError').text("")
-    var formdata={
-     employeeid:emploeeid
+    var formdata = {
+        employeeid: emploeeid
     }
     $.ajax({
-        type:"POST",
-        url:"api/deleteemployeeapi.php",
-        data:formdata,
-        datatype:"JSON",
-        success:function(data){
-            data=JSON.parse(data)
-            if(data.status){
-                window.alert(data.message)
+        type: "POST",
+        url: "api/deleteemployeeapi.php",
+        data: formdata,
+        datatype: "JSON",
+        success: function (data) {
+            data = JSON.parse(data)
+            if (data.status) {
+                swal(data.message, "", "success");
                 window.location.replace("employeedetail.php");
             }
-            else{
-                $('#deleteError').text(data.message)
+            else {
+                swal("Can not delete the employee.", "", "error");
             }
         }
     })
@@ -249,29 +252,29 @@ $.ajax({
         data = JSON.parse(data);
         if (data.status) {
 
-        $('#employeeworking').append(`<option  selected value="">All</option>`);
+            $('#employeeworking').append(`<option  selected value="">All</option>`);
 
-      data.Data[0].forEach(function(element){
-         $('#employeeworking').append(`
+            data.Data[0].forEach(function (element) {
+                $('#employeeworking').append(`
          <option value=${element.id}>${element.status_description}</option>
          `)
-      })
+            })
 
-    $('#employeedesignation').append(`<option  selected value="">All</option>`);
+            $('#employeedesignation').append(`<option  selected value="">All</option>`);
 
-      data.Data[1].forEach(function(element){
-        $('#employeedesignation').append(`
+            data.Data[1].forEach(function (element) {
+                $('#employeedesignation').append(`
         <option value=${element.id}>${element.description}</option>
         `)
-     })
+            })
 
-     $('#employeelocation').append(`<option selected value="">All</option>`);
+            $('#employeelocation').append(`<option selected value="">All</option>`);
 
-     data.Data[2].forEach(function(element){
-        $('#employeelocation').append(`
+            data.Data[2].forEach(function (element) {
+                $('#employeelocation').append(`
         <option value=${element.id}>${element.district}</option>
         `)
-     })
+            })
 
 
 
@@ -285,29 +288,29 @@ $.ajax({
 
 
 
-$('#filterbutton').click(function(){
+$('#filterbutton').click(function () {
     $('#mytable2').empty();
     $('#maintable').addClass('d-none');
     $('#secondtable').removeClass('d-none')
-    var formdata={
-        workingstatus:$('#employeeworking').val(),
-        location:$('#employeelocation').val(),
-        designation:$('#employeedesignation').val()
+    var formdata = {
+        workingstatus: $('#employeeworking').val(),
+        location: $('#employeelocation').val(),
+        designation: $('#employeedesignation').val()
     }
     console.log(formdata)
     $.ajax({
-        type:"POST",
-        url:"api/employee.php",
-        data:formdata,
-        datatype:"JSON",
-        success:function(data){
-            data=JSON.parse(data)
-            if(data.status){
+        type: "POST",
+        url: "api/employee.php",
+        data: formdata,
+        datatype: "JSON",
+        success: function (data) {
+            data = JSON.parse(data)
+            if (data.status) {
                 data.Data.forEach(function (element, index) {
                     $("#mytable2").append(`<tr>
                      <td>${index + 1}</td>
                      <td>${element.concat}</td>
-                     <td>${element.date_of_joining}</td>
+                     <td>${element.doj}</td>
                      <td>${element.dob}</td>
                      <td>${element.gender}</td>
                      <td>${element.status_description}</td>
@@ -318,19 +321,23 @@ $('#filterbutton').click(function(){
                        
                         <td><button class="btn btn-danger" onclick=deleteemployee(${element.id})>Delete</button></td>
                         </tr>`);
-                        console.log(2659)
+                    console.log(2659)
                 })
             }
-            else{
+            else {
                 $('#maintable').removeClass('d-none');
                 $('#secondtable').addClass('d-none')
             }
 
-        },error:function(){
-            
+        }, error: function () {
+
         }
     })
 })
+
+
+
+
 
 
 

@@ -15,7 +15,7 @@ try {
     $name=$statement2->fetchAll(PDO::FETCH_ASSOC);
 
     if(count($result)==0 ){
-        $response=["status"=>false,"message"=>"No salary","Data"=>$name];
+        $response=["status"=>false,"message"=>"No salary",];
         echo json_encode($response);
         return;
     }

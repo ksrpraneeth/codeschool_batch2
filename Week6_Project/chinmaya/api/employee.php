@@ -3,7 +3,7 @@ include "dbconnection.php";
 
 try{
 
-    $query="select e.id,concat(e.surename,' ',e.firstname,' ',e.lastname),e.date_of_joining,e.dob,e.gender,w.status_description,d.description,l.district,e.gross from employees as e,working_status as w,location as l,designation as d
+    $query="select e.id,concat(e.surename,' ',e.firstname,' ',e.lastname),to_char(e.date_of_joining,'DD-MM-YYYY')as doj,to_char(e.dob,'DD-MM-YYYY')as dob,e.gender,w.status_description,d.description,l.district,to_char(e.gross,'fm999G999D99')as gross from employees as e,working_status as w,location as l,designation as d
 where e.working_status_id=w.id and e.location_id=l.id and e.designation_id=d.id ";
 
 if(array_key_exists('workingstatus', $_POST) && $_POST['workingstatus'] != "") {
