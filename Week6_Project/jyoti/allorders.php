@@ -143,7 +143,7 @@ $.ajax({
         
     $('#allorders').append(`<div class="text-center" style="border 1px solid black">ORDER ID:${data.output[i][0]['orderid']}</div> <div>STATUS: 
     <button type="button" class="btn btn-danger" onclick="cancelOrder(${data.output[i][0]['orderid']})">Reject</button>
-     <button type="button" class="btn btn-success" onclick="aproveOrder(${data.output[i][0]['orderid']})">Aprove</ button>
+     <button type="button" class="btn btn-success" onclick="approveOrder(${data.output[i][0]['orderid']})">Approve</ button>
      </div> `);
         
 
@@ -229,14 +229,15 @@ function cancelOrder(orderid){
   status:false}
   $.ajax({
   type:"POST",
-  url:"api/orderstatusUpdateapi.php",
+  url:"api/orderdeleteapi.php",
   data:formdata,
   datatype:"JSON",
   success:function(data){
-    console.log(34)
+    
     data=JSON.parse(data)
     if(data.status){
       window.alert(data.message)
+      window.location.reload()
     }
     else{
       window.alert(data.message)
@@ -251,7 +252,7 @@ function cancelOrder(orderid){
 
 
 
-////Order Aprove
+////Order Approve
 
 
 function aproveOrder(orderid){
@@ -259,13 +260,14 @@ function aproveOrder(orderid){
   status:true}
  $.ajax({
   type:"POST",
-  url:"api/orderstatusUpdateapi.php",
+  url:"api/orderapproveapi.php",
   data:formdata,
   datatype:"JSON",
   success:function(data){
     data=JSON.parse(data)
     if(data.status){
       window.alert(data.message)
+      window.location.reload()
     }
     else{
       window.alert(data.message)
