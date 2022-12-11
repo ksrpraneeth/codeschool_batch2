@@ -1,8 +1,8 @@
 <?php
-
+ include "dbconnection.php";
 try {
    
-    include "dbconnection.php";
+   
 
     $id=$_POST['employeeid'];
 
