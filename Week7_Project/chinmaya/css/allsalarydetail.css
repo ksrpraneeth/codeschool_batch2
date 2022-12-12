@@ -1,0 +1,8 @@
+header{
+    font-size: 35px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgb(106, 222, 23);
+    border-bottom: 2px solid red;
+}
