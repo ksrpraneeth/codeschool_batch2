@@ -19,7 +19,7 @@
     <div class="container-xxl" style="background-image: url('image/shopping-4538982_1280.jpg');">
         <div class="row justify-content-center" style=" padding-top:4%;">
             <div col-3>
-                <image src="image/shopping-cart-304843_1280.webp" style="max-width: 10%; "></image><span style="text-align:center;font-size:46px;   font-family: 'Sofia', sans-serif;color:black">IN MY CART</span>
+                <image style="max-width: 10%; "></image><span style="text-align:center;font-size:46px;   font-family: 'Sofia', sans-serif;color:black">IN MY CART</span>
             </div>
         </div>
         <div class="row justify-content-center" style="padding-bottom: 11%;">

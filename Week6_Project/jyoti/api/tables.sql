@@ -108,17 +108,14 @@ CREATE TABLE placeorder(
 
 
 
- id | user_id | product_id |           created_time
+ -- Create Table Plcaeorder
 
 
-SELECT created_time,user_id FROM placeorder group by (created_time);
-
-
-
+create table placeorder(id serial primary key,orderid int ,product_id int references products(id),user_id int references users(id),quantity int,order_time timestamptz default now())  
 
 
 
-
+select * from users as u inner join placeorder as p on u.id=p.user_id 
 
 
 

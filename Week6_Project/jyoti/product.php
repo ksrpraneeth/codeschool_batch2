@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <div class="row col-12" style="padding-top:2%;background-color: rgb(170, 216, 140);position:fixed;">
         <div class="col-1" style="font-family: 'Sofia', sans-serif;color:black;font-size:20px;">In My Cart</div>
-            <div class="col-2" style="color: white;" id="userName" value="">Welcome<p>Have a Good Day 😎</p></div>
+            <div class="col-2" style="color: white;">Welcome<p id="userName">Have a Good Day 😍</p></div>
             <div class="col-4">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search" aria-label="SEARCH" aria-describedby="button-addon2" id="SEARCH" value="">
@@ -35,7 +35,7 @@
             </div>
             <div class="col-1"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="cart">Cart <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                    </svg></button></div>
+                    </svg><span id="cartsize"></span></button></div>
                     <div class="col-2 justify-content-right"><a class="btn btn-primary" id="myOrders" href="myorders.php">Orders</a>
                 
             </div>
@@ -131,7 +131,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">My Cart <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                        <h5 class="modal-title" id="staticBackdropLabel">My Cart  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
                                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                             </svg></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

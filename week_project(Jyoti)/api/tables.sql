@@ -120,6 +120,12 @@ CREATE TABLE placeorder(
 
 
 
+alter table   placeorder add  status integer;
+
+
+
+
+
 
 
 

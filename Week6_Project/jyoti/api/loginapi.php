@@ -38,7 +38,7 @@ if (!$status){
 
 
 $statement=$pdo->prepare("SELECT * FROM users where phonenumber = ? and password= ?");
-$statement->execute([$phoneNumber,$password]);
+$statement->execute([$phoneNumber,md5($password)]);
 
 $result= $statement->fetchAll(PDO::FETCH_ASSOC);
 if(count($result)==0){

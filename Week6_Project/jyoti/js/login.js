@@ -21,14 +21,22 @@ $("#login").click(function () {
         data = JSON.parse(data);
         if (data.status) {
           
-  window.alert("Login Succesful 😃")
+ 
   localStorage.setItem('token',data.output[0].token);
   localStorage.setItem('role_id',data.output[0].role_id);
+  localStorage.setItem('username',data.output[0].username);
+  let name= localStorage.getItem('username');
   if(data.output[0].role_id==1){
+    window.alert("Login Succesful "+ name +"😃")
+   // window.alert("Welcome")
     window.location.replace("product.php")
+
   }
   else{
+    window.alert("Login Succesful "+ name +"😃")
+    
     window.location.replace("admin.php")
+   
   }
          
         }
