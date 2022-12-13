@@ -16,6 +16,11 @@ try {
     } 
     $query .= ' ORDER BY e.id ';
 
+    // for salary filter by employee name on employeeSalaries.php
+    if(array_key_exists('forSalariesFilter', $_POST) && $_POST['forSalariesFilter']) {
+        $query = "SELECT id, CONCAT(surname, ' ', firstname, ' ', lastname) AS name FROM employees";
+    }
+
     $statement = $pdo->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
