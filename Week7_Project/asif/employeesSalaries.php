@@ -4,17 +4,33 @@
   <p class="h3 text-center">Employees Salaries Data</p>
 
   <div class="filters row mb-3">
-    <div class="filtersDivs col-12 col-lg-3 my-1">
-      <label for="" class="form-label m-0">Salary Month</label>
+    <div class="filtersDivs col-12 col-lg-2 my-1">
+      <label for="salaryMonth" class="form-label m-0">Salary Month</label>
       <select class="form-select form-select-sm" id="salaryMonth" onchange="getDateOfPayment();"></select>
     </div>
-    <div class="filtersDivs col-12 col-lg-3 my-1">
-      <label for="" class="form-label m-0">Date of Payment</label>
+    <div class="filtersDivs col-12 col-lg-2 my-1">
+      <label for="paidOnFilter" class="form-label m-0">Date of Payment</label>
       <select class="form-select form-select-sm" id="paidOnFilter"></select>
     </div>
-    <div class="filtersDivs col-12 col-lg-3 my-1">
-      <label for="" class="form-label m-0">Employee Name</label>
+    <div class="filtersDivs col-12 col-lg-2 my-1">
+      <label for="employeeName" class="form-label m-0">Employee Name</label>
       <select class="form-select form-select-sm" id="employeeName"></select>
+    </div>
+    <div class="filtersDivs col-12 col-lg-1 my-1 w-auto">
+      <label for="grossSalaryFilter" class="form-label m-0">Gross Salary</label>
+      <select class="form-select form-select-sm" id="grossSalaryFilter">
+        <option value="1" selected>More Than</option>
+        <option value="2">Less Than</option>
+        <option value="3">Between</option>
+      </select>
+    </div>
+    <div class="filtersDivs col-12 col-lg-1 my-1">
+      <label for="grossSalaryInput" class="form-label m-0">Amount</label>
+      <input type="text" class="form-control form-control-sm" id="grossSalaryInput1">
+    </div>
+    <div class="filtersDivs col-12 col-lg-1 my-1 d-none">
+      <label for="grossSalaryInput" class="form-label m-0">Amount</label>
+      <input type="text" class="form-control form-control-sm" id="grossSalaryInput2">
     </div>
     <div class="filtersDivs col-12 col-lg-1 w-auto my-1 text-center">
       <button class="btn btn-info btn-sm mt-4" onclick="searchSalaries();">Search</button>
@@ -88,6 +104,7 @@
               <div class="form-outline">
                 <label class="form-label" for="employeeNameSelect">Employee</label>
                 <select class="form-select" id="employeeNameSelect" onchange="getEmployeeForNewSalary()"></select>
+                <p class="errorMsgs" id="employeeNameSelectError"></p>
               </div>
             </div>
           </div>
@@ -103,18 +120,18 @@
               <div class="form-outline">
                 <label class="form-label" for="salary-month">Salary Month</label>
                 <select class="form-select" id="salary-month">
-                  <option value="01">January</option>
-                  <option value="02">February</option>
-                  <option value="03">March</option>
-                  <option value="04">April</option>
-                  <option value="05">May</option>
-                  <option value="06">June</option>
-                  <option value="07">July</option>
-                  <option value="08">August</option>
-                  <option value="09">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
+                  <option value="0">January</option>
+                  <option value="1">February</option>
+                  <option value="2">March</option>
+                  <option value="3">April</option>
+                  <option value="4">May</option>
+                  <option value="5">June</option>
+                  <option value="6">July</option>
+                  <option value="7">August</option>
+                  <option value="8">September</option>
+                  <option value="9">October</option>
+                  <option value="10">November</option>
+                  <option value="11">December</option>
                 </select>
               </div>
             </div>
@@ -144,7 +161,7 @@
             <div class="col-4">
               <div class="form-outline">
                 <label class="form-label" for="gross-salary">Gross Salary</label>
-                <input class="form-control" id="gross-salary" type="text" value="" readonly>
+                <input class="form-control" id="gross-salary" type="text" value="">
               </div>
             </div>
 
@@ -165,52 +182,78 @@
           </div>
 
 
-
+          <!-- for salary components -->
           <div class="row mb-3">
-            <div class="col-4">
+            <div class="col-6">
               <div class="form-outline">
-                <label class="form-label" for="add-earnings">Add Salary Components</label>
-                <select class="form-select" id="add-earnings">
-                  <option value="1">Basic Pay</option>
-                  <option value="2">DA</option>
-                  <option value="3">HRA</option>
-                  <option value="4">CA</option>
-                  <option value="5">Medical Allowance</option>
-                  <option value="6">Bonus</option>
-                  <option value="7">TDS</option>
-                  <option value="8">PF</option>
-                </select>
+                <label class="form-label" for="basic-pay">Basic Pay</label>
+                <input type="text" id="basic-pay" class="form-control salary-component" onchange="updateSalaryAmount()"/>
               </div>
             </div>
 
             <div class="col-6">
+            <div class="form-outline">
+                <label class="form-label" for="da">DA</label>
+                <input type="text" id="da" class="form-control salary-component" onchange="updateSalaryAmount()"/>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row mb-3">
+            <div class="col-6">
               <div class="form-outline">
-                <label class="form-label" for="amount">Amount</label>
-                <input type="number" id="amount" class="form-control" />
+                <label class="form-label" for="hra">HRA</label>
+                <input type="text" id="hra" class="form-control salary-component" onchange="updateSalaryAmount()"/>
               </div>
             </div>
 
-            <div class="col-2">
-              <div class="form-outline">
-                <label class="form-label">Action</label>
-                <button class="btn btn-primary"> + ADD</button>
+            <div class="col-6">
+            <div class="form-outline">
+                <label class="form-label" for="ca">CA</label>
+                <input type="text" id="ca" class="form-control salary-component" onchange="updateSalaryAmount()"/>
               </div>
             </div>
-
           </div>
 
 
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="form-outline">
+                <label class="form-label" for="medical-allowance">Medical Allowance</label>
+                <input type="text" id="medical-allowance" class="form-control salary-component" onchange="updateSalaryAmount()"/>
+              </div>
+            </div>
 
-          
+            <div class="col-6">
+            <div class="form-outline">
+                <label class="form-label" for="bonus">Bonus</label>
+                <input type="text" id="bonus" class="form-control salary-component" onchange="updateSalaryAmount()"/>
+              </div>
+            </div>
+          </div>
 
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="form-outline">
+                <label class="form-label" for="tds">TDS</label>
+                <input type="text" id="tds" class="form-control salary-component" onchange="updateSalaryAmount()"/>
+              </div>
+            </div>
 
-          
+            <div class="col-6">
+            <div class="form-outline">
+                <label class="form-label" for="pf">PF</label>
+                <input type="text" id="pf" class="form-control salary-component" onchange="updateSalaryAmount()"/>
+              </div>
+            </div>
+          </div>
 
         </form>
         <div id="viewSalaryError"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="addNewSalary()">Submit Salary</button>
       </div>
     </div>
   </div>
