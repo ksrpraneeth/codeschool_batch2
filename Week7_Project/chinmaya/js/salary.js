@@ -3,7 +3,7 @@ if (!('user_token' in localStorage)) {
 }
 function viewsalarybreakup(employeeId, month, year,id) {
 
-    month = ['','january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+    
     var formdata = {
         employeeid: employeeId,
         month: month,
@@ -28,7 +28,7 @@ function viewsalarybreakup(employeeId, month, year,id) {
         url: "api/salarybreakup.php",
         data: formdata,
         success: function (data) {
-
+            month = ['','january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
             data = JSON.parse(data);
             console.log(data)
             if (data.status) {
@@ -106,7 +106,7 @@ function salary_info() {
 
 
 
-    $('#details').removeClass("d-none");
+    
     $.ajax({
         type: "POST",
         url: "api/salary.php",
@@ -133,7 +133,7 @@ function salary_info() {
                 //     </tr>`);
 
                 // }
-
+                
                 data.Data.forEach(function (element, index) {
                     $("#salaryRow").append(`<tr>
         <td>${index + 1}</td>
@@ -147,11 +147,13 @@ function salary_info() {
         <td><button onclick=viewsalarybreakup(${element.employee_id
                         },${element.month},${element.year},${element.id}) class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal">view</button></td>
 
-        <td><button  class="btn btn-danger" onclick="deleteSalary(${element.id},${element.month},${element.year})">Delete</button></td>
+        <td><button  class="btn btn-danger" onclick="deleteSalary(${element.id},${element.month},${element.year},${element.employee_id
+        })">Delete</button></td>
     
     
     
         </tr>`);
+        
 
                 })
             }
@@ -171,30 +173,47 @@ salary_info();
 
 
 
-function deleteSalary(salaryid, month, year) {
+function deleteSalary(salaryid, month, year,employeeid) {
     var formdata = {
+        employeeid:employeeid,
         salartID: salaryid,
-        month: month, year: year
+        month:month, 
+        year: year
     }
     console.log(formdata)
-    $.ajax({
-        type: "POST",
-        url: "api/salarydelete.php",
-        data: formdata,
-        datatype: "JSON",
-        success: function (data) {
-            data = JSON.parse(data)
-            if (data.status) {
-                swal(data.message, "", "success");
-                window.location.reload("salary.php")
-            }
-            else {
-                swal(data.message, "", "error");
-            }
-        }, error: function (data) {
 
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                type: "POST",
+                url: "api/salarydelete.php",
+                data: formdata,
+                datatype: "JSON",
+                success: function (data) {
+                    data = JSON.parse(data)
+                    if (data.status) {
+                        swal(data.message, "", "success");
+                        window.location.reload("salary.php")
+                    }
+                    else {
+                        swal(data.message, "", "error");
+                    }
+                }, error: function (data) {
+        
+                }
+            });
+        } else {
+          swal("Your Salary data is not delete!");
         }
-    })
+      });
+    
 }
 
 
@@ -221,13 +240,26 @@ $('#addSalary').click(function () {
     })
 })
 //------------------------net salary update---------------------------
-$('#netSalary').focus(function () {
-    $('#netSalary').val($('#grossSalary').val() - $('#deductionSalary').val());
-})
+$('#BasicSalary').mouseleave(function(){if($('#BasicSalary').val()=='' || $('#BasicSalary').val()<0){$('#BasicSalary').val('0')}})
+$('#da').mouseleave(function(){if($('#da').val()=='' || $('#da').val()<0){$('#da').val('0')}})
+$('#hra').mouseleave(function(){if($('#hra').val()=='' || $('#hra').val()<0){$('#hra').val('0')}})
+$('#ca').mouseleave(function(){if($('#ca').val()=='' || $('#ca').val()<0){$('#ca').val('0')}})
+$('#ma').mouseleave(function(){if($('#ma').val()=='' || $('#ma').val()<0){$('#ma').val('0')}})
+$('#bonus').mouseleave(function(){if($('#bonus').val()=='' || $('#bonus').val()<0){$('#bonus').val('0')}})
+$('#tds').mouseleave(function(){if($('#tds').val()=='' || $('#tds').val()<0){$('#tds').val('0')}})
+$('#pf').mouseleave(function(){if($('#pf').val()=='' ||$('#pf').val()<0){$('#pf').val('0')}})
+
+
 
 //------------------------save salary button-----------------------------------------
 
 $('#saveSalary').click(function () {
+    let gross=Number($('#BasicSalary').val())+Number($('#da').val())+Number($('#hra').val())+Number($('#ca').val())+Number($('#ma').val())+Number($('#bonus').val());
+let deduction=Number($('#tds').val())+Number($('#pf').val());
+
+$('#grossSalary').val(gross)
+$('#deductionSalary').val(deduction)
+$('#netSalary').val(gross-deduction);
 
     $('#salaryError').text("");
     $('#monthError').text("");
@@ -241,11 +273,19 @@ $('#saveSalary').click(function () {
     var formdata = {
         employeeid: $('#employeeInSalary option:selected').val(),
         month: $('#salaryMonth option:selected').val(),
-        year: $('#salaryYear option:selected').val(),
+        year1: $('#salaryYear2 option:selected').val(),
         paid_on: $('#salarydate').val(),
         gross: $('#grossSalary').val(),
         deduction: $('#deductionSalary').val(),
         netsalary: $('#netSalary').val(),
+        baisc:$('#BasicSalary').val(),
+        da:$('#da').val(),
+        hra:$('#hra').val(),
+        ca:$('#ca').val(),
+        ma:$('#ma').val(),
+        bonus:$('#bonus').val(),
+        tds:$('#tds').val(),
+        pf:$('#pf').val()
        
     }
 
@@ -264,7 +304,7 @@ $('#saveSalary').click(function () {
         status = false;
     }
 
-    if (!formdata.year) {
+    if (!formdata.year1) {
         $('#yearError').text("Please fill the required fields")
         status = false;
     }
@@ -274,14 +314,7 @@ $('#saveSalary').click(function () {
         status = false;
     }
 
-    if (year != formdata.year) {
-        $('#paidError').text("Select proper date")
-        status = false;
-    }
-    if (month + 1 < formdata.month) {
-        $('#paidError').text("Select proper date")
-        status = false;
-    }
+   
 
     if ((!formdata.gross) || formdata.gross < 0) {
         $('#grossError').text("Fill the section properly")
@@ -311,7 +344,14 @@ $('#saveSalary').click(function () {
             data: formdata,
             datatype: "JSON",
             success: function (data) {
-
+                data=JSON.parse(data)
+if(data.status){
+    swal("Salary added succesfully", "", "success");
+    window.location.reload("salary.php")
+}
+else{
+    swal(data.message, "", "error");
+}
             }, error: function () {
 
             }
@@ -320,3 +360,109 @@ $('#saveSalary').click(function () {
 
 
 })
+
+$('#employeelistSalary').empty()
+$('#employeelistSalary').append(`<option value="" selected>All Employees</option>`)
+$.ajax({
+    type:"POST",
+    url:"api/employeelistapi.php",
+    datatype:"JSON",
+    success:function(data){
+        data=JSON.parse(data);
+if(data.status){
+    data.Data.forEach(function(element){
+        
+        $('#employeelistSalary').append(`<option value='${element.id}'>${element.concat}</option>`)
+    })
+}
+    },error:function(data){
+
+    }
+})
+
+
+
+//--------------------------- salary filter------------------------------------------------------
+
+$('#filtersalary').click(function(){
+    let formdata={
+        employeeId:$('#employeelistSalary option:selected').val(),
+        month:$('#filterSalaryMonth option:selected').val(),
+        salaryyear:$('#salaryYear option:selected').val(),
+        limitoption:$('#salaryfilterLimit option:selected').val(),
+        box1:$('#boxvalue1').val(),
+        box2:$('#boxvalue2').val()
+         
+    }
+
+    console.log(formdata);
+    $('#salaryRow').empty();
+
+    $.ajax({
+        type:"POST",
+        url:"api/filtersalaryapi.php",
+        data:formdata,
+        datatype:"JSON",
+        success:function(data){
+            data=JSON.parse(data)
+if(data.status){
+
+
+    data.Data.forEach(function (element, index) {
+        $("#salaryRow").append(`<tr>
+<td>${index + 1}</td>
+<td>${element.concat}</td>
+<td>${element.month}</td>
+<td>${element.year}</td>
+<td>${element.paid_on}</td>
+<td>${element.gross}</td>
+<td>${element.deduction}</td>
+<td>${element.net}</td>
+<td><button onclick=viewsalarybreakup(${element.employee_id
+            },${element.month},${element.year},${element.id}) class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal">view</button></td>
+
+<td><button  class="btn btn-danger" onclick="deleteSalary(${element.id},${element.month},${element.year},${element.employee_id
+})">Delete</button></td>
+
+
+
+</tr>`);
+
+
+    })
+}
+
+else{
+    swal("No such data found", "", "error");
+}
+        },
+        error:function(){
+
+        }
+    })
+})
+
+
+
+
+//---------------------------------------salary filter limit drop down-----------------------
+$('#salaryfilterLimit').mouseleave(function(){
+let limitval=$('#salaryfilterLimit option:selected').val()
+
+if(Number(limitval)==3){
+    $('#box1').removeClass('d-none')
+    $('#box2').removeClass('d-none')
+}
+
+else if(Number(limitval)==1 ||Number(limitval)==2){
+    $('#box1').removeClass('d-none')
+}
+
+else{
+    $('#box1').addClass('d-none')
+    $('#box2').addClass('d-none')
+}
+
+})
+
+//-----------------------------gross salary fetch ---------------------------------------------------
