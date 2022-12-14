@@ -1,0 +1,8 @@
+header{
+    color: cyan;
+    font-size: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 2px black;
+    border-bottom: 1px solid red;
+    font-weight: bold;
+}

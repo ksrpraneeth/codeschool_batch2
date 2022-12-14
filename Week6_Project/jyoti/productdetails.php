@@ -24,9 +24,9 @@
     window.location.replace('login.php')
 }
 
-if(localStorage.getItem('role_id')==2){
-  window.location.replace('admin.php')
-}
+ if(!localStorage.getItem('role_id')==2){
+   window.location.reload();
+ }
 var formdat={productid:localStorage.getItem('productid')}
 
 

@@ -54,23 +54,9 @@
             
         </div>
         <div class="row col-12" style="padding-top:20%;" id="area" style="background-color: rgb(170, 216, 140);">
-            <h2 class="pt-4 mb-2">My Orders</h2>
+            <h2 class="pt-4 mb-2" id="orders">My Orders</h2>
 
-            <table>
-                <tr>
-                    <th>ORDER ID</th>
-                    <th>PRODUCT</th>
-                    <th>NAME</th>
-                    <th>BRAND</th>
-                    <th>QUANTITY</th>
-                    <th>ADDRESS</th>
-                    <th>PRICE</th>
-                </tr>
-                <tbody id="orders">
-                    
-                </tbody>
-
-            </table>
+      
             <!-- <div style="font-weight:bold; font-size:20px;">Total Price : INR <span id="totalprice"></span></div> -->
         </div>
         <div class="row col-12">
@@ -151,6 +137,13 @@
 <script>
 
 
+if(!('token' in localStorage) ){
+    window.location.replace('login.php')
+}
+
+if(localStorage.getItem('role_id')==2){
+  window.location.replace('admin.php')
+}
 
 var token={usertoken:localStorage.getItem('token')}
 $('#orders').empty();
@@ -163,37 +156,55 @@ $('#orders').empty();
     datatype:"JSON",
     success:function(data){
         data=JSON.parse(data);
-        if (data.status){
 
-            let totalprice=0;
-for(let i=0;i<data.output.length;i++){
-    
-    $('#orders').append(`
-<tr>                     <td>${data.output[i].orderid}</td>
-                        <td><img src="${data.output[i].imagelink}" style="max-width:20%;max-height:20%;"></td>
-                        <td>${data.output[i].productname}</td>
-                        
-                        <td>${data.output[i].brand}</td>
-                        <td>${data.output[i].quantity }</td>
-                        <td >${data.output[i].stateorut},${data.output[i].village},${data.output[i].pin}</td>
-                        <td>${data.output[i].offerprice *data.output[i].quantity}</td>
-                        
-                    </tr>
-
-
-`)
-//totalprice=totalprice+Number(data.output[i].offerprice)
-
-}
-//$('#totalprice').text(totalprice);
-$('#area').append(`<a href="product.php"><button type="button" class="btn btn-danger col-3 mb-2  mt-2" id="backButton" >Back</button></a>`)
-
-
+        for (var i in data.output){
+        
+         if(data.output[i][0]['status']){
+          $('#orders').append(`<div class="text-center" style="border 1px solid black">ORDER ID:${data.output[i][0]['orderid']}</div> <div>STATUS: ORDER PLACED </div> `);
+         }
+        //  else{
+        //   $('#orders').append(`<div class="text-center" style="border 1px solid black">ORDER ID:${data.output[i][0]['orderid']}</div> <div>STATUS: ORDER PLACED </div> `);
+        //  }
+         
+          $('#orders').append(`
+          <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">IMAGE</th>
+      <th scope="col">NAME</th>
+      <th scope="col">BRAND</th>
+      <th scope="col">QUANTITY</th>
+      <th scope="col">PRICE</th>
+      
+      <th scope="col">ADDRESS</th>
+      
+    </tr>
+  </thead>
+  <tbody ID="${data.output[i][0]['orderid']}"  >
+  
+  </tbody>
+  </table>
+          `)
+          for (let j=0;j<data.output[i].length;j++){
+           $('#'+ data.output[i][0]['orderid']).append(`<tr><td><img src="${data.output[i][j]['imagelink']}" style="max-width:50%;"></td>
+           <td>${data.output[i][j]['productname']}</td>
+           <td>${data.output[i][j]['brand']}</td>
+           <td>${data.output[i][j]['quantity']}</td>
+           <td>${data.output[i][j]['quantity'] * data.output[i][j]['offerprice']}</td>
+           <td>${data.output[i][j]['village']},${data.output[i][j]['stateorut']},${data.output[i][j]['pin']}</td>
+           
+           </tr>`)
+          }
 
         }
+        $('#orders').append(`<button type="button" class="btn btn-danger" onclick="back()">back</button>`)
     }
 
 })
+
+function back(){
+  window.location.replace("product.php");
+}
 
 
 
