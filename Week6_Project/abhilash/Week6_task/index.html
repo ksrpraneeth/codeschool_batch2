@@ -37,9 +37,13 @@
                                     <h5 class="h5"><a href="About.html" class=" text-white">About</a></h5>
                                 </button>
                                 <button class="btn btn-dark text-white">
+                                    <h5 class="h5"><a href="user_bookings.html" class=" text-white" id="bookings">Bookings</a></h5>
+                                </button>
+                                <button class="btn btn-dark text-white">
                                     <h5 class="h5"><a href="login.html" class=" text-white" id="logoutbutton">Logout</a>
                                     </h5>
                                 </button>
+                              
 
 
                             </div>
@@ -145,12 +149,15 @@
     </div>
 </body>
 <script>
-    if (localStorage.getItem('user_data') == null) {
+    if (localStorage.getItem('user_data')==null) {
         window.location.replace("login.html");
     }
-
+    if (localStorage.getItem('type')) {
+     window.location.replace("admin.html");
+    }
     $("#logoutbutton").click(function () {
         localStorage.removeItem('user_data');
+        localStorage.removeItem('dates');
         window.location.replace("login.html");
 
     })

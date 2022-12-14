@@ -73,6 +73,26 @@ if (strlen($_POST['mobile']) != 10) {
     echo json_encode($response);
     return;
 }
+
+if (!array_key_exists('user_role', $_POST) || !isset($_POST['user_role'])) {
+    $response['status'] = false;
+    $response['message'] = "Please Enter Role ";
+    echo json_encode($response);
+    return;
+}
+if (strlen($_POST['user_role']) == 0) {
+    $response['status'] = false;
+    $response['message'] = "Please Enter Role";
+    echo json_encode($response);
+    return;
+}
+if (($_POST['user_role']) != 1) {
+    $response['status'] = false;
+    $response['message'] = "Please Enter User Role";
+    echo json_encode($response);
+    return;
+}
+
 try {
     $statement = $pdo->prepare("select * from users where email = ?");
     $statement->execute([$_POST['email']]);
@@ -84,8 +104,8 @@ try {
         return;
     }
 
-    $statement = $pdo->prepare("Insert into users (email,password,name,mobile) values (?,?,?,?)");
-    $isQueryExecuted = $statement->execute([$_POST['email'], md5($_POST['password']), $_POST['name'], $_POST['mobile']]);
+    $statement = $pdo->prepare("Insert into users (email,password,name,mobile,user_role) values (?,?,?,?,?)");
+    $isQueryExecuted = $statement->execute([$_POST['email'], md5($_POST['password']), $_POST['name'], $_POST['mobile'], $_POST['user_role']]);
     if ($isQueryExecuted) {
         $response['status'] = true;
         $response['message'] = "Registration Successful";

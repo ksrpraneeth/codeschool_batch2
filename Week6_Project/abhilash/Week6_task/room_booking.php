@@ -3,7 +3,7 @@
 include 'response.php';
 include 'db.php';
 
-if ((!array_key_exists('room_id', $_POST)) && (!array_key_exists('user_id', $_POST)) && (!array_key_exists('total_amount', $_POST)) && (!array_key_exists('check_in', $_POST)) && (!array_key_exists('check_out', $_POST))) {
+if ((!array_key_exists('room_id', $_POST)) && (!array_key_exists('user_id', $_POST)) && (!array_key_exists('total_amount', $_POST)) && (!array_key_exists('check_in', $_POST)) && (!array_key_exists('check_out', $_POST)) && (!array_key_exists('status', $_POST))) {
     $response['status'] = false;
     $response['message'] = "Please Select Room ";
     echo json_encode($response);
@@ -40,7 +40,12 @@ if (strlen($_POST['check_out']) == 0) {
     echo json_encode($response);
     return;
 }
-
+if (strlen($_POST['status']) == 0) {
+    $response['status'] = false;
+    $response['message'] = "status id is not exist ";
+    echo json_encode($response);
+    return;
+}
 
 
 try {
@@ -53,10 +58,18 @@ try {
     $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
     $userId = ($resultSet[0]['id']);
 
+    $statement = $pdo->prepare("select id from status where type=?");
+    $resultSet = $statement->execute([$_POST['status']]);
+    $resultSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $status = ($resultSet[0]['id']);
 
+    // print_r($status);
 
-    $statement = $pdo->prepare("Insert into booking_transactions (user_id,room_id,total_amount,check_in,check_out) values (?,?,?,?,?)");
-    $isQueryExecuted = $statement->execute([$userId, $_POST['room_id'], $_POST['total_amount'], $check_in, $check_out]);
+    // die($status);
+    // return;
+
+    $statement = $pdo->prepare("Insert into booking_transactions (user_id,room_id,total_amount,check_in,check_out,status) values (?,?,?,?,?,?)");
+    $isQueryExecuted = $statement->execute([$userId, $_POST['room_id'], $_POST['total_amount'], $check_in, $check_out,$status]);
     if ($isQueryExecuted) {
         $response['status'] = true;
         $response['message'] = "Booking Successful";

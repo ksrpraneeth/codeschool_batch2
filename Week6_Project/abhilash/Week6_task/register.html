@@ -45,6 +45,10 @@
                 <input class="col-sm form-control" type="text" id="mobileInput" placeholder="Enter Mobile Number" />
             </div><br>
             <div class="row">
+                <label class="col-sm-3" for="mobile"> User Role</label>
+                <input class="col-sm form-control" type="text" id="roleInput" placeholder="Enter User Role" />
+            </div><br>
+            <div class="row">
                 <p id="error" class="text-danger"></p>
             </div>
             <div class="row justify-content-end">
@@ -66,7 +70,8 @@
             password: $('#passwordInput').val(),
             confirm_password: $('#confirmPasswordInput').val(),
             name: $('#nameInput').val(),
-            mobile: $('#mobileInput').val()
+            mobile: $('#mobileInput').val(),
+            user_role: $('#roleInput').val()
         }
         $.ajax({
             type: "POST",
