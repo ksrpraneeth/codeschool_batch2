@@ -161,11 +161,9 @@ function getEmployeesSalaries() {
         url: 'api/getEmployeesSalaries.php',
         data: {id: '*'},
         success: function(response, status, xhr) {
+            $('#salariesTable thead, #salariesTable tbody, #getSalariesError').empty();
             let output = JSON.parse(response);
-            if(output.status) {
-
-                $('#salariesTable thead, #salariesTable tbody').empty();
-
+            if(output.status) {            
                 // table head
                 $('#salariesTable thead').append('<tr>'+
                 '<th scope="col">S.No</th>'+
@@ -593,12 +591,14 @@ function updateEmployeeData() {
             data: employeeData,
             success: function(response, status, xhr) {
                 let output = JSON.parse(response);
-                swal({
-                    title: "Success!",
-                    text: "Employee data updated.",
-                    icon: "success",
-                    buttons: "Close",
-                });
+                if(output.status) {
+                    swal({
+                        title: "Success!",
+                        text: output.message,
+                        icon: "success",
+                        buttons: "Close",
+                    });
+                }
                 $('#editEmployeeModal').modal('hide');
                 getEmployeesData();
             }
@@ -797,8 +797,9 @@ function clearSalaryFilters() {
 function searchSalaries() {
     $.ajax({
         type: 'POST',
-        url: 'api/searchSalaries.php',
+        url: 'api/getEmployeesSalaries.php',
         data: {
+            id: '*',
             salaryMonth: $('#salaryMonth').val(),
             dateOfPayment: $('#paidOnFilter').val(),
             employeeId: $('#employeeName').val()
@@ -860,21 +861,31 @@ function getEmployeesList() {
         success: function(response, status, xhr) {
             let output = JSON.parse(response);
             if(output.status) {
-                
+                // appending employee list in select menu
+                $('#employeeNameSelect').empty().append('<option selected hidden value="">Select</option>');
+                output.data.forEach((employee) => {
+                    $('#employeeNameSelect').append('<option value="'+employee.id+'">'+employee.name+'</option>');
+                });
+
+                // empty any error on employee select
+                $('#employeeNameSelectError').text("");
+
                 // empty and appending employee details side headings
                 $('#employeeDetailsForNewSalary').empty().append('<div class="row mb-1 mx-auto"><p class="col-6"><strong>Date of Birth:</strong></p>'+
                 '<p class="col-6"><strong>Date of Joining:</strong></p></div>'+
                 '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Working Status:</strong></p>'+
                 '<p class="col-6"><strong>Designation:</strong></p></div>'+
-                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Location:</strong></p>'+
-                '<p class="col-6"><strong>Phone:</strong></p></div>');
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Gender:</strong></p>'+
+                '<p class="col-6"><strong>Location:</strong></p></div>'+
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Phone:</strong></p>'+
+                '<p class="col-6"><strong>Gross Salary:</strong></p></div>');
 
+                // empty the gross salary field
                 $('#gross-salary').val("");
 
-                $('#employeeNameSelect').empty().append('<option selected hidden>Select</option>');
-                output.data.forEach((employee) => {
-                    $('#employeeNameSelect').append('<option value="'+employee.id+'">'+employee.name+'</option>');
-                });
+                // empty salary components
+                $('#net-salary, #deductions').val("0");
+                $('.salary-component').val("");
             }
         }
     });
@@ -890,15 +901,103 @@ function getEmployeeForNewSalary() {
             let output = JSON.parse(response);
             let employeeData = output.data[0];
             if(output.status) {
+
+                // getting employee details
                 $('#employeeDetailsForNewSalary').empty().append('<div class="row mb-1 mx-auto"><p class="col-6"><strong>Date of Birth:</strong> '+employeeData.date_of_birth+'</p>'+
                 '<p class="col-6"><strong>Date of Joining:</strong> '+employeeData.date_of_joining+'</p></div>'+
                 '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Working Status:</strong> '+employeeData.working_status+'</p>'+
                 '<p class="col-6"><strong>Designation:</strong> '+employeeData.designation+'</p></div>'+
-                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Location:</strong> '+employeeData.location+'</p>'+
-                '<p class="col-6"><strong>Phone:</strong> '+employeeData.phone+'</p></div>');
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Gender:</strong> '+employeeData.gender+'</p>'+
+                '<p class="col-6"><strong>Location:</strong> '+employeeData.location+'</p></div>'+
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Phone:</strong> '+employeeData.phone+'</p>'+
+                '<p class="col-6"><strong>Gross Salary:</strong> '+employeeData.gross_salary+'</p></div>');
 
+                // adding gross salary from employee table data
                 $('#gross-salary').val(employeeData.gross_salary);
+
+                // selecting last month for salary by default
+                const d = new Date();
+                $('#salary-month').val(d.getMonth()-1);
             }
         }
     });
+}
+
+// function to update net salary and deductions
+function updateSalaryAmount() {   
+    let tds = ($('#tds').val() != "") ? $('#tds').val() : 0;
+    let pf = ($('#pf').val() != "") ? $('#pf').val() : 0;
+
+    let deductions = parseInt(tds) + parseInt(pf);
+    $('#deductions').val(deductions);
+    
+    let basicPay = ($('#basic-pay').val() != "") ? $('#basic-pay').val() : 0;
+    let da = ($('#da').val() != "") ? $('#da').val() : 0;
+    let hra = ($('#hra').val() != "") ? $('#hra').val() : 0;
+    let ca = ($('#ca').val() != "") ? $('#ca').val() : 0;
+    let medicalAllowance = ($('#medical-allowance').val() != "") ? $('#medical-allowance').val() : 0;
+    let bonus = ($('#bonus').val() != "") ? $('#bonus').val() : 0;
+
+    let netSalary = parseInt(basicPay) + parseInt(da) + parseInt(hra) + parseInt(ca) + parseInt(medicalAllowance) + parseInt(bonus);
+    $('#net-salary').val(netSalary);
+}
+
+
+
+function addNewSalaryValidations() {
+    let toSubmit = true;
+    // for employee select menu
+    $('#employeeNameSelectError').text("");
+    if($('#employeeNameSelect').val() == "") {
+        $('#employeeNameSelectError').text("Please select employee first");
+        toSubmit = false;
+    }
+    return toSubmit;
+}
+
+
+function addNewSalary() {
+    if(addNewSalaryValidations()) {
+        $.ajax({
+            type: 'POST',
+            url: 'api/addNewSalary.php',
+            data: {
+                employeeId: $('#employeeNameSelect').val(),
+                forMonth: $('#salary-year').val() + '-' + (parseInt($('#salary-month').val())+1) + '-' + '01', 
+                paidOn: $('#date-of-payment').val(),
+                grossSalary: $('#gross-salary').val(),
+                deductions: $('#deductions').val(),
+                netSalary: $('#net-salary').val(),
+                basicPay: ($('#basic-pay').val() == "") ? 0 : $('#basic-pay').val(),
+                da: ($('#da').val() == "") ? 0 : $('#da').val(),
+                hra: ($('#hra').val() == "") ? 0 : $('#hra').val(),
+                ca: ($('#ca').val() == "") ? 0 : $('#ca').val(),
+                medicalAllowance: ($('#medical-allowance').val() == "") ? 0 : $('#medical-allowance').val(),
+                bonus: ($('#bonus').val() == "") ? 0 : $('#bonus').val(), 
+                tds: ($('#tds').val() == "") ? 0 : $('#tds').val(),
+                pf: ($('#pf').val() == "") ? 0 : $('#pf').val()
+            },
+            success: function(response, status, xhr) {
+                let output = JSON.parse(response);
+                if(output.status) {
+                    swal({
+                        title: "Success!",
+                        text: output.message,
+                        icon: "success",
+                        buttons: "Close",
+                    });
+                }
+                else {
+                    swal({
+                        title: "Error!",
+                        text: output.message,
+                        icon: "error",
+                        buttons: "Close",
+                    });
+                }
+                $('#addNewSalaryModal').modal('hide');
+            }
+        });
+        getEmployeesSalaries();
+    }
 }
