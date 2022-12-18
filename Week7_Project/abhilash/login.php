@@ -59,7 +59,7 @@ $bytes = random_bytes(5);
     $response['status'] = true;
     $response['message'] = "Login Successfull";
     $response['data'] = $token;
-    $response['user_role'] = [1,2];
+    // $response['user_role'] = [1,2];
     echo json_encode($response);
     return;
 }

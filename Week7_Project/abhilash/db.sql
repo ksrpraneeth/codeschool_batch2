@@ -164,12 +164,10 @@ CREATE TABLE booking_transactions_details(
     booking_transactions_id INT NOT NULL REFERENCES booking_transactions(id),
     amount INT NOT NULL
 );
-
-INSERT INTO status(type,description)
-VALUES(1,'Booking Is Pending'),
-    (2,'Booking Is Success'),
-    (3,'Booking Is Rejected');
-
+INSERT INTO status(type, description)
+VALUES(1, 'Booking Is Pending'),
+    (2, 'Booking Is Success'),
+    (3, 'Booking Is Rejected');
 UPDATE hotels
 SET hotels_images = 'https://www.lemontreehotels.com/CMSWebParts/LTWebParts/citysearchgallery.ashx?Gid=3875'
 WHERE ID = 4;
@@ -277,20 +275,19 @@ where r.id = p.room_id
         select user_id
         from booking_transactions
     );
- 
 ALTER TABLE users
 ADD user_role INT;
 UPDATE users
 SET user_role = 2
 WHERE id = 4;
-
 select h.hotels_images,
     h.name as hotel_name,
     ht.description as hotel_type,
     r.id as available_room,
     rc.description as room_type,
     rc.room_images,
-    p.price,s.description as status
+    p.price,
+    s.description as status
 from price p,
     rooms r,
     hotels h,
@@ -300,7 +297,7 @@ from price p,
 where r.id = p.room_id
     And r.hotel_id = h.id
     And h.id = 1
-    And s.id=1
+    And s.id = 1
     AND ht.id = h.hotel_type_id
     and rc.id = r.room_categery_id
     and r.id not in(
@@ -308,22 +305,47 @@ where r.id = p.room_id
         from booking_transactions
     );
 -- query for bookings transactions
-
-
 SELECT bt.id as booking_id,
     u.name,
     u.mobile,
-    r.room_no,h.name as hotel_name,bt.total_amount,
+    r.room_no,
+    h.name as hotel_name,
+    bt.total_amount,
     bt.check_in as from_date,
-    bt.check_out as to_date,s.description as status
+    bt.check_out as to_date,
+    s.description as status
 FROM booking_transactions bt,
-    users as u,rooms as r, hotels h,status s
+    users as u,
+    rooms as r,
+    hotels h,
+    status s
 where u.id = bt.user_id
-    and bt.room_id = r.id and r.hotel_id=h.id and bt.status = s.id;
-
-    ALTER TABLE status
+    and bt.room_id = r.id
+    and r.hotel_id = h.id
+    and bt.status = s.id;
+ALTER TABLE status
 ADD type INT;
+UPDATE hotels
+SET status = 1
+WHERE id = 1;
+ALTER TABLE hotels
+ADD status INT;
+INSERT INTO hotels(abhi, DELUXE)
+select h.name,
+    ht.description
+from hotels as h,
+    hotel_type as ht;
 
-UPDATE status
-SET type =
-WHERE id =1;
+select r.id as room_id,
+    r.room_no,
+    rc.description as room_categery
+from rooms r,
+    room_categery rc
+where r.room_categery_id = rc.id and r.hotel_id=1 ;
+
+UPDATE rooms 
+SET status=1
+WHERE id=1;
+
+ALTER TABLE rooms
+ADD status INT ;

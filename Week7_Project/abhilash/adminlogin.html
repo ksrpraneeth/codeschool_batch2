@@ -1,0 +1,73 @@
+<!DOCTYPE html>   
+<html>   
+<head>  
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+<title> Login Page </title>   
+<link rel="stylesheet"  type="text/css"  href="style.css">
+</head>    
+<body>    
+    <div class="container container1 p-5 my-5"><br>
+        <div class="row justify-content-center h5">
+            <h1 class="">Admin Login</h1>
+        </div>
+
+
+        <div class="container"><br>
+            <div class="row">
+                <label class="col-sm-3" for="emailInput"> Email</label>
+                <input class="col-sm form-control" type="email" id="emailInput" placeholder="Enter Email" />
+            </div><br>
+            <div class="row">
+                <label class="col-sm-3" for="passwordInput"> Password</label>
+                <input class="col-sm form-control" type="password" id="passwordInput" placeholder="Enter Password" />
+            </div><br>
+
+            <div class="row">
+                <p id="error" class="text-danger"></p>
+            </div>
+            <div class="row justify-content-end">
+                <button style="display:inline-block;" type="button" class="btn btn-success col-sm-3"
+                    id="submitButton">LOGIN</button>
+            </div>
+            
+        </div>
+
+       
+</body>  
+
+<script>
+    if (localStorage.getItem("user_data") != null) {
+            window.location.assign("adminlogin.php");
+        }
+    $("#submitButton").click(function () {
+        var formData = {
+            email: $("#email").val(),
+            password: $("#password").val(),
+        };
+        $.ajax({
+            type: "POST",
+            data: formData,
+            dataType: "JSON",
+            url: "admin.php",
+            success: function (responseData) {
+                // responseData = JSON.parse(responseData);
+                if (!responseData.status) {
+                    $('#errors').text(responseData.message);
+                } else {
+                    alert(responseData.message);
+                    localStorage.setItem('user_data', JSON.stringify(responseData.data[0]));
+                    window.location.assign('admin.html');
+                }
+            },
+            error: function () {
+
+            }
+        })
+    });
+</script>
+
+</html>
+</html>  
