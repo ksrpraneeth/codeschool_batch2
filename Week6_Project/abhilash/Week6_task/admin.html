@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <title> Login Page </title>
+    <link rel="stylesheet" type="text/css" href="admin.css">
+</head>
+
+<body>
+    <div class="login-form-container">
+        <h1 class="heading">Booking Transactions</h1>
+        <div class="table1">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Booking Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mobile No</th>
+                        <th scope="col">Room No</th>
+                        <th scope="col">Total Amount</th>
+                        <th scope="col">From Date</th>
+                        <th scope="col">To Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="bookigs_transactions">
+
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-dark text-white">
+            <h5 class="h5"><a  class=" text-white" id="logoutbutton">Logout</a>
+            </h5>
+        </button>
+    </div>
+
+</body>
+<script>
+   
+   if (!localStorage.getItem('user_data')) {
+
+        window.location.replace("login.html");
+    }
+    $("#logoutbutton").click(function () {
+        localStorage.clear();
+        window.location.replace("login.html");
+
+    })
+
+       $(document).ready(function () {
+        $('#bookigs_transactions').empty();
+        $.ajax({
+            type: "POST",
+            url: "admin.php",
+            // data:formData,
+            dataType: 'JSON',
+            success: function (data) {
+                //    data=JSON.parse(data);
+                console.log(data)
+                if (data.status) {
+                    console.log(data)
+                    for (let i = 0; i < data.output.length; i++) {
+                        $('#bookigs_transactions').append(`
+                                <tr>
+                     
+                          <td>${data.output[i].booking_id}</td>
+                           <td>${data.output[i].name}</td>
+                            <td>${data.output[i].mobile}</td>
+                            <td>${data.output[i].room_no}</td>
+                            <td>${data.output[i].hotel_name}</td>
+                            <td>${data.output[i].total_amount}</td>
+                            <td>${data.output[i].from_date}</td>
+                            <td>${data.output[i].to_date}</td>
+                            <td>${data.output[i].status}</td>
+                              
+                               <td><button type="button" class="btn btn-success"
+                  onclick="update(${data.output[i].booking_id},'2')">Accept</button> </td>
+                    <td>
+                        <button type="button" class="btn btn-success "
+                 onclick="update('${data.output[i].booking_id},3')">Reject</button> </td>
+                </tr>
+                                        `)
+
+
+
+                    }
+
+                }
+
+            }
+        })
+
+
+
+    });
+    function update(bookingId,status) {
+    
+    $.ajax({
+            type: "POST",
+            url: "update.php",
+            data:{
+            'booking_id': bookingId,
+            'status':status
+
+        },
+        dataType: 'JSON',
+            success: function (response, status, xhr) {
+                // res = JSON.parse(response);
+                if (response    .status) {
+                    window.alert(res.message);
+                    // window.location.replace("index.html");
+                } else {
+                    $('#error').text(res.message);
+                }
+            },
+            error: function () {
+
+            }
+        })
+    }
+
+</script>
+
+</html>

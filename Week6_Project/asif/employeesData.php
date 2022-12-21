@@ -5,7 +5,7 @@
   
   <div class="filters row mb-3">
     <div class="filtersDivs col-12 col-lg-3 my-1">
-      <label for="workingStatus" class="form-label m-0">Work Status</label>
+      <label for="workingStatus" class="form-label m-0">Working Status</label>
       <select class="form-select form-select-sm workingStatus"></select>
     </div>
     <div class="filtersDivs col-12 col-lg-3 my-1">
