@@ -161,11 +161,9 @@ function getEmployeesSalaries() {
         url: 'api/getEmployeesSalaries.php',
         data: {id: '*'},
         success: function(response, status, xhr) {
+            $('#salariesTable thead, #salariesTable tbody, #getSalariesError').empty();
             let output = JSON.parse(response);
-            if(output.status) {
-
-                $('#salariesTable thead, #salariesTable tbody').empty();
-
+            if(output.status) {            
                 // table head
                 $('#salariesTable thead').append('<tr>'+
                 '<th scope="col">S.No</th>'+
@@ -593,12 +591,14 @@ function updateEmployeeData() {
             data: employeeData,
             success: function(response, status, xhr) {
                 let output = JSON.parse(response);
-                swal({
-                    title: "Success!",
-                    text: "Employee data updated.",
-                    icon: "success",
-                    buttons: "Close",
-                });
+                if(output.status) {
+                    swal({
+                        title: "Success!",
+                        text: output.message,
+                        icon: "success",
+                        buttons: "Close",
+                    });
+                }
                 $('#editEmployeeModal').modal('hide');
                 getEmployeesData();
             }
@@ -704,7 +704,6 @@ function deleteSalary(salaryId) {
                 success: function(response, status, xhr) {
                     let output = JSON.parse(response);
                     if(output.status) {
-                        console.log(output.status);
                         swal({
                             title: "Success",
                             text: output.message,
@@ -725,4 +724,280 @@ function deleteSalary(salaryId) {
         }
         getEmployeesSalaries();
     });
+}
+
+
+
+// function to get salary month for filter in employeesSalaries.php
+function getSalaryMonth() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getSalaryMonth.php',
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                $('#salaryMonth').empty().append('<option value="" selected>All</option>');
+                output.data.forEach((salaryMonth) => {
+                    $('#salaryMonth').append('<option value="'+salaryMonth.for_month+'">'+salaryMonth.salary_month+'</option>');
+                });
+            }
+        }
+    });
+}
+
+
+
+// function to get date of payments for filter in employeesSalaries.php
+function getDateOfPayment() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getDateOfPayment.php',
+        data: {salaryMonth: $('#salaryMonth').val()},
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                $('#paidOnFilter').empty().append('<option value="" selected>All</option>');
+                output.data.forEach((date) => {
+                    $('#paidOnFilter').append('<option value="'+date.paid_on+'">'+date.date_of_payment+'</option>');
+                });
+            }
+        }
+    });
+}
+
+
+
+// function to get employee name for filter in employeesSalaries.php
+function getEmployeeForSalariesFilter() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getEmployeesData.php',
+        data: {forSalariesFilter: true},
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                $('#employeeName').empty().append('<option value="" selected>All</option>');
+                output.data.forEach((employee) => {
+                    $('#employeeName').append('<option value="'+employee.id+'">'+employee.name+'</option>');
+                });
+            }
+        }
+    });
+}
+
+
+function clearSalaryFilters() {
+    $('#salaryMonth, #paidOnFilter, #employeeName').val("");
+    getDateOfPayment();
+    getEmployeesSalaries();
+}
+
+
+
+function searchSalaries() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getEmployeesSalaries.php',
+        data: {
+            id: '*',
+            salaryMonth: $('#salaryMonth').val(),
+            dateOfPayment: $('#paidOnFilter').val(),
+            employeeId: $('#employeeName').val()
+        },
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            $('#salariesTable thead, #salariesTable tbody, #getSalariesError').empty();
+            if(output.status) {
+                
+                // table head
+                $('#salariesTable thead').append('<tr>'+
+                '<th scope="col">S.No</th>'+
+                '<th scope="col">Employee Name</th>'+
+                '<th scope="col">Salary Month</th>'+
+                '<th scope="col">Salary Year</th>'+
+                '<th scope="col">Date of Payment</th>'+
+                '<th scope="col">Gross Salary</th>'+
+                '<th scope="col">Deductions</th>'+
+                '<th scope="col">Net Salary</th>'+
+                '<th scope="col">Date Created</th>'+
+                '<th scope="col">Salary Breakup</th>'+
+                '</tr>');
+
+                // table body
+                output.data.forEach((salaryVal, index) => {
+                    $('#salariesTable tbody').append('<tr>'+
+                    '<td>'+(index + 1)+'</td>'+
+                    '<td>'+salaryVal.employee_name+'</td>'+
+                    '<td>'+salaryVal.salary_month+'</td>'+
+                    '<td>'+salaryVal.salary_year+'</td>'+
+                    '<td>'+salaryVal.paid_on+'</td>'+
+                    '<td>'+salaryVal.gross_salary+'</td>'+
+                    '<td>'+salaryVal.deductions+'</td>'+
+                    '<td>'+salaryVal.net_salary+'</td>'+
+                    '<td>'+salaryVal.created_at+'</td>'+
+                    '<td><a href="#" class="btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#viewSalaryBreakupModal" onclick="viewSalaryBreakup('+salaryVal.id+','+ salaryVal.employee_id+')">View</a>'+
+                    '<a href="#" class="btn btn-danger btn-sm m-1" onclick="deleteSalary('+salaryVal.id+')">Delete Salary</a></td>'+
+                    '</tr>');
+                });
+            }
+            
+            else {
+                $('#getSalariesError').empty().append('<div class="text-center"><p>'+output.message+'</p></div>');
+            }
+        },
+        error: function(jXHR,exception) {
+            $('#getSalariesError').empty().append('<div class="text-center"><img src="assets/images/error_img.webp"><p>'+exception+'</p></div>');
+        }
+    });
+}
+
+
+
+// function to fetch all working employees list on page employeesSalaries.php in addNewSalaryModal
+function getEmployeesList() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getEmployeesList.php',
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            if(output.status) {
+                // appending employee list in select menu
+                $('#employeeNameSelect').empty().append('<option selected hidden value="">Select</option>');
+                output.data.forEach((employee) => {
+                    $('#employeeNameSelect').append('<option value="'+employee.id+'">'+employee.name+'</option>');
+                });
+
+                // empty any error on employee select
+                $('#employeeNameSelectError').text("");
+
+                // empty and appending employee details side headings
+                $('#employeeDetailsForNewSalary').empty().append('<div class="row mb-1 mx-auto"><p class="col-6"><strong>Date of Birth:</strong></p>'+
+                '<p class="col-6"><strong>Date of Joining:</strong></p></div>'+
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Working Status:</strong></p>'+
+                '<p class="col-6"><strong>Designation:</strong></p></div>'+
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Gender:</strong></p>'+
+                '<p class="col-6"><strong>Location:</strong></p></div>'+
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Phone:</strong></p>'+
+                '<p class="col-6"><strong>Gross Salary:</strong></p></div>');
+
+                // empty the gross salary field
+                $('#gross-salary').val("");
+
+                // empty salary components
+                $('#net-salary, #deductions').val("0");
+                $('.salary-component').val("");
+            }
+        }
+    });
+}
+
+
+function getEmployeeForNewSalary() {
+    $.ajax({
+        type: 'POST',
+        url: 'api/getEmployee.php',
+        data: {id: $('#employeeNameSelect').val()},
+        success: function(response, status, xhr) {
+            let output = JSON.parse(response);
+            let employeeData = output.data[0];
+            if(output.status) {
+
+                // getting employee details
+                $('#employeeDetailsForNewSalary').empty().append('<div class="row mb-1 mx-auto"><p class="col-6"><strong>Date of Birth:</strong> '+employeeData.date_of_birth+'</p>'+
+                '<p class="col-6"><strong>Date of Joining:</strong> '+employeeData.date_of_joining+'</p></div>'+
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Working Status:</strong> '+employeeData.working_status+'</p>'+
+                '<p class="col-6"><strong>Designation:</strong> '+employeeData.designation+'</p></div>'+
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Gender:</strong> '+employeeData.gender+'</p>'+
+                '<p class="col-6"><strong>Location:</strong> '+employeeData.location+'</p></div>'+
+                '<div class="row mb-1 mx-auto"><p class="col-6"><strong>Phone:</strong> '+employeeData.phone+'</p>'+
+                '<p class="col-6"><strong>Gross Salary:</strong> '+employeeData.gross_salary+'</p></div>');
+
+                // adding gross salary from employee table data
+                $('#gross-salary').val(employeeData.gross_salary);
+
+                // selecting last month for salary by default
+                const d = new Date();
+                $('#salary-month').val(d.getMonth()-1);
+            }
+        }
+    });
+}
+
+// function to update net salary and deductions
+function updateSalaryAmount() {   
+    let tds = ($('#tds').val() != "") ? $('#tds').val() : 0;
+    let pf = ($('#pf').val() != "") ? $('#pf').val() : 0;
+
+    let deductions = parseInt(tds) + parseInt(pf);
+    $('#deductions').val(deductions);
+    
+    let basicPay = ($('#basic-pay').val() != "") ? $('#basic-pay').val() : 0;
+    let da = ($('#da').val() != "") ? $('#da').val() : 0;
+    let hra = ($('#hra').val() != "") ? $('#hra').val() : 0;
+    let ca = ($('#ca').val() != "") ? $('#ca').val() : 0;
+    let medicalAllowance = ($('#medical-allowance').val() != "") ? $('#medical-allowance').val() : 0;
+    let bonus = ($('#bonus').val() != "") ? $('#bonus').val() : 0;
+
+    let netSalary = parseInt(basicPay) + parseInt(da) + parseInt(hra) + parseInt(ca) + parseInt(medicalAllowance) + parseInt(bonus);
+    $('#net-salary').val(netSalary);
+}
+
+
+
+function addNewSalaryValidations() {
+    let toSubmit = true;
+    // for employee select menu
+    $('#employeeNameSelectError').text("");
+    if($('#employeeNameSelect').val() == "") {
+        $('#employeeNameSelectError').text("Please select employee first");
+        toSubmit = false;
+    }
+    return toSubmit;
+}
+
+
+function addNewSalary() {
+    if(addNewSalaryValidations()) {
+        $.ajax({
+            type: 'POST',
+            url: 'api/addNewSalary.php',
+            data: {
+                employeeId: $('#employeeNameSelect').val(),
+                forMonth: $('#salary-year').val() + '-' + (parseInt($('#salary-month').val())+1) + '-' + '01', 
+                paidOn: $('#date-of-payment').val(),
+                grossSalary: $('#gross-salary').val(),
+                deductions: $('#deductions').val(),
+                netSalary: $('#net-salary').val(),
+                basicPay: ($('#basic-pay').val() == "") ? 0 : $('#basic-pay').val(),
+                da: ($('#da').val() == "") ? 0 : $('#da').val(),
+                hra: ($('#hra').val() == "") ? 0 : $('#hra').val(),
+                ca: ($('#ca').val() == "") ? 0 : $('#ca').val(),
+                medicalAllowance: ($('#medical-allowance').val() == "") ? 0 : $('#medical-allowance').val(),
+                bonus: ($('#bonus').val() == "") ? 0 : $('#bonus').val(), 
+                tds: ($('#tds').val() == "") ? 0 : $('#tds').val(),
+                pf: ($('#pf').val() == "") ? 0 : $('#pf').val()
+            },
+            success: function(response, status, xhr) {
+                let output = JSON.parse(response);
+                if(output.status) {
+                    swal({
+                        title: "Success!",
+                        text: output.message,
+                        icon: "success",
+                        buttons: "Close",
+                    });
+                }
+                else {
+                    swal({
+                        title: "Error!",
+                        text: output.message,
+                        icon: "error",
+                        buttons: "Close",
+                    });
+                }
+                $('#addNewSalaryModal').modal('hide');
+            }
+        });
+        getEmployeesSalaries();
+    }
 }

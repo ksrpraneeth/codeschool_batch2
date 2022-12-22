@@ -1,0 +1,56 @@
+body{
+    background-color: rgb(226, 243, 206);
+}
+
+.table1{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 2%;
+}
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 120vh;
+    width: 100%;
+    max-width: 1110px;
+    margin: 6%;
+    padding: 5%;
+    background-color: rgb(221, 198, 239);
+    border-radius: 1%;
+  }
+
+  .table2{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 2%;
+  }
+.table{
+    border: solid 2px;
+    border-color: grey;
+    
+}
+
+.heading{
+    text-decoration: underline;
+    padding: 1%;
+}
+
+.login-button {
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffffff;
+    height: 40px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 2px;
+    background-color: rgb(7, 130, 23);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  

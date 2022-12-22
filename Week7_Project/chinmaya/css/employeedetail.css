@@ -1,0 +1,10 @@
+#heading{
+    text-align: center;
+    font-size: 30px;
+    color: crimson;
+    text-shadow: 1px 1px 1px black;
+    font-weight: bold;
+}
+header{
+    border-bottom: 1px solid black;
+}

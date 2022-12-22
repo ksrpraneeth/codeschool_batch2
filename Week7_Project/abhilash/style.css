@@ -1,0 +1,200 @@
+.head {
+
+    height: 100px;
+
+}
+
+.head h3 {
+
+    font-size: large;
+    font-weight: 20px;
+    font-family: sans-serif;
+    color: white;
+
+}
+
+.h5 {
+
+    font-size: large;
+    font-weight: 40px bold;
+    font-family: sans-serif;
+    color: rgb(23, 23, 23);
+    text-decoration: none;
+}
+
+.h5 a {
+    text-decoration: none;
+}
+
+.images {
+    width: 100%;
+    height: 200px;
+
+}
+
+.image {
+    background-color: azure;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    padding-bottom: 100px;
+
+}
+
+.display {
+    display: inline-block;
+    width: 22%;
+    height: 200px;
+    color: rgb(173, 124, 106);
+    font-weight: bold;
+}
+
+.btn-alert {
+    display: none;
+    background-color: #514E61;
+    color: #FFFFFF;
+    border: 1px solid #aaa;
+    position: fixed;
+    width: 250px;
+    left: 50%;
+    margin-left: -100px;
+    padding: 6px 8px 8px;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.hotelimg {
+    width: 100%;
+    height: 500px;
+}
+
+.h1 {
+
+    font: size 100px;
+    ;
+    font-weight: 40 bold;
+    font-family: "Playfair Display";
+    color: rgb(10, 9, 9);
+    text-align: center;
+    text-decoration: underline;
+
+
+
+}
+
+.container1 {
+
+    background-color: rgb(240, 250, 250);
+}
+
+.p {
+
+    font: size 50px;
+    ;
+    font-weight: 40 bold;
+    font-family: "Playfair Display";
+    color: rgb(10, 9, 9);
+    text-align: center;
+
+}
+
+.out {
+
+    font: size 70px;
+    ;
+    font-weight: 40 bold;
+    font-family: "Playfair Display";
+    color: rgb(152, 84, 84);
+    text-align: center;
+    text-decoration: underline;
+    flex-direction: row;
+}
+
+.input {
+
+    width: 50%;
+    padding: 3px;
+    margin: 2px;
+    border: #555353;
+    border-radius: 2px;
+
+
+}
+
+.btn {
+
+    padding: 5px;
+    margin: 5px;
+    border: #e63838;
+    border-radius: 2px;
+
+
+}
+
+.label {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    border: #555353;
+    border-radius: 2px;
+}
+
+body {
+
+    background-color: rgb(195, 177, 165);
+}
+
+.hidden {
+
+    display: none;
+}
+
+.button {
+
+    padding: 5px;
+    margin: 5px;
+    border: #e63838;
+    border-radius: 2px;
+
+    width: 20%
+}
+
+.input {
+
+    width: 10%;
+    border-left-color: #e63838;
+    border-bottom: #555353;
+    
+}
+.dialog {
+ 
+    width: 360px;
+
+    height:600px !important;
+
+  }
+
+.content {
+
+/* 80% of window height */
+
+height: 60%;
+
+background-color:#BBD6EC;
+
+}       
+
+.header {
+
+background-color: #337AB7;
+
+padding:16px 16px;
+
+color:#FFF;
+
+border-bottom:2px dashed #337AB7;
+
+}

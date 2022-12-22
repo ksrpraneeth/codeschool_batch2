@@ -40,13 +40,25 @@
                 <button style="display:inline-block;" type="button" class="btn btn-success col-sm-3"
                     id="submitButton">LOGIN</button>
             </div>
+            <div class="row justify-content-end">
+                <button style="display:inline-block;" type="button" class="btn btn-success col-sm-3"
+                    id="register">Register</button>
+            </div>
         </div>
 
 </body>
 <script>
-    //   if (localStorage.getItem('user_data')==null) {
-    //  window.location.replace("login.html");
-    // }
+      if (localStorage.getItem('user_data')) {
+     window.location.replace("index.html");
+    }
+    if (localStorage.getItem('type')) {
+     window.location.replace("admin.html");
+    }
+    $("#register").click(function () {
+        localStorage.removeItem('user_data');
+        window.location.replace("register.html");
+    })
+
     $('#submitButton').click(function () {
         var formData = {
             email: $('#emailInput').val(),
@@ -55,14 +67,25 @@
         $.ajax({
             type: "POST",
             url: "login.php",
+            dataType: "JSON",
             data: formData,
             success: function (response, status, xhr) {
-                response = JSON.parse(response);
+                // response = JSON.parse(response);
                 if (response.status) {
                     window.alert(response.message);
                     localStorage.setItem("user_data", JSON.stringify(response.data))
-                    window.location.replace("index.html");
-                } else {
+                    localStorage.setItem("type",JSON.stringify(response.user_role))
+                    console.log(response.type);
+                    if (response.type == "user"){
+                        console.log(response);
+                        window.location.replace("index.html")
+                    }
+                    if (response.type == "Admin") {
+                        window.location.replace("admin.html")
+                    }
+
+                }
+                 else {
                     $('#error').text(response.message);
                 }
             },

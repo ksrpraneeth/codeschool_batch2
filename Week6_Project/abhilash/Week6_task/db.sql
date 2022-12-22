@@ -8,6 +8,13 @@ CREATE TABLE users (
     mobile INT NOT NULL,
     token VARCHAR(50)
 );
+INSERT INTO users(email, password, name, mobile)
+VALUES(
+        'abhilash2gmail.com',
+        'cbc9019388d2e6240c8cb4f222d2299f',
+        'Abhi',
+        '8555819002'
+    );
 -- table 2
 -- CREATE TABLE login(
 --     id SERIAL PRIMARY KEY,
@@ -72,11 +79,19 @@ CREATE TABLE room_categery(
     description VARCHAR(50) NOT NULL CHECK(description <> ''),
     room_images VARCHAR(500)
 );
-INSERT INTO room_categery(description,room_images)
-VALUES(' STANDARD ROOM''https://watermark.lovepik.com/photo/20211130/large/lovepik-hotel-standard-room-picture_501283030.jpg'),
-    (' FAMILY ROOM''https://st.depositphotos.com/2851435/4946/i/950/depositphotos_49469911-stock-photo-luxury-bedroom-interior.jpg'),
-    (' DELUXE ROOM''https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa50PTQ--HVzLeY848JMvJIcbkcpnSxnN_sQ&usqp=CAU'),
-    (' LUXURY ROOM''https://st2.depositphotos.com/3724343/10506/i/950/depositphotos_105063472-stock-photo-3d-render-of-bedroom-interior.jpg');
+INSERT INTO room_categery(description, room_images)
+VALUES(
+        ' STANDARD ROOM''https://watermark.lovepik.com/photo/20211130/large/lovepik-hotel-standard-room-picture_501283030.jpg'
+    ),
+    (
+        ' FAMILY ROOM''https://st.depositphotos.com/2851435/4946/i/950/depositphotos_49469911-stock-photo-luxury-bedroom-interior.jpg'
+    ),
+    (
+        ' DELUXE ROOM''https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa50PTQ--HVzLeY848JMvJIcbkcpnSxnN_sQ&usqp=CAU'
+    ),
+    (
+        ' LUXURY ROOM''https://st2.depositphotos.com/3724343/10506/i/950/depositphotos_105063472-stock-photo-3d-render-of-bedroom-interior.jpg'
+    );
 -- table 5
 CREATE TABLE rooms(
     id SERIAL PRIMARY KEY,
@@ -141,13 +156,20 @@ CREATE TABLE booking_transactions(
     room_id INT NOT NULL REFERENCES rooms(id),
     total_amount INT NOT NULL,
     check_in TIMESTAMP DEFAULT NOW(),
-    check_out TIMESTAMP DEFAULT NOW()
+    check_out TIMESTAMP DEFAULT NOW(),
+    status INT NOT NULL REFERENCES status(id)
 );
 CREATE TABLE booking_transactions_details(
     id SERIAL PRIMARY KEY,
     booking_transactions_id INT NOT NULL REFERENCES booking_transactions(id),
     amount INT NOT NULL
 );
+
+INSERT INTO status(type,description)
+VALUES(1,'Booking Is Pending'),
+    (2,'Booking Is Success'),
+    (3,'Booking Is Rejected');
+
 UPDATE hotels
 SET hotels_images = 'https://www.lemontreehotels.com/CMSWebParts/LTWebParts/citysearchgallery.ashx?Gid=3875'
 WHERE ID = 4;
@@ -207,7 +229,8 @@ select h.hotels_images,
     h.name as hotel_name,
     ht.description as hotel_type,
     r.id as available_rooms,
-    rc.description as room_type,rc.room_images,
+    rc.description as room_type,
+    rc.room_images,
     p.price
 from price p,
     rooms r,
@@ -223,11 +246,84 @@ where r.id = p.room_id
         select room_id
         from booking_transactions
     );
-
-
-    UPDATE room_categery
+UPDATE room_categery
 SET room_images = 'https://st2.depositphotos.com/3724343/10506/i/950/depositphotos_105063472-stock-photo-3d-render-of-bedroom-interior.jpg'
 WHERE ID = 4;
-
 ALTER TABLE room_categery
 ADD room_images VARCHAR(500);
+select h.name as hotel_name,
+    ht.description as hotel_type,
+    rc.description as room_type,
+    p.price,
+    bt.id as booking_id,
+    bt.check_in as from_Date,
+    check_out as to_Date,
+    bt.status as status
+from price p,
+    rooms r,
+    hotels h,
+    hotel_type ht,
+    room_categery rc,
+    users u,
+    booking_transactions bt,
+    status s
+where r.id = p.room_id
+    And r.hotel_id = h.id
+    And u.id = 1
+    And s.id = 1
+    AND ht.id = h.hotel_type_id
+    and rc.id = r.room_categery_id
+    And r.id IN(
+        select user_id
+        from booking_transactions
+    );
+ 
+ALTER TABLE users
+ADD user_role INT;
+UPDATE users
+SET user_role = 2
+WHERE id = 4;
+
+select h.hotels_images,
+    h.name as hotel_name,
+    ht.description as hotel_type,
+    r.id as available_room,
+    rc.description as room_type,
+    rc.room_images,
+    p.price,s.description as status
+from price p,
+    rooms r,
+    hotels h,
+    hotel_type ht,
+    room_categery rc,
+    status s
+where r.id = p.room_id
+    And r.hotel_id = h.id
+    And h.id = 1
+    And s.id=1
+    AND ht.id = h.hotel_type_id
+    and rc.id = r.room_categery_id
+    and r.id not in(
+        select room_id
+        from booking_transactions
+    );
+-- query for bookings transactions
+
+
+SELECT bt.id as booking_id,
+    u.name,
+    u.mobile,
+    r.room_no,h.name as hotel_name,bt.total_amount,
+    bt.check_in as from_date,
+    bt.check_out as to_date,s.description as status
+FROM booking_transactions bt,
+    users as u,rooms as r, hotels h,status s
+where u.id = bt.user_id
+    and bt.room_id = r.id and r.hotel_id=h.id and bt.status = s.id;
+
+    ALTER TABLE status
+ADD type INT;
+
+UPDATE status
+SET type =
+WHERE id =1;
