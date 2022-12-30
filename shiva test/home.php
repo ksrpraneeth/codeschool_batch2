@@ -68,7 +68,6 @@ if($isQueryExecuted){
     $response['status']=true;
     $response['message']="Inserted Successfully";
     echo json_encode($response);
-        return;
 }
 
 $statement = $pdo->prepare("Insert into address (employee_id,address) values (?,?)");

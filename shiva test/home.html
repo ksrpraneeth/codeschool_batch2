@@ -26,7 +26,7 @@
     <h3>Add Employees</h3>
 
     <div class="row mx-2" id="form-box">
-        <form action="#" id="form" class="col-12" name="main-form" >
+        <form action="#" id="form" class="col-12" name="main-form">
 
 
             <div class="form-group row">
@@ -74,52 +74,55 @@
                 <div class="form-group col-6">
                     <textarea class="form-control" id="Street" rows="3" placeholder=" add address"></textarea><br>
 
-                <button type="button" class="btn btn-primary" id="addbutton">Add</button>
-
-            </div>
-
-
-            
-            <span class="error-msg"></span>
-
-<div id="anotherform">
-
-</div>
-
-            <hr>
-
-            <div class="form-group row">
-                <div class="col-3 m-auto">
-                    <button class="btn btn-primary" type="submit" id="form-submit-btn">Save</button>
-                    <button type="button" id="logoutbutton" class="btn btn-primary">Logout</button>
+                    <button type="button" class="btn btn-primary" id="addbutton">Add</button>
 
                 </div>
-            </div>
+
+
+
+                <span class="error-msg"></span>
+
+                <div id="anotherform">
+
+                </div>
+
+                <hr>
+
+                <div class="form-group row">
+                    <div class="col-3 m-auto">
+                        <button class="btn btn-primary" id="form-submit-btn">Save</button>
+                        <button type="button" id="logoutbutton" class="btn btn-primary">Logout</button>
+
+                    </div>
+                </div>
         </form>
     </div>
 
 </body>
 <script>
 
-$('#submit').click(function(){
+    $('#form-submit-btn').click(function () {
+        console.log('here', $('#empname').val())
+        debugger
 
-
-     $.ajax({
+            var formData = {
+                    employee_name: $('#empname').val(),
+                    date_of_birth: $('#dobid').val(),
+                    father_name: $('#fathername').val(),
+                    mother_name: $('#mothername').val(),
+                    address: $('#Street').val()
+        }
+        $.ajax({
             type: "POST",
             url: "home.php",
-            data : {
-                employee_name: $('#empname').text(),
-                date_of_birth: $('#dobid').text(),
-                father_name: $('#fathername').val(),
-                mother_name: $('#mothername').val()
-                // address: $('#Street').val()
-            },
+            data: formData,
             success: function (response, status, xhr) {
                 response = JSON.parse(response);
                 if (response.status) {
                     window.alert(response.message);
-                }
-                else {
+                    localStorage.setItem("user_data", JSON.stringify(response.data))
+                    window.location.replace("home.html");
+                } else {
                     $('#error').text(response.message);
                 }
             },
@@ -127,40 +130,39 @@ $('#submit').click(function(){
 
             }
         })
-        });
-//     let adress=[];
+    });
+    //     let adress=[];
 
-// $('#addbutton').click(function(){
-//    let  indivisuals=[];
+    $('#addbutton').click(function () {
+        //    let  indivisuals=[];
 
-//    indivisuals.push($('#Street').val());
+        //    indivisuals.push($('#Street').val());
 
-//    adress.push(indivisuals);
+        //    adress.push(indivisuals);
 
-// let n=5;
-//    for (i = 0; i < n; i++) {
+        let n = 1;
+        for (i = 0; i < n; i++) {
 
-// $('#anotherform').append(`
+            $('#anotherform').append(`
 
-// <textarea class="form-control" id="Street" rows="3" placeholder=" add address"></textarea>
-// <button type="button" class="btn btn-primary" id="addbutton">Add</button>
-// `)
-//    }
+<textarea class="form-control" id="Street" rows="3" placeholder=" add address"></textarea><br>`)
+        }
+    })
 
-// $(function(){
-//     $('addbutton').click(function(){
-//         $('#Street').append("<input type='textarea' class='form-control' id='Street'  placeholder='add address'><br>");
-//     })
-// })
-   
+    // $(function(){
+    //     $('addbutton').click(function(){
+    //         $('#Street').append("<input type='textarea' class='form-control' id='Street'  placeholder='add address'><br>");
+    //     })
+    // })
 
-// })
-$("#logoutbutton").click(function () {
+
+    // })
+    $("#logoutbutton").click(function () {
         localStorage.removeItem('user_data');
         window.location.replace("login.html");
     })
 
-       
+
 
 
 </script>

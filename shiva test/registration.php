@@ -53,6 +53,19 @@ if(!array_key_exists('password',$_POST)){
     return;
 }
 
+if(strlen($_POST['date_of_birth'])==0){
+    $response['status']=false;
+    $response['message']="Select Date";
+    echo json_encode($response);
+    return;
+}
+
+if(!array_key_exists('date_of_birth',$_POST)){
+    $response['status']=false;
+    $response['message']="Select Date";
+    echo json_encode($response);
+    return;
+}
 
 
 try {
