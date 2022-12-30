@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"> -->
+
+
+
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Admins Login</h3>
+            </div>
+
+            <ul class="list-unstyled components" id="menubar">
+
+            </ul>
+            &nbsp; <button type="button" id="logoutbutton" class="btn btn-primary">Logout</button>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span class="glyphicon glyphicon-align-left"></span>
+                    </button>
+                    <!-- <h1>HR Info Table</h1> -->
+                </div>
+            </nav>
+            <form class="form" action="" class="taskload" method="post">
+                <div>
+                    <label for="text" class="text-info col-sm-2" style="margin-right: 20px;">Select Organization</label>
+                    <label for="text" class="text-info" style="margin-right: 20px;"> : </label>
+                    <select class="form-select" style="border-radius:10px;" id="orgdropdown"
+                        aria-label="select"></select>
+                </div><br>
+
+
+                <div class="table-responsive"><br />
+                    <table id="taskstatus" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Employee ID</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Priority</th>
+                                <th>Task Details</th>
+                                <th>Extended Date</th>
+                                <th>Remarks</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <p id="error" class="text-danger"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#flipFlop">
+        Click Me
+        </button> -->
+
+    <!-- The modal -->
+    <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalLabel">Extend Date</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="text" class="text-info date">Select end date :</label><br>
+                        <input type="date" id="enddate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="text" class="text area-info">Remarks :</label><br>
+                        <textarea type="text" id="remarkid" class="form-control"></textarea>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="addremarks">Add remarks</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "get_organizations.php",
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+                $("#orgdropdown").append("<option selected disabled>select organization</option>");
+                for (i = 0; i < response.data.length; i++) {
+                    $("#orgdropdown").append("<option value=" + response.data[i]['id'] + ">" + response.data[i]['org_name'] + "</option>");
+                }
+            }
+        })
+    })
+
+    $("#orgdropdown").change(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "taskstatus.php",
+            data: {
+                'organization_id': $('#orgdropdown').val()
+            },
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+                $("#taskstatus tbody").empty();
+                for (i = 0; i < response.data.length; i++) {
+                    let emp = response.data[i]['employee_id'];
+                    $("#taskstatus tbody").append("<tr>"
+                        + "<td>" + (i + 1) + "</td>"
+                        + "<td>" + response.data[i]['employee_id'] + "</td>"
+                        + "<td>" + response.data[i]['startdate'] + "</td>"
+                        + "<td>" + response.data[i]['enddate'] + "</td>"
+                        + "<td>" + response.data[i]['priority'] + "</td>"
+                        + "<td>" + response.data[i]['taskdetails'] + "</td>"
+                        + "<td>" + response.data[i]['extended_date'] + "</td>"
+                        + "<td>" + response.data[i]['remarks'] + "</td>"
+                        + `<td><button type='button' class='btn btn-success' id='completedbtn' onclick='status(1, "${emp}")' >Completed</button><br><button type='button' class='btn btn-dark' id='notcompletedbtn' onclick='status(0, "${emp}")'>Not Completed</button><br><button type='button' class='btn btn-danger' data-toggle='modal' onclick='setid("${emp}")' data-target='#flipFlop'>Extend Date</button></td>`
+                        + "</tr>");
+                }
+            }
+        })
+    })
+
+    function setid(employee_id) {
+        localStorage.setItem("emp_id", JSON.stringify(employee_id));
+    }
+
+
+    $("#addremarks").click(function () {
+        console.log(JSON.parse(localStorage.getItem('emp_id')));
+
+        $.ajax({
+            type: "POST",
+            url: "extended.php",
+            data: {
+                'extended_date': $('#enddate').val(),
+                'remarks': $('#remarkid').val(),
+                'employee_id': JSON.parse(localStorage.getItem('emp_id'))
+            },
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+                window.alert(response.message);
+                // location.href="task_status.html";
+
+            }
+        })
+
+    })
+
+
+    function status(status,id) {
+        console.log(status,id),
+
+
+        $.ajax({
+            type: "POST",
+            url: "completed.php",
+            data:{
+                'status': status,
+                'employee_id': id
+                
+            },
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+
+            }
+
+        })
+    }
+    
+//     <input type="button" class="btn" id="getUp" name="answer" value="get up"  onclick="this.style.display='none'; hideSleepIn(); " />
+// <input type="button" class="btn" id="sleepIn" name="answer" value="sleep in" onclick="this.style.display='none'; hideGetUp();" />
+
+//     var hidden = false;
+// var click = onClick;
+
+// function hideSleepIn()
+// {
+//     hidden = !hidden;
+
+//     if(getUp === click)
+//     {
+//         document.getElementById('getUp').style.visibility = 'visible';
+//     }
+
+//     else
+//     {
+//         document.getElementById('sleepIn').style.visibility = 'hidden';
+//     }       
+// }
+
+
+
+
+
+
+    $("#logoutbutton").click(function () {
+        localStorage.removeItem('user_data');
+        window.location.replace("login.html");
+    })
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+</script>
+
+<script src="login.js"></script>
+
+<script src="commonfile.js"></script>
+
+</html>

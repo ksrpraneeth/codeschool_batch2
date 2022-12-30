@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+    <!-- <style>
+        @media screen and (min-width: 672px) {
+            .modal-dialog {
+              max-width: 600px; 
+            }
+        }
+    </style> -->
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Admins Login</h3>
+            </div>
+
+            <ul class="list-unstyled components" id="menubar">
+
+            </ul>
+            &nbsp;<button type="button" id="logoutbutton" class="btn btn-primary">Logout</button>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span class="glyphicon glyphicon-align-left"> </span>
+                    </button>
+                </div>
+            </nav>
+
+
+
+            <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="modalLabel">Update Employees </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <br />
+                                <table id="employeetable" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee ID</th>
+                                            <th>Name</th>
+                                            <th>Org Name</th>
+                                            <th>Mobile</th>
+                                            <th>Email</th>
+                                            <th>Income</th>
+                                            <th>Designation</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- second modal -->
+
+                            <div class="modal fade" id="largeShoes1" tabindex="-1" role="dialog"
+                                aria-labelledby="modalLabelLarge" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title" id="modalLabelLarge">Employee Update</h4>
+                                        </div>
+
+                                        <div class="modal-body container">
+
+                                            <div class="row">
+                                                <div class="col-7">Employee ID<span class="text-danger">*</span></div>
+                                                <div class="col-4"><input type="text" class="form-control" id="uEid"
+                                                        value="" readonly></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-7">NAME<span class="text-danger">*</span></div>
+                                                <div class="col-4"><input type="text" class="form-control" id="uName"
+                                                        value=""></div>
+                                            </div>
+
+
+
+                                            <div class="row">
+                                                <div class="col-7">MOBILE<span class="text-danger">*</span></div>
+                                                <div class="col-4"><input type="number" class="form-control" value=""
+                                                        id="uPhone"></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-7">Email<span class="text-danger">*</span></div>
+                                                <div class="col-4"><input type="text" class="form-control" id="uEmail"
+                                                        value=""></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-7">INCOME<span class="text-danger">*</span></div>
+                                                <div class="col-4"><input type="text" class="form-control" id="uIncome"
+                                                        value=""></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-7">DESIGNATION<span class="text-danger">*</span></div>
+                                                <div class="col-4"><select id="uDesgination"></select></div>
+                                            </div>
+
+                                            <div class="row justify-content-center" id="buttonsave">
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- second modal ends -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+
+                <br />
+
+                <table id="tasktable" class="table table-bordered table-striped tasktbl">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+
+                            <th>Organization Name</th>
+
+                            <th>No.of Employees</a></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "employee_list.php",
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+                for (i = 0; i < response.data.length; i++) {
+                    $("#tasktable tbody").append(`<tr>
+                        <td>${i + 1}</td>
+                        <td>${response.data[i].name}</td>
+                        <td>${response.data[i].no_of_employees}</td>
+                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#flipFlop" onclick="upd(${response.data[i].id})">view</button></td>
+                        </tr>`);
+                }
+            }
+        })
+    })
+    // $(document).ready(function () {
+    //     getemplist();
+    // })
+
+    // function getemplist() {
+
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "employees.php",
+    //         success: function (response, status, xhr) {
+    //             response = JSON.parse(response);
+    //             for (i = 0; i < response.data.length; i++) {
+    //                 $("#employeetable tbody").append("<tr>"
+    //                     + "<td id='empid'>" + response.data[i]['employee_id'] + "</td>"
+    //                     + "<td> <input type='text' class='form-control'id='empname' value='" + response.data[i]['employee_name'] + "' > </td>"
+    //                     + "<td id='orgname'>" + response.data[i]['org_name'] + "</td>"
+    //                     + "<td> <input type='text' class='form-control'id='mobileid' value='" + response.data[i]['mobile'] + "' > </td>"
+    //                     + "<td> <input type='text' class='form-control' id='emailid' value='" + response.data[i]['email_id'] + "' > </td>"
+    //                     + "<td> <input type='text' class='form-control' id='incomeid' value='" + response.data[i]['income'] + "' > </td>"
+    //                     + "<td> <select class='form-select'  id='designations' onclick='designationdata()' aria-label='select'  value='" + response.data[i]['designation'] + "' > </select> </td>"
+    //                     + "<td><button type='button' class='btn btn-success' id='savebtn' onclick='savedata()'>Save</button><button type='button' class='btn btn-danger' onclick='deletedata()'>Delete</button></td>"
+    //                     + "</tr>");
+    //             }
+    //         }
+    //     })
+    // }
+    //designatiom appending in the modals
+
+
+    //save button in the modal
+
+    function save(organization, id) {
+        console.log(organization, id)
+        var formdata = { orgid: organization, tableid: id }
+        $.ajax({
+            type: "POST",
+            url: "save.php",
+            data: formdata,
+            datatype: "JSON",
+            success: function (response) {
+                response = JSON.parse(response);
+                $('#uEid').val('')
+                $('#uName').val('')
+                $('#uPhone').val('')
+                $('#uEmail').val('')
+                $('#uIncome').val('')
+                $('#uDesgination').empty()
+                $('#buttonsave').empty()
+
+                $('#uEid').val(response.output1[0].employee_id)
+                $('#uName').val(response.output1[0].employee_name)
+                $('#uPhone').val(response.output1[0].mobile)
+                $('#uEmail').val(response.output1[0].email_id)
+                $('#uIncome').val(response.output1[0].income)
+
+
+
+                for (let i = 0; i < response.output2.length; i++) {
+                    $('#uDesgination').append(`<option value="${response.output2[i].id}">${response.output2[i].description}</option>`)
+                }
+
+                $('#buttonsave').append(`<button type="button" class="btn btn-primary" onclick="saveEmployee(${response.output1[0].id})">Save</button>
+`)
+
+
+
+            }, error: function () {
+
+            }
+        })
+
+
+        // $.ajax({
+        //     type: "POST",
+        //     url: "save.php",
+        //     data : {
+        //         employee_id: $('#empid').text(),
+        //         org_name: $('#orgname').text(),
+        //         designation: $('#designations').val(),
+        //         employee_name: $('#empname').val(),
+        //         mobile: $('#mobileid').val(),
+        //         email_id: $('#emailid').val(),
+        //         income: $('#incomeid').val()
+        //     },
+        //     success: function (response, status, xhr) {
+        //         response = JSON.parse(response);
+        //         if (response.status) {
+        //             window.alert(response.message);
+        //             getemplist();
+        //         }
+        //         else {
+        //             $('#error').text(response.message);
+        //         }
+        //     },
+        //     error: function () {
+
+        //     }
+        // })
+    }
+    // delete function in the modals
+
+    function deletedata(organizationid, id) {
+        var formdata = { ogid: organizationid, tid: id }
+
+        $.ajax({
+            type: "POST",
+            url: "delete.php",
+            data: formdata,
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+                if (response.status) {
+                    window.alert(response.message);
+                    windwo.location.reload()
+                }
+                else {
+                    $('#error').text(response.message);
+                }
+            },
+            error: function () {
+
+            }
+        })
+    }
+
+
+
+    $("#logoutbutton").click(function () {
+        localStorage.removeItem('user_data');
+        window.location.replace("login.html");
+    })
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+
+
+    //update employees details and opening modals for them
+    function upd(organizationid) {
+
+        console.log(organizationid)
+        $("#employeetable tbody").empty()
+
+        var formdata = { oid: organizationid }
+
+        $.ajax({
+            type: "POST",
+            url: "employees.php",
+            data: formdata,
+            datatype: "JSON",
+            success: function (response) {
+
+                response = JSON.parse(response)
+
+                for (let i = 0; i < response.data.length; i++) {
+                    $("#employeetable tbody").append(`
+                    <tr>
+                        <td>${response.data[i].employee_id}</td>
+                        <td>${response.data[i].employee_name}</td>
+                        <td>${response.data[i].org_name}</td>
+                        <td>${response.data[i].mobile}</td>
+                        <td>${response.data[i].email_id}</td>
+                        <td>${response.data[i].income}</td>
+                        <td>${response.data[i].designation}</td>
+                        <td><button type="button" class="btn btn-success"  data-toggle="modal" data-target="#largeShoes1" onclick="save(${response.data[i].organization_id},${response.data[i].id})">update</button></td>
+                        <td><button type="button" class="btn btn-danger" onclick="deletedata(${response.data[i].organization_id},${response.data[i].id})">Delete</button></td>
+                        
+                        </tr>
+                    `);
+                }
+
+
+            }, error: function () {
+
+            }
+        })
+
+        $.ajax({
+            type: "POST",
+            url: "get_designation.php",
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+                $(".slt").empty().append("<option selected disabled>select designation</option>");
+                for (i = 0; i < response.data.length; i++) {
+                    $(".slt").append("<option value=" + response.data[i]['id'] + ">" + response.data[i]['description'] + "</option>");
+                }
+            }
+        })
+    }
+
+
+    //update detaiils
+
+    function saveEmployee(id){
+        var formdata={tid:id,
+            name: $('#uName').val(),
+        mobile:$('#uPhone').val(),
+        email:$('#uEmail').val(),
+        income:$('#uIncome').val(),
+        designation:$('#uDesgination option:selected').val()
+    
+    
+    }
+    $.ajax({
+        type:"POST",
+        url:"saveEmployee.php",
+        data:formdata,
+        datatype:"JSON",
+        success:function(response){
+            response=JSON.parse(response)
+
+            if(response.status){
+                window.alert(response.message)
+            }
+            else{
+                window.alert(response.message)
+            }
+
+        },error:function(){
+
+        }
+    })
+    }
+
+</script>
+
+<script src="login.js"></script>
+
+<script src="commonfile.js"></script>
+
+<script>
+
+</script>
+
+</html>

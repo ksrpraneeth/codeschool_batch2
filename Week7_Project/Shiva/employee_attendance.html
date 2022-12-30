@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Admins Login</h3>
+            </div>
+
+            <ul class="list-unstyled components" id="menubar">
+
+            </ul>
+            &nbsp;<button type="button" id="logoutbutton" class="btn btn-primary">Logout</button>
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span class="glyphicon glyphicon-align-left"> </span>
+                    </button>
+                </div>
+            </nav>
+
+                <div>
+                    <label for="text" class="text-info">Select Organization: </label>
+
+                    <select class="form-select" id="orgdropdown" aria-label="select">
+
+                    </select>
+                </div><br>
+
+                <div class="form-group">
+
+                    <div class='input-group date'>
+                        <label for="text" class="text-info">Select Date: </label>
+
+                        <input type='date' id='datetimepicker5' class="form-control" />
+                        <p id="error" class="text-danger"></p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-end form-group">
+                  <button style="display:inline-block;" type="button" class="btn btn-primary col-sm-2"
+                        id="getattendance">Get attendance</button>
+                </div>
+                <div class="table-responsive"><br />
+                <table id="attendancetable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Organization</th>
+                            <th>Employee Name</th>
+                            <th>Mobile</th>
+                            <th>Designation</th>
+                            <th>Login Time</th>
+                            <th>Logout Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: "get_organizations.php",
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+                $("#orgdropdown").append("<option selected disabled>select organization</option>");
+                for (i = 0; i < response.data.length; i++) {
+                    $("#orgdropdown").append("<option value=" + response.data[i]['id'] + ">" + response.data[i]['org_name'] + "</option>");
+                }
+            }
+        })
+        $("#logoutbutton").click(function () {
+            localStorage.removeItem('user_data');
+            window.location.replace("login.html");
+
+        })
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+
+    $("#getattendance").click(function () {
+        // $("#attendancetable tbody").html("");
+        $.ajax({
+            type: "POST",
+            url: "attendance.php",
+            data: {
+                'org_id': $('#orgdropdown').val(),
+                'date': $('#datetimepicker5').val(),
+            },
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+
+                if (response.status) {
+                    for (i = 0; i < response.data.length; i++) {
+                        $("#attendancetable tbody").append("<tr>"
+                            + "<td>" + response.data[i]['org_name'] + "</td>"
+                            + "<td>" + response.data[i]['employee_name'] + "</td>"
+                            + "<td>" + response.data[i]['mobile'] + "</td>"
+                            + "<td>" + response.data[i]['designation'] + "</td>"
+                            + "<td>" + response.data[i]['logintime'] + "</td>"
+                            + "<td>" + response.data[i]['logouttime'] + "</td>"
+                            + "</tr>");
+                    }
+                }
+                else {
+                    $('#error').text(response.message);
+                }
+
+            }
+        })
+
+    });
+
+</script>
+
+<script src="login.js"></script>
+
+<script src="commonfile.js"></script>
+
+</html>

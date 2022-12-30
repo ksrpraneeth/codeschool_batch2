@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Admins Login</h3>
+            </div>
+
+            <ul class="list-unstyled components" id="menubar">
+
+            </ul>
+            &nbsp;<button type="button" id="logoutbutton" class="btn btn-primary">Logout</button>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span class="glyphicon glyphicon-align-left"> </span>
+                    </button>
+                </div>
+            </nav>
+            <form class="form" action="" class="taskload" method="post">
+                <div class="form-group col-sm-2">
+                    <label for="Text" class="text-info">Employee ID:</label><br>
+                    <input type="text" id="empid" class="form-control" placeholder="Enter Employee ID">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="text" class="text-info">Start Date:</label><br>
+                    <input type="date" id="startdt" class="form-control">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="text" class="text-info">End Date:</label><br>
+                    <input type="date" id="enddt" class="form-control">
+                </div>
+                <div class="form-group col-sm-2">
+                    <label for="text" class="text-info">Priority:</label><br>
+                    <input type="text" id="priorityid" class="form-control">
+                </div>
+                <div class="row"></div>
+                <div class="form-group col-sm-6">
+                    <label for="text" class="text area-info">Task Details:</label><br>
+                    <textarea type="text" id="taskdetail" class="form-control"></textarea>
+                </div><br>
+                <div class="row  form-group  ">
+                    <button type="button" class="btn btn-primary col-sm-1" id="submitbtn">Submit</button>
+                </div>
+                <div class="row">
+                    <p id="error" class="text-danger"></p>
+                </div>
+
+            </form>
+            <div class="table-responsive">
+
+                <br />
+
+                <table id="tasktable" class="table table-bordered table-striped tasktbl">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+
+                            <th>Employee ID</th>
+
+                            <th>Start Date</th>
+
+                            <th>End Date</th>
+
+                            <th>Priority</th>
+
+                            <th>Task Details</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        gettasktable();
+    })
+
+    function gettasktable() {
+        $(".tasktbl tbody").html("");
+        $.ajax({
+            type: "POST",
+            url: "get_task.php",
+
+            success: function (response, status, xhr) {
+                response = JSON.parse(response);
+                for (i = 0; i < response.data.length; i++) {
+                    $("#tasktable tbody").append("<tr>"
+                        + "<td>" + (i + 1) + "</td>"
+                        + "<td>" + response.data[i]['employee_id'] + "</td>"
+                        + "<td>" + response.data[i]['startdate'] + "</td>"
+                        + "<td>" + response.data[i]['enddate'] + "</td>"
+                        + "<td>" + response.data[i]['priority'] + "</td>"
+                        + "<td>" + response.data[i]['taskdetails'] + "</td>"
+                        + "</tr>");
+                }
+            }
+        })
+    }
+
+    $('#submitbtn').click(function () {
+
+        var formData = {
+            employee_id: $('#empid').val(),
+            startDate: $('#startdt').val(),
+            endDate: $('#enddt').val(),
+            priority: $('#priorityid').val(),
+            taskDetails: $('#taskdetail').val()
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "task.php",
+            data: formData,
+            success: function (response, status, xhr) {
+                console.log('res', response);
+                response = JSON.parse(response);
+                if (response.status) {
+                    window.alert(response.message);
+                    gettasktable();
+                }
+                else {
+                    $('#error').text(response.message);
+                }
+            },
+            error: function () {
+
+            }
+        })
+    });
+    $("#logoutbutton").click(function () {
+        localStorage.removeItem('user_data');
+        window.location.replace("login.html");
+    })
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+</script>
+
+<script src="login.js"></script>
+
+<script src="commonfile.js"></script>
+
+<script>
+
+</script>
+
+</html>
