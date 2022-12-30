@@ -1,0 +1,24 @@
+body {
+    background-color: #e2e2e2;
+}
+
+form .row {
+    margin: 1em 0;
+}
+
+.error-msg {
+    color: red;
+    margin: 0;
+    margin-top: 5px;    
+    padding: 0;
+    font-size: .8em;
+}
+
+.required:after {
+    content: "*";
+    color: red;
+}
+
+.w20 {
+    width: 20px;
+}
