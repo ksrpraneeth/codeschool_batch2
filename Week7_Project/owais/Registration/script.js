@@ -1,0 +1,57 @@
+//ajax call for form validation
+$('#registerButton').click(function(){
+    var formData ={
+        accountType:$('#account-type').val(),
+        title:$('#title-of-applicant').val(),
+        firstName:$('#first-name').val(),
+        lastName:$('#last-name').val(),
+        dateOfBirth:$('#date-of-birth').val(),
+        gender:$('#gender-of-applicant').val(),
+        mobileNumber:$('#mobile-number').val(),
+        eMailId:$('#e-mail-id').val(),
+        streetAddress:$('#street-address').val(),
+        city:$('#city-name').val(),
+        state:$('#state-name').val(),
+        pinCode:$('#pin-code').val(),
+        country:$('#country-name').val(),
+        aadharNumber:$('#aadhar-number').val(),
+        panNumber:$('#pan-number').val(),
+        userId:$('#user-id').val(),
+        password:$('#passwd').val(),
+        confirmPassword:$('#confirm-password').val()
+    }
+    $.ajax({
+        type:"POST",
+        url:"registration.php",
+        data:formData,
+        success:function(result){
+            let res = JSON.parse(result);
+            console.log(res);
+            if(res.status){
+                window.alert(res.message);
+                window.location.replace("customerDetails.php");
+            }
+            else{
+            $('#accountType').text(res.errors.accountType);
+            $('#title').text(res.errors.title);
+            $('#firstName').text(res.errors.firstName);
+            $('#lastName').text(res.errors.lastName);
+            $('#dateOfBirth').text(res.errors.dateOfBirth);
+            $('#gender').text(res.errors.gender);
+            $('#mobileNumber').text(res.errors.mobileNumber);
+            $('#eMailId').text(res.errors.eMailId);
+            $('#streetAddress').text(res.errors.streetAddress);
+            $('#city').text(res.errors.city);
+            $('#state').text(res.errors.state);
+            $('#pinCode').text(res.errors.pinCode);
+            $('#country').text(res.errors.country);
+            $('#aadharNumber').text(res.errors.aadharNumber);
+            $('#panNumber').text(res.errors.panNumber);
+            $('#userId').text(res.errors.userId);
+            $('#password').text(res.errors.password);
+            $('#confirmPassword').text(res.errors.confirmPassword);
+            }
+        }
+    
+    });
+});

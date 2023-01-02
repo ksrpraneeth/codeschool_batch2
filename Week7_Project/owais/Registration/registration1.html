@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account Pixel Bank</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <link href="style.css" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body>
+    <img src="../OnlineBankingWebIMG4 .jpeg" width=100% height="200">
+
+    <div class="container" id="main">    
+
+            <div class="row">
+                <div class="col-sm-1">
+                     <img src="../pix_logo.jfif" width="30">
+                </div>
+
+                <div class="col-sm-3" id="pix"> 
+                    <h2>PIXEL BANK</h2>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+            <div class="row" id="details">
+                <h3>APPLICANT DETAILS</h3>
+            </div>
+
+            
+            <form  class="form-horizontal" action="" name="myForm">
+                    <div class="form-group row">
+                        <label for="accountType" class="col-form-label required col-sm-2">Account Type</label>
+
+                        <div class="form-group col-sm-1 w20">:</div>
+
+                        <div class="form-group col-sm-7">
+                            <select name="accountType" id="account-type" class="form-control">
+                                <option value="" selected disabled>Account Type</option>
+                                <option value="savings account">Savings Account</option>
+                                <option value="current account">Current Account</option>
+                                <option value="salary account">Salary Account</option>
+                            </select> <b><span id="accountType" class="text-danger"></span></b> 
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="form-group row">
+                        <label for="fullName" class="col-form-label required col-xs-2 col-sm-2 ">Full Name</label> 
+
+                        <div class="form-group col-xs-1 col-sm-1  w20">:</div>
+
+                        <div class="form-group col-sm-1">
+                            <select name="Title" id="title-of-applicant" class="form-control">
+                                <option value="" selected disabled>Title</option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Mrs.">Mrs.</option>
+                            </select>  <b><span id="title" class="text-danger"></span></b> 
+                        </div>
+
+                        <div class="form-group col-xs-3 col-sm-3 ">
+                        <input type="text" class="form-control" id="first-name"
+                        name="first-name" placeholder="First Name"><b><span id="firstName" class="text-danger"></span></b>
+                        </div>
+
+                        <div class="form-group col-xs-3 col-sm-3">
+                            <input type="text" class="form-control" id="last-name"
+                            name="last-name" placeholder="Last Name"><b><span id="lastName" class="text-danger"></span></b>
+                        </div>
+                    </div>
+                    <br>
+
+                    
+
+                    <div class="form-group row">
+                        <label for="Date of birth" class="col-form-label required col-sm-2">Date of Birth</label>
+
+                        <div class="form-group col-sm-1 w20">:</div>
+
+                        <div class="form-group col-sm-7">
+                            <input type="date" id="date-of-birth" name="date-of-birth" placeholder="Date of Birth"><b><span id="dateOfBirth" class="text-danger"></span></b>
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group row">
+                        <label for="gender" class="col-form-label required col-sm-2">Gender</label>
+
+                        <div class="form-group col-sm-1 w20">:</div>
+
+                        <div class="form-group col-sm-2">
+                            <input type="radio" name="gender" id="gender-of-applicant" value="male">Male
+                        </div>
+
+                        <div class="form-group col-sm-2">
+                            <input type="radio" name="gender"  id="gender-of-applicant" value="female">female
+                        </div>
+
+                        <div class="form-group col-sm-2">
+                            <input type="radio" name="gender"  id="gender-of-applicant" value="other">Other
+                        </div>
+                        <b><span id="gender" class="text-danger"></span></b>
+
+                    </div>
+                    <br>
+
+                   <div class="form-group row">
+                        <label for="mobileNo" class="col-form-label required col-sm-2">Mobile Number</label>
+
+                        <div class="form-group col-sm- w20">:</div>
+
+                        <!-- <div class="form-group col-sm-1">91</div> -->
+
+                        <div class="form-group col-sm-7">
+                            <input type="text" class="form-control" id="mobile-number"
+                            name="mobileNumber" maxlength="10" placeholder="Mobile Number">
+                            <b><span id="mobileNumber" class="text-danger"></span></b>
+                        </div>
+                   </div>
+                   <br>
+
+                   <div class="row justify-content-center">
+                    
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-5">
+                        <b><p>Now get your Account number same as your Mobile number</p></b>
+                    </div>
+                    <div class="col-sm-3"></div>
+
+
+                   
+                   </div>
+
+                   
+
+
+                  <div class="form-group row justify-content-center">
+                    <div class="col-sm-3"></div>
+
+                    <div class="col-sm-6"> <h3 class="text-danger">MY ACCOUNT MY NUMBER</h3></div>
+                    <div class="col-sm-3"></div>
+                   
+                  </div>
+
+                   <div class="form-group row">
+                    <label for="account number" class="col-form-label required col-sm-2">Account Number</label>
+
+                    <div class="form-group col-sm-1 w20">:   </div>
+
+                    <div class="form-group col-sm-7">
+
+                        <input type="text" class="form-control" id="account-number" maxlength="10"name="accountNumber" placeholder="Account Number">
+                        <b><span id="accountNumber" class="text-danger"></span></b>
+                    </div>
+               </div>
+               <br>
+
+                   <div class="form-group row">
+                        <label for="mail-id" class="col-form-label required col-sm-2">E-mail id</label>
+
+                        <div class="form-group col-sm-1 w20">:</div>
+
+                        <div class="form-group col-sm-7">
+                            <input type="email" class="form-control" id="e-mail-id"
+                            name="emailId" placeholder="E-mail id"><b><span id="eMailId" class="text-danger"></span></b>
+                        </div>
+                   </div>
+                   <br>
+
+                   <div class="form-group row">
+                        <label for="address" class="col-form-label required col-sm-2">Address</label>
+
+                        <div class="form-group col-sm-1 w20">:</div>
+
+                        <div class="form-group col-sm-7">
+                        <input type="text" class="form-control" id="street-address"
+                        name="streetAddress" placeholder="Street Address"><b><span id="streetAddress" class="text-danger"></span></b>
+                        </div>
+
+                            <br><br>
+    
+                            <div class="form-group col-sm-3"></div>
+
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" id="city-name"
+                                name="city" placeholder="City"><b><span id="city" class="text-danger"></span></b>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" id="state-name"
+                                name="state" placeholder="State"><b><span id="state" class="text-danger"></span></b>
+                            </div>
+                            <div class="form-group col-sm-3"></div>
+
+                            <br><br>
+                            <div class="form-group col-sm-3"></div>
+
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" id="pin-code"
+                                name="pincode" placeholder=" PINcode"><b><span id="pinCode" class="text-danger"></span></b>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" id="country-name"
+                                name="country" placeholder="Country"><b><span id="country" class="text-danger"></span></b>
+                            </div>    
+                   </div>
+                   <br>
+
+                   <div class="form-group row">
+                        <label for="Aadhar Number" class="col-form-label required col-sm-2">Aadhar Number</label>
+
+                        <div class="form-group col-sm-1 w20">:</div>
+
+                        <div class="form-group col-sm-7">
+                            <input type="text" class="form-control" id="aadhar-number"
+                            name="aadharNumber" placeholder="Enter AadharNumber"><b><span id="aadharNumber" class="text-danger"></span></b>
+                        </div>
+                   </div>
+                    <br>
+
+                    <div class="form-group row">
+                        <label for="PAN Number" class="col-form-label required col-sm-2">PAN Number</label>
+
+                        <div class="form-group col-sm-1 w20">:</div>
+
+                        <div class="form-group col-sm-7">
+                            <input type="text" class="form-control" id="pan-number"
+                            name="pan number" placeholder="Enter PAN Number"><b><span id="panNumber" class="text-danger"></span></b>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row justify-content-center">
+                        <button type="button" id="nextButton" class="col-1 btn btn-primary">NEXT</button>
+                    </div>
+            </form> 
+        </div>
+    </div>                   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
+</body>
+    <!-- <script src="script.js"> -->
+<script>
+    //ajax call for form validation
+$('#nextButton').click(function(){
+    var formData ={
+        accountType:$('#account-type').val(),
+        title:$('#title-of-applicant').val(),
+        firstName:$('#first-name').val(),
+        lastName:$('#last-name').val(),
+        dateOfBirth:$('#date-of-birth').val(),
+        gender:$('#gender-of-applicant').val(),
+        mobileNumber:$('#mobile-number').val(),
+        accountNumber:$('#account-number').val(),
+        eMailId:$('#e-mail-id').val(),
+        streetAddress:$('#street-address').val(),
+        city:$('#city-name').val(),
+        state:$('#state-name').val(),
+        pinCode:$('#pin-code').val(),
+        country:$('#country-name').val(),
+        aadharNumber:$('#aadhar-number').val(),
+        panNumber:$('#pan-number').val()
+    }
+    $.ajax({
+        type:"POST",
+        url:"registration1.php",
+        data:formData,
+        success:function(result){
+            let res = JSON.parse(result);
+            console.log(res);
+            console.log(res.data);
+            
+            if(res.status){
+                window.alert(res.message);
+                localStorage.setItem("user_id",res.data);
+                window.location.replace("registration2.php");
+            }
+            else{
+            $('#accountType').text(res.errors.accountType);
+            $('#title').text(res.errors.title);
+            $('#firstName').text(res.errors.firstName);
+            $('#lastName').text(res.errors.lastName);
+            $('#dateOfBirth').text(res.errors.dateOfBirth);
+            $('#gender').text(res.errors.gender);
+            $('#mobileNumber').text(res.errors.mobileNumber);
+            $('#accountNumber').text(res.errors.accountNumber);
+            $('#eMailId').text(res.errors.eMailId);
+            $('#streetAddress').text(res.errors.streetAddress);
+            $('#city').text(res.errors.city);
+            $('#state').text(res.errors.state);
+            $('#pinCode').text(res.errors.pinCode);
+            $('#country').text(res.errors.country);
+            $('#aadharNumber').text(res.errors.aadharNumber);
+            $('#panNumber').text(res.errors.panNumber)
+            }
+        }
+    
+    });
+});
+</script>    
+
+</html>
